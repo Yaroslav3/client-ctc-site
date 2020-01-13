@@ -1,0 +1,218 @@
+[
+  {
+    "class": "arial",
+    "name": "Arial"
+  },
+  {
+    "class": "Exo2Regular",
+    "name": "Exo2Regular"
+  },
+  {
+    "class": "Exo2Bold",
+    "name": "Exo2Bold"
+  },
+  {
+    "class": "Exo2Light",
+    "name": "Exo2Light"
+  },
+  {
+    "class": "Exo2BoldItalic",
+    "name": "Exo2BoldItalic"
+  },
+  {
+    "class": "Exo2ThinItalic",
+    "name": "Exo2ThinItalic"
+  },
+  {
+    "class": "Exo2Thin",
+    "name": "Exo2Thin"
+  },
+  {
+    "class": "Exo2SemiBoldItalic",
+    "name": "Exo2SemiBoldItalic"
+  },
+  {
+    "class": "Exo2SemiBold",
+    "name": "Exo2SemiBold"
+  },
+  {
+    "class": "Exo2Black",
+    "name": "Exo2Black"
+  },
+  {
+    "class": "Exo2MediumItalic",
+    "name": "Exo2MediumItalic"
+  },
+  {
+    "class": "Exo2Medium",
+    "name": "Exo2Medium"
+  },
+  {
+    "class": "Exo2LightItalic",
+    "name": "Exo2LightItalic"
+  },
+  {
+    "class": "Exo2BlackItalic",
+    "name": "Exo2BlackItalic"
+  },
+  {
+    "class": "Exo2Italic",
+    "name": "Exo2Italic"
+  },
+  {
+    "class": "Exo2ExtraLightItalic",
+    "name": "Exo2ExtraLightItalic"
+  },
+  {
+    "class": "Exo2ExtraLight",
+    "name": "Exo2ExtraLight"
+  },
+  {
+    "class": "Exo2ExtraBoldItalic",
+    "name": "Exo2ExtraBoldItalic"
+  },
+  {
+    "class": "Exo2ExtraBold",
+    "name": "Exo2ExtraBold"
+  },
+  {
+    "class": "Exo2BoldItalic",
+    "name": "Exo2BoldItalic"
+  },
+  {
+    "class": "times-new-roman",
+    "name": "Times New Roman"
+  },
+  {
+    "class": "Ubuntu_Rehular",
+    "name": "Ubuntu_Rehular"
+  },
+  {
+    "class": "Ubuntu_Bold",
+    "name": "Ubuntu_Bold"
+  },
+  {
+    "class": "Ubuntu_Mono_Bold_Italic",
+    "name": "Ubuntu_Mono_Bold_Italic"
+  },
+  {
+    "class": "Ubuntu_italic",
+    "name": "Ubuntu_italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Black",
+    "name": "Fira_Sans_Condensed_Black"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Black_Italic",
+    "name": "Fira_Sans_Condensed_Black_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Thin_Italic",
+    "name": "Fira_Sans_Condensed_Thin_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_ExtraBold",
+    "name": "Fira_Sans_Condensed_ExtraBold"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Medium",
+    "name": "Fira_Sans_Condensed_Medium"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Light",
+    "name": "Fira_Sans_Condensed_Light"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Bold_Italic",
+    "name": "Fira_Sans_Condensed_Bold_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_ExtraLight",
+    "name": "Fira_Sans_Condensed_ExtraLight"
+  },
+  {
+    "class": "Fira_Sans_Condensed_ExtraBold_Italic",
+    "name": "Fira_Sans_Condensed_ExtraBold_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_ExtraLight",
+    "name": "Fira_Sans_Condensed_ExtraLight"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Italic",
+    "name": "Fira_Sans_Condensed_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_ExtraLight_Italic",
+    "name": "Fira_Sans_Condensed_ExtraLight_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_SemiBold_Italic",
+    "name": "Fira_Sans_Condensed_SemiBold_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Thin",
+    "name": "Fira_Sans_Condensed_Thin"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Medium_Italic",
+    "name": "Fira_Sans_Condensed_Medium_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Regular",
+    "name": "Fira_Sans_Condensed_Regular"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Bold",
+    "name": "Fira_Sans_Condensed_Bold"
+  },
+  {
+    "class": "Fira_Sans_Condensed_Light_Italic",
+    "name": "Fira_Sans_Condensed_Light_Italic"
+  },
+  {
+    "class": "Fira_Sans_Condensed_SemiBold",
+    "name": "Fira_Sans_Condensed_SemiBold"
+  },
+  {
+    "class": "Casiopea_Ultra",
+    "name": "Casiopea_Ultra"
+  },
+  {
+    "class": "Casiopea_SemiBold",
+    "name": "Casiopea_SemiBold"
+  },
+  {
+    "class": "Casiopea_Light",
+    "name": "Casiopea_Light"
+  },
+  {
+    "class": "Casiopea_Bold",
+    "name": "Casiopea_Bold"
+  },
+  {
+    "class": "Casiopea_Thin",
+    "name": "Casiopea_Thin"
+  },
+  {
+    "class": "KIA_KIAB",
+    "name": "KIA_KIAB"
+  },
+  {
+    "class": "KIA_KIAL",
+    "name": "KIA_KIAL"
+  },
+  {
+    "class": "KIA_KIAM",
+    "name": "KIA_KIAM"
+  },
+  {
+    "class": "Fira_Mono",
+    "name": "Fira_Mono"
+  },
+  {
+    "class": "Fira_Mono_Bold",
+    "name": "Fira_Mono_Bold"
+  }
+]

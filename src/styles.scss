@@ -1,1 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./scss/fonts";
+@import "./scss/vars";
+@import "./scss/rest";
+@import "src/assets/scss/sprire";
+//@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+//@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
+//@import "../node_modules/fullcalendar/dist/fullcalendar.css";
+
+--root {
+  --fonts-main: Exo2Regular, "Helvetica Neue", sans-serif;
+  --font-header-topic: 'Casiopea_SemiBold', serif;
+  --font-coach-header: Arial, Helvetica, sans-serif, serif;
+  --fonts-coach-trainer: Fira_Sans_Condensed_Light, serif;
+  --font-show-couch-resume: Exo2Regular, Arial, sans-serif;
+  --font-show-couch-resume2:  Arial, Helvetica, sans-serif, serif;
+  --font-footer-light: 'Casiopea_Light', serif;
+  --font-footer-regular: 'Casiopea_Regular', serif;
+  --font-footer-header: 'Ubuntu_Rehular', serif;
+}
+
+
+*, :active, :focus, :hover {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+  outline-offset: 0;
+}
+
+
+html, body, iframe {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fonts-main);
+  background: #fbfbfb;
+  scroll-behavior: smooth; // стиль для поавной прокрутки страници ViewportScroller
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    padding: 0;
+    margin: 5px;
+    li {
+      padding: 0;
+      list-style: none;
+    }
+
+  }
+}
+
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+// Стили для кнопки в приложении
+.btn-all-application {
+  display: inline-block;
+  border: 1px solid #648095;
+  transition: all 0.5s ease-out;
+  padding: 6px 10px;
+  cursor: pointer;
+  text-align: center;
+
+  .btn-text {
+    color: #648095;
+    transition: all 0.5s ease-out;
+
+    i {
+      transition: all 0.5s ease-out;
+      position: relative;
+      top: 0;
+      left: -3px;
+      font-size: 11px;
+      color: #648095;
+    }
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid white;
+    border-radius: 3px;
+    transition: all 0.5s ease-in;
+
+    .btn-text {
+      color: white;
+      transition: all 0.5s ease-in;
+
+      i {
+        position: relative;
+        top: 0;
+        left: -3px;
+        font-size: 14px;
+        color: white;
+        transition: all 0.5s ease-in;
+      }
+    }
+  }
+}

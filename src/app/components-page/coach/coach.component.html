@@ -1,0 +1,38 @@
+<div class="wrapper">
+  <div class="all-content">
+    <div>
+      <div class="loading-content">
+      </div>
+    </div>
+    <div>
+      <div class="title">
+        <h3>Тренеры</h3>
+      </div>
+      <hr>
+      <div class="coach-block" [@fadingAwayAnimate]>
+          <div *ngFor="let elem of trainers" >
+            <div class="trainer-block">
+              <div class="picture-trainer">
+                <img [src]="'data:image/jpg;base64,'+ elem['photo'][0]['photo']" alt="Trainings">
+              </div>
+              <div class="bl-tol">
+                <h3 class="name">{{elem.name}}</h3>
+                <h3 class="surname">{{elem.surname}}</h3>
+                <hr>
+                <div class="bl-height">
+                  <p>{{elem.scope}}</p>
+                </div>
+                <div class="btn-trainer">
+                  <div class="btn-all-application" (click)="redirect(elem)">
+                    <span class="btn-text"> Подробно о тренере </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
+

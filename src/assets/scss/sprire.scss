@@ -1,0 +1,104 @@
+
+.arrow-top-silver, .arrow-top-white, .beak, .email, .facebook,
+.linkedin, .marker, .massage-blue, .mob, .skype,
+.youtube-play-blue, .youtube-play-red {
+  display: inline-block;
+  background: url('src/assets/img/sprite.png') no-repeat;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-align: left;
+}
+
+.arrow-top-silver {
+  background-position: -5px -0px;
+  width: 30px;
+  height: 30px;
+}
+
+.arrow-top-white {
+  background-position: -40px -0px;
+  width: 30px;
+  height: 30px;
+}
+
+.beak {
+  background-position: -75px -0px;
+  width: 30px;
+  height: 30px;
+}
+
+.email {
+  background-position: -5px -35px;
+  width: 30px;
+  height: 30px;
+  transform: scale(0.5);
+  position: relative;
+  top: 10px;
+  left: -6px;
+}
+
+.facebook {
+  background-position: -40px -35px;
+  width: 30px;
+  height: 30px;
+  transform: scale(.7);
+}
+
+.linkedin {
+  background-position: -75px -35px;
+  width: 30px;
+  height: 30px;
+  transform: scale(.65);
+}
+
+.marker {
+  background-position: -5px -70px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  transform: scale(.5);
+  top: 9px;
+  left: -11px;
+}
+
+.massage-blue {
+  background-position: -40px -70px;
+  width: 30px;
+  height: 30px;
+  transform: scale(0.7);
+  position: relative;
+  top: 10px;
+  left: -8px
+}
+
+.mob {
+  background-position: -75px -70px;
+  width: 30px;
+  height: 30px;
+  transform: scale(.6);
+  position: relative;
+  top: 9px;
+}
+
+.skype {
+  background-position: -5px -105px;
+  width: 30px;
+  height: 30px;
+  transform: scale(.55);
+  position: relative;
+  top: 9px;
+}
+
+.youtube-play-blue {
+  background-position: -40px -105px;
+  width: 30px;
+  height: 30px;
+
+}
+
+.youtube-play-red {
+  background-position: -75px -105px;
+  width: 30px;
+  height: 30px;
+  transform: scale(.9);
+}

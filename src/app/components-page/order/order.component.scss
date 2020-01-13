@@ -1,0 +1,514 @@
+wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.all-content-order {
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+.btn-back-order {
+
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.coach-header {
+  width: 96%;
+  margin: 0 auto;
+  transition: all linear 0.3s;
+  box-sizing: border-box;
+}
+
+.white_bg {
+  background-color: white;
+  padding: 20px;
+}
+
+
+
+.alert-order-success {
+  width: 100%;
+  height: 380px;
+  padding: 20px 20px 20px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #F2F3F4;
+  color: #67575A;
+}
+
+.alert-order-success p {
+  text-align: center;
+  padding-top: 150px;
+  width: 100%;
+  font-size: 18px;
+  font-family: 'KIA_KIAM', serif;
+}
+
+.order-checkout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  //background-color: #bebebe;
+  height: auto;
+  margin-top: 20px;
+
+}
+
+.text-checkout {
+  width: 100%;
+}
+
+.text-checkout h1 {
+  font-family: Arial, Helvetica, sans-serif, serif;
+  margin: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: #3c3c3c;
+  font-weight: bold;
+
+}
+
+.contecnt-checkout {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.trener-checkout {
+  padding: 0 8%;
+  width: 45%;
+  color: #546652;
+}
+
+.trener-checkout p {
+  text-align: center;
+
+}
+
+.calendar-checkout {
+  width: 53.89%;
+  color: #546652;
+  border-radius: 5px;
+}
+
+.calendar-checkout {
+  text-align: center;
+
+}
+
+.calendar-checkout p {
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* The container */
+.container {
+  font-family: 'KIA_KIAM', serif;
+  display: block;
+  position: relative;
+  padding-left: 14%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  border-radius: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  margin-top: -6px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #147d67;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 11px;
+  top: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.description-choice {
+  width: 100%
+
+}
+
+.description-choice p {
+  text-align: left;
+  font-size: 12px;
+  color: #515EDD;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+}
+
+.data-input {
+  padding: 0 20px;
+  width: 33%;
+}
+
+.btn-order {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.btn-ok {
+  width: 80%;
+  height: 45px;
+  border-radius: 1px;
+  border: 0;
+  margin: 10px 10px 10px 85px;
+  font-size: 15px;
+  background-color: #6e6e6e;
+  color: white;
+  font-family: 'KIA_KIAM', serif;
+  box-shadow: 0 2px 2px rgba(28, 15, 25, 0.2);
+
+}
+
+.btn-ok:hover {
+  background-color: #3c3c3c;
+}
+
+.block-order {
+  width: 450px;
+}
+
+.calendar-checkout {
+  margin-top: -2px;
+}
+
+.block-order-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.input-group{
+  width: 80%;
+  margin: 10px 10px 10px 85px;
+}
+.input-group input {
+  height: 39px;
+  border-radius: 1px;
+  border: 1px solid #949494;
+  text-indent: 0.2em;
+  font-size: 13px;
+}
+
+.input {
+  width: 80%;
+  height: 35px;
+  border-radius: 1px;
+  border: 1px solid #949494;
+  text-indent: 0.9em;
+  font-size: 13px;
+  margin: 10px 10px 10px 85px;
+}
+
+.block-order-group select {
+  width: 80%;
+  height: 35px;
+  border-radius: 1px;
+  text-indent: 0.6em;
+  border: 1px solid #949494;
+  margin: 10px 10px 10px 85px;
+  font-family: 'KIA_KIAM', serif;
+  font-size: 13px;
+  color: #7a7a7a;
+}
+
+.textarea-form {
+  width: 80%;
+  height: 135px;
+  border-radius: 1px;
+  border: 1px solid #949494;
+  text-indent: 0.8em;
+  margin: 10px 10px 10px 85px;
+  font-size: 13px;
+}
+
+.label-training {
+  display: flex;
+  //align-content: start;
+  width: 80%;
+  margin: -10px 0 0 85px;
+
+}
+
+.label-training p {
+  font-size: 10px;
+}
+
+.error-input {
+  display: flex;
+  //align-content: start;
+  width: 50%;
+  margin: -8px 0 0 95px;
+}
+
+.error-input span {
+  color: #a01809;
+  font-size: 12px;
+  font-family: KIA_KIAM, serif;
+  font-weight: bold;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    max-width: 1180px;
+  }
+
+  .all-content-order {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+
+}
+
+@media only screen and (max-width: 980px) {
+  .wrapper {
+    max-width: 970px;
+  }
+
+  .all-content-order {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+
+  .container {
+    padding-left: 15%;
+    font-size: 11px;
+  }
+
+  .input-group{
+    width: 80%;
+    margin: 10px 10px 10px 55px;
+  }
+
+  .input {
+    margin: 10px 10px 10px 55px;
+  }
+  .block-order-group select {
+    margin: 10px 10px 10px 55px;
+  }
+  .label-training {
+
+    margin: -10px 0 0 55px;
+  }
+
+  .label-training p {
+    font-size: 10px;
+  }
+  .textarea-form {
+    margin: 10px 10px 10px 55px;
+  }
+
+
+  .error-input {
+    width: 70%;
+    margin: -8px 0 0 65px;
+  }
+
+  .btn-ok {
+    margin: 10px 10px 10px 55px;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 760px;
+  }
+
+  .alert-order-success p {
+    font-size: 15px;
+  }
+  .container {
+    padding-left: 9%;
+    font-size: 13px;
+  }
+
+  .text-checkout {
+    font-size: 25px;
+  }
+
+  .contecnt-checkout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .trener-checkout {
+    width: 100%;
+    font-size: 25px;
+  }
+
+  .checkmark {
+    top: 5px;
+  }
+  .calendar-checkout p {
+    font-size: 25px;
+  }
+
+  .calendar-checkout {
+    width: 100%;
+    margin-top: 45px;
+  }
+  .form-control-input-data {
+    width: 70%;
+  }
+  .block-order-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-group{
+    width: 80%;
+    margin: 10px auto 0;
+  }
+
+  .input {
+    width: 80%;
+    margin: 10px auto 0;
+  }
+
+  .block-order-group select {
+    width: 80%;
+    margin: 10px auto 0;
+
+  }
+  .label-training {
+    margin: 10px 0 0 10%;
+  }
+  .label-training p {
+    font-size: 10px;
+  }
+
+  .textarea-form {
+    width: 80%;
+    margin: 10px auto 0;
+  }
+
+
+  .error-input {
+    width: 50%;
+    margin: 10px 0 0 10%;
+  }
+  .error-input span {
+    color: #a01809;
+    font-size: 8px;
+    font-family: KIA_KIAM, serif;
+    font-weight: bold;
+  }
+
+  .btn-ok {
+    //margin: 10px 10px 10px 55px
+    margin: 0 auto;
+  }
+
+
+}
+
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    max-width: 470px;
+    font-size: 15px;
+  }
+
+  .alert-order-success {
+    border-radius: 0;
+  }
+
+  .alert-order-success p {
+    font-size: 13px;
+  }
+
+  .text-checkout {
+    font-size: 15px;
+  }
+  .container {
+    padding-left: 18%;
+    font-size: 13px;
+  }
+
+  .input {
+    width: 100%;
+
+  }
+
+  .textarea-form {
+    width: 100%;
+  }
+
+  .block-order-group select {
+    width: 100%;
+  }
+
+  .block-order-group select {
+    font-size: 18px;
+    text-indent: 0.5em;
+  }
+  .error-input {
+    width: 50%;
+    margin: 10px 0 0 1%;
+  }
+
+  .btn-ok {
+    width: 100%;
+    //margin: 10px 10px 10px 55px
+    //margin: 0 auto;
+  }
+}
