@@ -1,13 +1,15 @@
 <div class="wrapper">
   <div class="all-content-order">
     <div class="coach-header">
-      <div class="btn-back-order">
-        <a class="btn btn-outline-secondary" routerLink="/trainings"> <i class="fas fa-chevron-left"></i>
-          назад</a>
+      <div class="btn-all-application btn-corrected" [routerLink]="['/trainings']">
+        <span class="btn-text">
+          <span class="beak"></span>
+          Назад
+        </span>
       </div>
       <br>
       <div class="white_bg">
-        <main>
+        <div class="content-order">
           <div *ngIf="doneOrder" class="alert-order-success">
             <p> Спасибо, мы свяжится с вам в ближайшее время.</p>
           </div>
@@ -15,24 +17,61 @@
             <div class="text-checkout">
               <h1>Оформление заявки</h1>
             </div>
-            <form name="form" [formGroup]="orderForm" (ngSubmit)="submitOrderSave()" novalidate>
-              <div class="contecnt-checkout">
+            <div class="btn-all-application toggle-trainer" (click)="toggleTrainers()">
+              <span class="btn-text"> Выбрать другого тренера </span>
+            </div>
+            <form class="form" name="form" [formGroup]="orderForm" (ngSubmit)="submitOrderSave()" novalidate>
+              <div class="contact-checkout">
                 <br>
-                <div class="trener-checkout">
-                  <p>Тренеры</p>
-                  <br>
-
-                  <div *ngFor="let data of trainersCheckbox">
-                    <label class="container">{{data.value.name}} {{data.value.surname}}
-                      <input name="trainers" type="checkbox"
-                             (change)="onChange(data.value.name, data.value.surname, $event.target.checked)">
-                      <span class="checkmark"></span>
-                    </label>
+                <div class="trainer-checkout">
+                  <div class="trainer-visualisation"
+                       [@showAnimate]
+                       *ngIf="toggle">
+                    <div class="block-photo-trainer">
+                      <img class="img" [src]="'data:image/jpg;base64,' + selectedTrainerId['photo'][0]['photo']"
+                           alt="trainer photo">
+                    </div>
+                    <div class="block-description-trainer">
+                      <p class="trainer-description">
+                        <span> {{selectedTrainerId.name}} {{selectedTrainerId.surname}}</span>
+                      </p>
+                      <p class="trainer-description">Квалификация:
+                        <span> {{selectedTrainerId.scope}} </span>
+                      </p>
+                    </div>
                   </div>
+                  <div class="list-visualisation-trainers"
+                       [@showAnimate]
+                       *ngIf="!toggle">
+                    <p class="header-text-block-checkout">Тренеры</p>
+                    <br>
+                    <div class="position-content-checkout">
+                      <div>
+                        <div class="selectCoach" *ngFor="let data of trainersCheckbox">
+                          <label class="container">{{data.value.name}} {{data.value.surname}}
+                            <input name="trainers" type="radio"
+                                   (click)="selectedCoach(data)"
+                                   (change)="onChange(data.value.name, data.value.surname, $event.target.checked)">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="block-selected-photo"
+                           *ngIf="photoTrainerSelectedCheckbox">
+                        <img  class="img"
+                             [src]="'data:image/jpg;base64,'+ photoTrainerSelectedCheckbox" alt="photo trainer">
+                        <span class="btn-detail-trainer"
+                              title="Посмотреть резюме тренета"
+                              [routerLink]="['/trainings/coach/resume', idTrainerSelectedCheckbox]">
+                          Подробно о тренере
+                        </span>
+                      </div>
+                    </div>
 
-                  <br>
-                  <div class="description-choice">
-                    <p>* Выберите желаемого тренера или оставите ячейки пустыми</p>
+                    <br>
+                    <div class="description-choice">
+                      <p>* Выберите желаемого тренера или оставите ячейки пустыми</p>
+                    </div>
                   </div>
                 </div>
                 <div class="calendar-checkout">
@@ -44,8 +83,9 @@
                              name="end" ngbDatepicker
                              #e="ngbDatepicker">
                       <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"><i
-                          class="far fa-calendar-alt"></i></button>
+                        <button class="btn btn-outline-secondary calendar"
+                                (click)="e.toggle()" type="button">
+                          <span class="far fa-calendar-alt calendar-icon"></span></button>
                       </div>
                     </div>
                     <div class="error-input" *ngIf="isSubmitted && f.date.errors">
@@ -158,7 +198,7 @@
             <br>
           </div>
           <hr class="hr-line-down">
-        </main>
+        </div>
       </div>
     </div>
   </div>

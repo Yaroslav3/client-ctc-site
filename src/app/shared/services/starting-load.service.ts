@@ -52,4 +52,8 @@ export class StartingLoadService {
       });
   }
 
+  getAllInscriptions() {
+    return this.http.get(this.host + environment.apiUrlTrainingsInscriptions);
+  }
+
 }

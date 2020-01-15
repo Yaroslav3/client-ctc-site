@@ -32,15 +32,12 @@ export class MenuComponent implements OnInit, AfterContentChecked {
     document.body.style.overflow = 'visible';
   }
 
-  menuActivated() {
-    if (!this.burgerMenu) {
-      this.correctedMenu = this.correctedMenu ? false : true;
-    }
-  }
   menuScrollingClose() {
     this.menuScrolling = false;
   }
+
+
+
   ngAfterContentChecked(): void {
-    this.menuActivated();
   }
 }

@@ -37,7 +37,6 @@ import {ScrollDirective} from './shared/directives/scroll.directive';
 import {DelayDirective} from './shared/directives/delay.directive';
 import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
-// import { ScrollDirective } from './shared/directives/scroll.directive';
 
 
 @NgModule({

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
 import {Trainers} from '../../shared/model/Trainers.model';
 import {Store} from '@ngrx/store';
@@ -7,13 +7,14 @@ import {Router} from '@angular/router';
 import {StartingLoadService} from '../../shared/services/starting-load.service';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 
+
 @Component({
   selector: 'app-coach',
   templateUrl: './coach.component.html',
   styleUrls: ['./coach.component.scss'],
   animations: [fadingAwayAnimate]
 })
-export class CoachComponent implements OnInit {
+export class CoachComponent implements OnInit, OnDestroy {
   location: string;
   public trainers: Trainers;
 
@@ -36,4 +37,6 @@ export class CoachComponent implements OnInit {
     this.router.navigate(['trainings', 'coach', 'resume', elem.id]);
   }
 
+  ngOnDestroy(): void {
+  }
 }

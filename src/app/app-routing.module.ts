@@ -25,7 +25,7 @@ const routes: Routes = [
         {path: 'home', component: HomeComponent},
         {path: 'trainings', component: TrainingsComponent},
         {path: 'trainings/training-show/:id', component: TrainingShowComponent},
-        {path: 'trainings-order', component: OrderComponent},
+        {path: 'trainings-order/:id', component: OrderComponent},
         {path: 'trainings/coach', component: CoachComponent},
         {path: 'trainings/coach/resume/:id', component: ShowCouchResumeComponent},
         {path: 'webinars', component: WebinarsComponent},
