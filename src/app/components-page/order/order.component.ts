@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Trainings} from '../../shared/model/Trainings.model';
 import {Order} from '../../shared/model/Order.model';
@@ -8,22 +8,22 @@ import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {ActivatedRoute, Params} from '@angular/router';
-import {GetTrainerService} from '../../shared/services/get-trainer.service';
-import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
+import {hiddenAnimate, showAnimate} from '../../shared/animations/fading-away.animate';
+import {LoaderComponent} from '../../global-components/loader/loader.component';
 
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
+  animations: [hiddenAnimate, showAnimate],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
-
+  loader: boolean;
   protected orderError: Order;
   protected isCreated = false;
-  toggle: boolean;
   trainings: Trainings;
   trainersCheckbox: any = [];
   myForm: FormGroup;
@@ -32,34 +32,49 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   doneOrder = false;
   form: any = {};
   isSubmitted = false;
-  selectedTrainerId;
-  photoTrainerSelectedCheckbox;
-  idTrainerSelectedCheckbox;
+  allTrainings;
+  selectedTrainerId; // Все данные тренера от которого переШли в блок заказа корпоративного трененга
+  idTrainerSelectedCheckbox; // Id тренера по которому произошёл клик Checkbox
+  photoTrainerSelectedCheckbox; // фото тренера которой выбран через Checkbox
+  allPhoto = [];
+
 
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
     private config: NgbDatepickerConfig,
     private orderService: OrderService,
-    private getTrainer: GetTrainerService,
+    private getTrainer: GetReduxDataService,
     private router: ActivatedRoute,
-    private headerControl: MainLayoutComponent
+    private loaderComponent: LoaderComponent,
+    private headerControl: MainLayoutComponent,
+    private renderer: Renderer2,
   ) {
-    this.toggle = true;
     this.headerControl.hiddenHeaderComponent();
     this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
     this.config.outsideDays = 'hidden';
+    this.loader = true;
+    this.loaderComponent.startSpinner();
   }
 
   ngOnInit() {
     this.createFormGroup();
-    this.store.select('stateTrainings', 'trainings').subscribe((allTrainings) => {
-      this.trainings = allTrainings;
+    this.router.params.subscribe((params: Params) => {
+      this.selectedTrainerId = this.getTrainer.getOneTrainer(params.id);
+      console.log(this.selectedTrainerId);
+      this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
+      this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
     });
     this.store.select('stateTrainers', 'trainers').subscribe((trainers) => {
       this.trainersCheckbox = Object.keys(trainers).map(key => ({trainers: key, value: trainers[key]}));
-      console.log(this.trainersCheckbox);
     });
+    this.store.select('stateTrainings', 'trainings').subscribe((allTrainings) => {
+      this.trainings = allTrainings;
+      this.allTrainings = allTrainings;
+      this.startComponentCheckboxPhoto(this.selectedTrainerId);
+    });
+    this.loaderComponent.stopSpinner();
+    this.loader = false;
   }
 
   ngAfterContentChecked(): void {
@@ -69,7 +84,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   selectedTrainer() {
     this.router.params.subscribe((params: Params) => {
       this.selectedTrainerId = this.getTrainer.getOneTrainer(params.id);
-      console.log(this.selectedTrainerId);
     });
   }
 
@@ -91,15 +105,36 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     return this.orderForm.controls;
   }
 
+  startComponentCheckboxPhoto(coach) {
+    setTimeout(() => {
+      const inputElement = document.getElementsByClassName('inputCheckbox');
+      const selected = inputElement.namedItem(coach.id);
+      this.renderer.setProperty(selected, 'checked', true);
+    });
+  }
 
-  onChange(name: string, surname: string, isChecked: boolean) {
+  onChange(name: string, surname: string, isChecked: boolean, coach) {
     const trainersFormArray = this.myForm.controls.orderTrainers as FormArray;
     if (isChecked) {
+      this.allPhoto.push(coach);
+      this.idTrainerSelectedCheckbox = coach.id;
+      this.photoTrainerSelectedCheckbox = coach.photo[0].photo;
+      this.trainings = coach.trainerTrainings;
       trainersFormArray.push(new FormControl(name + ' ' + surname));
     } else {
+      this.allPhoto = this.allPhoto.filter(c => c.id !== coach.id);
+      if (this.allPhoto.length > 0) {
+        const editAllPhoto = this.allPhoto[this.allPhoto.length - 1];
+        this.idTrainerSelectedCheckbox = editAllPhoto.id;
+        this.photoTrainerSelectedCheckbox = editAllPhoto.photo[0].photo;
+      } else {
+        this.idTrainerSelectedCheckbox = '';
+        this.photoTrainerSelectedCheckbox = '';
+      }
       const index = trainersFormArray.controls.findIndex(x => x.value === name);
       trainersFormArray.removeAt(index);
     }
+    console.log(this.allPhoto);
   }
 
 
@@ -132,20 +167,33 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       });
   }
 
+  // selectedCoach(coach) {
+  //   console.log(coach);
+  //   this.toggle = true;
+  //   if (this.toggle) {
+  //     this.idTrainerSelectedCheckbox = coach.value.id;
+  //     this.photoTrainerSelectedCheckbox = coach.value.photo[0]['photo'];
+  //     this.trainings = coach.value.trainerTrainings;
+  //   } else {
+  //     this.toggle = false;
+  //     this.idTrainerSelectedCheckbox = coach.value.id;
+  //     this.photoTrainerSelectedCheckbox = coach.value.photo[0]['photo'];
+  //   }
+  // }
+
+  // toggleTrainers() {
+  //   this.photoTrainerSelectedCheckbox = '';
+  //   this.toggle = this.toggle ? false : true;
+  //   if (this.toggle) {
+  //     this.trainings = this.selectedTrainerId.trainerTrainings;
+  //     console.log(this.trainings);
+  //   } else {
+  //     this.trainings = this.allTrainings;
+  //     console.log(this.trainings);
+  //   }
+  // }
+
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
-  }
-
-  selectedCoach(coach) {
-    this.idTrainerSelectedCheckbox = coach.value.id;
-    this.photoTrainerSelectedCheckbox = coach.value.photo[0]['photo'];
-    const selectedTrainings = coach.value.trainerTrainings;
-    this.trainings = selectedTrainings;
-  }
-
-  toggleTrainers() {
-    this.photoTrainerSelectedCheckbox = '';
-    this.toggle = this.toggle ? false : true;
-    console.log(this.toggle);
   }
 }

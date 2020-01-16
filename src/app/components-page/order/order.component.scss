@@ -1,4 +1,11 @@
+.loader{
+  width: 100%;
+  height: 100vh;
+}
+
 .wrapper {
+
+
   .all-content-order {
     margin-left: 20px;
     margin-right: 20px;
@@ -103,31 +110,32 @@
                   padding: 0 3%;
                   color: #909B8E;
 
-                  .trainer-visualisation {
-                    display: flex;
-                    margin: 60px 10px 10px 10px;
-
-                    .block-photo-trainer {
-                      width: 200px;
-
-                      .img {
-                        max-width: 200px;
-                        background-size: cover;
-                      }
-                    }
-
-                    .block-description-trainer {
-                      .trainer-description {
-                        font-weight: bold;
-                        color: #909B8E;
-
-                        span {
-                          display: inline-block;
-                          font-size: 13px;
-                        }
-                      }
-                    }
-                  }
+                  //.trainer-visualisation {
+                  //  display: flex;
+                  //  flex-direction: column;
+                  //  margin: 60px 10px 10px 10px;
+                  //
+                  //  .block-photo-trainer {
+                  //    width: 350px;
+                  //
+                  //    .img {
+                  //      max-width: 350px;
+                  //      background-size: cover;
+                  //    }
+                  //  }
+                  //
+                  //  .block-description-trainer {
+                  //    .trainer-description {
+                  //      font-weight: bold;
+                  //      color: #909B8E;
+                  //
+                  //      span {
+                  //        display: inline-block;
+                  //        font-size: 13px;
+                  //      }
+                  //    }
+                  //  }
+                  //}
 
                   .list-visualisation-trainers {
                     .header-text-block-checkout {
@@ -159,13 +167,13 @@
                           -ms-user-select: none;
                           user-select: none;
                           transition: all 0.5s;
-                          border-radius: 20px;
 
                           &:hover {
                             transition: all 0.5s;
                             background: #F3F3F3;
-
+                            color: #147d67;
                           }
+
                         }
 
                         input {
@@ -174,13 +182,11 @@
                           cursor: pointer;
                           height: 0;
                           width: 0;
-
                           ~ .checkmark {
                             background-color: #BABABA;
-                            border-radius: 50%;
+                            border-radius: 2px;
                             transition: all 0.5s ease-in;
                           }
-
                           &:checked {
                             ~ .checkmark {
                               transition: all 0.5s ease-in;
@@ -195,6 +201,9 @@
                               top: 0;
                               left: 4px;
                               transform: scale(.7) rotate(45deg);
+                            }
+                            .container{
+                              color: red;
                             }
 
                           }
@@ -224,14 +233,22 @@
                             transform: rotate(45deg);
                           }
                         }
+                        .noChecked{
+                          background: #515EDD;
+                        }
+                        .noChecked {
+                          background: red;
+                        }
                       }
 
                       .block-selected-photo {
                         max-width: 250px;
                         height: 200px;
 
+
                         .img {
                           width: 250px;
+                          height: 200px;
                           background-size: cover;
                         }
 
@@ -572,25 +589,27 @@
                       margin: 5px;
                     }
 
-                    .trainer-visualisation {
-                      margin: 10px;
-                      flex-direction: column;
-                      align-items: center;
-
-                      .block-photo-trainer {
-                        .img {
-                        }
-                      }
-
-                      .block-description-trainer {
-                        .trainer-description {
-
-                          span {
-
-                          }
-                        }
-                      }
-                    }
+                    //.trainer-visualisation {
+                    //  margin: 10px;
+                    //  flex-direction: column;
+                    //  align-items: center;
+                    //
+                    //  .block-photo-trainer {
+                    //    width: 250px;
+                    //    .img {
+                    //      width: 250px;
+                    //    }
+                    //  }
+                    //
+                    //  .block-description-trainer {
+                    //    .trainer-description {
+                    //
+                    //      span {
+                    //
+                    //      }
+                    //    }
+                    //  }
+                    //}
 
                     .position-content-checkout {
                       display: flex;
@@ -776,15 +795,15 @@
 
 @media only screen and (max-width: 400px) {
 
-  .trainer-visualisation {
-    .block-photo-trainer {
-      width: 150px !important;
-
-      .img {
-        max-width: 150px !important;
-      }
-    }
-  }
+  //.trainer-visualisation {
+  //  .block-photo-trainer {
+  //    width: 150px !important;
+  //
+  //    .img {
+  //      max-width: 150px !important;
+  //    }
+  //  }
+  //}
 
   .list-visualisation-trainers {
     .block-selected-photo {

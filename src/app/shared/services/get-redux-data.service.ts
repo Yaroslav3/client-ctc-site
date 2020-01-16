@@ -6,7 +6,7 @@ import {Trainers} from '../model/Trainers.model';
 @Injectable({
   providedIn: 'root'
 })
-export class GetTrainerService {
+export class GetReduxDataService {
   selectedTrainers: Trainers;
   allTrainers;
 
