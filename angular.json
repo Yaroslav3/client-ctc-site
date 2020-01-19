@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/fonts/Casiopea/stylesheet.css"
             ],
             "scripts": []
           },
@@ -124,6 +125,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ctc"
 }

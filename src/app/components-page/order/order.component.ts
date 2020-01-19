@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Trainings} from '../../shared/model/Trainings.model';
 import {Order} from '../../shared/model/Order.model';
@@ -7,11 +7,11 @@ import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-boo
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
-import {ActivatedRoute, Params} from '@angular/router';
-import {GetTrainerService} from '../../shared/services/get-trainer.service';
-import {hiddenAnimate, showAnimate} from '../../shared/animations/fading-away.animate';
 
-
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
+import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+import {LoaderComponent} from '../../global-components/loader/loader.component';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -20,63 +20,69 @@ import {hiddenAnimate, showAnimate} from '../../shared/animations/fading-away.an
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
-
+  loader: boolean;
   protected orderError: Order;
   protected isCreated = false;
-  toggle: boolean;
   trainings: Trainings;
   trainersCheckbox: any = [];
   myForm: FormGroup;
   orderForm: FormGroup;
   done = true;
+  loaderSubmit: boolean;
   doneOrder = false;
   form: any = {};
   isSubmitted = false;
   allTrainings;
-  selectedTrainerId; // Все данные тренера от которого перещли в блок заказа корпоративного трененга
+  selectedTrainerId; // Все данные тренера от которого перешли в блок заказа корпоративного трененга
   idTrainerSelectedCheckbox; // Id тренера по которому произошёл клик Checkbox
   photoTrainerSelectedCheckbox; // фото тренера которой выбран через Checkbox
+  coachSelectedCheckbox = [];
 
   constructor(
     private fb: FormBuilder,
+    private routerLink: Router,
     private store: Store<AppState>,
     private config: NgbDatepickerConfig,
     private orderService: OrderService,
-    private getTrainer: GetTrainerService,
+    private getReduxData: GetReduxDataService,
     private router: ActivatedRoute,
-    private headerControl: MainLayoutComponent
+    private loaderComponent: LoaderComponent,
+    private headerControl: MainLayoutComponent,
+    private renderer: Renderer2,
   ) {
-    this.toggle = true;
-    this.headerControl.hiddenHeaderComponent();
-    this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
     this.config.outsideDays = 'hidden';
+    this.loaderSubmit = false;
   }
-
   ngOnInit() {
-    this.createFormGroup();
-    this.toggleTrainers();
-    this.store.select('stateTrainings', 'trainings').subscribe((allTrainings) => {
-      this.trainings = allTrainings;
-      this.allTrainings = allTrainings;
-      console.log(allTrainings);
-    });
-    this.store.select('stateTrainers', 'trainers').subscribe((trainers) => {
-      this.trainersCheckbox = Object.keys(trainers).map(key => ({trainers: key, value: trainers[key]}));
-      console.log(this.trainersCheckbox);
-    });
-  }
-
-  ngAfterContentChecked(): void {
+    this.loader = true;
+    this.headerControl.hiddenHeaderComponent();
+    this.loaderComponent.startSmallSpinner();
+    this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
     this.selectedTrainer();
-  }
+    this.createFormGroup();
+    this.trainersCheckbox = this.getReduxData.getTrainers();
+    this.trainings = this.getReduxData.getTrainingsAll();
+    this.allTrainings = this.getReduxData.getTrainingsAll();
+    if (this.selectedTrainerId) {
+      this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
+      this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
+      this.startComponentCheckboxCoach(this.selectedTrainerId);
+      this.loader = false;
+    } else {
+      this.routerLink.navigate(['trainings/coach']);
+      this.loader = false;
+    }
 
+  
+
+  }
+  ngAfterContentChecked(): void {
+  }
   selectedTrainer() {
     this.router.params.subscribe((params: Params) => {
-      this.selectedTrainerId = this.getTrainer.getOneTrainer(params.id);
-      console.log(this.selectedTrainerId);
+      this.selectedTrainerId = this.getReduxData.getOneTrainer(params.id);
     });
   }
-
   createFormGroup() {
     return this.orderForm = this.fb.group({
       date: ['', [Validators.required]],
@@ -90,28 +96,44 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       description: ['', [Validators.maxLength(1025)]],
     });
   }
-
   public get f() {
     return this.orderForm.controls;
   }
-
-
-  onChange(name: string, surname: string, isChecked: boolean) {
+  startComponentCheckboxCoach(coach) {
+    setTimeout(() => {
+      const inputElement = document.getElementsByClassName('inputCheckbox');
+      const selected = inputElement.namedItem(coach.id);
+      this.renderer.setProperty(selected, 'checked', true);
+    });
+  }
+  onChange(name: string, surname: string, isChecked: boolean, coach) {
     const trainersFormArray = this.myForm.controls.orderTrainers as FormArray;
     if (isChecked) {
+      this.coachSelectedCheckbox.push(coach);
+      this.idTrainerSelectedCheckbox = coach.id;
+      this.photoTrainerSelectedCheckbox = coach.photo[0].photo;
       trainersFormArray.push(new FormControl(name + ' ' + surname));
     } else {
+      this.coachSelectedCheckbox = this.coachSelectedCheckbox.filter(c => c.id !== coach.id);
+      if (this.coachSelectedCheckbox.length > 0) {
+        const editAllPhoto = this.coachSelectedCheckbox[this.coachSelectedCheckbox.length - 1];
+        this.idTrainerSelectedCheckbox = editAllPhoto.id;
+        this.photoTrainerSelectedCheckbox = editAllPhoto.photo[0].photo;
+      } else {
+        this.idTrainerSelectedCheckbox = '';
+        this.photoTrainerSelectedCheckbox = '';
+      }
       const index = trainersFormArray.controls.findIndex(x => x.value === name);
       trainersFormArray.removeAt(index);
     }
   }
-
-
   submitOrderSave() {
     this.isSubmitted = true;
     if (this.orderForm.invalid) {
       return;
     }
+    this.loaderSubmit = true;
+    this.loaderComponent.startSmallSpinner();
     const order: Order = new Order();
     order.orderTrainers = this.myForm.controls.orderTrainers.value.join(' , ');
     order.date = this.orderForm.controls.date.value;
@@ -123,11 +145,16 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     order.phone = this.orderForm.controls.phone.value;
     order.email = this.orderForm.controls.email.value;
     order.description = this.orderForm.controls.description.value;
+    console.log(order);
     this.orderService.saveOrder(order).subscribe(() => {
-        this.isCreated = true;
-        this.done = false;
-        window.scroll(0, 500);
-        this.doneOrder = true;
+        setTimeout(() => {
+          this.isSubmitted = true;
+          this.loaderSubmit = false;
+          this.loaderComponent.stopSmallSpinner();
+          this.done = false;
+          window.scroll(0, 100);
+          this.doneOrder = true;
+        }, 1000);
       },
       error => {
         console.log(error);
@@ -135,26 +162,9 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
         this.isCreated = false;
       });
   }
-
-  selectedCoach(coach) {
-    this.idTrainerSelectedCheckbox = coach.value.id;
-    this.photoTrainerSelectedCheckbox = coach.value.photo[0]['photo'];
-    this.trainings = coach.value.trainerTrainings;
-  }
-
-  toggleTrainers() {
-    this.photoTrainerSelectedCheckbox = '';
-    this.toggle = this.toggle ? false : true;
-    if (this.toggle) {
-      this.trainings = this.selectedTrainerId.trainerTrainings;
-      console.log(this.trainings);
-    } else {
-      this.trainings = this.allTrainings;
-      console.log(this.trainings);
-    }
-  }
-
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
-  }
+    this.loaderSubmit = false;
+    this.loaderComponent.stopSmallSpinner();
+}
 }

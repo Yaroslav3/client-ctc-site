@@ -1,11 +1,9 @@
 import {InfoStartApplication, StartLoadingInfoApplication} from './startApplication.actions';
-
 const initialState = {
   photoHeader: [],
   footerInfo: [],
+  inscriptions: []
 };
-
-
 export function startApplicationReducer(state = initialState, action: InfoStartApplication) {
   switch (action.type) {
     case StartLoadingInfoApplication.AddPhoto:
@@ -17,6 +15,11 @@ export function startApplicationReducer(state = initialState, action: InfoStartA
       return {
         ...state,
         footerInfo: action.payload
+      };
+    case StartLoadingInfoApplication.AllInscriptions:
+      return {
+        ...state,
+        inscriptions: action.payload
       };
     default:
       return state;
