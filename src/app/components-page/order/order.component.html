@@ -1,5 +1,6 @@
 
 <div class="wrapper">
+
   <div class="all-content-order" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div class="coach-header" *ngIf="!loader">
@@ -25,7 +26,11 @@
               <div class="contact-checkout">
                 <br>
                 <div class="trainer-checkout">
+
                   <div class="list-visualisation-trainers">
+
+                  
+
                     <p class="header-text-block-checkout">Тренеры</p>
                     <br>
                     <div class="position-content-checkout">
@@ -44,8 +49,12 @@
                         </div>
                       </div>
                       <div class="block-selected-photo"
+
                            *ngIf="photoTrainerSelectedCheckbox"
                             [@fadingAwayAnimate]>
+
+                    
+
                         <img class="img"
                              [src]="'data:image/jpg;base64,'+ photoTrainerSelectedCheckbox" alt="photo trainer">
                         <span class="btn-detail-trainer"

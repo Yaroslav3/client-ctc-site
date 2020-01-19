@@ -7,16 +7,16 @@ import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-boo
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
+
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
-
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
+  animations: [hiddenAnimate, showAnimate],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
@@ -37,6 +37,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   idTrainerSelectedCheckbox; // Id тренера по которому произошёл клик Checkbox
   photoTrainerSelectedCheckbox; // фото тренера которой выбран через Checkbox
   coachSelectedCheckbox = [];
+
   constructor(
     private fb: FormBuilder,
     private routerLink: Router,
@@ -71,6 +72,9 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.routerLink.navigate(['trainings/coach']);
       this.loader = false;
     }
+
+  
+
   }
   ngAfterContentChecked(): void {
   }
@@ -162,5 +166,5 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.headerControl.visibleHeaderComponent();
     this.loaderSubmit = false;
     this.loaderComponent.stopSmallSpinner();
-  }
+}
 }

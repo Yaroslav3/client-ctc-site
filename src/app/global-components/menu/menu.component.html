@@ -1,0 +1,100 @@
+<div [ngClass]="{
+'menu-application': !correctedMenu,
+'menu-application-corrected': correctedMenu,
+'menu-application-corrected-scroll': menuScrolling
+}">
+  <div class="logo"
+       [ngStyle]="{'background-image': 'url('+'/assets/img/logo2.png'+ ')'}"></div>
+  <nav class="dws-menu">
+    <ul class="dws-ul">
+      <li class="dws-li"
+          routerLink=""
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>HOME</a></li>
+      <li class="dws-li"
+          routerLink="/trainings/coach"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Тренеры</a>
+      </li>
+      <li class="dws-li"
+          routerLink="/trainings"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Тренинги</a>
+      </li>
+      <li class="dws-li"
+          routerLink="/webinars"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Вебинары</a>
+      </li>
+      <li class="dws-li"
+          routerLink="/schedule"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Расписание</a>
+      </li>
+      <li class="dws-li"
+          routerLink="/room-rental"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Аренда
+          Залов</a>
+      </li>
+      <li class="dws-li" routerLink="/recommendations"
+          routerLinkActive="activeLink"
+          (click)="menuScrollingClose()"
+          [routerLinkActiveOptions]="{exact:true}">
+        <a>Рекомендации</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div
+  [ngClass]="{'mob-btn-menu': !burgerMenu, 'liner-open-menu': burgerMenu}"
+  class="mob-btn-menu"
+  (click)="burger()">
+  <span class="line line_1"></span>
+  <span class="line line_2"></span>
+  <span class="line line_3"></span>
+</div>
+
+<!-- BURGER  MOBILE-->
+<nav [ngClass]="{'dws-menu-mob-active': burgerMenu, 'dws-menu-mob-hidden' :!burgerMenu}" class="mob-menu">
+  <ul class="dws-ul-mob">
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink=""
+      >HOME</a></li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/trainings/coach"
+      >ТРЕНЕРЫ</a></li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/trainings"
+      >ТРЕНИНГИ</a>
+    </li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/webinars"
+      >ВЕБИНАРЫ</a>
+    </li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/schedule">РАСПИСАНИЕ</a>
+    </li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/room-rental"
+      >АРЕНДА
+        ЗАЛОВ</a></li>
+    <li class="dws-li-mob" (click)="burgerHidden()">
+      <a routerLink="/recommendations"
+      >РЕКОМЕНДАЦИИ</a></li>
+  </ul>
+</nav>
+
