@@ -32,7 +32,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   doneOrder = false;
   form: any = {};
   isSubmitted = false;
-  allTrainings;
   selectedTrainerId; // Все данные тренера от которого перешли в блок заказа корпоративного трененга
   idTrainerSelectedCheckbox; // Id тренера по которому произошёл клик Checkbox
   photoTrainerSelectedCheckbox; // фото тренера которой выбран через Checkbox
@@ -62,7 +61,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.createFormGroup();
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
-    this.allTrainings = this.getReduxData.getTrainingsAll();
+    console.log(this.trainings);
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);

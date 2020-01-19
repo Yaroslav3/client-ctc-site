@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,7 +6,7 @@ import {AfterContentChecked, Component, Input, OnInit} from '@angular/core';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit, AfterContentChecked {
+export class MenuComponent implements OnInit {
   burgerMenu: boolean;
   @Input() correctedMenu: boolean;
   @Input() menuScrolling: boolean;
@@ -36,8 +36,4 @@ export class MenuComponent implements OnInit, AfterContentChecked {
     this.menuScrolling = false;
   }
 
-
-
-  ngAfterContentChecked(): void {
-  }
 }
