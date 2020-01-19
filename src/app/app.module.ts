@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {StoreModule} from '@ngrx/store';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {AppRoutingModule} from './app-routing.module';
@@ -36,8 +35,6 @@ import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {ScrollDirective} from './shared/directives/scroll.directive';
 import {DelayDirective} from './shared/directives/delay.directive';
 import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-
-
 
 @NgModule({
   declarations: [
@@ -76,7 +73,7 @@ import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-b
       {
         stateStartApplication: startApplicationReducer,
         stateTrainers: loadingTrainersReducer,
-        stateTrainings: loadingTrainingsReducer
+        stateTrainings: loadingTrainingsReducer,
       }),
     NgxSpinnerModule,
     BrowserAnimationsModule,

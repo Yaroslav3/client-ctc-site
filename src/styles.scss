@@ -15,6 +15,9 @@
   --fonts-coach-trainer: Fira_Sans_Condensed_Light, serif;
   --font-show-couch-resume: Exo2Regular, Arial, sans-serif;
   --font-show-couch-resume2: Arial, Helvetica, sans-serif, serif;
+  --font-order: 'KIA_KIAM', serif;
+  --font-order-description-choice: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-order-checkout: Arial, Helvetica, sans-serif, serif;
   --font-footer-light: 'Casiopea_Light', serif;
   --font-footer-regular: 'Casiopea_Regular', serif;
   --font-footer-header: 'Ubuntu_Rehular', serif;
@@ -71,6 +74,7 @@ html, body, iframe {
   border: 1px solid #648095;
   transition: all 0.5s ease-out;
   padding: 6px 10px;
+  background: transparent;
   cursor: pointer;
   text-align: center;
 
@@ -89,7 +93,7 @@ html, body, iframe {
   }
 
   &:hover {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     border: 1px solid white;
     border-radius: 3px;
     transition: all 0.5s ease-in;
@@ -103,7 +107,7 @@ html, body, iframe {
         top: 0;
         left: -3px;
         font-size: 14px;
-        color: white;
+        color: #648095;
         transition: all 0.5s ease-in;
       }
     }

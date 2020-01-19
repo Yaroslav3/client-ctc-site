@@ -1,51 +1,30 @@
-<app-loader class="loader" *ngIf="loader"></app-loader>
-<div class="wrapper" *ngIf="!loader">
 
-  <div class="all-content-order">
-    <div class="coach-header">
-      <div class="btn-all-application btn-corrected" [routerLink]="['/trainings/coach/resume', selectedTrainerId]">
-        <span class="btn-text">
-          <span class="beak"></span>
-          Назад
+<div class="wrapper">
+  <div class="all-content-order" [@fadingAwayAnimate]>
+    <app-loader *ngIf="loader"></app-loader>
+    <div class="coach-header" *ngIf="!loader">
+      <div class="btn-all-application btn-corrected"
+           [routerLink]="['/trainings/coach/resume', selectedTrainerId.id]">
+          <span class="fas fa-chevron-left">
+          <span class="btn-text">Назад</span>
         </span>
       </div>
       <br>
       <div class="white_bg">
         <div class="content-order">
-          <div *ngIf="doneOrder" class="alert-order-success">
+          <div class="alert-order-success"
+            *ngIf="doneOrder"
+            [@fadingAwayAnimate] >
             <p> Спасибо, мы свяжится с вам в ближайшее время.</p>
           </div>
           <div *ngIf="done" class="order-checkout">
             <div class="text-checkout">
               <h1>Оформление заявки</h1>
             </div>
-            <!--            <div class="btn-all-application toggle-trainer" (click)="toggleTrainers()">-->
-            <!--              <span class="btn-text"> Выбрать другого тренера </span>-->
-            <!--            </div>-->
             <form class="form" name="form" [formGroup]="orderForm" (ngSubmit)="submitOrderSave()" novalidate>
               <div class="contact-checkout">
                 <br>
                 <div class="trainer-checkout">
-                  <!--                  <div class="trainer-visualisation">-->
-                  <!--                       [@showAnimate]-->
-                  <!--                       *ngIf="toggle">-->
-                  <!--                    <div class="block-photo-trainer">-->
-                  <!--                      <img class="img" [src]="'data:image/jpg;base64,' + selectedTrainerId['photo'][0]['photo']"-->
-                  <!--                           alt="trainer photo">-->
-                  <!--                    </div>-->
-                  <!--                    <div class="block-description-trainer">-->
-                  <!--                      <p class="trainer-description">-->
-                  <!--                        <span> {{selectedTrainerId.name}} {{selectedTrainerId.surname}}</span>-->
-                  <!--                      </p>-->
-                  <!--                      <p class="trainer-description">Квалификация:-->
-                  <!--                        <span> {{selectedTrainerId.scope}} </span>-->
-                  <!--                      </p>-->
-                  <!--                      <p>Список трененгов:</p>-->
-                  <!--                      <ul class="trainer-description" *ngFor="let listTrainings of selectedTrainerId.trainerTrainings">-->
-                  <!--                        <li> {{listTrainings.name}}</li>-->
-                  <!--                      </ul>-->
-                  <!--                    </div>-->
-                  <!--                  </div>-->
                   <div class="list-visualisation-trainers">
                     <p class="header-text-block-checkout">Тренеры</p>
                     <br>
@@ -65,11 +44,12 @@
                         </div>
                       </div>
                       <div class="block-selected-photo"
-                           *ngIf="idTrainerSelectedCheckbox"
-                           [@showAnimate]>
+                           *ngIf="photoTrainerSelectedCheckbox"
+                            [@fadingAwayAnimate]>
                         <img class="img"
                              [src]="'data:image/jpg;base64,'+ photoTrainerSelectedCheckbox" alt="photo trainer">
                         <span class="btn-detail-trainer"
+                              *ngIf="idTrainerSelectedCheckbox"
                               title="Посмотреть резюме тренета"
                               [routerLink]="['/trainings/coach/resume', idTrainerSelectedCheckbox]">
                           Подробно о тренере
@@ -84,129 +64,132 @@
                   </div>
                 </div>
                 <div class="calendar-checkout">
-                  <p>Дата и выбор тренига</p>
-                  <div class="block-order-group">
-                    <div class="input-group">
-                      <input formControlName="date" id="end-event" class="form-control"
-                             placeholder="yyyy-mm-dd" title="dateEvent"
-                             name="end" ngbDatepicker
-                             #e="ngbDatepicker">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar"
-                                (click)="e.toggle()" type="button">
-                          <span class="far fa-calendar-alt calendar-icon"></span></button>
+                  <app-loader *ngIf="loaderSubmit" [@fadingAwayAnimate]></app-loader>
+                  <div  [@fadingAwayAnimate]>
+                    <p>Дата и выбор тренига</p>
+                    <div class="block-order-group">
+                      <div class="input-group">
+                        <input formControlName="date" id="end-event" class="form-control"
+                               placeholder="yyyy-mm-dd" title="dateEvent"
+                               name="end" ngbDatepicker
+                               #e="ngbDatepicker">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary calendar"
+                                  (click)="e.toggle()" type="button">
+                            <span class="far fa-calendar-alt calendar-icon"></span></button>
+                        </div>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="isSubmitted && f.date.errors">
-                      <div *ngIf="f.date.errors.required"><span>* заполни поле </span></div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.date}}</span>
-                    </div>
-                    <select formControlName="training" name="training" title="select">
-                      <option>--</option>
-                      <option class="select-input" id="training" name="training"
-                              *ngFor="let training of trainings">
-                        {{training.name}}
-                      </option>
-                    </select>
-                    <div class="label-training">
-                      <p>Тренинги</p>
-                    </div>
-                    <div class="error-input" *ngIf="isSubmitted && f.training.errors">
-                      <div *ngIf="f.training.errors.required">
-                        <span>* заполни поле </span>
+                      <div class="error-input" *ngIf="isSubmitted && f.date.errors">
+                        <div *ngIf="f.date.errors.required"><span>* заполни поле </span></div>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.training}}</span>
-                    </div>
-                    <input formControlName="country" class="input" name="country" type="text"
-                           placeholder="страна">
-                    <div class="error-input" *ngIf="isSubmitted && f.country.errors">
-                      <div *ngIf="f.country.errors.required">
-                        <span>* заполни поле </span>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.date}}</span>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.country}}</span>
-                    </div>
-                    <input formControlName="city" class="input" name="city" type="text"
-                           placeholder="город проведения тренинга">
-                    <div class="error-input" *ngIf="isSubmitted && f.city.errors">
-                      <div *ngIf="f.city.errors.required">
-                        <span>* заполни поле </span>
+                      <select formControlName="training" name="training" title="select">
+                        <option>--</option>
+                        <option class="select-input" id="training" name="training"
+                                *ngFor="let training of trainings">
+                          {{training.name}}
+                        </option>
+                      </select>
+                      <div class="label-training">
+                        <p>Тренинги</p>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.city}}</span>
-                    </div>
-                    <input formControlName="company" class="input" type="text" name="company"
-                           placeholder="назавние компании ">
-                    <div class="error-input" *ngIf="isSubmitted && f.company.errors">
-                      <div *ngIf="f.company.errors.required">
-                        <span>* заполни поле </span>
+                      <div class="error-input" *ngIf="isSubmitted && f.training.errors">
+                        <div *ngIf="f.training.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.company}}</span>
-                    </div>
-                    <input formControlName="nameSurname" class="input" type="text" name="nameSurname"
-                           placeholder="имя, фамилия ">
-                    <div class="error-input" *ngIf="isSubmitted && f.nameSurname.errors">
-                      <div *ngIf="f.nameSurname.errors.required">
-                        <span>* заполни поле </span>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.training}}</span>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.nameSurname}}</span>
-                    </div>
-                    <input formControlName="phone" class="input" type="text" name="phone"
-                           placeholder="номер телефона ">
-                    <div class="error-input" *ngIf="isSubmitted && f.phone.errors">
-                      <div *ngIf="f.phone.errors.required">
-                        <span>* заполни поле </span>
+                      <input formControlName="country" class="input" name="country" type="text"
+                             placeholder="страна">
+                      <div class="error-input" *ngIf="isSubmitted && f.country.errors">
+                        <div *ngIf="f.country.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.phone}}</span>
-                    </div>
-                    <input formControlName="email" class="input" type="email" name="email"
-                           placeholder="email">
-                    <div class="error-input" *ngIf="isSubmitted && f.email.errors">
-                      <div *ngIf="f.email.errors.required">
-                        <span>* заполни поле </span>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.country}}</span>
                       </div>
-                      <div *ngIf="f.email.errors.email">
-                        <span>* поле не формата email </span>
+                      <input formControlName="city" class="input" name="city" type="text"
+                             placeholder="город проведения тренинга">
+                      <div class="error-input" *ngIf="isSubmitted && f.city.errors">
+                        <div *ngIf="f.city.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
                       </div>
-                    </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.email}}</span>
-                    </div>
-                    <textarea formControlName="description" class="textarea-form" type="text"
-                              name="description"
-                              placeholder="дополнительная информация...."></textarea>
-                    <div class="error-input" *ngIf="isSubmitted && f.description.errors">
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.city}}</span>
+                      </div>
+                      <input formControlName="company" class="input" type="text" name="company"
+                             placeholder="назавние компании ">
+                      <div class="error-input" *ngIf="isSubmitted && f.company.errors">
+                        <div *ngIf="f.company.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
+                      </div>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.company}}</span>
+                      </div>
+                      <input formControlName="nameSurname" class="input" type="text" name="nameSurname"
+                             placeholder="имя, фамилия ">
+                      <div class="error-input" *ngIf="isSubmitted && f.nameSurname.errors">
+                        <div *ngIf="f.nameSurname.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
+                      </div>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.nameSurname}}</span>
+                      </div>
+                      <input formControlName="phone" class="input" type="text" name="phone"
+                             placeholder="номер телефона ">
+                      <div class="error-input" *ngIf="isSubmitted && f.phone.errors">
+                        <div *ngIf="f.phone.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
+                      </div>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.phone}}</span>
+                      </div>
+                      <input formControlName="email" class="input" type="email" name="email"
+                             placeholder="email">
+                      <div class="error-input" *ngIf="isSubmitted && f.email.errors">
+                        <div *ngIf="f.email.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
+                        <div *ngIf="f.email.errors.email">
+                          <span>* поле не формата email </span>
+                        </div>
+                      </div>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.email}}</span>
+                      </div>
+                      <textarea formControlName="description" class="textarea-form" type="text"
+                                name="description"
+                                placeholder="дополнительная информация...."></textarea>
+                      <div class="error-input" *ngIf="isSubmitted && f.description.errors">
 
-                      <div *ngIf="f.description.errors.maxlength">
-                        <span>* не больше 1025 символа </span>
+                        <div *ngIf="f.description.errors.maxlength">
+                          <span>* не больше 1025 символа </span>
+                        </div>
+                      </div>
+                      <div class="error-input" *ngIf="orderError">
+                        <span>{{orderError.description}}</span>
                       </div>
                     </div>
-                    <div class="error-input" *ngIf="orderError">
-                      <span>{{orderError.description}}</span>
+                    <div class="btn-order">
+                      <button class="btn-ok" type="submit">Отправить заказ
+                      </button>
                     </div>
-                  </div>
-                  <div class="btn-order">
-                    <button class="btn-ok" type="submit">Отправить заказ
-                    </button>
                   </div>
                 </div>
               </div>
             </form>
             <br>
           </div>
-          <hr class="hr-line-down">
+          <hr *ngIf="!doneOrder" class="hr-line-down">
         </div>
       </div>
     </div>

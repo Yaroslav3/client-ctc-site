@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
 import {Trainers} from '../../shared/model/Trainers.model';
 import {Store} from '@ngrx/store';
@@ -6,6 +6,8 @@ import {AppState} from '../../reduxe';
 import {Router} from '@angular/router';
 import {StartingLoadService} from '../../shared/services/starting-load.service';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
+import {Observable, Observer} from 'rxjs';
 
 
 @Component({
@@ -14,23 +16,24 @@ import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
   styleUrls: ['./coach.component.scss'],
   animations: [fadingAwayAnimate]
 })
-export class CoachComponent implements OnInit, OnDestroy {
+export class CoachComponent implements OnInit, OnDestroy, AfterViewChecked {
   location: string;
-  public trainers: Trainers;
+  trainers: Trainers;
 
   constructor(
     private startLoad: StartingLoadService,
     private router: Router,
     private serviceHeaderPhoto: LoadingPhotoHeaderService,
-    private store: Store<AppState>) {
+    private getReduxData: GetReduxDataService) {
     this.location = 'coach';
   }
 
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.store.select('stateTrainers', 'trainers').subscribe((AllTrainers: Trainers) => {
-      this.trainers = AllTrainers;
-    });
+  }
+
+  ngAfterViewChecked(): void {
+    this.trainers = this.getReduxData.getAllTrainer();
   }
 
   redirect(elem) {
