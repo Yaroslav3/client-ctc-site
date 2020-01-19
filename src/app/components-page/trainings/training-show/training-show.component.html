@@ -1,1 +1,73 @@
-<p>traning-show works!</p>
+
+<div class="wrapper">
+  <div class="all-content">
+    <div class="coach-header">
+      <div class="btn-back">
+        <a class="btn btn-outline-secondary" routerLink="/trainings"> <i class="fas fa-chevron-left"></i>
+          назад</a>
+      </div>
+      <div *ngIf="training" class="white_bg">
+        <div class="bl-block">
+          <div class="bl-img">
+            <img [src]="'data:image/jpg;base64,' + training.photoTrainings[0].photo">
+          </div>
+          <div class="briefly-training">
+            <p>{{training.briefly}}</p>
+          </div>
+
+          <div class="bl-block-editor">
+            <angular-editor id="myEditor" [(ngModel)]="training.description"
+                            [config]="editorConfig"></angular-editor>
+            <hr>
+
+            <div class="bl-t">
+              <span>Тренеры :</span>
+            </div>
+            <div class="coach-block">
+              <div *ngFor="let elem of trainers">
+                <a routerLink="/trainings/coach/resume/{{elem.id}}">
+                  <div class="trainer-block">
+                    <img [src]="'data:image/jpg;base64,'+ elem['photo'][0]['photo']" alt="Trainings">
+
+                    <br>
+                    <div class="bl-tol">
+                      <h3>{{elem.name}}</h3>
+                      <h3 class="surname">{{elem.surname}}</h3>
+                      <hr>
+                      <div class="bl-height">
+                        <p>{{elem.scope}}</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <div class="pdf-block">
+          <div class="text-info-pdf">
+            <p>Распечатайте презентацию тренинга для вашего руководителя </p>
+          </div>
+          <div class="pdf-btn">
+            <div  class="img-pdf" (click)="downloadPDF()">
+              <img src="/assets/img/pdf.png" alt="pdf">
+            </div>
+          </div>
+        </div>
+
+        <div class="bl-button">
+          <div class="bl-two">
+            <div class="btn-t">
+              <button class="btn btn-outline-secondary" routerLink="/trainings-order"> заказть корпоративный тренинг
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

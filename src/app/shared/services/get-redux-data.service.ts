@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../reduxe';
 import {Trainers} from '../model/Trainers.model';
-import {Observable, Observer} from 'rxjs';
 import {Inscriptions} from '../model/Inscriptions.model';
 
 @Injectable({
@@ -41,10 +40,18 @@ export class GetReduxDataService {
     });
     return this.trainingsAll;
   }
+  getOneTraining(id) {
+    const trainingsAll = this.getTrainingsAll();
+    const oneTraining = trainingsAll.find(t => t.id.toString() === id.toString());
+    return oneTraining;
+  }
+  getOneTrainingsSkills(id) {
+    const allTrainer = this.getAllTrainer();
+    console.log(allTrainer);
+  }
   getInscriptionsAll() {
     this.store.select('stateStartApplication', 'inscriptions').subscribe((inscriptionsAll: Inscriptions) => {
       this.inscriptions = inscriptionsAll;
-      console.log(inscriptionsAll);
     });
     return this.inscriptions;
   }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {eHomePhoto, environment} from '../../../environments/environment';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../reduxe';
@@ -31,25 +31,27 @@ export class StartingLoadService {
         this.store.dispatch(new InfoFooter(dataFooter));
       });
   }
-  getAllInscription() {
-    return this.http.get(this.host + environment.apiUrlTrainingsInscriptions);
-  }
+
   getAllTrainers() {
     this.http.get(this.host + environment.apiUrlTrainers).subscribe
     ((trainers) => {
       this.store.dispatch(new AllTrainers(trainers));
+
     });
   }
   getAllTrainings() {
     return this.http.get(this.host + environment.apiUrlTrainings)
       .subscribe((allTrainings: Trainings) => {
         this.store.dispatch(new AllTrainings(allTrainings));
+        console.log(allTrainings);
       });
   }
   getAllInscriptions() {
     return this.http.get(this.host + environment.apiUrlTrainingsInscriptions)
       .subscribe((allInscriptions: Inscriptions) => {
         this.store.dispatch(new InscriptionsAll(allInscriptions));
+
       });
   }
+
 }
