@@ -105,13 +105,14 @@
 
                   .trainer-visualisation {
                     display: flex;
+                    flex-direction: column;
                     margin: 60px 10px 10px 10px;
 
                     .block-photo-trainer {
-                      width: 200px;
+                      width: 350px;
 
                       .img {
-                        max-width: 200px;
+                        max-width: 350px;
                         background-size: cover;
                       }
                     }
@@ -578,7 +579,9 @@
                       align-items: center;
 
                       .block-photo-trainer {
+                        width: 250px;
                         .img {
+                          width: 250px;
                         }
                       }
 

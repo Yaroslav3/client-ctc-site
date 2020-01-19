@@ -1,0 +1,99 @@
+
+
+@keyframes animation-menuCorrected {
+  0% {
+    top: -150px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.visualHeader {
+  display: block;
+  opacity: 1;
+  animation: animation-visualHeader 1s ease-in;
+}
+
+@keyframes animation-hiddenHeader {
+
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+
+.hiddenHeader {
+  display: none;
+  animation: animation-hiddenHeader 1s ease-in-out;
+}
+
+@keyframes animation-hiddenHeader {
+  100% {
+    display: none;
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
+main {
+  .btn-Top {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 21px;
+    right: 81px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    z-index: 9999;
+
+    .arrow-top-silver {
+      background-position: -40px -0px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      margin: auto;
+      position: relative;
+      top: 4px;
+    }
+
+    &:hover {
+      transition: all 0.3s ease-in-out;
+      background: rgba(0, 0, 0, .8);
+    }
+  }
+}
+
+@media all and (max-width: 1420px) {
+  main {
+    .btn-Top {
+      bottom: 10px;
+      right: 11px;
+    }
+  }
+}
+
+@media all and (max-width: 680px) {
+  main {
+    .btn-Top {
+      right: 5px;
+    }
+  }
+}
+

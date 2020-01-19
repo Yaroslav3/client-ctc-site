@@ -9,14 +9,14 @@ import {Store} from '@ngrx/store';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {ActivatedRoute, Params} from '@angular/router';
 import {GetTrainerService} from '../../shared/services/get-trainer.service';
-import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+import {hiddenAnimate, showAnimate} from '../../shared/animations/fading-away.animate';
 
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
+  animations: [hiddenAnimate, showAnimate],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
@@ -32,9 +32,10 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   doneOrder = false;
   form: any = {};
   isSubmitted = false;
-  selectedTrainerId;
-  photoTrainerSelectedCheckbox;
-  idTrainerSelectedCheckbox;
+  allTrainings;
+  selectedTrainerId; // Все данные тренера от которого перещли в блок заказа корпоративного трененга
+  idTrainerSelectedCheckbox; // Id тренера по которому произошёл клик Checkbox
+  photoTrainerSelectedCheckbox; // фото тренера которой выбран через Checkbox
 
   constructor(
     private fb: FormBuilder,
@@ -53,8 +54,11 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
 
   ngOnInit() {
     this.createFormGroup();
+    this.toggleTrainers();
     this.store.select('stateTrainings', 'trainings').subscribe((allTrainings) => {
       this.trainings = allTrainings;
+      this.allTrainings = allTrainings;
+      console.log(allTrainings);
     });
     this.store.select('stateTrainers', 'trainers').subscribe((trainers) => {
       this.trainersCheckbox = Object.keys(trainers).map(key => ({trainers: key, value: trainers[key]}));
@@ -132,20 +136,25 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.headerControl.visibleHeaderComponent();
-  }
-
   selectedCoach(coach) {
     this.idTrainerSelectedCheckbox = coach.value.id;
     this.photoTrainerSelectedCheckbox = coach.value.photo[0]['photo'];
-    const selectedTrainings = coach.value.trainerTrainings;
-    this.trainings = selectedTrainings;
+    this.trainings = coach.value.trainerTrainings;
   }
 
   toggleTrainers() {
     this.photoTrainerSelectedCheckbox = '';
     this.toggle = this.toggle ? false : true;
-    console.log(this.toggle);
+    if (this.toggle) {
+      this.trainings = this.selectedTrainerId.trainerTrainings;
+      console.log(this.trainings);
+    } else {
+      this.trainings = this.allTrainings;
+      console.log(this.trainings);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.headerControl.visibleHeaderComponent();
   }
 }

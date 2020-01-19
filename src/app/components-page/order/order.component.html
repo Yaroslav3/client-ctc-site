@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="all-content-order">
     <div class="coach-header">
-      <div class="btn-all-application btn-corrected" [routerLink]="['/trainings']">
+      <div class="btn-all-application btn-corrected" [routerLink]="['/trainings/coach/resume', selectedTrainerId.id]">
         <span class="btn-text">
           <span class="beak"></span>
           Назад
@@ -38,6 +38,10 @@
                       <p class="trainer-description">Квалификация:
                         <span> {{selectedTrainerId.scope}} </span>
                       </p>
+                      <p>Список трененгов:</p>
+                      <ul class="trainer-description" *ngFor="let listTrainings of selectedTrainerId.trainerTrainings">
+                        <li> {{listTrainings.name}}</li>
+                      </ul>
                     </div>
                   </div>
                   <div class="list-visualisation-trainers"
@@ -57,8 +61,9 @@
                         </div>
                       </div>
                       <div class="block-selected-photo"
+                           [@showAnimate]
                            *ngIf="photoTrainerSelectedCheckbox">
-                        <img  class="img"
+                        <img class="img"
                              [src]="'data:image/jpg;base64,'+ photoTrainerSelectedCheckbox" alt="photo trainer">
                         <span class="btn-detail-trainer"
                               title="Посмотреть резюме тренета"
