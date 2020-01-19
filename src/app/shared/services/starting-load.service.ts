@@ -50,8 +50,13 @@ export class StartingLoadService {
     return this.http.get(this.host + environment.apiUrlTrainingsInscriptions)
       .subscribe((allInscriptions: Inscriptions) => {
         this.store.dispatch(new InscriptionsAll(allInscriptions));
-
       });
   }
-
+  getOneTrainings(id: number) {
+    return this.http.get(`${this.host + environment.apiUrlTrainingsGetOne}/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
 }
