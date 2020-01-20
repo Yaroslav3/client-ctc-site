@@ -1,10 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
+
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
+
   styleUrls: ['./loader.component.scss'],
   animations: [fadingAwayAnimate]
 })
@@ -33,6 +36,7 @@ export class LoaderComponent implements OnInit {
   }
   stopSpinner() {
     this.spinner.hide('spinner');
+
     this.bigSpinner = true;
     this.loaderPageSpinner = true;
     this.smallSpinner = false;
@@ -77,4 +81,5 @@ export class LoaderComponent implements OnInit {
     this.loaderPageSpinner = false;
     this.spinner.hide('loaderPageSpinner');
   }
+
 }

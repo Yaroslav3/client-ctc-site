@@ -3,6 +3,8 @@ import {StartingLoadService} from '../shared/services/starting-load.service';
 import {LoaderComponent} from '../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../shared/animations/fading-away.animate';
 
+
+
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
@@ -14,6 +16,8 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   hiddenHeader: boolean; // переменная для скрытия header.
   menuScrolling: boolean; // переменная которая выполняется при скролле.
   btnTop: boolean;
+
+
   constructor(
     private cdRef: ChangeDetectorRef,
     private startLoad: StartingLoadService,
@@ -22,20 +26,25 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
     this.menuScrolling = false;
     this.hiddenHeader = false;
   }
+
   ngOnInit() {
     this.loader = false;
     this.loaderComponent.startSpinner();
+
 
     setTimeout(() => {
       this.startLoad.getPhotoStartPageGetAll();
       this.startLoad.getAllTrainers();
       this.startLoad.getFooterInfo();
       this.startLoad.getAllTrainings();
+
       this.startLoad.getAllInscriptions();
+
       this.loader = true;
       this.loaderComponent.stopSpinner();
     }, 1000);
   }
+
   hiddenHeaderComponent() {
     this.hiddenHeader = true;
     console.log('hidden');
@@ -48,6 +57,7 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
     this.cdRef.detectChanges();
   }
   scrollEvent(scrollPosition: number) {
+
     if (this.hiddenHeader) {
       if (scrollPosition > 1) {
         this.menuScrolling = true;
@@ -61,6 +71,8 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
       this.btnTop = false;
     }
   }
+
+
   buttonTop() {
     window.scroll(0, 0);
   }
