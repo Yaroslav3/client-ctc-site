@@ -115,7 +115,8 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
       this.transferToId.getOrderTrainerId(id.toString());
       this.router.navigate(['trainings-order']);
     } else {
-      this.router.navigate(['trainings']);
+      // this.router.navigate(['trainings']);
+      this.router.navigate(['trainings-order']);
     }
   }
   ngOnDestroy(): void {
