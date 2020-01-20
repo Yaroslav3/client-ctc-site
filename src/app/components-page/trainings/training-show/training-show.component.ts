@@ -5,20 +5,27 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../../shared/services/get-redux-data.service';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
+import {StartingLoadService} from '../../../shared/services/starting-load.service';
+import {LoaderComponent} from '../../../global-components/loader/loader.component';
+import {fadingAwayAnimate} from '../../../shared/animations/fading-away.animate';
 
 @Component({
   selector: 'app-training-show',
   templateUrl: './training-show.component.html',
-  styleUrls: ['./training-show.component.scss']
+  styleUrls: ['./training-show.component.scss'],
+  animations: [fadingAwayAnimate]
 })
 export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDestroy {
   id: number;
   selectFile: File = null;
   training: TrainingsShow;
   trainers: Trainers;
+  loader: boolean;
   constructor(private idTraining: ActivatedRoute,
               private getReduxData: GetReduxDataService,
               private headerControl: MainLayoutComponent,
+              private startingLoad: StartingLoadService,
+              private loaderComponent: LoaderComponent,
               // private serviceTrainers: TrainersService,
               // private serviceTrainings: TrainingsService,
               private pouter: Router,
@@ -26,6 +33,8 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
   ) {
     // hide header when we go into the component
     this.headerControl.hiddenHeaderComponent();
+    this.loader = true;
+    this.loaderComponent.startLoaderPageSpinner();
   }
   editorConfig: AngularEditorConfig = {
     editable: false,
@@ -53,15 +62,18 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
   };
   ngOnInit() {
     this.idTraining.params.subscribe((params: Params) => {
-      this.training = this.getReduxData.getOneTraining(params.id);
+      this.startingLoad.getOneTrainings(params.id).subscribe((oneTraining: TrainingsShow) => {
+        this.training = oneTraining;
+        console.log(oneTraining);
+      });
       console.log(this.training);
-
-      // this.trainers = this.getReduxData.getOneTrainingsSkills(params.id);
     });
+    this.loader = false;
+    this.loaderComponent.stopLoaderPageSpinner();
   }
   ngAfterContentChecked(): void {
     this.idTraining.params.subscribe((params: Params) => {
-      this.training = this.getReduxData.getOneTraining(params.id);
+      // this.training = this.getReduxData.getOneTraining(params.id);
     });
   }
   ngOnDestroy(): void {
