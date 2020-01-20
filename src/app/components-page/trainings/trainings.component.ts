@@ -47,30 +47,5 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
     this.inscriptions = this.getReduxData.getInscriptionsAll();
   }
 
-  styleUrls: ['./trainings.component.scss']
-})
-export class TrainingsComponent implements OnInit {
-  trainings: Trainings;
-  inscriptions: Inscriptions;
-  location: string;
-
-  constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
-              private  loadingServer: StartingLoadService,
-              private startLoader: StartingLoadService
-  ) {
-    this.location = 'trainings';
-  }
-
-  ngOnInit() {
-    this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.startLoader.getAllInscription().subscribe(data => {
-      console.log(data);
-    });
-    this.startLoader.getAllInscriptions().subscribe(d => {
-      console.log(d);
-    });
-
-  }
-
-
 }
+
