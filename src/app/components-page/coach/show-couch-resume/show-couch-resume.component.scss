@@ -5,13 +5,16 @@
   margin-right: 20px;
 
   .coach-header {
+
     width: 100%;
+
     margin: 0 auto;
     transition: all linear 0.3s;
     box-sizing: border-box;
 
     .btn-corrected {
       position: fixed;
+
       top: 70px;
       left: 5px;
       transition: all .3s ease-out;
@@ -32,18 +35,22 @@
         top: -1px;
         left: 3px;
         font-size: 12px;
+
         color: white;
       }
 
       &:hover {
         transition: all .3s ease-in;
+
         background: rgba(0, 0, 0, 0.6);
+
       }
     }
 
     .white_bg {
       background-color: white;
       padding: 10px;
+
 
       .coach-info {
         display: flex;
@@ -61,6 +68,7 @@
           }
         }
 
+
         .block-content {
           width: 90%;
           display: flex;
@@ -70,6 +78,7 @@
             width: 100%;
             font-family: var(--font-show-couch-resume);
 
+
             .name-surname-coach {
               margin: 10px 15px;
               font-size: 20px;
@@ -78,6 +87,7 @@
               display: inline-block;
             }
           }
+
 
           .block-content-coach {
             display: flex;
@@ -92,6 +102,7 @@
                 text-align: justify;
                 font-family: var(--font-show-couch-resume2);
               }
+
 
               :host ::ng-deep #myEditor {
                 .angular-editor-textarea {
@@ -131,6 +142,7 @@
                       display: inline-block;
 
                       a {
+
                         .fa-facebook-square, .fa-linkedin {
                           font-size: 27px;
                           color: #3B5998;
@@ -141,6 +153,7 @@
                             opacity: .5;
                           }
                         }
+
 
 
                       }
@@ -156,11 +169,13 @@
                         color: #666666;
                         align-items: flex-end;
                         width: 95%;
+
                         margin: 5px 0;
 
                         .fa-at, .fa-skype {
                           font-size: 16px;
                           color: #3B5998;
+
                         }
 
                         .text {
@@ -245,6 +260,7 @@
                   margin: 5px 5px 5px 0;
                   display: inline-block;
 
+
                   a {
                     .fa-facebook-square, .fa-linkedin {
                       font-size: 27px;
@@ -260,6 +276,7 @@
 
                   }
 
+
                 }
               }
 
@@ -273,20 +290,26 @@
                     align-items: flex-end;
                     width: 95%;
 
+
                     .fa-at, .fa-skype {
                       font-size: 16px;
                       color: #3B5998;
+
                     }
 
                     .text {
                       position: relative;
+
                       top: 5px;
                       left: 8px;
+
                       font-size: 12px;
                       overflow: hidden;
                       text-overflow: ellipsis;
                       width: 100%;
+
                       margin: 5px 0;
+
                     }
                   }
                 }
@@ -373,6 +396,7 @@
         top: 6px !important;
       }
 
+
       .white_bg {
 
         .coach-info {
@@ -391,6 +415,7 @@
 
           .block-content {
             width: 100%;
+
 
             .coach-name {
               .name-surname-coach {
@@ -420,6 +445,8 @@
 
           .contacts-url {
             .link {
+
+
 
             }
           }

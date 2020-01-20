@@ -6,7 +6,9 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
 import {FontJsonFileService} from '../../../shared/services/font-json-file.service';
 import {fadingAwayAnimate} from '../../../shared/animations/fading-away.animate';
+
 import {GetReduxDataService} from '../../../shared/services/get-redux-data.service';
+
 
 
 @Component({
@@ -23,7 +25,10 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
 
 
   constructor(private routing: ActivatedRoute,
+
               private getTrainer: GetReduxDataService,
+
+
               private startLoad: StartingLoadService,
               private fontService: FontJsonFileService,
               private headerControl: MainLayoutComponent) {

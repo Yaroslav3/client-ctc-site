@@ -40,6 +40,7 @@ footer {
           cursor: pointer;
           text-transform: uppercase;
 
+
           .fa-envelope {
             font-size: 16px;
             position: relative;
@@ -49,6 +50,10 @@ footer {
 
           .email-text {
             margin-left: 6px;
+
+          .email-text {
+            margin-left: -8px;
+
           }
         }
       }
@@ -62,12 +67,14 @@ footer {
           font-family: var(--font-footer-regular);
           font-size: 12px;
 
+
           .fa-mobile-alt {
             font-size: 16px;
           }
 
           .mob-text {
             margin-left: 6px;
+
           }
         }
       }
@@ -80,6 +87,7 @@ footer {
           font-size: 12px;
           text-transform: uppercase;
 
+
           .fa-skype {
             font-size: 17px;
           }
@@ -87,6 +95,7 @@ footer {
           .text-span {
             margin-left: 6px;
           }
+
 
         }
       }
@@ -101,6 +110,7 @@ footer {
       .icon {
         display: flex;
         align-items: flex-end;
+
 
         .fa-facebook-square, .fa-youtube-square {
           font-size: 23px;
@@ -122,6 +132,7 @@ footer {
             transition: all 0.5s ease-out;
             color: blue;
           }
+
         }
 
       }
@@ -147,6 +158,7 @@ footer {
         top: 5px;
       }
 
+
       .fa-map-marker-alt {
         font-size: 16px;
         position: relative;
@@ -155,6 +167,7 @@ footer {
 
       .marker-text {
         margin-left: 7px;
+
       }
     }
   }
@@ -196,6 +209,8 @@ footer {
       margin: 0 2px 0 5px !important;
       padding: 5px !important;
 
+
+
       .icon {
         i {
           font-size: 16px;
@@ -233,7 +248,9 @@ footer {
       }
 
       .phone-footer {
+
         margin-left: 0;
+
 
         p {
           margin: 0;
@@ -241,7 +258,9 @@ footer {
       }
 
       .skype-footer {
+
         margin-left: -2px;
+
 
         p {
           margin: 0;
@@ -260,7 +279,9 @@ footer {
   }
   .name-footer {
     h4 {
+
       padding: 5px 5px !important;
+
       font-size: 9.5px;
     }
 
