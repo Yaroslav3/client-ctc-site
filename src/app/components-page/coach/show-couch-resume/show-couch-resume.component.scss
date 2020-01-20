@@ -1,0 +1,432 @@
+
+.block-coach-show-trainer {
+  margin-top: 90px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  .coach-header {
+    width: 100%;
+    margin: 0 auto;
+    transition: all linear 0.3s;
+    box-sizing: border-box;
+
+    .btn-corrected {
+      position: fixed;
+      top: 70px;
+      left: 5px;
+      transition: all .3s ease-out;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid transparent;
+      padding: 5px 15px ;
+      .fa-chevron-left {
+        font-size: 12px;
+        color: white;
+        &:before{
+          position: relative;
+          top: -1px;
+          left: -8px;
+        }
+      }
+      .btn-text {
+        position: relative;
+        top: -1px;
+        left: 3px;
+        font-size: 12px;
+        color: white;
+      }
+
+      &:hover {
+        transition: all .3s ease-in;
+        background: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .white_bg {
+      background-color: white;
+      padding: 10px;
+
+      .coach-info {
+        display: flex;
+
+        .coach-title {
+          width: 10%;
+
+          h5 {
+            font-size: 12px;
+            font-family: var(--font-show-couch-resume);
+            color: #45689c;
+            font-weight: bold;
+            margin: 16px 0;
+            text-align: center;
+          }
+        }
+
+        .block-content {
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+
+          .coach-name {
+            width: 100%;
+            font-family: var(--font-show-couch-resume);
+
+            .name-surname-coach {
+              margin: 10px 15px;
+              font-size: 20px;
+              color: #666666;
+              border-bottom: 1px solid;
+              display: inline-block;
+            }
+          }
+
+          .block-content-coach {
+            display: flex;
+            flex-direction: row;
+
+            .coach-content {
+              max-width: 70%;
+              flex-grow: 1;
+
+              p {
+                font-size: 16px;
+                text-align: justify;
+                font-family: var(--font-show-couch-resume2);
+              }
+
+              :host ::ng-deep #myEditor {
+                .angular-editor-textarea {
+                  border: none;
+                }
+              }
+            }
+
+            .coach-img {
+              flex-grow: 1;
+              max-width: 30%;
+              padding: 5px;
+
+              img {
+                width: 100%;
+                padding-bottom: 20px;
+              }
+
+              .block-img-info {
+                display: flex;
+                flex-direction: column;
+
+                .contact-block {
+                  padding: 3px;
+
+                  .contact-info-text {
+
+                    span {
+                      border-bottom: 1px solid;
+                      color: #666666;
+                    }
+                  }
+
+                  .contacts-url {
+                    .link {
+                      margin: 5px 5px 5px 0;
+                      display: inline-block;
+
+                      a {
+                        .fa-facebook-square, .fa-linkedin {
+                          font-size: 27px;
+                          color: #3B5998;
+                          transition: all 0.4s ease;
+
+                          &:hover {
+                            transition: all 0.4s ease-in-out;
+                            opacity: .5;
+                          }
+                        }
+
+
+                      }
+                    }
+                  }
+
+                  .contact-address {
+                    .link-address {
+                      a {
+                        display: flex;
+                        -webkit-box-pack: justify;
+                        justify-content: flex-start;
+                        color: #666666;
+                        align-items: flex-end;
+                        width: 95%;
+                        margin: 5px 0;
+
+                        .fa-at, .fa-skype {
+                          font-size: 16px;
+                          color: #3B5998;
+                        }
+
+                        .text {
+                          position: relative;
+                          top: -2px;
+                          left: 8px;
+                          font-size: 12px;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .btn-or {
+                  margin: 0 auto;
+                  padding: 10px;
+
+                  .btn-all-application {
+                    .btn-text {
+                      font-size: 12px;
+                    }
+
+                  }
+                }
+              }
+
+              .training-coach {
+                .title-training {
+                  font-size: 16px;
+                  color: #666666;
+                  font-family: var(--font-show-couch-resume);
+                  margin: 1px 5px;
+                  display: inline-block;
+                  border-bottom: 1px solid;
+                }
+
+                .name-trainings {
+                  &__text {
+                    display: inline-block;
+                    color: #666666;
+                    font-size: 12px;
+
+                    &:first-letter {
+                      text-transform: uppercase;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .coach-img-mob {
+        display: none;
+
+        .coach-img {
+          max-width: 100%;
+
+          img {
+            max-width: 100%;
+            padding-bottom: 20px;
+          }
+
+          .block-img-info {
+            display: flex;
+            flex-direction: column;
+
+            .contact-block {
+              padding: 3px;
+
+              .contact-info-text {
+                span {
+                  color: #666666;
+                }
+              }
+
+              .contacts-url {
+                .link {
+                  margin: 5px 5px 5px 0;
+                  display: inline-block;
+
+                  a {
+                    .fa-facebook-square, .fa-linkedin {
+                      font-size: 27px;
+                      color: #3B5998;
+                      transition: all 0.4s ease;
+
+                      &:hover {
+                        transition: all 0.4s ease-in-out;
+                        opacity: .5;
+                      }
+                    }
+
+
+                  }
+
+                }
+              }
+
+              .contact-address {
+                .link-address {
+                  a {
+                    display: flex;
+                    -webkit-box-pack: justify;
+                    justify-content: flex-start;
+                    color: #666666;
+                    align-items: flex-end;
+                    width: 95%;
+
+                    .fa-at, .fa-skype {
+                      font-size: 16px;
+                      color: #3B5998;
+                    }
+
+                    .text {
+                      position: relative;
+                      top: 5px;
+                      left: 8px;
+                      font-size: 12px;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      width: 100%;
+                      margin: 5px 0;
+                    }
+                  }
+                }
+              }
+            }
+
+            .btn-or {
+              margin: 0 auto;
+              padding: 10px;
+
+              .btn-all-application {
+                .btn-text {
+                  font-size: 12px;
+                }
+
+              }
+            }
+          }
+
+          .training-coach {
+            .title-training {
+              font-size: 16px;
+              color: #666666;
+              font-family: var(--font-show-couch-resume);
+              margin: 1px 5px;
+              display: inline-block;
+              border-bottom: 1px solid;
+            }
+
+            .name-trainings {
+              &__text {
+                display: inline-block;
+                color: #666666;
+                font-size: 12px;
+
+                &:first-letter {
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .angular-editor-wrapper .angular-editor-textarea blockquote {
+    margin: 0 0 0 0 !important;
+  }
+
+  #editor {
+    resize: none;
+  }
+
+  .angular-editor .angular-editor-wrapper .angular-editor-textarea {
+    padding: 0 !important;
+  }
+}
+
+@media all and (max-width: 875px) {
+  .contact-address {
+    .link-address {
+      a {
+        .text {
+          width: 150px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 800px) {
+
+  .block-coach-show-trainer {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    .coach-header {
+      margin: 50px auto;
+
+      .btn-corrected {
+        top: 6px !important;
+      }
+
+      .white_bg {
+
+        .coach-info {
+          flex-direction: column;
+
+          .coach-title {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 0;
+
+            h5 {
+              margin: 10px 0;
+              text-align: left;
+            }
+          }
+
+          .block-content {
+            width: 100%;
+
+            .coach-name {
+              .name-surname-coach {
+                margin: 10px 0;
+              }
+            }
+
+            .block-content-coach {
+              .coach-content {
+                max-width: 100%;
+
+                :host ::ng-deep #myEditor {
+                  .angular-editor-textarea {
+                  }
+                }
+              }
+
+              .coach-img {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .coach-img-mob {
+          display: block;
+
+          .contacts-url {
+            .link {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

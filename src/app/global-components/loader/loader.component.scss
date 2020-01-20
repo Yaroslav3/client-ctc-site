@@ -1,0 +1,33 @@
+::ng-deep.spinnerStartApp {
+  .overlay {
+    .la-square-spin {
+      //width: 80px;
+      //height: 71px;
+      //transition: 1s;
+      //border-radius: 1px;
+      //transform: scale(.5);
+      .ng-star-inserted {
+        //transform: scale(.5);
+        //transition: 1s;
+        //width: 80px;
+        //height: 71px;
+        //border-radius: 1px;
+        //border: 1px solid navy;
+        //background-size: cover;
+        //background-image: url("src/assets/img/logo2.png") !important;
+        //background-repeat: no-repeat;
+      }
+    }
+  }
+}
+::ng-deep.smallSpinner {
+  .overlay {
+    width: 99% !important;
+    border-radius: 5px;
+    top: -3px !important;
+    height: 102% !important;
+    border: 1px solid #E4E4E4 !important;
+  }
+}
+::ng-deep.loaderPageSpinner {
+}

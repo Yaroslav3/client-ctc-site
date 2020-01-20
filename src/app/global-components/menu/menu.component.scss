@@ -1,0 +1,400 @@
+.menu-application, .menu-application-corrected{
+  position: relative;
+  top: -35px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 82px;
+  background: #fcfcfc;
+  z-index: 1000;
+  margin-left: -3.5%;
+  box-shadow: 0 3px 5px silver;
+  transform: scale(0.9);
+
+  .logo {
+    flex-grow: 1;
+    background: no-repeat;
+    margin-left: 4%;
+    margin-top: 5px;
+    background-size: cover;
+    max-width: 73px;
+    height: 67px;
+    transform: scale(0.9);
+    transition: all 0.3s ease-in;
+  }
+
+  .dws-menu {
+    position: relative;
+    top: 30%;
+    left: -10px;
+    right: 14.4%;
+    height: 48px;
+    margin-bottom: -0.1%;
+
+    ul.dws-ul {
+      display: flex;
+      justify-content: center;
+      transition: all 0.4s ease-in;
+      .dws-li {
+        padding: 3px 2px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all .4s ease-in;
+        margin: 0 3px;
+        letter-spacing: 1px;
+
+        a {
+          font-family: Exo2Regular, serif;
+          font-weight: bold;
+          font-size: 12px;
+          color: #717171;
+          position: relative;
+          margin: 2px 5px;
+          top: -1px;
+        }
+
+        &:hover {
+          background-color: rgba(167, 121, 83, 0.2);
+
+          a {
+            color: rgba(167, 121, 83, 0.96);
+          }
+        }
+      }
+      .activeLink {
+        background-color: rgba(0, 0, 0, 0.3);
+        transition: all .4s ease-out;
+        border-radius: 3px;
+        a {
+          color: white !important;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+.menu-application-corrected {
+  max-width: 100%;
+  height: 60px;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  transform: scale(1);
+  transition: all 0.5s;
+
+  .logo {
+    margin-left: 2%;
+    margin-top: -3px;
+    transform: scale(0.7);
+    transition: all 0.3s ease-in;
+  }
+
+  .dws-menu {
+    top: 25%;
+    transition: all 0.3s ease-in;
+  }
+}
+
+.menu-application-corrected-scroll {
+  position: fixed;
+  top: 0;
+  transition: all 0.5s;
+  max-width: 100% !important;
+  height: 42px !important;
+  margin: 0 !important;
+  transform: scale(1) !important;
+
+  .logo {
+    transform: scale(.5);
+    margin-left: 0;
+    margin-top: -11px;
+    transition: all 0.3s ease-in;
+  }
+  .dws-menu {
+    top: 4px;
+    transition: all 0.4s ease-in;
+
+    ul.dws-ul {
+      margin: 5px 0 5px 5px;
+      transition: all 0.4s ease-in;
+      .dws-li {
+        transition: all .4s ease-in;
+      }
+
+    }
+  }
+}
+
+.mob-menu {
+  display: none;
+}
+
+.dws-menu-mob {
+  display: none;
+}
+
+@media all and (max-width: 1000px) {
+  .menu-application {
+    margin-left: 0;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .menu-application, .menu-application-corrected {
+    display: none;
+  }
+  .mob-btn-menu {
+    display: block;
+    width: 36px;
+    height: 24px;
+    background: transparent;
+    position: fixed;
+    top: 10px;
+    z-index: 10000;
+    right: 21px;
+    cursor: pointer;
+    transition: all 1s;
+
+    .line {
+      transition: all 1s;
+      transform: rotate(0deg);
+      display: flex;
+      height: 2px;
+      background: silver;
+      padding: 0;
+      width: 56%;
+      opacity: 1;
+      margin: 4px 9px;
+    }
+
+    .line_2 {
+      transition: all 1s;
+      transform: translateX(0px);
+    }
+  }
+  .liner-open-menu {
+    width: 36px;
+    height: 24px;
+    background: transparent;
+    position: fixed;
+    z-index: 10000;
+    cursor: pointer;
+    transition: all 1s;
+    top: 20px;
+    right: 20px;
+
+    .line_1 {
+      transition: all 1s;
+      transform: rotate(490deg);
+      display: -webkit-box;
+      display: flex;
+      height: 2px;
+      padding: 0;
+      background: #EEFF32;
+      width: 60%;
+      margin: 5px 9px;
+      position: relative;
+      top: 3px;
+    }
+
+    .line_3 {
+      transition: all 1s;
+      transform: rotate(-490deg);
+      display: flex;
+      height: 2px;
+      background: #EEFF32;
+      padding: 0;
+      width: 60%;
+      margin: 0 9px;
+      position: relative;
+      top: -3px;
+    }
+
+    .line_2 {
+      transform: translateX(200px);
+      opacity: 0;
+    }
+  }
+  .dws-menu-mob-active {
+    display: flex;
+    width: 60%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: fixed !important;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    transform: translateX(0px);
+    animation: animateMenuVisible 1s ease-out;
+
+    .dws-ul-mob {
+      display: flex;
+      margin: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5px;
+
+      .dws-li-mob {
+        padding: 5px;
+        margin: 5px;
+        list-style-type: none;
+
+        a {
+          color: white;
+        }
+
+        &:hover {
+          a {
+            color: #EEFF32;
+            text-decoration: none;
+          }
+        }
+      }
+
+
+    }
+  }
+  .dws-menu-mob-hidden {
+    display: flex;
+    width: 60%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: fixed !important;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    transform: translateX(-1000px);
+    animation: animateMenuHidden 1s ease-in;
+
+    .dws-ul-mob {
+      display: flex;
+      margin: auto;
+      flex-direction: column;
+      align-items: flex-start;
+      opacity: 0;
+      transition: all 0.5s ease-out;
+      padding: 5px;
+      list-style-type: none;
+
+      .dws-li-mob {
+        padding: 5px;
+        margin: 5px;
+
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+  @keyframes animateMenuVisible {
+    0% {
+      width: 100%;
+      transform: translateX(-1000px);
+    }
+    50% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+    100% {
+      width: 60%;
+      transform: translateX(0px);
+    }
+  }
+  @keyframes animateMenuHidden {
+    100% {
+      width: 0;
+      height: 0;
+      display: none;
+      transform: translateY(0px);
+      background: rgba(255, 255, 255, 1);
+    }
+    50% {
+      width: 1%;
+      height: 1%;
+      transform: translateX(0px);
+    }
+    30% {
+      width: 40%;
+      height: 40%;
+      transform: translateX(0px);
+      border-bottom-left-radius: 180%;
+    }
+    0% {
+      width: 60%;
+      transform: translateX(0px);
+    }
+  }
+
+}
+
+@media all and (max-width: 530px) {
+
+  .dws-menu-mob-active {
+    display: flex;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    transform: translateX(0px);
+    animation: animateMenuVisible 1s ease-out;
+  }
+  .dws-menu-mob-hidden {
+    display: flex;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    transform: translateX(-1000px);
+    animation: animateMenuHidden 1.5s ease-in;
+
+    .dws-ul-mob {
+      opacity: 0;
+      transition: all 0.5s ease-out;
+    }
+  }
+
+  @keyframes animateMenuVisible {
+    0% {
+      width: 100%;
+      transform: translateX(-1000px);
+    }
+    50% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+    100% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  }
+  @keyframes animateMenuHidden {
+    100% {
+      width: 0;
+      height: 0;
+      display: none;
+      transform: translateY(0px);
+      background: rgba(255, 255, 255, 1);
+    }
+    50% {
+      width: 1%;
+      height: 1%;
+      transform: translateX(0px);
+    }
+    30% {
+      width: 40%;
+      height: 40%;
+      transform: translateX(0px);
+      border-bottom-left-radius: 180%;
+    }
+    0% {
+      width: 100%;
+      transform: translateX(0px);
+    }
+  }
+
+}
