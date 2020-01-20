@@ -21,8 +21,8 @@ import {LoaderComponent} from '../../global-components/loader/loader.component';
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   loader: boolean;
-  protected orderError: Order;
-  protected isCreated = false;
+  orderError: Order;
+  isCreated = false;
   trainings: Trainings;
   trainersCheckbox: any = [];
   myForm: FormGroup;
