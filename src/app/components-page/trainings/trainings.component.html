@@ -14,7 +14,7 @@
       <br>
       <div class="block-add-trainings">
         <div *ngFor="let training of trainings; let i = index">
-          <a (click)="noClickTrainings(training.id)">
+          <a>
             <div class="training-info-block"
                  *ngFor="let elem of trainings[i].photoTrainings;">
               <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
@@ -27,7 +27,9 @@
                 </div>
                 <hr>
                 <div class="btn-training">
-                  <button type="button" class="btn-all-application">
+                  <button type="button"
+                          class="btn-all-application"
+                          (click)="noClickTrainings(training.id)">
                     <span class="btn-text">Заказть корпоративный тренинг</span>
                   </button>
                 </div>

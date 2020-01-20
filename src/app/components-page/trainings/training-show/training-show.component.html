@@ -12,13 +12,13 @@
           <span class="btn-text">Назад</span>
         </span>
       </div>
-      <div *ngIf="training" class="white_bg">
+      <div class="white_bg" *ngIf="training">
         <div class="bl-block">
           <div class="bl-img">
             <img [src]="'data:image/jpg;base64,' + training.trainings.photoTrainings[0].photo">
-          </div>
-          <div class="briefly-training">
-            <p>{{training.trainings.briefly}}</p>
+            <div class="briefly-training">
+              <p>{{training.trainings.briefly}}</p>
+            </div>
           </div>
           <div class="bl-block-editor">
             <angular-editor id="myEditor" [(ngModel)]="training.description"
@@ -28,8 +28,8 @@
               <span>Тренеры :</span>
             </div>
             <div class="coach-block">
-              <div *ngFor="let elem of trainers">
-                <a routerLink="/trainings/coach/resume/{{elem.id}}">
+              <div class="coach-block-content" *ngFor="let elem of trainers">
+                <a [routerLink]="['/trainings/coach/resume/', elem.id]">
                   <div class="trainer-block">
                     <img [src]="'data:image/jpg;base64,'+ elem['photo'][0]['photo']" alt="Trainings">
                     <br>
@@ -52,16 +52,19 @@
           <div class="text-info-pdf">
             <p>Распечатайте презентацию тренинга для вашего руководителя </p>
           </div>
-          <!--          <div class="pdf-btn">-->
-          <!--            <div  class="img-pdf" (click)="downloadPDF()">-->
-          <!--              <img src="/assets/img/pdf.png" alt="pdf">-->
-          <!--            </div>-->
-          <!--          </div>-->
+          <div class="pdf-btn">
+            <div class="img-pdf" (click)="downloadPDF()">
+              <img src="/assets/img/pdf.png" alt="pdf">
+            </div>
+          </div>
         </div>
         <div class="bl-button">
           <div class="bl-two">
             <div class="btn-t">
-              <button class="btn btn-outline-secondary" routerLink="/trainings-order"> заказть корпоративный тренинг
+              <button class="btn btn-outline-secondary"
+                      (click)="transitionToOrder()"
+              > заказть корпоративный
+                тренинг
               </button>
             </div>
           </div>

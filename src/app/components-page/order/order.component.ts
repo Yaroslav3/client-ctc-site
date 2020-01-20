@@ -11,6 +11,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
+import {SearchByIdService} from '../../shared/services/search-by-id.service';
 
 @Component({
   selector: 'app-order',
@@ -44,6 +45,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     private orderService: OrderService,
     private getReduxData: GetReduxDataService,
     private router: ActivatedRoute,
+    private transferToId: SearchByIdService,
     private loaderComponent: LoaderComponent,
     private headerControl: MainLayoutComponent,
     private renderer: Renderer2,
@@ -60,7 +62,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.createFormGroup();
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
-    console.log(this.trainings);
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
@@ -74,9 +75,8 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   ngAfterContentChecked(): void {
   }
   selectedTrainer() {
-    this.router.params.subscribe((params: Params) => {
-      this.selectedTrainerId = this.getReduxData.getOneTrainer(params.id);
-    });
+    const idTrainer = this.transferToId.setOrderTrainerId();
+    this.selectedTrainerId = this.getReduxData.getOneTrainer(idTrainer);
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
