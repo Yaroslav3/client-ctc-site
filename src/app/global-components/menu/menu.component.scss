@@ -222,7 +222,9 @@
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-    z-index: 1;
+
+    z-index: 1000;
+
     top: 0;
     right: 0;
     transform: translateX(0px);
@@ -336,7 +338,8 @@
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-    z-index: 1;
+
+
     top: 0;
     right: 0;
     transform: translateX(0px);
@@ -348,7 +351,8 @@
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-    z-index: 1;
+
+
     top: 0;
     right: 0;
     transform: translateX(-1000px);

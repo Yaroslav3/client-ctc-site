@@ -1,4 +1,44 @@
 <div class="wrapper">
+
+  <div class="all-content" [@fadingAwayAnimate]>
+    <app-loader *ngIf="loader"></app-loader>
+    <div *ngIf="!loader" [@fadingAwayAnimate]>
+      <br>
+      <div class="industries-trainings">
+        <div class="list-industries" *ngFor="let elem of inscriptions;">
+          <p class="paragraph">{{elem.paragraph}}</p>
+          <p class="description">{{elem.description}}</p>
+          <br>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="block-add-trainings">
+        <div *ngFor="let training of trainings; let i = index">
+          <a (click)="noClickTrainings(training.id)">
+            <div class="training-info-block"
+                 *ngFor="let elem of trainings[i].photoTrainings;">
+              <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
+              <br>
+              <br>
+              <div class="down-info">
+                <h3>{{training.name}}</h3>
+                <div class="bl">
+                  <span>{{training.briefly}}</span>
+                </div>
+                <hr>
+                <div class="btn-training">
+                  <button type="button" class="btn-all-application">
+                    <span class="btn-text">Заказть корпоративный тренинг</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <br/>
+    </div>
   <br>
   <div>
     <div class="loading-content">
@@ -48,6 +88,7 @@
 
 
     <br/>
+
   </div>
 </div>
 

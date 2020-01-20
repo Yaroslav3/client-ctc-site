@@ -8,15 +8,12 @@ import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
   animations: [fadingAwayAnimate]
 })
 export class HeaderComponent implements OnInit {
-  protected titleText = 'Corporate Training Company, since 1999';
+  titleText = 'Corporate Training Company, since 1999';
   hiddenHeader: boolean;
   @Input() correctedHeader: boolean;
-
   constructor() {
     this.hiddenHeader = false;
   }
-
   ngOnInit() {
   }
-
 }

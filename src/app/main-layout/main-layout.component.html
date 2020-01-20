@@ -1,5 +1,8 @@
-<app-loader *ngIf="!loader"></app-loader>
-<div *ngIf="loader">
+
+<app-loader *ngIf="!loader"  [@fadingAwayAnimate]></app-loader>
+<div *ngIf="loader"
+     [@fadingAwayAnimate]>
+
   <app-header
     [correctedHeader]="hiddenHeader"
     [ngClass]="{'visualHeader': !hiddenHeader,'hiddenHeader': hiddenHeader}"></app-header>
@@ -15,12 +18,15 @@
       *ngIf="btnTop"
       (click)="buttonTop()"
       class="btn-Top">
-      <span class="arrow-top-silver"></span>
+
+
+      <i class="fas fa-long-arrow-alt-up arrow-top"></i>
+
     </div>
   </main>
   <app-footer></app-footer>
 </div>
-<!--[correctedMenu]="hiddenHeader"-->
-<!--[menuScrolling]="menuScrolling"-->
-<!--[ngClass]="{'menu': !hiddenHeader, 'menuCorrected': hiddenHeader}"-->
+
+
+
 
