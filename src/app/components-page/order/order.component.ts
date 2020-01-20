@@ -62,25 +62,35 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.createFormGroup();
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
-    console.log(this.trainings);
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
       this.startComponentCheckboxCoach(this.selectedTrainerId);
       this.loader = false;
-    } else {
+    }
+    if (this.selectedTrainerId === null) {
       this.routerLink.navigate(['trainings/coach']);
+    }
+    if (this.selectedTrainerId === undefined) {
+      this.selectedTrainer();
+      console.log(this.selectedTrainerId);
+      this.trainersCheckbox = this.getReduxData.getTrainers();
       this.loader = false;
     }
   }
   ngAfterContentChecked(): void {
   }
   selectedTrainer() {
-    // this.router.params.subscribe((params: Params) => {
-    //   this.selectedTrainerId = this.getReduxData.getOneTrainer(params.id);
-    // });
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
-    this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+    if (selectedTrainerId === undefined) {
+      this.selectedTrainerId = null;
+      console.log(this.selectedTrainerId);
+    } else {
+      this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+      console.log(this.selectedTrainerId);
+    }
+    // this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+    // console.log(this.selectedTrainerId);
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
@@ -164,6 +174,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
     this.loaderSubmit = false;
+    this.getTrainerForId.getOrderTrainerId(null);
     this.loaderComponent.stopSmallSpinner();
   }
 }

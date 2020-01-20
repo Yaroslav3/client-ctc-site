@@ -58,7 +58,7 @@
                     </div>
                   </div>
                   <div class="btn-or">
-                    <div class="btn-all-application" [routerLink]="['/trainings-order', idCoach]">
+                    <div class="btn-all-application" (click)="transitionToOrder()">
                       <span class="btn-text">Заказть корпоративный тренинг</span>
                     </div>
                   </div>
@@ -111,8 +111,7 @@
                 </div>
               </div>
               <div class="btn-or">
-                <div class="btn-all-application" (click)="transitionToOrder(idCoach)"
-                     [routerLink]="['/trainings-order', idCoach]">
+                <div class="btn-all-application" (click)="transitionToOrder()">
                   <span class="btn-text">Заказть корпоративный тренинг</span>
                 </div>
               </div>

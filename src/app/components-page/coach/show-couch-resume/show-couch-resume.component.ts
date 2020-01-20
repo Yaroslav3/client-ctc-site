@@ -1,5 +1,5 @@
 import {AfterContentChecked, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Trainers} from '../../../shared/model/Trainers.model';
 import {StartingLoadService} from '../../../shared/services/starting-load.service';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
@@ -20,10 +20,12 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
   trainers: Trainers;
   idCoach: number;
   constructor(private routing: ActivatedRoute,
+              private router: Router,
               private getTrainer: GetReduxDataService,
               private getTrainerForId: SearchByIdService,
               private startLoad: StartingLoadService,
               private fontService: FontJsonFileService,
+              private transferToId: SearchByIdService,
               private headerControl: MainLayoutComponent) {
     // hide header when we go into the component
     this.headerControl.hiddenHeaderComponent();
@@ -76,7 +78,9 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
     // show header on exit from the component
     this.headerControl.visibleHeaderComponent();
   }
-  transitionToOrder(idCoach: number) {
-    this.getTrainerForId.getOrderTrainerId(idCoach);
+  transitionToOrder() {
+    console.log(this.trainers);
+    this.getTrainerForId.getOrderTrainerId(this.trainers.id.toString());
+    this.router.navigate(['trainings-order']);
   }
 }
