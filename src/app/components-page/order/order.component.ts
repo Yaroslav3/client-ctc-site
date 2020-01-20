@@ -11,6 +11,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
+import {SearchByIdService} from '../../shared/services/search-by-id.service';
 
 @Component({
   selector: 'app-order',
@@ -47,6 +48,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     private loaderComponent: LoaderComponent,
     private headerControl: MainLayoutComponent,
     private renderer: Renderer2,
+    private getTrainerForId: SearchByIdService,
   ) {
     this.config.outsideDays = 'hidden';
     this.loaderSubmit = false;
@@ -74,9 +76,11 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   ngAfterContentChecked(): void {
   }
   selectedTrainer() {
-    this.router.params.subscribe((params: Params) => {
-      this.selectedTrainerId = this.getReduxData.getOneTrainer(params.id);
-    });
+    // this.router.params.subscribe((params: Params) => {
+    //   this.selectedTrainerId = this.getReduxData.getOneTrainer(params.id);
+    // });
+    const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
+    this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
