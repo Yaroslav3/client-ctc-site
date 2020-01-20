@@ -4,7 +4,6 @@ footer {
   width: 100%;
   height: auto;
   color: #555;
-
   .text-down {
     p {
       max-width: 450px;
@@ -14,12 +13,10 @@ footer {
       z-index: 500;
     }
   }
-
   .footer {
     display: flex;
     justify-content: space-between;
     width: 100%;
-
     .contact {
       display: flex;
       justify-content: space-between;
@@ -28,273 +25,207 @@ footer {
       //border: 1px solid #ccc;
       padding: 0 0;
       border-radius: 3px;
-
       .email-footer {
         padding: 2px 6px;
         display: flex;
         align-items: baseline;
-
         p {
           font-family: var(--font-footer-regular);
           font-size: 12px;
           cursor: pointer;
           text-transform: uppercase;
-
-
           .fa-envelope {
             font-size: 16px;
             position: relative;
             top: 1px;
-
           }
-
           .email-text {
             margin-left: 6px;
-
-          .email-text {
-            margin-left: -8px;
-
+            .email-text {
+              margin-left: -8px;
+            }
+          }
+        }
+        .phone-footer {
+          padding: 2px 6px;
+          display: flex;
+          align-items: baseline;
+          p {
+            font-family: var(--font-footer-regular);
+            font-size: 12px;
+            .fa-mobile-alt {
+              font-size: 16px;
+            }
+            .mob-text {
+              margin-left: 6px;
+            }
+          }
+        }
+        .skype-footer {
+          padding: 2px 6px;
+          p {
+            font-family: var(--font-footer-regular);
+            font-size: 12px;
+            text-transform: uppercase;
+            .fa-skype {
+              font-size: 17px;
+            }
+            .text-span {
+              margin-left: 6px;
+            }
           }
         }
       }
-
-      .phone-footer {
-        padding: 2px 6px;
+      .contact2 {
         display: flex;
-        align-items: baseline;
-
-        p {
-          font-family: var(--font-footer-regular);
-          font-size: 12px;
-
-
-          .fa-mobile-alt {
-            font-size: 16px;
+        padding: 5px 10px;
+        border-radius: 2px;
+        margin: 0 36px 0 5px;
+        .icon {
+          display: flex;
+          align-items: flex-end;
+          .fa-facebook-square, .fa-youtube-square {
+            font-size: 23px;
+            cursor: pointer;
+            position: relative;
+            top: -9px;
+            margin-left: 5px;
+            transition: all 0.5s ease-in-out;
           }
-
-          .mob-text {
-            margin-left: 6px;
-
+          .fa-youtube-square {
+            &:hover {
+              transition: all 0.5s ease-out;
+              color: red;
+            }
           }
-        }
-      }
-
-      .skype-footer {
-        padding: 2px 6px;
-
-        p {
-          font-family: var(--font-footer-regular);
-          font-size: 12px;
-          text-transform: uppercase;
-
-
-          .fa-skype {
-            font-size: 17px;
+          .fa-facebook-square {
+            &:hover {
+              transition: all 0.5s ease-out;
+              color: blue;
+            }
           }
-
-          .text-span {
-            margin-left: 6px;
-          }
-
-
         }
       }
     }
-
-    .contact2 {
-      display: flex;
-      padding: 5px 10px;
-      border-radius: 2px;
-      margin: 0 36px 0 5px;
-
-      .icon {
+    .name-footer {
+      h4 {
+        padding: 5px 10px;
+        font-family: var(--font-footer-header);
+        text-transform: uppercase;
+        font-size: 12px;
+        margin: 5px;
+      }
+      p {
+        margin: 5px;
+        padding: 5px 10px;
         display: flex;
         align-items: flex-end;
-
-
-        .fa-facebook-square, .fa-youtube-square {
-          font-size: 23px;
-          cursor: pointer;
-          position: relative;
-          top: -9px;
-          margin-left: 5px;
-          transition: all 0.5s ease-in-out;
+        .marker {
+          top: 5px;
         }
-        .fa-youtube-square {
-          &:hover {
-            transition: all 0.5s ease-out;
-            color: red;
-          }
-        }
-
-        .fa-facebook-square {
-          &:hover {
-            transition: all 0.5s ease-out;
-            color: blue;
-          }
-
-        }
-
-      }
-    }
-  }
-
-  .name-footer {
-    h4 {
-      padding: 5px 10px;
-      font-family: var(--font-footer-header);
-      text-transform: uppercase;
-      font-size: 12px;
-      margin: 5px;
-    }
-
-    p {
-      margin: 5px;
-      padding: 5px 10px;
-      display: flex;
-      align-items: flex-end;
-
-      .marker {
-        top: 5px;
-      }
-
-
-      .fa-map-marker-alt {
-        font-size: 16px;
-        position: relative;
-        top: 0;
-      }
-
-      .marker-text {
-        margin-left: 7px;
-
-      }
-    }
-  }
-}
-
-
-@media only screen and (max-width: 768px) {
-  .wrapper {
-    max-width: 760px;
-
-    .contact {
-      margin: 0 8px;
-
-      .fu {
-        padding: 2px 2px;
-      }
-
-      .email-footer {
-        p {
-          font-size: 10px;
-        }
-      }
-
-      .phone-footer {
-        p {
-          font-size: 10px;
-        }
-      }
-
-      .skype-footer {
-        p {
-
-          font-size: 12px;
-        }
-      }
-    }
-
-    .contact2 {
-      margin: 0 2px 0 5px !important;
-      padding: 5px !important;
-
-
-
-      .icon {
-        i {
+        .fa-map-marker-alt {
           font-size: 16px;
-          margin: 11px 2px 2px;
+          position: relative;
+          top: 0;
+        }
+        .marker-text {
+          margin-left: 7px;
         }
       }
     }
   }
-}
-
-@media only screen and (max-width: 530px) {
-
-  .text-down {
-    p {
-      max-width: 100%;
-      text-align: center;
-      font-size: 18px !important;
-      margin: 25px 8px;
+  @media only screen and (max-width: 768px) {
+    .wrapper {
+      max-width: 760px;
+      .contact {
+        margin: 0 8px;
+        .fu {
+          padding: 2px 2px;
+        }
+        .email-footer {
+          p {
+            font-size: 10px;
+          }
+        }
+        .phone-footer {
+          p {
+            font-size: 10px;
+          }
+        }
+        .skype-footer {
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+      .contact2 {
+        margin: 0 2px 0 5px !important;
+        padding: 5px !important;
+        .icon {
+          i {
+            font-size: 16px;
+            margin: 11px 2px 2px;
+          }
+        }
+      }
     }
   }
-
-  .footer {
-    flex-direction: column;
-    display: inline-block;
-
-    .contact {
-      display: inline-block;
-      margin: 3px 8px;
+  @media only screen and (max-width: 530px) {
+    .text-down {
+      p {
+        max-width: 100%;
+        text-align: center;
+        font-size: 18px !important;
+        margin: 25px 8px;
+      }
+    }
+    .footer {
       flex-direction: column;
-
-      .email-footer {
-        p {
-          margin: 0;
+      display: inline-block;
+      .contact {
+        display: inline-block;
+        margin: 3px 8px;
+        flex-direction: column;
+        .email-footer {
+          p {
+            margin: 0;
+          }
+        }
+        .phone-footer {
+          margin-left: 0;
+          p {
+            margin: 0;
+          }
+        }
+        .skype-footer {
+          margin-left: -2px;
+          p {
+            margin: 0;
+          }
         }
       }
-
-      .phone-footer {
-
-        margin-left: 0;
-
-
-        p {
-          margin: 0;
-        }
-      }
-
-      .skype-footer {
-
-        margin-left: -2px;
-
-
-        p {
-          margin: 0;
+      .contact2 {
+        margin: 0px -5px;
+        .icon {
+          justify-content: center;
+          width: 100%;
         }
       }
     }
-
-    .contact2 {
-      margin: 0px -5px;
-
-      .icon {
-        justify-content: center;
-        width: 100%;
+    .name-footer {
+      h4 {
+        padding: 5px 5px !important;
+        font-size: 9.5px;
+      }
+      p {
+        padding: 5px 0 !important;
       }
     }
   }
-  .name-footer {
-    h4 {
-
-      padding: 5px 5px !important;
-
-      font-size: 9.5px;
+  @media only screen and (max-width: 505px) {
+    .wrapper {
+      max-width: 470px;
+      font-size: 15px;
     }
-
-    p {
-      padding: 5px 0 !important;
-    }
-  }
-}
-
-@media only screen and (max-width: 505px) {
-  .wrapper {
-    max-width: 470px;
-    font-size: 15px;
-
   }
 }

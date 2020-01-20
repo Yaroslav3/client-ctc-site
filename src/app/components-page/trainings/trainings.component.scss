@@ -1,5 +1,4 @@
 
-
 .all-content {
   margin-right: 120px;
   margin-left: 120px;
@@ -42,7 +41,7 @@
       box-shadow: 0 2px 2px rgba(28, 15, 25, 0.1);
       cursor: pointer;
       transition: all 0.4s ease-out;
-      border: 1px solid  #F3F3F3;
+      border: 1px solid #F3F3F3;
       img {
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
@@ -90,12 +89,11 @@
         justify-content: center;
         margin-top: 20px;
         padding-top: 10px;
-        .btn-all-application{
-          .btn-text{
+        .btn-all-application {
+          .btn-text {
             font-size: 14px;
           }
         }
-
       }
     }
   }
@@ -176,40 +174,30 @@
     }
   }
 }
-
-=======
 .wrapper {
   max-width: 1500px;
   margin: 0 auto;
 }
-
 * {
   transition: all .2s;
   box-sizing: border-box;
 }
-
 html, body, iframe {
   margin: 0;
   padding: 0;
   height: 100%;
 }
-
 iframe {
   display: block;
   width: 100%;
   border: none;
-
 }
-
 .clear {
   clear: both;
 }
-
-
 .industries-trainings {
   height: auto;
 }
-
 .industries-trainings h1 {
   font-family: 'KIA_KIAM', serif;
   font-weight: bold;
@@ -218,36 +206,24 @@ iframe {
   margin: 0 15px;
   padding: 10px 0;
 }
-
-
 .industries-trainings h2 {
-
   text-align: justify;
   font-family: 'KIA_KIAM', serif;
   font-size: 15px;
   padding-left: 15px;
   color: #565d65;
 }
-
 /****---------- Button scroll up -------------***/
-
-
 .all-content {
   margin-right: 120px;
   margin-left: 120px;
 }
-
-
 //-------------------- Block Training------------------------------------------//
-
-
 .block-add-trainings {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-
 }
-
 .training-info-block {
   flex: 1;
   width: 370px;
@@ -257,7 +233,6 @@ iframe {
   box-shadow: 0 2px 2px rgba(28, 15, 25, 0.1);
   cursor: pointer;
 }
-
 .training-info-block:hover {
   //background-color: #f3f3f3;
   box-shadow: 0 2px 2px rgba(28, 15, 25, 0.2);
@@ -268,20 +243,15 @@ iframe {
   filter: grayscale(80%);
   filter: gray; /* IE 6-9 */
 }
-
 .training-info-block img {
   width: 100%;
   height: 200px;
 }
-
 .training-info-block img:hover {
-
 }
-
 .down-info {
   padding: 10px;
 }
-
 .down-info h3 {
   color: #4d4d4d;
   font-weight: bold;
@@ -289,28 +259,21 @@ iframe {
   font-size: 20px;
   text-transform: uppercase;
 }
-
 .down-info .bl span {
   font-size: 13px;
   font-family: Exo2Light, sans-serif, serif;
 }
-
 .bl {
   height: 50px;
 }
-
-
 .training-info-block h3 {
   font-size: 15px;
 }
-
 .btn-training {
   display: flex;
   justify-content: center;
 }
-
 .btn {
   border-radius: 0 !important;
-
 }
 

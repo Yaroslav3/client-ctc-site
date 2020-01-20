@@ -31,12 +31,10 @@ export class StartingLoadService {
         this.store.dispatch(new InfoFooter(dataFooter));
       });
   }
-
   getAllTrainers() {
     this.http.get(this.host + environment.apiUrlTrainers).subscribe
     ((trainers) => {
       this.store.dispatch(new AllTrainers(trainers));
-
     });
   }
   getAllTrainings() {
@@ -58,5 +56,8 @@ export class StartingLoadService {
         'Content-Type': 'application/json'
       })
     });
+  }
+  getSkillTrainerOneTrainer(id) {
+    return this.http.get(`${this.host + environment.apiUrlGetAllNameSkills}/${id}`);
   }
 }

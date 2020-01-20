@@ -1,5 +1,4 @@
 <div class="wrapper">
-
   <div class="all-content" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div *ngIf="!loader" [@fadingAwayAnimate]>
@@ -15,7 +14,7 @@
       <br>
       <div class="block-add-trainings">
         <div *ngFor="let training of trainings; let i = index">
-          <a (click)="noClickTrainings(training.id)">
+          <a>
             <div class="training-info-block"
                  *ngFor="let elem of trainings[i].photoTrainings;">
               <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
@@ -28,7 +27,9 @@
                 </div>
                 <hr>
                 <div class="btn-training">
-                  <button type="button" class="btn-all-application">
+                  <button type="button"
+                          class="btn-all-application"
+                          (click)="noClickTrainings(training.id)">
                     <span class="btn-text">Заказть корпоративный тренинг</span>
                   </button>
                 </div>
@@ -39,56 +40,6 @@
       </div>
       <br/>
     </div>
-  <br>
-  <div>
-    <div class="loading-content">
-      <app-loader></app-loader>
-    </div>
-  </div>
-  <div class="all-content">
     <br>
-    <div class="industries-trainings">
-      <div *ngFor="let elem of inscriptions;">
-        <h1>{{elem.paragraph}}</h1>
-        <h2>{{elem.description}}</h2>
-        <br>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="block-add-trainings">
-      <div *ngFor="let training of trainings; let i = index">
-        <a (click)="noClickTrainings(training.id)">
-          <div class="training-info-block" *ngFor="let elem of trainings[i].photoTrainings;">
-            <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
-            <br>
-            <br>
-            <div class="down-info">
-              <h3>{{training.name}}</h3>
-              <div class="bl">
-                <span>{{training.briefly}}</span>
-              </div>
-              <hr>
-              <div class="btn-training">
-                <button type="button" class="btn btn-outline-secondary">заказть корпоративный тренинг
-                </button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-
-
-    <!--<div [@up]="state" class="block-scroll">-->
-    <!--<div class="scroll-up">-->
-    <!--<button type="button" (click)="scrollUp()"><i class="fas fa-chevron-up"></i></button>-->
-    <!--</div>-->
-    <!--</div>-->
-
-
-    <br/>
-
   </div>
 </div>
-

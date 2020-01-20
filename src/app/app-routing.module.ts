@@ -16,8 +16,6 @@ import {RoomRentalComponent} from './components-page/room-rental/room-rental.com
 import {ShowRoomInfoComponent} from './components-page/room-rental/show-room-info/show-room-info.component';
 import {OrderRoomComponent} from './components-page/room-rental/order-room/order-room.component';
 import {RecommendationsComponent} from './components-page/recommendations/recommendations.component';
-
-
 const routes: Routes = [
     {
       path: '', component: MainLayoutComponent, children: [
@@ -25,7 +23,7 @@ const routes: Routes = [
         {path: 'home', component: HomeComponent},
         {path: 'trainings', component: TrainingsComponent},
         {path: 'trainings/training-show/:id', component: TrainingShowComponent},
-        {path: 'trainings-order/:id', component: OrderComponent},
+        {path: 'trainings-order', component: OrderComponent},
         {path: 'trainings/coach', component: CoachComponent},
         {path: 'trainings/coach/resume/:id', component: ShowCouchResumeComponent},
         {path: 'webinars', component: WebinarsComponent},

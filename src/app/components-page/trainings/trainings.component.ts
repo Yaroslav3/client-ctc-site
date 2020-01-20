@@ -1,4 +1,3 @@
-
 import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
 import {Inscriptions} from '../../shared/model/Inscriptions.model';
@@ -7,9 +6,6 @@ import {GetReduxDataService} from '../../shared/services/get-redux-data.service'
 import {LoaderComponent} from '../../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
-
-
-
 
 @Component({
   selector: 'app-trainings',
@@ -46,6 +42,5 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
     this.trainings = this.getReduxData.getTrainingsAll();
     this.inscriptions = this.getReduxData.getInscriptionsAll();
   }
-
 }
 
