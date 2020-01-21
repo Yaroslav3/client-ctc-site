@@ -7,7 +7,7 @@ import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-boo
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
@@ -68,13 +68,15 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.startComponentCheckboxCoach(this.selectedTrainerId);
       this.loader = false;
     }
-    if (this.selectedTrainerId === null) {
-      this.routerLink.navigate(['trainings/coach']);
-    }
     if (this.selectedTrainerId === undefined) {
       this.selectedTrainer();
       console.log(this.selectedTrainerId);
       this.trainersCheckbox = this.getReduxData.getTrainers();
+      console.log(this.trainersCheckbox);
+      if (!this.trainersCheckbox.length) {
+        this.routerLink.navigate(['trainings/coach']);
+        this.headerControl.visibleHeaderComponent();
+      }
       this.loader = false;
     }
   }
@@ -82,15 +84,8 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
   selectedTrainer() {
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
-    if (selectedTrainerId === undefined) {
-      this.selectedTrainerId = null;
-      console.log(this.selectedTrainerId);
-    } else {
-      this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
-      console.log(this.selectedTrainerId);
-    }
-    // this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
-    // console.log(this.selectedTrainerId);
+    this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+    console.log(this.selectedTrainerId);
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({

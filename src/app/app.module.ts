@@ -35,6 +35,7 @@ import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {ScrollDirective} from './shared/directives/scroll.directive';
 import {DelayDirective} from './shared/directives/delay.directive';
 import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-b
         stateStartApplication: startApplicationReducer,
         stateTrainers: loadingTrainersReducer,
         stateTrainings: loadingTrainingsReducer,
+        stateWebinars: loadingWebinarsReducer
       }),
     NgxSpinnerModule,
     BrowserAnimationsModule,

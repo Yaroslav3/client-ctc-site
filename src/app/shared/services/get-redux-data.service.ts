@@ -3,6 +3,8 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../reduxe';
 import {Trainers} from '../model/Trainers.model';
 import {Inscriptions} from '../model/Inscriptions.model';
+import {Webinars} from '../model/Webinars.model';
+import {WebinarInscription} from '../model/WebinarInscription.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ export class GetReduxDataService {
   allTrainers;
   trainingsAll;
   inscriptions: Inscriptions;
+  webinarsAll: Webinars;
+  webinarsInscription: WebinarInscription;
   constructor(private store: Store<AppState>) {
   }
   getOneTrainer(id) {
@@ -40,20 +44,24 @@ export class GetReduxDataService {
     });
     return this.trainingsAll;
   }
-  getOneTraining(id) {
-    const trainingsAll = this.getTrainingsAll();
-    const oneTraining = trainingsAll.find(t => t.id.toString() === id.toString());
-    return oneTraining;
-  }
-  getOneTrainingsSkills(id) {
-    const allTrainer = this.getAllTrainer();
-    console.log(allTrainer);
-  }
   getInscriptionsAll() {
     this.store.select('stateStartApplication', 'inscriptions').subscribe((inscriptionsAll: Inscriptions) => {
       this.inscriptions = inscriptionsAll;
     });
     return this.inscriptions;
+  }
+  getWebinars() {
+    this.store.select('stateWebinars', 'webinars').subscribe((webinars: Webinars) => {
+      this.webinarsAll = webinars;
+    });
+    return this.webinarsAll;
+  }
+  getWebinarsInscription() {
+    this.store.select('stateWebinars', 'webinarsInscription').subscribe((webinarsInscription: WebinarInscription) => {
+      this.webinarsInscription = webinarsInscription;
+    });
+    console.log(this.webinarsInscription);
+    return this.webinarsInscription;
   }
 }
 

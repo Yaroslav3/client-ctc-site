@@ -8,7 +8,7 @@ import {StartingLoadService} from '../../shared/services/starting-load.service';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {Observable, Observer} from 'rxjs';
-
+import {LoaderComponent} from '../../global-components/loader/loader.component';
 
 @Component({
   selector: 'app-coach',
@@ -19,27 +19,29 @@ import {Observable, Observer} from 'rxjs';
 export class CoachComponent implements OnInit, OnDestroy, AfterViewChecked {
   location: string;
   trainers: Trainers;
-
+  loader: boolean;
   constructor(
     private startLoad: StartingLoadService,
     private router: Router,
+    private loaderComponent: LoaderComponent,
     private serviceHeaderPhoto: LoadingPhotoHeaderService,
     private getReduxData: GetReduxDataService) {
     this.location = 'coach';
+    this.loader = true;
+    this.loaderComponent.startLoaderPageSpinner();
   }
-
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
+    this.trainers = this.getReduxData.getAllTrainer();
+    this.loaderComponent.stopLoaderPageSpinner();
+    this.loader = false;
   }
-
   ngAfterViewChecked(): void {
     this.trainers = this.getReduxData.getAllTrainer();
   }
-
   redirect(elem) {
     this.router.navigate(['trainings', 'coach', 'resume', elem.id]);
   }
-
   ngOnDestroy(): void {
   }
 }
