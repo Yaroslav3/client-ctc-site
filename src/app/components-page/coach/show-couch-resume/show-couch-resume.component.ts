@@ -77,6 +77,7 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
   ngOnDestroy(): void {
     // show header on exit from the component
     this.headerControl.visibleHeaderComponent();
+    this.headerControl.menuScrolling = false;
   }
   transitionToOrder() {
     console.log(this.trainers);

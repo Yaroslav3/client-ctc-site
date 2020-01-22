@@ -22,11 +22,14 @@
                     <span>{{webinar.theme}}</span>
                   </div>
                   <hr>
+
                 </div>
                 <div class="w-count-price">
                   <div class="count" *ngIf="webinar.countPerson - count[i] > 0">
                     <span>осталось мест: </span>
-                    <span class="count-w">{{webinar.countPerson - count[i]}}</span>
+                    <span class="count-w">
+                      {{webinar.countPerson - count[i]}}
+                    </span>
                   </div>
                   <div class="count" *ngIf="webinar.countPerson - count[i] <= 0">
                     <span class="zero">Все бидеты проданы!</span>

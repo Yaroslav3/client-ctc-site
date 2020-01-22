@@ -22,14 +22,18 @@ export class WebinarsComponent implements OnInit, AfterContentChecked {
   }
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    // this.inscriptions = this.getReduxData.getWebinarsInscription();
-    // this.webinars = this.getReduxData.getWebinars();
-    console.log(this.webinars);
-    console.log(this.inscriptions);
   }
   ngAfterContentChecked(): void {
     this.inscriptions = this.getReduxData.getWebinarsInscription();
     this.webinars = this.getReduxData.getWebinars();
+    this.getAllWebinars();
+  }
+  getAllWebinars() {
+    const webinars = this.getReduxData.getWebinars();
+    for (let i = 0; i < Object.keys(webinars).length; i++) {
+      this.count.push(Object.keys(webinars[i].webinarCountStatuses).length);
+    }
+    // console.log(this.count);
   }
   noClickWebinars(id: any) {
   }

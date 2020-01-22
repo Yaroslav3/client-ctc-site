@@ -71,7 +71,6 @@ export class StartingLoadService {
   getWebinarsInscription() {
     return this.http.get(this.host + environment.apiUrlWebinarsInscription)
       .subscribe((webinarsInscription: WebinarInscription) => {
-        console.log(webinarsInscription);
         this.store.dispatch(new AllWebinarsInscription(webinarsInscription));
       });
   }

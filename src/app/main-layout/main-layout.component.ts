@@ -1,4 +1,4 @@
-import {AfterContentChecked, ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
+import {AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
 import {StartingLoadService} from '../shared/services/starting-load.service';
 import {LoaderComponent} from '../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../shared/animations/fading-away.animate';
@@ -14,10 +14,13 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   hiddenHeader: boolean; // переменная для скрытия header.
   menuScrolling: boolean; // переменная которая выполняется при скролле.
   btnTop: boolean;
+  menuScroll: boolean;
   constructor(
     private cdRef: ChangeDetectorRef,
     private startLoad: StartingLoadService,
+    private elRef: ElementRef,
     private loaderComponent: LoaderComponent,
+    private changeDetector: ChangeDetectorRef,
   ) {
     this.menuScrolling = false;
     this.hiddenHeader = false;
@@ -39,11 +42,9 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   }
   hiddenHeaderComponent() {
     this.hiddenHeader = true;
-    console.log('hidden');
   }
   visibleHeaderComponent() {
     this.hiddenHeader = false;
-    console.log('vis');
   }
   ngAfterContentChecked(): void {
     this.cdRef.detectChanges();
@@ -64,5 +65,16 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   }
   buttonTop() {
     window.scroll(0, 0);
+  }
+  stickyMenu(scrollPosition) {
+    setTimeout(() => {
+      this.changeDetector.detectChanges();
+      const menu = this.elRef.nativeElement.querySelector('app-menu').offsetTop;
+      if (scrollPosition > menu) {
+        this.menuScrolling = true;
+      } else {
+        this.menuScrolling = false;
+      }
+    });
   }
 }

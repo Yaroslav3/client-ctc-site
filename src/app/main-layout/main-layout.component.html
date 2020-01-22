@@ -1,13 +1,15 @@
 <app-loader *ngIf="!loader"
             [@fadingAwayAnimate]>
 </app-loader>
-<div *ngIf="loader"
-     [@fadingAwayAnimate]>
+<div
+  *ngIf="loader"
+  [@fadingAwayAnimate]>
   <app-header
     [correctedHeader]="hiddenHeader"
     [ngClass]="{'visualHeader': !hiddenHeader,'hiddenHeader': hiddenHeader}">
   </app-header>
-  <app-menu [correctedMenu]="hiddenHeader"
+  <app-menu appScroll (numberScroll)="stickyMenu($event)"
+            [correctedMenu]="hiddenHeader"
             [menuScrolling]="menuScrolling">
   </app-menu>
   <main>
