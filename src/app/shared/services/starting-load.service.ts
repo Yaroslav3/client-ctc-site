@@ -9,6 +9,9 @@ import {AllTrainers} from '../../reduxe/trainers/trainers.actions';
 import {Trainings} from '../model/Trainings.model';
 import {AllTrainings} from '../../reduxe/trainings/trainings.action';
 import {Inscriptions} from '../model/Inscriptions.model';
+import {Webinars} from '../model/Webinars.model';
+import {AllWebinars, AllWebinarsInscription} from '../../reduxe/vebinars/webinars.action';
+import {WebinarInscription} from '../model/WebinarInscription.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +44,6 @@ export class StartingLoadService {
     return this.http.get(this.host + environment.apiUrlTrainings)
       .subscribe((allTrainings: Trainings) => {
         this.store.dispatch(new AllTrainings(allTrainings));
-        console.log(allTrainings);
       });
   }
   getAllInscriptions() {
@@ -59,5 +61,17 @@ export class StartingLoadService {
   }
   getSkillTrainerOneTrainer(id) {
     return this.http.get(`${this.host + environment.apiUrlGetAllNameSkills}/${id}`);
+  }
+  getWebinars() {
+    return this.http.get(this.host + environment.apiUrlWebinars)
+      .subscribe((webinars: Webinars) => {
+        this.store.dispatch(new AllWebinars(webinars));
+      });
+  }
+  getWebinarsInscription() {
+    return this.http.get(this.host + environment.apiUrlWebinarsInscription)
+      .subscribe((webinarsInscription: WebinarInscription) => {
+        this.store.dispatch(new AllWebinarsInscription(webinarsInscription));
+      });
   }
 }

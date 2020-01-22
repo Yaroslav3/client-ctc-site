@@ -1,27 +1,26 @@
-
-<app-loader *ngIf="!loader"  [@fadingAwayAnimate]></app-loader>
-<div *ngIf="loader"
-     [@fadingAwayAnimate]>
-
+<app-loader *ngIf="!loader"
+            [@fadingAwayAnimate]>
+</app-loader>
+<div
+  *ngIf="loader"
+  [@fadingAwayAnimate]>
   <app-header
     [correctedHeader]="hiddenHeader"
-    [ngClass]="{'visualHeader': !hiddenHeader,'hiddenHeader': hiddenHeader}"></app-header>
-  <app-menu
-    [correctedMenu]="hiddenHeader"
-    [menuScrolling]="menuScrolling"></app-menu>
+    [ngClass]="{'visualHeader': !hiddenHeader,'hiddenHeader': hiddenHeader}">
+  </app-header>
+  <app-menu appScroll (numberScroll)="stickyMenu($event)"
+            [correctedMenu]="hiddenHeader"
+            [menuScrolling]="menuScrolling">
+  </app-menu>
   <main>
-    <router-outlet
-      appScroll (numberScroll)="scrollEvent($event)"
-      class="main-router"></router-outlet>
-    <div
-      [@fadingAwayAnimate]
-      *ngIf="btnTop"
-      (click)="buttonTop()"
-      class="btn-Top">
-
-
+    <router-outlet class="main-router"
+                   appScroll (numberScroll)="scrollEvent($event)">
+    </router-outlet>
+    <div class="btn-Top"
+         [@fadingAwayAnimate]
+         *ngIf="btnTop"
+         (click)="buttonTop()">
       <i class="fas fa-long-arrow-alt-up arrow-top"></i>
-
     </div>
   </main>
   <app-footer></app-footer>

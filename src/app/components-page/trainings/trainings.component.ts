@@ -31,7 +31,6 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
     this.trainings = this.getReduxData.getTrainingsAll();
     this.inscriptions = this.getReduxData.getInscriptionsAll();
-    console.log(this.inscriptions);
     this.loaderComponent.stopLoaderPageSpinner();
     this.loader = false;
   }

@@ -122,5 +122,6 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
   ngOnDestroy(): void {
     // show header on exit from the component
     this.headerControl.visibleHeaderComponent();
+    this.headerControl.menuScrolling = false;
   }
 }

@@ -79,23 +79,32 @@
                     <div class="block-order-group">
                       <div class="input-group">
                         <input formControlName="date" id="end-event" class="form-control"
-                               placeholder="yyyy-mm-dd" title="dateEvent"
+                               [ngClass]="{invalid: isSubmitted && f.date.errors}"
+                               placeholder="дата" title="введи дату на выбраный тренинг"
                                name="end" ngbDatepicker
+                               (click)="e.toggle()"
                                #e="ngbDatepicker">
                         <div class="input-group-append">
                           <button class="btn btn-outline-secondary calendar"
+                                  [ngClass]="{invalid: isSubmitted && f.date.errors}"
                                   (click)="e.toggle()" type="button">
                             <span class="far fa-calendar-alt calendar-icon"></span></button>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="isSubmitted && f.date.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.date.errors">
                         <div *ngIf="f.date.errors.required"><span>* заполни поле </span></div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.date}}</span>
                       </div>
-                      <select formControlName="training" name="training" title="select">
-                        <option>--</option>
+                      <select formControlName="training" name="training"
+                              [ngClass]="{invalid: isSubmitted && f.training.errors}"
+                              title="select">
+                        <!--                        <option>&#45;&#45;</option>-->
                         <option class="select-input" id="training" name="training"
                                 *ngFor="let training of trainings">
                           {{training.name}}
@@ -104,67 +113,98 @@
                       <div class="label-training">
                         <p>Тренинги</p>
                       </div>
-                      <div class="error-input" *ngIf="isSubmitted && f.training.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.training.errors">
                         <div *ngIf="f.training.errors.required">
-                          <span>* заполни поле </span>
+                          <span>* выбери тренинг </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.training}}</span>
                       </div>
                       <input formControlName="country" class="input" name="country" type="text"
+                             [ngClass]="{invalid: isSubmitted && f.country.errors}"
                              placeholder="страна">
-                      <div class="error-input" *ngIf="isSubmitted && f.country.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.country.errors">
                         <div *ngIf="f.country.errors.required">
                           <span>* заполни поле </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.country}}</span>
                       </div>
                       <input formControlName="city" class="input" name="city" type="text"
+                             [ngClass]="{invalid: isSubmitted && f.city.errors}"
                              placeholder="город проведения тренинга">
-                      <div class="error-input" *ngIf="isSubmitted && f.city.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.city.errors">
                         <div *ngIf="f.city.errors.required">
                           <span>* заполни поле </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate] *ngIf="orderError">
                         <span>{{orderError.city}}</span>
                       </div>
                       <input formControlName="company" class="input" type="text" name="company"
+                             [ngClass]="{invalid: isSubmitted && f.company.errors}"
                              placeholder="назавние компании ">
-                      <div class="error-input" *ngIf="isSubmitted && f.company.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.company.errors">
                         <div *ngIf="f.company.errors.required">
                           <span>* заполни поле </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.company}}</span>
                       </div>
                       <input formControlName="nameSurname" class="input" type="text" name="nameSurname"
+                             [ngClass]="{invalid: isSubmitted && f.nameSurname.errors}"
                              placeholder="имя, фамилия ">
-                      <div class="error-input" *ngIf="isSubmitted && f.nameSurname.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.nameSurname.errors">
                         <div *ngIf="f.nameSurname.errors.required">
                           <span>* заполни поле </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.nameSurname}}</span>
                       </div>
                       <input formControlName="phone" class="input" type="text" name="phone"
+                             [ngClass]="{invalid: isSubmitted && f.phone.errors}"
                              placeholder="номер телефона ">
-                      <div class="error-input" *ngIf="isSubmitted && f.phone.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.phone.errors">
                         <div *ngIf="f.phone.errors.required">
                           <span>* заполни поле </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.phone}}</span>
                       </div>
                       <input formControlName="email" class="input" type="email" name="email"
+                             [ngClass]="{invalid: isSubmitted && f.email.errors}"
                              placeholder="email">
-                      <div class="error-input" *ngIf="isSubmitted && f.email.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.email.errors">
                         <div *ngIf="f.email.errors.required">
                           <span>* заполни поле </span>
                         </div>
@@ -172,18 +212,25 @@
                           <span>* поле не формата email </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.email}}</span>
                       </div>
                       <textarea formControlName="description" class="textarea-form" type="text"
+                                [ngClass]="{invalid: isSubmitted && f.description.errors}"
                                 name="description"
                                 placeholder="дополнительная информация...."></textarea>
-                      <div class="error-input" *ngIf="isSubmitted && f.description.errors">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.description.errors">
                         <div *ngIf="f.description.errors.maxlength">
                           <span>* не больше 1025 символа </span>
                         </div>
                       </div>
-                      <div class="error-input" *ngIf="orderError">
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="orderError">
                         <span>{{orderError.description}}</span>
                       </div>
                     </div>

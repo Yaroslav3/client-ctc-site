@@ -17,7 +17,7 @@ export class LoadingPhotoHeaderService {
     let allPhoto;
     this.store.select('stateStartApplication', 'photoHeader')
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
         allPhoto = data;
         this.homePhoto = allPhoto.filter(img => img.namePage === namePhoto);
         const nameImg = this.homePhoto.map(t => t.photo);
