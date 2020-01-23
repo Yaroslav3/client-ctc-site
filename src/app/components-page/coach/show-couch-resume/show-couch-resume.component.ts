@@ -80,7 +80,6 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
     this.headerControl.menuScrolling = false;
   }
   transitionToOrder() {
-    console.log(this.trainers);
     this.getTrainerForId.getOrderTrainerId(this.trainers.id.toString());
     this.router.navigate(['trainings-order']);
   }

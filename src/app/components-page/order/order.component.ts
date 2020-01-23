@@ -6,6 +6,7 @@ import {OrderService} from '../../shared/services/order.service';
 import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
+import {DateValidator} from '../../shared/validators/validators.date';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
@@ -85,11 +86,10 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   selectedTrainer() {
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
     this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
-    console.log(this.selectedTrainerId);
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
-      date: ['', [Validators.required]],
+      date: ['', [Validators.compose([Validators.required, DateValidator.dateValid])]],
       training: ['', [Validators.required]],
       city: ['', [Validators.required]],
       company: ['', [Validators.required]],

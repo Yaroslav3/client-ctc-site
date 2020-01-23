@@ -13,7 +13,7 @@ import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 })
 export class WebinarsComponent implements OnInit, AfterContentChecked {
   location: string;
-  inscriptions;
+  inscriptions: WebinarInscription;
   webinars: Webinars;
   count = Array();
   constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
@@ -33,7 +33,6 @@ export class WebinarsComponent implements OnInit, AfterContentChecked {
     for (let i = 0; i < Object.keys(webinars).length; i++) {
       this.count.push(Object.keys(webinars[i].webinarCountStatuses).length);
     }
-    // console.log(this.count);
   }
   noClickWebinars(id: any) {
   }

@@ -2,19 +2,20 @@
             [@fadingAwayAnimate]>
 </app-loader>
 <div
+  appScroll (numberScroll)="scrollEvent($event)"
   *ngIf="loader"
   [@fadingAwayAnimate]>
   <app-header
     [correctedHeader]="hiddenHeader"
     [ngClass]="{'visualHeader': !hiddenHeader,'hiddenHeader': hiddenHeader}">
   </app-header>
-  <app-menu appScroll (numberScroll)="stickyMenu($event)"
-            [correctedMenu]="hiddenHeader"
-            [menuScrolling]="menuScrolling">
+  <app-menu
+    [correctedMenu]="hiddenHeader"
+    [menuScrolling]="menuScrolling">
   </app-menu>
   <main>
     <router-outlet class="main-router"
-                   appScroll (numberScroll)="scrollEvent($event)">
+                   >
     </router-outlet>
     <div class="btn-Top"
          [@fadingAwayAnimate]
