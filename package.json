@@ -22,6 +22,7 @@
     "@kolkov/angular-editor": "^1.0.2",
     "@ng-bootstrap/ng-bootstrap": "^5.1.5",
     "@ngrx/store": "latest",
+    "moment": "^2.24.0",
     "ngx-spinner": "^8.1.0",
     "redux": "^4.0.5",
     "rxjs": "~6.4.0",

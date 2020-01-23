@@ -20,6 +20,8 @@ import {SearchByIdService} from '../../../shared/services/search-by-id.service';
 })
 export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDestroy {
   id: number;
+  pdfBlockVisual: boolean;
+  pdfFile;
   fonts = [];
   selectFile: File = null;
   training: TrainingsShow;
@@ -68,6 +70,8 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
     this.loaderComponent.startLoaderPageSpinner();
     this.getFonts();
     this.idTraining.params.subscribe((params: Params) => {
+      this.id = params.id;
+      this.showBlockPDF();
       this.startingLoad.getOneTrainings(params.id).subscribe((oneTraining: TrainingsShow) => {
         this.training = oneTraining;
         this.startingLoad.getSkillTrainerOneTrainer(params.id).subscribe((skill: Trainers) => {
@@ -91,20 +95,16 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
     });
   }
   downloadPDF() {
-    console.log('download pdf ....');
+    window.open(this.pdfFile);
+  }
+  showBlockPDF() {
     this.filePDFService.downloadPdq(this.id).subscribe((result) => {
-      // this.selectFile = result;
-      const url = window.URL.createObjectURL(result);
-      console.log(url);
-      window.open(url);
-      console.log('download result ', result);
-      // const file = new Blob([res], {type: 'application/pdf'});
-      // const fileURL = URL.revokeObjectURL(file.type);
-      //
-      // console.log(file);
-      // window.open(fileURL);
-      // const doc = new jsPDF();
-      // this.pouter.navigate([fileURL]);
+      if (result) {
+        this.pdfBlockVisual = true;
+        this.pdfFile = window.URL.createObjectURL(result);
+      } else {
+        this.pdfBlockVisual = false;
+      }
     });
   }
   transitionToOrder() {

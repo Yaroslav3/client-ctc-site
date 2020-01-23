@@ -84,27 +84,31 @@
                                name="end" ngbDatepicker
                                (click)="e.toggle()"
                                #e="ngbDatepicker">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary calendar"
-                                  [ngClass]="{invalid: isSubmitted && f.date.errors}"
-                                  (click)="e.toggle()" type="button">
-                            <span class="far fa-calendar-alt calendar-icon"></span></button>
-                        </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.date.errors">
-                        <div *ngIf="f.date.errors.required"><span>* заполни поле </span></div>
+                        <!--                        <div class="input-group-append">-->
+                        <!--                          <button class="btn btn-outline-secondary calendar"-->
+                        <!--                                  [ngClass]="{invalid: isSubmitted && f.date.errors}"-->
+                        <!--                                  (click)="e.toggle()" type="button">-->
+                        <!--                            <span class="far fa-calendar-alt calendar-icon"></span></button>-->
+                        <!--                        </div>-->
                       </div>
                       <div class="error-input"
                            [@fadingAwayAnimate]
                            *ngIf="orderError">
                         <span>{{orderError.date}}</span>
                       </div>
+                      <div class="error-input"
+                           [@fadingAwayAnimate]
+                           *ngIf="isSubmitted && f.date.errors">
+                        <div *ngIf="f.date.errors.required">
+                          <span>* заполни поле </span>
+                        </div>
+                        <div *ngIf="f.date.hasError('dateValid')">
+                          <span>*формат даты не верен (ГГГГ-ММ-ДД)</span>
+                        </div>
+                      </div>
                       <select formControlName="training" name="training"
                               [ngClass]="{invalid: isSubmitted && f.training.errors}"
                               title="select">
-                        <!--                        <option>&#45;&#45;</option>-->
                         <option class="select-input" id="training" name="training"
                                 *ngFor="let training of trainings">
                           {{training.name}}

@@ -89,7 +89,7 @@
                       p {
                         font-size: 10px;
                         color: #607d8b;
-                        font-family:var(--font-traning-coash);
+                        font-family: var(--font-traning-coash);
                         text-align: center;
                         font-weight: bold;
                       }
@@ -235,6 +235,9 @@
     .all-content {
       margin-right: 8px;
       margin-left: 2px;
+      .training-info-block {
+        margin: 7px 0 !important;
+      }
     }
   }
 }
