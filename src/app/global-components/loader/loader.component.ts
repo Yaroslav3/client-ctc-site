@@ -70,7 +70,7 @@ export class LoaderComponent implements OnInit {
         type: 'line-spin-fade',
         size: 'default',
         bdColor: 'transparent',
-        color: 'black',
+        color: '#B86061',
         zIndex: 1,
         fullScreen: false
       });

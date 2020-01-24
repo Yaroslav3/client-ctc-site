@@ -2,12 +2,10 @@
   <div class="all-content" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div *ngIf="!loader" [@fadingAwayAnimate]>
-      <br>
       <div class="industries-trainings">
         <div class="list-industries" *ngFor="let elem of inscriptions;">
           <p class="paragraph">{{elem.paragraph}}</p>
           <p class="description">{{elem.description}}</p>
-          <br>
         </div>
       </div>
       <div class="block-add-trainings">
@@ -16,8 +14,6 @@
             <div class="training-info-block"
                  *ngFor="let elem of trainings[i].photoTrainings;">
               <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
-              <br>
-              <br>
               <div class="down-info">
                 <h3>{{training.name}}</h3>
                 <div class="bl">
@@ -26,7 +22,7 @@
                 <hr>
                 <div class="btn-training">
                   <button type="button"
-                          class="btn-all-application"
+                          class="btn-all-application btn-corrected"
                           (click)="noClickTrainings(training.id)">
                     <span class="btn-text">Заказть корпоративный тренинг</span>
                   </button>

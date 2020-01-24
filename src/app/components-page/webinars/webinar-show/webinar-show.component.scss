@@ -1,0 +1,297 @@
+
+.all-content {
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+  min-height: 73vh;
+  margin-top: 90px;
+  .coach-header {
+    width: 96%;
+    margin: 0 auto;
+    transition: all linear 0.3s;
+    box-sizing: border-box;
+    .white_bg {
+      background-color: white;
+      .bl-block {
+        display: flex;
+        flex-direction: column;
+        .bl-img {
+          filter: blur(1px);
+          -webkit-filter: blur(1px);
+          -moz-filter: blur(1px);
+          -o-filter: blur(1px);
+          -ms-filter: blur(1px);
+          img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            //object-position: 100 0;
+          }
+        }
+        .bl-w-info {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          color: #ffffff;
+          margin-top: -265px;
+          .bl-w-text {
+            p {
+              margin-left: 20px;
+              margin-right: 20px;
+              margin-top: 20px;
+              font-size: 25px;
+              text-indent: 0.8em;
+              color: #ffffff;
+              font-family: Fira_Mono, sans-serif, serif;
+              font-weight: bold;
+              background-color: rgba(1, 3, 7, 0.2);
+              border-radius: 1px;
+            }
+          }
+          .bl-w-price {
+            display: flex;
+            flex-direction: row;
+            p {
+              margin-left: 20px;
+              margin-right: 20px;
+              text-indent: 0.8em;
+              font-size: 20px;
+            }
+            .date {
+              font-weight: bold;
+            }
+          }
+          .bl-w-count {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            p {
+              margin-left: 20px;
+              margin-right: 20px;
+              text-indent: 0.8em;
+              font-size: 18px;
+            }
+            span {
+              color: #fc575e;
+              font-weight: bold;
+            }
+            .bl-w-count-null {
+              width: 100%;
+              margin: 20px;
+              background-color: rgba(1, 3, 7, 0.2);
+              color: #ff424a;
+              text-align: center;
+              font-size: 25px;
+              font-weight: bold;
+              font-family: Fira_Sans_Condensed_Light, serif;
+            }
+          }
+        }
+        .bl-block-editor {
+          margin: 50px;
+          padding-top: 20px;
+          .webinar-description {
+            font-family: Fira_Mono, sans-serif, serif;
+            font-weight: bold;
+            font-size: 25px;
+            p {
+              color: #555555;
+              font-family: Fira_Mono, sans-serif, serif;
+            }
+          }
+          .w-zero {
+            padding-top: 20px;
+            .alert, .alert-success {
+              .text-alert {
+              }
+            }
+          }
+          /************* Table ******************/
+          .w-tab {
+            margin-top: 100px;
+            table {
+              text-align: left;
+              line-height: 50px;
+              border-collapse: separate;
+              border-spacing: 0;
+              width: 100%;
+              tr {
+                font-size: 15px;
+                background-color: #93BED3 !important;
+                border-radius: 10px;
+                th {
+                  font-size: 15px;
+                  font-family: 'KIA_KIAM', serif, sans-serif, serif;
+                  font-weight: 500;
+                  .text-table {
+                    color: white !important;
+                  }
+                }
+                &:first-child {
+                  background: #ffffff;
+                  color: #2d2a39;
+                  border: none;
+                }
+                &:last-child th {
+                  border-bottom: 0;
+                  text-align: center;
+                }
+                &:last-child {
+                  td {
+                    border: none;
+                    text-align: center;
+                    background-color: #dad3e8;
+                  }
+                }
+                &:hover {
+                  cursor: default;
+                }
+                td {
+                  form {
+                    .select-w {
+                      width: 50%;
+                      height: 30px;
+                      border-radius: 2px;
+                      text-indent: 0.6em;
+                      border: 1px solid #949494;
+                      font-family: 'KIA_KIAM', serif;
+                      font-size: 13px;
+                      color: #7a7a7a;
+                    }
+                  }
+                }
+              }
+            }
+            .btn-buy {
+              display: flex;
+              justify-content: flex-end;
+              padding-top: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//------------------ EDITOR-------------------------------------------//
+
+:host ::ng-deep.angular-editor-wrapper {
+  .angular-editor-textarea {
+    margin: 2px !important;
+    border: none !important;
+    padding: 5px !important;
+    resize: none !important;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    max-width: 1180px;
+    .all-content {
+      margin-right: 50px;
+      margin-left: 50px;
+      .bl-w-text p {
+        font-size: 20px;
+      }
+      .bl-w-price p {
+        font-size: 18px;
+      }
+      .bl-w-count p {
+        font-size: 15px;
+      }
+      .bl-block-editor {
+        margin-top: 100px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 980px) {
+  .wrapper {
+    max-width: 970px;
+  }
+  .bl-w-text p {
+    font-size: 15px;
+  }
+  .bl-w-price p {
+    font-size: 14px;
+  }
+  .bl-w-count p {
+    font-size: 12px;
+  }
+  .bl-block-editor {
+    margin-top: 100px;
+    margin-left: 15px;
+    margin-right: 15px;
+    .countUser {
+      width: 26%;
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .all-content {
+    margin: 50px 5px 20px 5px !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 760px;
+  }
+  .all-content {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .bl-w-text p {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .webinar-description {
+    font-size: 20px;
+  }
+  table .table-title {
+    font-size: 10px;
+  }
+  tbody tr td {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .all-content {
+    .coach-header {
+      .white_bg {
+        .bl-block {
+          .bl-block-editor {
+            margin: 40px 5px !important;
+            .webinar-description {
+              margin-top: 24px;
+              p {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    max-width: 470px;
+    font-size: 15px;
+  }
+  .bl-block-editor {
+    margin-left: 10px;
+    margin-right: 10px;
+    .countUser {
+      width: 35% !important;
+    }
+  }
+}
+
+
+
+
+
+
+
+
