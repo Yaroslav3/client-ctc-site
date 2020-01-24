@@ -5,12 +5,26 @@ import {Injectable} from '@angular/core';
 })
 export class SearchByIdService {
   trainerId: number;
+  webinar: number;
+  numberOfUserOrders;
   constructor() {
   }
-  getOrderTrainerId(id) {
+  getOrderTrainerId(id: number) {
     this.trainerId = id;
   }
   setOrderTrainerId() {
-    return this.trainerId;
+    return this.trainerId.toString();
+  }
+  getWebinarId(id: number) {
+    this.webinar = id;
+  }
+  setWebinarId() {
+    return this.webinar;
+  }
+  getNumberOfParticipantsInTheOrder(count: number) {
+    this.numberOfUserOrders = count;
+  }
+  setNumberOfParticipantsInTheOrder() {
+    return this.numberOfUserOrders;
   }
 }

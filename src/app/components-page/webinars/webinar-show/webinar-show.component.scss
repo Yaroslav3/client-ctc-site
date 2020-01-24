@@ -123,42 +123,20 @@
                   font-size: 15px;
                   font-family: 'KIA_KIAM', serif, sans-serif, serif;
                   font-weight: 500;
+                  text-align: center;
                   .text-table {
                     color: white !important;
                   }
                 }
-                &:first-child {
-                  background: #ffffff;
-                  color: #2d2a39;
-                  border: none;
-                }
-                &:last-child th {
-                  border-bottom: 0;
+                .number-of-seats {
+                  color: #648095;
+                  background-color: #dad3e8;
                   text-align: center;
                 }
-                &:last-child {
-                  td {
-                    border: none;
-                    text-align: center;
-                    background-color: #dad3e8;
-                  }
-                }
-                &:hover {
-                  cursor: default;
-                }
-                td {
-                  form {
-                    .select-w {
-                      width: 50%;
-                      height: 30px;
-                      border-radius: 2px;
-                      text-indent: 0.6em;
-                      border: 1px solid #949494;
-                      font-family: 'KIA_KIAM', serif;
-                      font-size: 13px;
-                      color: #7a7a7a;
-                    }
-                  }
+                .price-w {
+                  color: green;
+                  text-align: center;
+                  background-color: #dad3e8;
                 }
               }
             }
@@ -174,7 +152,6 @@
   }
 }
 //------------------ EDITOR-------------------------------------------//
-
 :host ::ng-deep.angular-editor-wrapper {
   .angular-editor-textarea {
     margin: 2px !important;

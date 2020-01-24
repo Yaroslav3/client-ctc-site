@@ -37,7 +37,6 @@
       padding-bottom: 20px;
       margin: 20px 20px;
       box-shadow: 0 2px 2px rgba(28, 15, 25, 0.1);
-      cursor: pointer;
       transition: all 0.4s ease-out;
       border: 1px solid #F3F3F3;
       img {
@@ -49,18 +48,19 @@
         border-bottom: 1px solid transparent;
       }
       &:hover {
-        background: #F3F3F3;
         transition: all 0.4s ease-in;
+
+        background: #F3F3F3;
         box-shadow: 0 0 6px rgba(28, 15, 25, 0.2);
-        -webkit-filter: grayscale(80%);
-        -moz-filter: grayscale(80%);
-        -ms-filter: grayscale(80%);
-        -o-filter: grayscale(80%);
-        filter: grayscale(80%);
-        filter: gray; /* IE 6-9 */
         img {
-          transition: all 0.4s ease-in;
           border-bottom: 1px solid #9A9A9A;
+          transition: all 0.4s ease-in;
+          -webkit-filter: grayscale(80%);
+          -moz-filter: grayscale(80%);
+          -ms-filter: grayscale(80%);
+          -o-filter: grayscale(80%);
+          filter: grayscale(80%);
+          filter: gray; /* IE 6-9 */
         }
       }
     }

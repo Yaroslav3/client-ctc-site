@@ -2,7 +2,7 @@
   <div class="all-content" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div class="coach-header" [@fadingAwayAnimate] *ngIf="!loader">
-      <div class="btn-all-application btn-corrected"
+      <div class="btn-corrected"
            [routerLink]="['/webinars']">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
@@ -47,34 +47,24 @@
               <table>
                 <thead>
                 <tr>
-                  <th class="table-title d-inline-block col-4 text-table-header" scope="col">
+                  <th class="table-title col-6 text-table-header" scope="col">
                     <span class="text-table">свободных мест</span>
                   </th>
-                  <th class="table-title d-inline-block col-4 text-table-header" scope="col">
+                  <th class="table-title col-4 text-table-header" scope="col">
                     <span class="text-table">цена</span>
-                  </th>
-                  <th class="table-title countUser d-inline-block col-4 text-table-header" scope="col">
-                    <span class="text-table">к-во</span>
                   </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <td class="d-inline-block col-4 text-table-header">{{webinar.countPerson - count}}</td>
-                  <td class="d-inline-block col-4 text-table-header price-w">{{webinar.price}} {{webinar.currency}}
-                  </td>
-                  <td class="d-inline-block col-4 text-table-header">
-                    <form name="form" novalidate>
-                      <select class="select-w" [(ngModel)]="d" name="count" title="count">
-                        <option>1</option>
-                      </select>
-                    </form>
-                  </td>
+                  <td
+                    class="d-inline-block col-6 text-table-header number-of-seats">{{webinar.countPerson - count}}</td>
+                  <td class="d-inline-block col-4 text-table-header price-w">{{webinar.price}} {{webinar.currency}}</td>
                 </tr>
                 </tbody>
               </table>
-              <div class="btn-buy" *ngIf="webinar.countPerson-count > 0">
-                <button class="btn-all-application" (click)="order( webinar)">
+              <div class="btn-buy">
+                <button class="btn-all-application" (click)="order()">
                   <span class="btn-text">Оформить заказ</span>
                 </button>
               </div>

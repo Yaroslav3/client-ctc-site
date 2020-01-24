@@ -59,6 +59,8 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
     this.routing.params.subscribe((coachId) => {
       this.idCoach = coachId.id;
       this.getFonts();
+      this.getOneTrainer(this.idCoach);
+
     });
   }
   ngAfterContentChecked(): void {
@@ -80,7 +82,7 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
     this.headerControl.menuScrolling = false;
   }
   transitionToOrder() {
-    this.getTrainerForId.getOrderTrainerId(this.trainers.id.toString());
+    this.getTrainerForId.getOrderTrainerId(this.trainers.id);
     this.router.navigate(['trainings-order']);
   }
 }
