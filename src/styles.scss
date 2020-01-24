@@ -83,7 +83,7 @@ html, body, iframe {
     }
   }
   &:hover {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(100, 128, 149, 0.6);
     border: 1px solid white;
     //border-radius: 3px;
     transition: all 0.5s ease-in;
@@ -103,18 +103,17 @@ html, body, iframe {
 }
 //
 .btn-corrected {
-  position: fixed;
-  top: 70px;
-  left: 5px;
+  margin-bottom: 20px;
   transition: all .3s ease-out;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid transparent;
+  background: transparent;
+  border: 1px solid #648095;
   padding: 5px 15px;
   z-index: 999;
   .fa-chevron-left {
     font-size: 12px;
-    color: white;
+    color: #648095;
     &:before {
+      transition: all .2s ease-out;
       position: relative;
       top: -1px;
       left: -8px;
@@ -125,15 +124,31 @@ html, body, iframe {
     top: -1px;
     left: 3px;
     font-size: 12px;
-    color: white;
+    color: #648095;
   }
   &:hover {
     transition: all .3s ease-in;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(100, 128, 149, 0.6);
+    .fa-chevron-left {
+      transition: all .2s ease-out;
+      color: white;
+    }
   }
 }
 @media all and (max-width: 800px) {
   .btn-corrected {
     top: 6px !important;
+    position: fixed;
+    left: 5px;
+    border: 1px solid white;
+    background: rgba(0, 0, 0, .2);
+    .fa-chevron-left {
+      &:before {
+        color: white;
+      }
+    }
+    .btn-text {
+      color: white;
+    }
   }
 }

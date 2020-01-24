@@ -4,6 +4,7 @@ import {Webinars} from '../../shared/model/Webinars.model';
 import {WebinarInscription} from '../../shared/model/WebinarInscription.model';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-webinars',
@@ -17,6 +18,7 @@ export class WebinarsComponent implements OnInit, AfterContentChecked {
   webinars: Webinars;
   count = Array();
   constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
+              private route: Router,
               private getReduxData: GetReduxDataService) {
     this.location = 'webinars';
   }
@@ -35,5 +37,6 @@ export class WebinarsComponent implements OnInit, AfterContentChecked {
     }
   }
   noClickWebinars(id: any) {
+    this.route.navigate(['webinars/webinar-show', id]);
   }
 }

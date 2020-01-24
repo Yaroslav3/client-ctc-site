@@ -1,7 +1,7 @@
 
 .all-content {
-  margin-right: 130px;
-  margin-left: 130px;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 90px;
   min-height: 67vh;
   position: relative;
@@ -167,18 +167,27 @@
     }
   }
 }
-:host ::ng-deep #myEditor {
+//:host ::ng-deep #myEditor {
+//  .angular-editor-textarea {
+//    border: none;
+//  }
+//  .angular-editor-wrapper .angular-editor-textarea blockquote {
+//    margin: 0 0 0 0 !important;
+//  }
+//  #editor {
+//    resize: none;
+//  }
+//  .angular-editor .angular-editor-wrapper .angular-editor-textarea {
+//    padding: 0 !important;
+//  }
+//}
+
+:host ::ng-deep.angular-editor-wrapper {
   .angular-editor-textarea {
-    border: none;
-  }
-  .angular-editor-wrapper .angular-editor-textarea blockquote {
-    margin: 0 0 0 0 !important;
-  }
-  #editor {
-    resize: none;
-  }
-  .angular-editor .angular-editor-wrapper .angular-editor-textarea {
-    padding: 0 !important;
+    margin: 2px !important;
+    border: none !important;
+    padding: 5px !important;
+    resize: none !important;
   }
 }
 @media only screen and (max-width: 1200px) {

@@ -15,6 +15,7 @@ export class GetReduxDataService {
   trainingsAll;
   inscriptions: Inscriptions;
   webinarsAll: Webinars;
+  oneWebinar;
   webinarsInscription: WebinarInscription;
   constructor(private store: Store<AppState>) {
   }
@@ -55,6 +56,13 @@ export class GetReduxDataService {
       this.webinarsAll = webinars;
     });
     return this.webinarsAll;
+  }
+  getOneWebinars(id: number) {
+    this.store.select('stateWebinars', 'webinars').subscribe((webinars: Webinars) => {
+      this.oneWebinar = webinars;
+      this.oneWebinar = this.oneWebinar.find(w => w.id.toString() === id.toString());
+    });
+    return this.oneWebinar;
   }
   getWebinarsInscription() {
     this.store.select('stateWebinars', 'webinarsInscription').subscribe((webinarsInscription: WebinarInscription) => {

@@ -24,22 +24,24 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
               private loaderComponent: LoaderComponent,
   ) {
     this.location = 'trainings';
-    this.loader = true;
-    this.loaderComponent.startLoaderPageSpinner();
   }
   ngOnInit() {
-    this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.trainings = this.getReduxData.getTrainingsAll();
-    this.inscriptions = this.getReduxData.getInscriptionsAll();
+    this.loader = true;
+    this.loaderComponent.startLoaderPageSpinner();
+    this.startPage();
     this.loaderComponent.stopLoaderPageSpinner();
     this.loader = false;
   }
   noClickTrainings(id: number) {
     this.router.navigate(['trainings', 'training-show', id]);
   }
-  ngAfterViewChecked(): void {
+  startPage() {
+    this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
     this.trainings = this.getReduxData.getTrainingsAll();
     this.inscriptions = this.getReduxData.getInscriptionsAll();
+  }
+  ngAfterViewChecked(): void {
+    this.startPage();
   }
 }
 

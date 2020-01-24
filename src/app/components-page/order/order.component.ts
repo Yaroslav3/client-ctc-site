@@ -156,7 +156,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
           this.loaderSubmit = false;
           this.loaderComponent.stopSmallSpinner();
           this.done = false;
-          window.scroll(0, 100);
+          window.scroll(0, 0);
           this.doneOrder = true;
         }, 1000);
       },

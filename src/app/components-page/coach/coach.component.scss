@@ -63,6 +63,11 @@
         .btn-trainer {
           display: flex;
           justify-content: center;
+          .btn-all-application {
+            .btn-text{
+              font-size: 15px;
+            }
+          }
         }
       }
       &:hover {
@@ -80,10 +85,11 @@
         .bl-tol {
           .btn-trainer {
             .btn-all-application {
+              background: rgba(100, 128, 149, 0.6);
               transition: all 0.7s ease-out;
               border: 1px solid silver;
               .btn-text {
-                color: silver;
+                color: white;
               }
             }
           }
