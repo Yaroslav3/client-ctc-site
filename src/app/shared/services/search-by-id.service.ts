@@ -13,12 +13,13 @@ export class SearchByIdService {
     this.trainerId = id;
   }
   setOrderTrainerId() {
-    return this.trainerId.toString();
+    return this.trainerId;
   }
   getWebinarId(id: number) {
     this.webinar = id;
   }
   setWebinarId() {
+    console.log(this.webinar);
     return this.webinar;
   }
   getNumberOfParticipantsInTheOrder(count: number) {

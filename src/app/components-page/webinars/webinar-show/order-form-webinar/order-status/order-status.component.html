@@ -1,1 +1,26 @@
-<p>order-status works!</p>
+<div class="wrapper">
+  <br>
+  <br>
+  <div class="all-content">
+    <div class="coach-header">
+      <div class="btn-back">
+        <a class="btn btn-outline-secondary" (click)="back()"> <i class="fas fa-chevron-left"></i>
+          назад</a>
+      </div>
+      <div *ngIf="messageStatus" class="info-password">
+        <div *ngIf="messageStatus === 'sandbox'" class="alert alert-primary" role="alert">
+          <strong>Тестовый платеж ! </strong>
+        </div>
+        <div *ngIf="messageStatus === 'success'" class="alert alert-success" role="alert">
+          <strong> Успешный платеж </strong>
+        </div>
+        <div *ngIf="messageStatus === 'error'" class="alert alert-danger" role="alert">
+          <strong> Неуспешный платеж. Некорректно заполнены данные </strong>
+        </div>
+        <div *ngIf="messageStatus === 'failure'" class="alert alert-warning" role="alert">
+          <strong> Неуспешный платеж. </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

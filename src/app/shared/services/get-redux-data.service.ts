@@ -60,7 +60,7 @@ export class GetReduxDataService {
   getOneWebinars(id: number) {
     this.store.select('stateWebinars', 'webinars').subscribe((webinars: Webinars) => {
       this.oneWebinar = webinars;
-      this.oneWebinar = this.oneWebinar.find(w => w.id.toString() === id.toString());
+      this.oneWebinar = this.oneWebinar.find(w => w.id.toString() === id);
     });
     return this.oneWebinar;
   }

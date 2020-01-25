@@ -74,4 +74,8 @@ export class StartingLoadService {
         this.store.dispatch(new AllWebinarsInscription(webinarsInscription));
       });
   }
+  // status order LiqPay
+  statusLiqPay(id: number) {
+    return this.http.get(`${this.host + environment.apiUrlWebinarOrderStatus}/${id}`);
+  }
 }
