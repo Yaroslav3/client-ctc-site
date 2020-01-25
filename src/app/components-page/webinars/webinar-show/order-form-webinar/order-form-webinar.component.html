@@ -3,7 +3,7 @@
     <div class="coach-header">
       <div class="btn-corrected" (click)="back()">
         <i class="fas fa-chevron-left"></i>
-        <span class="btn-text"> назад</span>
+        <span class="btn-text">Назад</span>
       </div>
       <div class="white_bg">
         <div class="bl-block">
@@ -18,7 +18,7 @@
               <p>ОПЛАТА <i *ngIf="isLiqPayTree" class="fas fa-chevron-right"></i></p>
             </div>
           </div>
-          <div *ngIf="isLiqPay" class="form-info-order-w">
+          <div class="form-info-order-w" *ngIf="isLiqPay">
             <div class="header-info">
               <p>Контактная информация </p>
               <hr>
@@ -28,25 +28,26 @@
               <div class="or-w-input">
                 <div class="input-filed">
                   <input formControlName="name" class="input" name="name" type="text" title="имя"
-                         [ngClass]="{invalid: isSubmitted && f.name.errors}"
+                         [ngClass]="{invalid: isSubmitted && f.name.errors, ngValid: !f.name.errors}"
                          placeholder="Имя и фамилия: *">
                   <div class="error-input">
                     <div *ngIf="isSubmitted && f.name.errors" [@fadingAwayAnimate]>
-                      <div *ngIf="f.name.errors.required"><span>* заполни поле </span></div>
+                      <div *ngIf="f.name.errors.required">
+                        <span>* заполни поле </span></div>
                     </div>
                   </div>
                 </div>
                 <div class="input-filed">
                   <input formControlName="email" class="input" name="email" type="text" title="email"
-                         [ngClass]="{invalid: isSubmitted && f.email.errors}"
+                         [ngClass]="{invalid: isSubmitted && f.email.errors , ngValid: !f.email.errors}"
                          placeholder="E-mail:*">
                   <div class="error-input">
                     <div [@fadingAwayAnimate]
                          *ngIf="isSubmitted && f.email.errors">
-                      <div *ngIf="f.email.errors.required">
+                      <div *ngIf="f.email.errors.required" [@showAnimate]>
                         <span>* заполни поле </span>
                       </div>
-                      <div *ngIf="f.email.errors.email">
+                      <div *ngIf="f.email.errors.email" [@showAnimate]>
                         <span>* поле не формата email </span>
                       </div>
                     </div>
@@ -54,38 +55,45 @@
                 </div>
                 <div class="input-filed">
                   <input formControlName="phone" class="input" name="phone" type="text" pattern="[0-9]*" minlength="10"
-                         [ngClass]="{invalid: isSubmitted && f.phone.errors}"
+                         [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
                          maxlength="10" title="номер телефона"
                          placeholder="№ телефона (0992223344) *">
                   <div class="error-input">
-                    <div *ngIf="isSubmitted && f.phone.errors" [@fadingAwayAnimate]>
-                      <div *ngIf="f.phone.errors.required"><span>* заполни поле </span></div>
-                      <div *ngIf="f.phone.errors.minlength"><span>*в поле должно быть 10 чисел</span></div>
+                    <div *ngIf="isSubmitted && f.phone.errors">
+                      <div *ngIf="f.phone.errors.required" [@showAnimate]><span>* заполни поле </span>
+                      </div>
+                      <div>
+                        <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в поле должно быть 10 чисел</span>
+                        <span *ngIf="f.phone.errors.numeric" [@showAnimate]> * только числа </span>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="btn-payment">
-                  <div class="">
-                    <div *ngIf="price">
-                      <span>Сумма: <span class="price-payment">{{price}}</span> {{webinar.currency}}</span>
-                    </div>
-                    <!--<div class="w-info">-->
-                    <!--<span> {{webinar.price}} * {{countPerson}} </span>-->
-                    <!--</div>-->
+                  <div class="price-block" *ngIf="webinar.price">
+                    <span class="amount">Сумма: </span>
+                    <span class="price-payment">{{webinar.price}} <span
+                      class="currency"> {{webinar.currency }}</span></span>
                   </div>
-                  <div>
-                    <button class="btn btn-outline-secondary"> Продолжить</button>
+                  <div class="btn-block">
+                    <button class="btn-all-application">
+                      <span class="btn-text">Далее
+                       <span class="fas fa-chevron-right icon-next"></span>
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
             </form>
           </div>
           <div class="w-b-liqPay" *ngIf="isPaymentMethod">
-            <button (click)="liqPayInvoiceWebinar()">
-              <img src="assets/img/visa-mastercard.png">
-            </button>
+            <div class="block-payment-system">
+              <button class="btn-payment-system" [@fadingAwayAnimate] (click)="liqPayInvoiceWebinar()">
+                <img src="assets/img/visa-mastercard.png">
+              </button>
+            </div>
           </div>
-          <div *ngIf="liqPayOrder" class="payment-btn">
+          <div class="payment-btn" *ngIf="liqPayOrder">
             <div *ngIf="isLiqPayTree">
               <form ngNoForm method="post" action="{{liqPayOrder.url}}" accept-charset="utf-8">
                 <input type="hidden" name="data"

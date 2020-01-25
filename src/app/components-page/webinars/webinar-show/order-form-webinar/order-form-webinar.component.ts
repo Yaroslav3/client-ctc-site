@@ -7,13 +7,14 @@ import {MainLayoutComponent} from '../../../../main-layout/main-layout.component
 import {WebinarOrder} from '../../../../shared/model/WebinarOrder.model';
 import {OrderService} from '../../../../shared/services/order.service';
 import {GetReduxDataService} from '../../../../shared/services/get-redux-data.service';
-import {fadingAwayAnimate} from '../../../../shared/animations/fading-away.animate';
+import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
+import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-order-form-webinar',
   templateUrl: './order-form-webinar.component.html',
   styleUrls: ['./order-form-webinar.component.scss'],
-  animations: [fadingAwayAnimate]
+  animations: [fadingAwayAnimate, showAnimate]
 })
 export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, OnDestroy {
   idWebinar: number;
@@ -57,7 +58,8 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     return this.formLiqPay = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(10)]]
+      phone: ['', [Validators.required, Validators.minLength(10),
+        RxwebValidators.numeric({acceptValue: NumericValueType.PositiveNumber, allowDecimal: false})]],
     });
   }
   public get f() {
@@ -85,15 +87,17 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
       null,
       this.f.email.value,
       this.f.phone.value,
-      this.webinar.countPerson = 1,
+      this.webinar.countPerson,
       this.webinar.price,
       this.webinar.currency,
       this.webinar.name,
       this.webinar.theme,
       this.webinar.id
     );
+    console.log(webinarOrder);
     this.order.createWebinarOrder(webinarOrder).subscribe((data: LiqPayOrder) => {
       this.liqPayOrder = data;
+      console.log(data);
       this.isLiqPayTwo = false;
       this.isLiqPayTree = true;
       this.isPaymentMethod = false;
