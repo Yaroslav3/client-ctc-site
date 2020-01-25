@@ -5,7 +5,7 @@
     .industries {
       height: auto;
       .paragraph {
-        font-family: 'KIA_KIAM', serif;
+        font-family: var(--font-webinars-main);
         font-weight: bold;
         font-size: 18px;
         color: #4d4d4d;
@@ -14,7 +14,7 @@
       }
       .description {
         text-align: justify;
-        font-family: "KIA_KIAM", serif;
+        font-family: var(--font-webinars-main);
         font-size: 15px;
         margin: 0;
         padding-left: 15px;
@@ -48,7 +48,7 @@
           h3 {
             color: #4d4d4d;
             font-weight: bold;
-            font-family: Fira_Sans_Condensed_Light, serif;
+            font-family: var(--font-webinars-training-header);
             font-size: 20px;
             text-transform: uppercase;
           }
@@ -81,7 +81,7 @@
           .price {
             display: flex;
             justify-content: flex-end;
-            font-family: Fira_Sans_Condensed_Light, serif;
+            font-family: var(--font-webinars-training-header);
             font-weight: bold;
           }
         }
@@ -95,14 +95,14 @@
             .date {
               span {
                 font-size: 18px;
-                font-family: 'Casiopea_Regular', serif;
+                font-family: var(--font-webinars-training-data);
               }
             }
             .time {
               margin-left: 10px;
             }
             .city {
-              font-family: Fira_Sans_Condensed_Light, serif;
+              font-family: var(--font-webinars-training-header);
               font-weight: bold;
               color: #2d2a39;
               span {
@@ -200,10 +200,6 @@
     .all-content {
       .industries {
         margin-top: 20px;
-        .paragraph {
-        }
-        .description {
-        }
       }
     }
   }

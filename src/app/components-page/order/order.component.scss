@@ -3,7 +3,7 @@
   .all-content-order {
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 0;
+    margin-top: 90px;
     min-height: 75vh;
     position: relative !important;
     .coach-header {
@@ -14,7 +14,6 @@
       .white_bg {
         background-color: white;
         padding: 20px;
-        margin-top: 94px;
         .content-order {
           .alert-order-success {
             max-width: 83%;
@@ -290,6 +289,7 @@
                     .error-input {
                       display: flex;
                       max-width: 90%;
+                      min-height: 20px;
                       margin: -8px 0 0 25px;
                       span {
                         color: #a01809;

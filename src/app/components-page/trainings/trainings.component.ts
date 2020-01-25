@@ -28,6 +28,7 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.loader = true;
     this.loaderComponent.startLoaderPageSpinner();
+    window.scroll(0, 0);
     this.startPage();
     this.loaderComponent.stopLoaderPageSpinner();
     this.loader = false;

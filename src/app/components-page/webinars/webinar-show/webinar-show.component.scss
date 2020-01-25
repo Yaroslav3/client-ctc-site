@@ -42,7 +42,7 @@
               font-size: 25px;
               text-indent: 0.8em;
               color: #ffffff;
-              font-family: Fira_Mono, sans-serif, serif;
+              font-family: var(--font-webinars-show);
               font-weight: bold;
               background-color: rgba(1, 3, 7, 0.2);
               border-radius: 1px;
@@ -83,7 +83,7 @@
               text-align: center;
               font-size: 25px;
               font-weight: bold;
-              font-family: Fira_Sans_Condensed_Light, serif;
+              font-family: var(--font-webinars-show-cunt);
             }
           }
         }
@@ -91,12 +91,12 @@
           margin: 50px;
           padding-top: 20px;
           .webinar-description {
-            font-family: Fira_Mono, sans-serif, serif;
+            font-family: var(-font-webinars-show);
             font-weight: bold;
             font-size: 25px;
             p {
               color: #555555;
-              font-family: Fira_Mono, sans-serif, serif;
+              font-family: var(-font-webinars-show);
             }
           }
           .w-zero {
@@ -108,7 +108,7 @@
           }
           /************* Table ******************/
           .w-tab {
-            margin-top: 100px;
+            margin-top: 20px;
             table {
               text-align: left;
               line-height: 50px;
@@ -121,44 +121,22 @@
                 border-radius: 10px;
                 th {
                   font-size: 15px;
-                  font-family: 'KIA_KIAM', serif, sans-serif, serif;
+                  font-family: var(--font-webinars-show-table);
                   font-weight: 500;
+                  text-align: center;
                   .text-table {
                     color: white !important;
                   }
                 }
-                &:first-child {
-                  background: #ffffff;
-                  color: #2d2a39;
-                  border: none;
-                }
-                &:last-child th {
-                  border-bottom: 0;
+                .number-of-seats {
+                  color: #648095;
+                  background-color: #dad3e8;
                   text-align: center;
                 }
-                &:last-child {
-                  td {
-                    border: none;
-                    text-align: center;
-                    background-color: #dad3e8;
-                  }
-                }
-                &:hover {
-                  cursor: default;
-                }
-                td {
-                  form {
-                    .select-w {
-                      width: 50%;
-                      height: 30px;
-                      border-radius: 2px;
-                      text-indent: 0.6em;
-                      border: 1px solid #949494;
-                      font-family: 'KIA_KIAM', serif;
-                      font-size: 13px;
-                      color: #7a7a7a;
-                    }
-                  }
+                .price-w {
+                  color: green;
+                  text-align: center;
+                  background-color: #dad3e8;
                 }
               }
             }
@@ -174,7 +152,6 @@
   }
 }
 //------------------ EDITOR-------------------------------------------//
-
 :host ::ng-deep.angular-editor-wrapper {
   .angular-editor-textarea {
     margin: 2px !important;
@@ -207,22 +184,26 @@
 @media only screen and (max-width: 980px) {
   .wrapper {
     max-width: 970px;
-  }
-  .bl-w-text p {
-    font-size: 15px;
-  }
-  .bl-w-price p {
-    font-size: 14px;
-  }
-  .bl-w-count p {
-    font-size: 12px;
-  }
-  .bl-block-editor {
-    margin-top: 100px;
-    margin-left: 15px;
-    margin-right: 15px;
-    .countUser {
-      width: 26%;
+    .white_bg {
+      .bl-block {
+        .bl-w-text p {
+          font-size: 15px;
+        }
+        .bl-w-price p {
+          font-size: 14px;
+        }
+        .bl-w-count p {
+          font-size: 12px;
+        }
+        .bl-block-editor {
+          margin-top: 100px;
+          margin-left: 15px;
+          margin-right: 15px;
+          .countUser {
+            width: 26%;
+          }
+        }
+      }
     }
   }
 }
@@ -234,25 +215,31 @@
 @media only screen and (max-width: 768px) {
   .wrapper {
     max-width: 760px;
-  }
-  .all-content {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-  .bl-w-text p {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  .webinar-description {
-    font-size: 20px;
-  }
-  table .table-title {
-    font-size: 10px;
-  }
-  tbody tr td {
-    font-size: 10px;
+    .all-content {
+      margin-right: 10px;
+      margin-left: 10px;
+      .white_bg {
+        .bl-block {
+          .bl-w-text p {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            font-size: 15px;
+          }
+          .bl-block-editor {
+            .webinar-description {
+              font-size: 20px;
+              table .table-title {
+                font-size: 10px;
+              }
+              tbody tr td {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 @media only screen and (max-width: 700px) {

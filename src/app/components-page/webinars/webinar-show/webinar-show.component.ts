@@ -6,6 +6,7 @@ import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
 import {LoaderComponent} from '../../../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../../../shared/animations/fading-away.animate';
+import {SearchByIdService} from '../../../shared/services/search-by-id.service';
 
 @Component({
   selector: 'app-webinar-show',
@@ -48,6 +49,7 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
     private headerControl: MainLayoutComponent,
     private loaderComponent: LoaderComponent,
     private route: Router,
+    private searchId: SearchByIdService,
     private router: ActivatedRoute) {
     this.headerControl.hiddenHeaderComponent();
     this.loader = true;
@@ -58,6 +60,7 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
       this.startPage();
       this.loader = false;
       this.loaderComponent.stopLoaderPageSpinner();
+      this.headerControl.buttonTop();
     }, 700);
   }
   ngAfterContentChecked() {
@@ -75,7 +78,10 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
     this.headerControl.menuScrolling = false;
     this.loaderComponent.stopLoaderPageSpinner();
   }
-  order(webinar: Webinars) {
+  order() {
+    this.searchId.getWebinarId(this.idWebinar);
+    console.log(this.idWebinar);
+    this.route.navigate(['webinars/webinar-order-form']);
   }
 }
 

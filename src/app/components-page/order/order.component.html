@@ -2,21 +2,20 @@
   <div class="all-content-order" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div class="coach-header" *ngIf="!loader">
-      <div class="btn-all-application btn-corrected"
+      <div class="btn-corrected"
            *ngIf="selectedTrainerId"
            [routerLink]="['/trainings/coach/resume', selectedTrainerId.id]">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>
       </div>
-      <div class="btn-all-application btn-corrected"
+      <div class=" btn-corrected"
            *ngIf="!selectedTrainerId"
            [routerLink]="['/trainings/coach']">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>
       </div>
-      <br>
       <div class="white_bg">
         <div class="content-order">
           <div class="alert-order-success"
@@ -84,12 +83,6 @@
                                name="end" ngbDatepicker
                                (click)="e.toggle()"
                                #e="ngbDatepicker">
-                        <!--                        <div class="input-group-append">-->
-                        <!--                          <button class="btn btn-outline-secondary calendar"-->
-                        <!--                                  [ngClass]="{invalid: isSubmitted && f.date.errors}"-->
-                        <!--                                  (click)="e.toggle()" type="button">-->
-                        <!--                            <span class="far fa-calendar-alt calendar-icon"></span></button>-->
-                        <!--                        </div>-->
                       </div>
                       <div class="error-input"
                            [@fadingAwayAnimate]

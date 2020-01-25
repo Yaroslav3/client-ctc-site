@@ -1,7 +1,7 @@
 <div class="wrapper" [@fadingAwayAnimate]>
   <div *ngIf="trainers" class="block-coach-show-trainer">
     <div class="coach-header">
-      <div class="btn-all-application btn-corrected"
+      <div class="btn-corrected"
            [routerLink]="['/trainings/coach']">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
@@ -63,7 +63,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="training-coach" *ngIf="trainers.trainerTrainings">
+                <div class="training-coach" *ngIf="trainers.trainerTrainings[0]">
                   <span class="title-training">Трененги тренера:</span>
                   <ul class="name-trainings" *ngFor="let elem of trainers.trainerTrainings">
                     <li class="name-trainings__text"> {{elem.name}}</li>
