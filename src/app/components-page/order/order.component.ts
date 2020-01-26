@@ -13,6 +13,17 @@ import {GetReduxDataService} from '../../shared/services/get-redux-data.service'
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
 import {SearchByIdService} from '../../shared/services/search-by-id.service';
+import {OrderTrainings} from '../../shared/model/OrderTrainers.model';
+import {
+  OrderTrainingsReduxCity,
+  OrderTrainingsReduxCountry,
+  OrderTrainingsReduxDate,
+  OrderTrainingsReduxDescription, OrderTrainingsReduxEmail,
+  OrderTrainingsReduxNameCompany,
+  OrderTrainingsReduxNameSurname,
+  OrderTrainingsReduxPhone,
+  OrderTrainingsReduxTraining
+} from '../../reduxe/trainings/trainings.action';
 
 @Component({
   selector: 'app-order',
@@ -28,6 +39,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   trainings: Trainings;
   trainersCheckbox: any = [];
   myForm: FormGroup;
+  formRedux: OrderTrainings;
   orderForm: FormGroup;
   done = true;
   loaderSubmit: boolean;
@@ -61,6 +73,9 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
     this.selectedTrainer();
     this.createFormGroup();
+    this.store.select('stateTrainings', 'trainingOrder').subscribe(d => {
+      this.formRedux = d;
+    });
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
     if (this.selectedTrainerId) {
@@ -82,6 +97,16 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     }
   }
   ngAfterContentChecked(): void {
+    // this.countryRedux();
+    // this.dataRedux();
+    // this.trainingRedux();
+    // this.cityRedux();
+    // this.nameRedux();
+    // this.countryRedux();
+    // this.phoneRedux();
+    // this.emailRedux();
+    // this.descriptionRedux();
+    // this.nameCompanyRedux();
   }
   selectedTrainer() {
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
@@ -165,6 +190,51 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
         this.orderError = error.error;
         this.isCreated = false;
       });
+  }
+  dataRedux() {
+    if (this.orderForm.controls.date.valid) {
+      this.store.dispatch(new OrderTrainingsReduxDate(this.orderForm.controls.date.value));
+    }
+  }
+  trainingRedux() {
+    if (this.orderForm.controls.training.valid) {
+      this.store.dispatch(new OrderTrainingsReduxTraining(this.orderForm.controls.training.value));
+    }
+  }
+  countryRedux() {
+    if (this.orderForm.controls.country.valid) {
+      this.store.dispatch(new OrderTrainingsReduxCountry(this.orderForm.controls.country.value));
+    }
+  }
+  cityRedux() {
+    if (this.orderForm.controls.city.valid) {
+      this.store.dispatch(new OrderTrainingsReduxCity(this.orderForm.controls.city.value));
+    }
+  }
+  nameCompanyRedux() {
+    if (this.orderForm.controls.company.valid) {
+      this.store.dispatch(new OrderTrainingsReduxNameCompany(this.orderForm.controls.company.value));
+    }
+  }
+  nameRedux() {
+    if (this.orderForm.controls.nameSurname.valid) {
+      this.store.dispatch(new OrderTrainingsReduxNameSurname(this.orderForm.controls.nameSurname.value));
+    }
+  }
+  emailRedux() {
+    if (this.orderForm.controls.email.valid) {
+      this.store.dispatch(new OrderTrainingsReduxEmail(this.orderForm.controls.email.value));
+    }
+  }
+  phoneRedux() {
+    if (this.orderForm.controls.phone.valid) {
+      this.store.dispatch(new OrderTrainingsReduxPhone(this.orderForm.controls.phone.value));
+    }
+  }
+  descriptionRedux() {
+    if (this.orderForm.controls.description.valid) {
+      this.store.dispatch(new OrderTrainingsReduxDescription(this.orderForm.controls.description.value));
+    }
   }
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();

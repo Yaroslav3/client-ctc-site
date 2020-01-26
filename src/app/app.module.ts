@@ -29,13 +29,13 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HiddenHeaderDirective} from './shared/directives/hidden-header.directive';
-import {startApplicationReducer} from './reduxe/startApplication/startApplication.reducer';
-import {loadingTrainersReducer} from './reduxe/trainers/trainers.reducer';
-import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {ScrollDirective} from './shared/directives/scroll.directive';
 import {DelayDirective} from './shared/directives/delay.directive';
 import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {startApplicationReducer} from './reduxe/startApplication/startApplication.reducer';
+import {loadingTrainersReducer} from './reduxe/trainers/trainers.reducer';
 import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
+import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 
 @NgModule({
   declarations: [
@@ -67,6 +67,7 @@ import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     AppRoutingModule,
     HttpClientModule,
     AngularEditorModule,
@@ -82,7 +83,6 @@ import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
-    ReactiveFormsModule
   ],
   providers: [LoaderComponent, HeaderComponent],
   bootstrap: [AppComponent]
