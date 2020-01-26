@@ -22,7 +22,9 @@ export class GetReduxDataService {
   getOneTrainer(id) {
     this.store.select('stateTrainers', 'trainers').subscribe((allTrainer: Trainers) => {
       this.allTrainers = allTrainer;
-      this.selectedTrainers = this.allTrainers.find(t => t.id.toString() === id);
+      if (id) {
+        this.selectedTrainers = this.allTrainers.find(t => t.id.toString() === id.toString());
+      }
     });
     return this.selectedTrainers;
   }

@@ -13,7 +13,7 @@
       box-sizing: border-box;
       .white_bg {
         background-color: white;
-        padding: 20px;
+        padding: 5px 10px 5px 10px;
         .content-order {
           .alert-order-success {
             max-width: 83%;
@@ -46,7 +46,7 @@
               width: 100%;
               h1 {
                 font-family: var(--font-order-checkout);
-                margin: 30px;
+                margin: 15px;
                 text-align: center;
                 font-size: 20px;
                 color: #909B8E;
@@ -320,6 +320,7 @@
                       p {
                         font-size: 10px;
                         margin: 0;
+                        padding: 0;
                       }
                     }
                     .input {
@@ -331,6 +332,7 @@
                       font-size: 13px;
                       margin: 5px auto;
                       transition: all .4s ease-in-out;
+                      color: #828482;
                     }
                     .textarea-form {
                       width: 90%;
@@ -341,6 +343,7 @@
                       margin: 5px auto;
                       font-size: 13px;
                       transition: all .4s ease-in-out;
+                      color: #828482;
                     }
                   }
                   .btn-order {
@@ -374,6 +377,7 @@
     }
   }
 }
+
 .invalid {
   border: 1px solid #F3ADAD !important;
   transition: all .4s ease-in;
@@ -495,7 +499,7 @@
         margin: -10px 0 0 55px;
         p {
           font-size: 10px;
-          margin: 0 !important;
+          margin: 0;
         }
       }
       .input {

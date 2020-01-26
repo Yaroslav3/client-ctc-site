@@ -5,6 +5,7 @@ import {Trainings} from '../shared/model/Trainings.model';
 import {Inscriptions} from '../shared/model/Inscriptions.model';
 import {Webinars} from '../shared/model/Webinars.model';
 import {WebinarInscription} from '../shared/model/WebinarInscription.model';
+import {OrderTrainings} from '../shared/model/OrderTrainers.model';
 
 export interface AppState {
   stateStartApplication: {
@@ -17,11 +18,12 @@ export interface AppState {
   };
   stateTrainings: {
     trainings: Trainings,
+    trainingOrder: OrderTrainings,
   };
   stateWebinars: {
     webinars: Webinars,
     webinarsInscription: WebinarInscription
-  }
+  };
 }
 
 

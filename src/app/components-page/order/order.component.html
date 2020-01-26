@@ -39,7 +39,7 @@
                     <br>
                     <div class="position-content-checkout">
                       <div>
-                        <div class="selectCoach" *ngFor="let data of trainersCheckbox; let ind = index ">
+                        <div class="selectCoach" *ngFor="let data of trainersCheckbox">
                           <label class="container">{{data.value.name}} {{data.value.surname}}
                             <input class="inputCheckbox" name="trainers" type="checkbox"
                                    [attr.id]="data.value.id"
@@ -79,156 +79,134 @@
                       <div class="input-group">
                         <input formControlName="date" id="end-event" class="form-control"
                                [ngClass]="{invalid: isSubmitted && f.date.errors}"
-                               placeholder="дата" title="введи дату на выбраный тренинг"
+                               placeholder="Выбери дату"
+                               (input)="dataRedux()"
+                               title="введи дату на выбраный тренинг"
                                name="end" ngbDatepicker
                                (click)="e.toggle()"
                                #e="ngbDatepicker">
                       </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.date}}</span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.date}}</span>
+                        </div>
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.date.errors">
+                          <span *ngIf="f.date.errors.required">* заполни поле </span>
+                          <span *ngIf="f.date.hasError('dateValid')">*формат даты не верен (ГГГГ-ММ-ДД)</span>
+                        </div>
                       </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.date.errors">
-                        <div *ngIf="f.date.errors.required">
-                          <span>* заполни поле </span>
-                        </div>
-                        <div *ngIf="f.date.hasError('dateValid')">
-                          <span>*формат даты не верен (ГГГГ-ММ-ДД)</span>
-                        </div>
+                      <div class="label-training">
+                        <p>Тренинги</p>
                       </div>
                       <select formControlName="training" name="training"
                               [ngClass]="{invalid: isSubmitted && f.training.errors}"
                               title="select">
                         <option class="select-input" id="training" name="training"
+                                (input)="trainingRedux()"
                                 *ngFor="let training of trainings">
                           {{training.name}}
                         </option>
                       </select>
-                      <div class="label-training">
-                        <p>Тренинги</p>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.training.errors">
-                        <div *ngIf="f.training.errors.required">
-                          <span>* выбери тренинг </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.training}}</span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.training}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.training.errors">
+                          <span *ngIf="f.training.errors.required">* выбери тренинг </span>
+                        </div>
                       </div>
                       <input formControlName="country" class="input" name="country" type="text"
                              [ngClass]="{invalid: isSubmitted && f.country.errors}"
-                             placeholder="страна">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.country.errors">
-                        <div *ngIf="f.country.errors.required">
-                          <span>* заполни поле </span>
+                             (input)="countryRedux()"
+                             [ngModel]="this.formRedux.country"
+                             placeholder="Страна">
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.country.errors">
+                          <span *ngIf="f.country.errors.required">* заполни поле </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.country}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.country}}</span>
+                        </div>
                       </div>
                       <input formControlName="city" class="input" name="city" type="text"
                              [ngClass]="{invalid: isSubmitted && f.city.errors}"
+                             [ngModel]="this.formRedux.city"
+                             (input)="cityRedux()"
                              placeholder="город проведения тренинга">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.city.errors">
-                        <div *ngIf="f.city.errors.required">
-                          <span>* заполни поле </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.city.errors">
+                          <span *ngIf="f.city.errors.required">* заполни поле </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate] *ngIf="orderError">
-                        <span>{{orderError.city}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.city}}</span>
+                        </div>
                       </div>
                       <input formControlName="company" class="input" type="text" name="company"
                              [ngClass]="{invalid: isSubmitted && f.company.errors}"
+                             (input)="nameCompanyRedux()"
+                             [ngModel]="this.formRedux.nameCompany"
                              placeholder="назавние компании ">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.company.errors">
-                        <div *ngIf="f.company.errors.required">
-                          <span>* заполни поле </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.company.errors">
+                          <span *ngIf="f.company.errors.required">* заполни поле </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.company}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.company}}</span>
+                        </div>
                       </div>
                       <input formControlName="nameSurname" class="input" type="text" name="nameSurname"
                              [ngClass]="{invalid: isSubmitted && f.nameSurname.errors}"
+                             (input)="nameRedux()"
+                             [ngModel]="this.formRedux.nameSurname"
                              placeholder="имя, фамилия ">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.nameSurname.errors">
-                        <div *ngIf="f.nameSurname.errors.required">
-                          <span>* заполни поле </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.nameSurname.errors">
+                          <span *ngIf="f.nameSurname.errors.required">* заполни поле </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.nameSurname}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.nameSurname}}</span>
+                        </div>
                       </div>
                       <input formControlName="phone" class="input" type="text" name="phone"
                              [ngClass]="{invalid: isSubmitted && f.phone.errors}"
+                             (input)="phoneRedux()"
+                             [ngModel]="this.formRedux.phone"
                              placeholder="номер телефона ">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.phone.errors">
-                        <div *ngIf="f.phone.errors.required">
-                          <span>* заполни поле </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors">
+                          <span *ngIf="f.phone.errors.required">* заполни поле </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.phone}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.phone}}</span>
+                        </div>
                       </div>
                       <input formControlName="email" class="input" type="email" name="email"
                              [ngClass]="{invalid: isSubmitted && f.email.errors}"
+                             (input)="emailRedux()"
+                             [ngModel]="this.formRedux.email"
                              placeholder="email">
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.email.errors">
-                        <div *ngIf="f.email.errors.required">
-                          <span>* заполни поле </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.email.errors">
+                          <span *ngIf="f.email.errors.required">* заполни поле </span>
+                          <span *ngIf="f.email.errors.email">* поле не формата email </span>
                         </div>
-                        <div *ngIf="f.email.errors.email">
-                          <span>* поле не формата email </span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.email}}</span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.email}}</span>
                       </div>
                       <textarea formControlName="description" class="textarea-form" type="text"
                                 [ngClass]="{invalid: isSubmitted && f.description.errors}"
+                                (input)="descriptionRedux()"
+                                [(ngModel)]="this.formRedux.description"
                                 name="description"
                                 placeholder="дополнительная информация...."></textarea>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="isSubmitted && f.description.errors">
-                        <div *ngIf="f.description.errors.maxlength">
-                          <span>* не больше 1025 символа </span>
+                      <div class="error-input">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.description.errors">
+                          <span *ngIf="f.description.errors.maxlength">* не больше 1025 символа </span>
                         </div>
-                      </div>
-                      <div class="error-input"
-                           [@fadingAwayAnimate]
-                           *ngIf="orderError">
-                        <span>{{orderError.description}}</span>
+                        <div [@fadingAwayAnimate] *ngIf="orderError">
+                          <span>{{orderError.description}}</span>
+                        </div>
                       </div>
                     </div>
                     <div class="btn-order">
