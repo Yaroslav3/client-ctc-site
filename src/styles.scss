@@ -20,10 +20,10 @@
   --font-traning-component: 'KIA_KIAM', serif;
   --font-traning-bl-info: Exo2Light, sans-serif, serif;
   --font-webinars-main: 'KIA_KIAM', serif;
-  --font-webinars-training-header:Fira_Sans_Condensed_Light, serif;
-  --font-webinars-training-data:'Casiopea_Regular', serif;
-  --font-webinars-show:Fira_Mono, sans-serif, serif;
-  --font-webinars-show-cunt:Fira_Sans_Condensed_Light, serif;
+  --font-webinars-training-header: Fira_Sans_Condensed_Light, serif;
+  --font-webinars-training-data: 'Casiopea_Regular', serif;
+  --font-webinars-show: Fira_Mono, sans-serif, serif;
+  --font-webinars-show-cunt: Fira_Sans_Condensed_Light, serif;
   --font-webinars-show-table: 'KIA_KIAM', serif, sans-serif, serif;
   --font-order-description-choice: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-order-checkout: Arial, Helvetica, sans-serif, serif;
@@ -76,8 +76,10 @@ html, body, iframe {
   background: transparent;
   cursor: pointer;
   text-align: center;
+  border-radius: 2px;
   .btn-text {
     color: #648095;
+    font-family: var(-font-order);
     transition: all 0.5s ease-out;
     i {
       transition: all 0.5s ease-out;
@@ -117,6 +119,7 @@ html, body, iframe {
   z-index: 999;
   cursor: pointer;
   display: inline-block;
+  border-radius: 2px;
   .fa-chevron-left {
     font-size: 12px;
     color: #648095;
@@ -128,13 +131,16 @@ html, body, iframe {
     }
   }
   .btn-text {
+    font-family: var(--font-footer-header) !important;
     position: relative;
     top: -1px;
     left: 3px;
-    font-size: 12px;
+    font-size: 13px;
     color: #648095;
+    font-weight: normal;
   }
   &:hover {
+    border: 1px solid silver;
     transition: all .3s ease-in;
     background: rgba(100, 128, 149, 0.6);
     .fa-chevron-left {

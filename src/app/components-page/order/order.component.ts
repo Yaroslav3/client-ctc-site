@@ -13,7 +13,7 @@ import {GetReduxDataService} from '../../shared/services/get-redux-data.service'
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {LoaderComponent} from '../../global-components/loader/loader.component';
 import {SearchByIdService} from '../../shared/services/search-by-id.service';
-import {OrderTrainings} from '../../shared/model/OrderTrainers.model';
+import {OrderTrainingsForm} from '../../shared/model/OrderTrainings.model';
 import {
   OrderTrainingsReduxCity,
   OrderTrainingsReduxCountry,
@@ -39,7 +39,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   trainings: Trainings;
   trainersCheckbox: any = [];
   myForm: FormGroup;
-  formRedux: OrderTrainings;
+  formRedux: OrderTrainingsForm;
   orderForm: FormGroup;
   done = true;
   loaderSubmit: boolean;
@@ -73,11 +73,14 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
     this.selectedTrainer();
     this.createFormGroup();
-    this.store.select('stateTrainings', 'trainingOrder').subscribe(d => {
-      this.formRedux = d;
-    });
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
+    this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
+    // this.store.select('stateTrainings', 'trainingOrder').subscribe(order => {
+    //   this.formRedux = order;
+    //   this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
+    // });
+    this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
@@ -97,16 +100,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     }
   }
   ngAfterContentChecked(): void {
-    // this.countryRedux();
-    // this.dataRedux();
-    // this.trainingRedux();
-    // this.cityRedux();
-    // this.nameRedux();
-    // this.countryRedux();
-    // this.phoneRedux();
-    // this.emailRedux();
-    // this.descriptionRedux();
-    // this.nameCompanyRedux();
   }
   selectedTrainer() {
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
@@ -191,6 +184,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
         this.isCreated = false;
       });
   }
+  // ____form filling methods from state___
   dataRedux() {
     if (this.orderForm.controls.date.valid) {
       this.store.dispatch(new OrderTrainingsReduxDate(this.orderForm.controls.date.value));
@@ -198,6 +192,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
   trainingRedux() {
     if (this.orderForm.controls.training.valid) {
+      console.log('sdsdfsdf--111');
       this.store.dispatch(new OrderTrainingsReduxTraining(this.orderForm.controls.training.value));
     }
   }
