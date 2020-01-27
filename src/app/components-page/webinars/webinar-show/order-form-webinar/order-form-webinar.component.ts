@@ -9,6 +9,10 @@ import {OrderService} from '../../../../shared/services/order.service';
 import {GetReduxDataService} from '../../../../shared/services/get-redux-data.service';
 import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
 import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../reduxe';
+import {OrderWebinarEmailUser, OrderWebinarNameUser, OrderWebinarPhoneUser} from '../../../../reduxe/vebinars/webinars.action';
+import {WebinarOrderForm} from '../../../../shared/model/WebinarOrderForm.model';
 
 @Component({
   selector: 'app-order-form-webinar',
@@ -22,6 +26,7 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
   id: number;
   price: number;
   formLiqPay: FormGroup;
+  formOrder: WebinarOrderForm;
   isSubmitted = false;
   isLiqPay = true;
   isPaymentMethod = false;
@@ -34,6 +39,7 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
               private getReduxData: GetReduxDataService,
               private fb: FormBuilder,
               private route: Router,
+              private store: Store<AppState>,
               private order: OrderService,
               private searchById: SearchByIdService) {
   }
@@ -48,6 +54,8 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     this.headerControl.hiddenHeaderComponent();
     this.idWebinar = this.searchById.setWebinarId();
     this.webinar = this.getReduxData.getOneWebinars(this.idWebinar);
+    this.formOrder = this.getReduxData.getWebinarFormState() as WebinarOrderForm;
+    console.log(this.formOrder);
   }
   redirect() {
     if (this.webinar === undefined) {
@@ -102,5 +110,21 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
       this.isLiqPayTree = true;
       this.isPaymentMethod = false;
     });
+  }
+  // ____form filling methods from state___
+  nameRedux() {
+    if (this.formLiqPay.controls.name.valid) {
+      this.store.dispatch(new OrderWebinarNameUser(this.formLiqPay.controls.name.value));
+    }
+  }
+  emailRedux() {
+    if (this.formLiqPay.controls.email.valid) {
+      this.store.dispatch(new OrderWebinarEmailUser(this.formLiqPay.controls.email.value));
+    }
+  }
+  phoneRedux() {
+    if (this.formLiqPay.controls.phone.valid) {
+      this.store.dispatch(new OrderWebinarPhoneUser(this.formLiqPay.controls.phone.value));
+    }
   }
 }

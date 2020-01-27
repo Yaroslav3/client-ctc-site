@@ -80,6 +80,7 @@
                         <input formControlName="date" id="end-event" class="form-control"
                                [ngClass]="{invalid: isSubmitted && f.date.errors}"
                                placeholder="Выбери дату"
+                               [(ngModel)]="formRedux.date"
                                (input)="dataRedux()"
                                title="введи дату на выбраный тренинг"
                                name="end" ngbDatepicker
@@ -98,11 +99,14 @@
                       <div class="label-training">
                         <p>Тренинги</p>
                       </div>
-                      <select formControlName="training" name="training"
+                      <select formControlName="training"
+                              name="training"
+                              [(ngModel)]="this.formRedux.training"
                               [ngClass]="{invalid: isSubmitted && f.training.errors}"
                               title="select">
                         <option class="select-input" id="training" name="training"
                                 (input)="trainingRedux()"
+                                [ngValue]="training.name"
                                 *ngFor="let training of trainings">
                           {{training.name}}
                         </option>

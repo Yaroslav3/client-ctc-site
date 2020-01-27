@@ -29,6 +29,8 @@
                 <div class="input-filed">
                   <input formControlName="name" class="input" name="name" type="text" title="имя"
                          [ngClass]="{invalid: isSubmitted && f.name.errors, ngValid: !f.name.errors}"
+                         [ngModel]="formOrder.name"
+                         (input)="nameRedux()"
                          placeholder="Имя и фамилия: *">
                   <div class="error-input">
                     <div *ngIf="isSubmitted && f.name.errors" [@fadingAwayAnimate]>
@@ -40,6 +42,8 @@
                 <div class="input-filed">
                   <input formControlName="email" class="input" name="email" type="text" title="email"
                          [ngClass]="{invalid: isSubmitted && f.email.errors , ngValid: !f.email.errors}"
+                         [ngModel]="formOrder.email"
+                         (input)="emailRedux()"
                          placeholder="E-mail:*">
                   <div class="error-input">
                     <div [@fadingAwayAnimate]
@@ -56,6 +60,8 @@
                 <div class="input-filed">
                   <input formControlName="phone" class="input" name="phone" type="text" pattern="[0-9]*" minlength="10"
                          [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
+                         [ngModel]="formOrder.phone"
+                         (input)="phoneRedux()"
                          maxlength="10" title="номер телефона"
                          placeholder="№ телефона (0992223344) *">
                   <div class="error-input">

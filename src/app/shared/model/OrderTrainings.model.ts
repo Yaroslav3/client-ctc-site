@@ -1,4 +1,4 @@
-export class OrderTrainings {
+export class OrderTrainingsForm {
   date: Date;
   training: string;
   country: string;

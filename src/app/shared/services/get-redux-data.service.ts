@@ -5,6 +5,7 @@ import {Trainers} from '../model/Trainers.model';
 import {Inscriptions} from '../model/Inscriptions.model';
 import {Webinars} from '../model/Webinars.model';
 import {WebinarInscription} from '../model/WebinarInscription.model';
+import {WebinarOrderForm} from '../model/WebinarOrderForm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,13 @@ export class GetReduxDataService {
     });
     return this.trainingsAll;
   }
+  getTrainingFormState() {
+    let traingsUserForm = {};
+    this.store.select('stateTrainings', 'trainingOrder').subscribe(order => {
+      traingsUserForm = order;
+    });
+    return traingsUserForm;
+  }
   getInscriptionsAll() {
     this.store.select('stateStartApplication', 'inscriptions').subscribe((inscriptionsAll: Inscriptions) => {
       this.inscriptions = inscriptionsAll;
@@ -65,6 +73,13 @@ export class GetReduxDataService {
       this.oneWebinar = this.oneWebinar.find(w => w.id.toString() === id);
     });
     return this.oneWebinar;
+  }
+  getWebinarFormState() {
+    let formWebinarUser = {};
+    this.store.select('stateWebinars', 'orderWebinarForm').subscribe((order: WebinarOrderForm) => {
+      formWebinarUser = order;
+    });
+    return formWebinarUser;
   }
   getWebinarsInscription() {
     this.store.select('stateWebinars', 'webinarsInscription').subscribe((webinarsInscription: WebinarInscription) => {
