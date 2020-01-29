@@ -36,6 +36,7 @@ import {startApplicationReducer} from './reduxe/startApplication/startApplicatio
 import {loadingTrainersReducer} from './reduxe/trainers/trainers.reducer';
 import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
 import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
+import {FullCalendarModule} from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
   imports: [
     BrowserModule,
     FormsModule,
+    FullCalendarModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     AppRoutingModule,
     HttpClientModule,

@@ -2,7 +2,8 @@ import {InfoStartApplication, StartLoadingInfoApplication} from './startApplicat
 const initialState = {
   photoHeader: [],
   footerInfo: [],
-  inscriptions: []
+  inscriptions: [],
+  dataCalendar: []
 };
 export function startApplicationReducer(state = initialState, action: InfoStartApplication) {
   switch (action.type) {
@@ -20,6 +21,11 @@ export function startApplicationReducer(state = initialState, action: InfoStartA
       return {
         ...state,
         inscriptions: action.payload
+      };
+    case StartLoadingInfoApplication.AllEventCalendarDate:
+      return {
+        ...state,
+        dataCalendar: action.payload
       };
     default:
       return state;

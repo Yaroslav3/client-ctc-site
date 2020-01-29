@@ -1,0 +1,203 @@
+.calendar {
+  padding-left: 40px;
+  padding-right: 52px;
+  .calendar-container {
+    margin-top: 80px;
+  }
+}
+:host ::ng-deep #myCalendar {
+  .fc-center h2 {
+    color: #480505;
+    font-size: 21px;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  tr td .fc-today {
+    background-color: #f3f3f3;
+    font-weight: bold;
+  }
+  .fc-event {
+    border-radius: 0;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .fc-state-default.fc-corner-right {
+    border-radius: 0;
+  }
+  .fc-state-default.fc-corner-left {
+    border-radius: 0;
+    /* border-top-left-radius: 4px; */
+    /* border-bottom-left-radius: 4px; */
+  }
+}
+/*------------------------- Modal window -------------------------------*/
+.modal-header i {
+  font-size: 14px;
+  margin-right: 15px;
+  color: #380505;
+}
+.modal-header .text-header {
+  font-size: 14px;
+}
+.modal-header .close {
+  padding: 1.5rem 1rem;
+}
+.events-show {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.info {
+  padding-top: 5px;
+  padding-left: 20px;
+}
+.info span {
+  margin-left: 20px;
+  color: #4a3a3e;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.info i {
+  color: #2c88b5;
+  font-size: 18px;
+}
+.body-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 1000000;
+  .content-modal {
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    right: 35%;
+    //bottom: 35%;
+    background-color: white;
+    border-radius: 3px;
+    margin: 15px;
+    padding: 15px;
+    .header-modal {
+      display: flex;
+      justify-content: flex-start;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #7D90CC;
+      pointer-events: none;
+      .calendar-icon {
+        padding-left: 2px;
+        position: relative;
+
+        top: 1px;
+        &:before {
+          font-size: 27px;
+          color: #7D90CC;
+        }
+      }
+      .text-header {
+        padding-left: 12px;
+        color: #7D90CC;
+        width: 80%;
+        text-align: center;
+        font-family: "KIA_KIAM", serif;
+      }
+    }
+    .info-title {
+      padding: 10px;
+      min-height: 60px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      .comment-icon {
+        position: relative;
+        top: 2px;
+        left: -7px;
+        &:before {
+          font-size: 24px;
+          color: #7D90CC;
+        }
+      }
+      .text-comment {
+        padding-left: 12px;
+        color: #9F9FA9;
+        text-align: center;
+        width: 80%;
+      }
+    }
+    .info-time {
+      padding: 10px;
+      min-height: 35px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      .clock-icon {
+        position: relative;
+        top: 2px;
+        left: -7px;
+        &:before {
+          font-size: 24px;
+          color: #7D90CC;
+        }
+      }
+      .time-event {
+        padding-left: 12px;
+        color: #9F9FA9;
+        text-align: center;
+        width: 80%;
+      }
+    }
+    .close-block {
+      position: absolute;
+      bottom: 4px;
+      right: 9px;
+      cursor: pointer;
+      pointer-events: visible;
+      .close-modal-icon {
+        &:before {
+          font-size: 22px;
+          color: silver;
+          transition: all 0.4s ease-in;
+        }
+        &:hover {
+          &:before {
+            transition: all 0.4s ease-in-out;
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 1400px) {
+  .body-modal {
+    .content-modal {
+      left: 30%;
+      right: 30%;
+    }
+  }
+}
+@media all and (max-width: 1200px) {
+  .body-modal {
+    .content-modal {
+      left: 25%;
+      right: 25%;
+    }
+  }
+}
+@media all and (max-width: 1000px) {
+  .body-modal {
+    .content-modal {
+      left: 20%;
+      right: 20%;
+    }
+  }
+}
+@media all and (max-width: 1000px) {
+  .body-modal {
+    .content-modal {
+      left: 10%;
+      right: 10%;
+      //bottom: 30%;
+      //top: 30%;
+    }
+  }
+}

@@ -382,6 +382,10 @@
   transition: all .4s ease-in;
   box-shadow: 0 0 2px #F3CECE;
 }
+.ngValid {
+  border: 1px solid #97C1E1 !important;
+  transition: all .4s ease-in;
+}
 .data-input {
   padding: 0 20px;
   width: 33%;

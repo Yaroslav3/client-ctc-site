@@ -6,6 +6,8 @@ import {Inscriptions} from '../model/Inscriptions.model';
 import {Webinars} from '../model/Webinars.model';
 import {WebinarInscription} from '../model/WebinarInscription.model';
 import {WebinarOrderForm} from '../model/WebinarOrderForm.model';
+import {date} from '@rxweb/reactive-form-validators';
+import {CalendarTrainings} from '../model/CalendarTrainings.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,7 @@ export class GetReduxDataService {
   webinarsAll: Webinars;
   oneWebinar;
   webinarsInscription: WebinarInscription;
+  allDateCalendar: CalendarTrainings;
   constructor(private store: Store<AppState>) {
   }
   getOneTrainer(id) {
@@ -86,6 +89,14 @@ export class GetReduxDataService {
       this.webinarsInscription = webinarsInscription;
     });
     return this.webinarsInscription;
+  }
+  getAllDateCalendarState() {
+    this.store.select('stateStartApplication', 'dataCalendar').subscribe(dateCalendar => {
+      this.allDateCalendar = dateCalendar;
+      console.log(dateCalendar);
+    });
+
+    return this.allDateCalendar;
   }
 }
 

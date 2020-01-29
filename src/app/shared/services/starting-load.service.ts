@@ -4,7 +4,7 @@ import {eHomePhoto, environment} from '../../../environments/environment';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../reduxe';
 import {User} from '../model/User.model';
-import {AddPhoto, InfoFooter, InscriptionsAll} from '../../reduxe/startApplication/startApplication.actions';
+import {AddPhoto, AllEventDateCalendar, InfoFooter, InscriptionsAll} from '../../reduxe/startApplication/startApplication.actions';
 import {AllTrainers} from '../../reduxe/trainers/trainers.actions';
 import {Trainings} from '../model/Trainings.model';
 import {AllTrainings} from '../../reduxe/trainings/trainings.action';
@@ -23,13 +23,13 @@ export class StartingLoadService {
     this.host = environment.host;
   }
   getPhotoStartPageGetAll() {
-    return this.http.get(`${this.host + eHomePhoto.apiUrlPhotoPageStartGetAll}`)
+    this.http.get(`${this.host + eHomePhoto.apiUrlPhotoPageStartGetAll}`)
       .subscribe(data => {
         this.store.dispatch(new AddPhoto(data));
       });
   }
   getFooterInfo() {
-    return this.http.get(this.host + environment.apiUrlUser)
+    this.http.get(this.host + environment.apiUrlUser)
       .subscribe((dataFooter: User) => {
         this.store.dispatch(new InfoFooter(dataFooter));
       });
@@ -41,13 +41,13 @@ export class StartingLoadService {
     });
   }
   getAllTrainings() {
-    return this.http.get(this.host + environment.apiUrlTrainings)
+    this.http.get(this.host + environment.apiUrlTrainings)
       .subscribe((allTrainings: Trainings) => {
         this.store.dispatch(new AllTrainings(allTrainings));
       });
   }
   getAllInscriptions() {
-    return this.http.get(this.host + environment.apiUrlTrainingsInscriptions)
+    this.http.get(this.host + environment.apiUrlTrainingsInscriptions)
       .subscribe((allInscriptions: Inscriptions) => {
         this.store.dispatch(new InscriptionsAll(allInscriptions));
       });
@@ -63,13 +63,13 @@ export class StartingLoadService {
     return this.http.get(`${this.host + environment.apiUrlGetAllNameSkills}/${id}`);
   }
   getWebinars() {
-    return this.http.get(this.host + environment.apiUrlWebinars)
+    this.http.get(this.host + environment.apiUrlWebinars)
       .subscribe((webinars: Webinars) => {
         this.store.dispatch(new AllWebinars(webinars));
       });
   }
   getWebinarsInscription() {
-    return this.http.get(this.host + environment.apiUrlWebinarsInscription)
+    this.http.get(this.host + environment.apiUrlWebinarsInscription)
       .subscribe((webinarsInscription: WebinarInscription) => {
         this.store.dispatch(new AllWebinarsInscription(webinarsInscription));
       });
@@ -77,5 +77,10 @@ export class StartingLoadService {
   // status order LiqPay
   statusLiqPay(id: number) {
     return this.http.get(`${this.host + environment.apiUrlWebinarOrderStatus}/${id}`);
+  }
+  getAllDataCalendar() {
+    return this.http.get(this.host + environment.apiUrlGetAllDateCalendar).subscribe(dataCalendar => {
+      this.store.dispatch(new AllEventDateCalendar(dataCalendar));
+    });
   }
 }

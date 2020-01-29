@@ -1,1 +1,69 @@
-<p>schedule works!</p>
+<div class="wrapper">
+  <div class="calendar" [@fadingAwayAnimate]>
+    <div class="calendar-container" *ngIf="events">
+      <full-calendar [@fadingAwayAnimate]
+                     [plugins]="options.plugins"
+                     [editable]="options.editable"
+                     [eventLimit]="options.eventLimit"
+                     [events]="options.events"
+                     [height]="options.height"
+                     [locale]="options.locale"
+                     [timeZone]="options.timeZoneParam"
+                     [themeSystem]="options.themeSystem"
+                     [navLinks]="options.navLinks"
+                     [selectable]="options.selectable"
+                     [header]="options.header"
+                     [buttonText]="options.buttonText"
+                     (eventClick)="eventClick($event)"
+      ></full-calendar>
+    </div>
+    <div id="modal" class="body-modal" *ngIf="contentModelShow" [@fadingAwayAnimate]>
+      <div class="content-modal">
+        <div class="header-modal">
+          <i class="far fa-calendar-alt calendar-icon"></i>
+          <span class="text-header">Событие</span>
+        </div>
+        <div class="info-title">
+          <i class="far fa-comment-alt comment-icon"></i>
+          <span class="text-comment"> {{modelCalendarTrainingsDate.title}}</span>
+        </div>
+        <div class="info-time">
+          <i class="far fa-clock clock-icon"></i>
+          <span class="time-event"> {{modelCalendarTrainingsDate.start| date:'dd.MM.yyyy'}}
+            - {{modelCalendarTrainingsDate.end |date:'dd.MM.yyyy'}}
+          </span>
+        </div>
+        <div class="close-block">
+          <i class="fas fa-times close-modal-icon" (click)="modalClose()"></i>
+        </div>
+      </div>
+    </div>
+    <!--    <ng-template #contentShow let-modal>-->
+    <!--      <div class="modal-header" [@fadingAwayAnimate]>-->
+    <!--        <h4 class="modal-title" id="modal-show"><i class="far fa-calendar-alt"></i>-->
+    <!--          <span class="text-header">событие</span>-->
+    <!--        </h4>-->
+    <!--        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">-->
+    <!--          <span aria-hidden="true">&times;</span>-->
+    <!--        </button>-->
+    <!--      </div>-->
+    <!--      <div class="modal-body">-->
+    <!--        <div class="events-show">-->
+    <!--          <div class="info">-->
+    <!--            <label for="title"><i class="far fa-comment-alt"></i>-->
+    <!--              <span id="title"> {{modelCalendarTrainingsDate.title}}</span>-->
+    <!--            </label>-->
+    <!--          </div>-->
+    <!--          <div class="info">-->
+    <!--            <label for="data-event"> <i class="far fa-clock"></i>-->
+    <!--              <span-->
+    <!--                id="data-event"> {{modelCalendarTrainingsDate.start| date:'dd.MM.yyyy'}}-->
+    <!--                - {{modelCalendarTrainingsDate.end |date:'dd.MM.yyyy'}}</span>-->
+    <!--            </label>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </ng-template>-->
+  </div>
+</div>
+

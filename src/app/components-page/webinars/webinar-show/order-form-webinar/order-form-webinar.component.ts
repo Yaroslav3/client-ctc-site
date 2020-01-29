@@ -55,7 +55,7 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     this.idWebinar = this.searchById.setWebinarId();
     this.webinar = this.getReduxData.getOneWebinars(this.idWebinar);
     this.formOrder = this.getReduxData.getWebinarFormState() as WebinarOrderForm;
-    console.log(this.formOrder);
+    console.log(this.webinar);
   }
   redirect() {
     if (this.webinar === undefined) {

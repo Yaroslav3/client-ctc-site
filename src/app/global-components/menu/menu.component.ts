@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -10,30 +9,37 @@ export class MenuComponent implements OnInit {
   burgerMenu: boolean;
   @Input() correctedMenu: boolean;
   @Input() menuScrolling: boolean;
-
   constructor() {
     this.burgerMenu = false;
   }
-
   ngOnInit() {
   }
-
+  @HostListener('window:mouseenter')
+  hiddenScrollLine() {
+    const w = document.body.offsetWidth;
+    document.body.style.overflow = 'hidden';
+    document.body.style.width = w + 'px';
+  }
+  @HostListener('window:mouseleave')
+  visualScrollLine() {
+    setTimeout(() => {
+      document.body.style.overflow = 'initial';
+      document.body.style.width = 'auto';
+    }, 500);
+  }
   burger() {
     this.burgerMenu = this.burgerMenu ? false : true;
     if (this.burgerMenu === true) {
-      document.body.style.overflow = 'hidden';
+      this.hiddenScrollLine();
     } else {
-      document.body.style.overflow = 'visible';
+      this.visualScrollLine();
     }
   }
-
   burgerHidden() {
     this.burgerMenu = false;
-    document.body.style.overflow = 'visible';
+    this.visualScrollLine();
   }
-
   menuScrollingClose() {
     this.menuScrolling = false;
   }
-
 }

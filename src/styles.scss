@@ -6,7 +6,9 @@
 //@import "../node_modules/bootstrap/dist/css/bootstrap.css";
 //@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
 //@import "../node_modules/fullcalendar/dist/fullcalendar.css";
-//
+////
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
 :root {
   --fonts-main: Exo2Regular, "Helvetica Neue", sans-serif;
   --font-header-topic: 'Casiopea_SemiBold', serif;
@@ -36,9 +38,11 @@
   outline: 0;
   outline-offset: 0;
 }
+
 html, body, iframe {
   box-sizing: border-box;
   //height: 100%;
+  //overflow: ;
   margin: 0;
   padding: 0;
   font-family: var(--fonts-main);
