@@ -78,7 +78,7 @@
                     <div class="block-order-group">
                       <div class="input-group">
                         <input formControlName="date" id="end-event" class="form-control"
-                               [ngClass]="{invalid: isSubmitted && f.date.errors}"
+                               [ngClass]="{invalid: isSubmitted && f.date.errors, ngValid: !f.date.errors}"
                                placeholder="Выбери дату"
                                [(ngModel)]="formRedux.date"
                                (input)="dataRedux()"
@@ -102,7 +102,7 @@
                       <select formControlName="training"
                               name="training"
                               [(ngModel)]="this.formRedux.training"
-                              [ngClass]="{invalid: isSubmitted && f.training.errors}"
+                              [ngClass]="{invalid: isSubmitted && f.training.errors, ngValid: !f.training.errors}"
                               title="select">
                         <option class="select-input" id="training" name="training"
                                 (input)="trainingRedux()"
@@ -120,7 +120,7 @@
                         </div>
                       </div>
                       <input formControlName="country" class="input" name="country" type="text"
-                             [ngClass]="{invalid: isSubmitted && f.country.errors}"
+                             [ngClass]="{invalid: isSubmitted && f.country.errors,ngValid: !f.country.errors}"
                              (input)="countryRedux()"
                              [ngModel]="this.formRedux.country"
                              placeholder="Страна">
@@ -133,7 +133,7 @@
                         </div>
                       </div>
                       <input formControlName="city" class="input" name="city" type="text"
-                             [ngClass]="{invalid: isSubmitted && f.city.errors}"
+                             [ngClass]="{invalid: isSubmitted && f.city.errors,ngValid: !f.city.errors}"
                              [ngModel]="this.formRedux.city"
                              (input)="cityRedux()"
                              placeholder="город проведения тренинга">
@@ -146,7 +146,7 @@
                         </div>
                       </div>
                       <input formControlName="company" class="input" type="text" name="company"
-                             [ngClass]="{invalid: isSubmitted && f.company.errors}"
+                             [ngClass]="{invalid: isSubmitted && f.company.errors,ngValid: !f.company.errors}"
                              (input)="nameCompanyRedux()"
                              [ngModel]="this.formRedux.nameCompany"
                              placeholder="назавние компании ">
@@ -159,7 +159,7 @@
                         </div>
                       </div>
                       <input formControlName="nameSurname" class="input" type="text" name="nameSurname"
-                             [ngClass]="{invalid: isSubmitted && f.nameSurname.errors}"
+                             [ngClass]="{invalid: isSubmitted && f.nameSurname.errors,ngValid: !f.nameSurname.errors}"
                              (input)="nameRedux()"
                              [ngModel]="this.formRedux.nameSurname"
                              placeholder="имя, фамилия ">
@@ -171,21 +171,24 @@
                           <span>{{orderError.nameSurname}}</span>
                         </div>
                       </div>
-                      <input formControlName="phone" class="input" type="text" name="phone"
-                             [ngClass]="{invalid: isSubmitted && f.phone.errors}"
+                      <input formControlName="phone" class="input" name="phone" type="text"
+                             pattern="[0-9]*" minlength="10" maxlength="10"
+                             [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
                              (input)="phoneRedux()"
                              [ngModel]="this.formRedux.phone"
-                             placeholder="номер телефона ">
+                             placeholder="№ телефона (0992223344)*">
                       <div class="error-input">
-                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors">
+                        <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors,">
                           <span *ngIf="f.phone.errors.required">* заполни поле </span>
+                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в поле должно быть 10 чисел</span>
+                          <span *ngIf="f.phone.errors.numeric" [@showAnimate]> * только числа </span>
                         </div>
                         <div [@fadingAwayAnimate] *ngIf="orderError">
                           <span>{{orderError.phone}}</span>
                         </div>
                       </div>
                       <input formControlName="email" class="input" type="email" name="email"
-                             [ngClass]="{invalid: isSubmitted && f.email.errors}"
+                             [ngClass]="{invalid: isSubmitted && f.email.errors, ngValid: !f.email.errors}"
                              (input)="emailRedux()"
                              [ngModel]="this.formRedux.email"
                              placeholder="email">
@@ -199,7 +202,7 @@
                         </div>
                       </div>
                       <textarea formControlName="description" class="textarea-form" type="text"
-                                [ngClass]="{invalid: isSubmitted && f.description.errors}"
+                                [ngClass]="{invalid: isSubmitted && f.description.errors, ngValid: !f.description.errors}"
                                 (input)="descriptionRedux()"
                                 [(ngModel)]="this.formRedux.description"
                                 name="description"

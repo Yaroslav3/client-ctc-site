@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {StartingLoadService} from './shared/services/starting-load.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +6,8 @@ import {StartingLoadService} from './shared/services/starting-load.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-
   constructor() {
   }
-
   ngOnInit() {
   }
 }

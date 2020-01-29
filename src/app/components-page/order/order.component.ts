@@ -24,6 +24,7 @@ import {
   OrderTrainingsReduxPhone,
   OrderTrainingsReduxTraining
 } from '../../reduxe/trainings/trainings.action';
+import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
 
 @Component({
   selector: 'app-order',
@@ -75,14 +76,10 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.createFormGroup();
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
-    this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
-    // this.store.select('stateTrainings', 'trainingOrder').subscribe(order => {
-    //   this.formRedux = order;
-    //   this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
-    // });
-    this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
+      this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
+      this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
       this.startComponentCheckboxCoach(this.selectedTrainerId);
       this.loader = false;
@@ -112,7 +109,8 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       city: ['', [Validators.required]],
       company: ['', [Validators.required]],
       nameSurname: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required, Validators.minLength(10),
+        RxwebValidators.numeric({acceptValue: NumericValueType.PositiveNumber, allowDecimal: false})]],
       country: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       description: ['', [Validators.maxLength(1025)]],

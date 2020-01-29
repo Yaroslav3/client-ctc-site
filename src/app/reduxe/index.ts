@@ -7,12 +7,14 @@ import {Webinars} from '../shared/model/Webinars.model';
 import {WebinarInscription} from '../shared/model/WebinarInscription.model';
 import {OrderTrainingsForm} from '../shared/model/OrderTrainings.model';
 import {WebinarOrderForm} from '../shared/model/WebinarOrderForm.model';
+import {CalendarTrainings} from '../shared/model/CalendarTrainings.model';
 
 export interface AppState {
   stateStartApplication: {
     footerInfo: User,
     photoHeader: PhotoHeaderModel,
-    inscriptions: Inscriptions;
+    inscriptions: Inscriptions,
+    dataCalendar: CalendarTrainings
   };
   stateTrainers: {
     trainers: Trainers,

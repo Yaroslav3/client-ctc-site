@@ -1,4 +1,4 @@
-.menu-application, .menu-application-corrected{
+.menu-application, .menu-application-corrected {
   position: relative;
   top: -35px;
   display: flex;
@@ -11,7 +11,6 @@
   box-shadow: 0 3px 5px silver;
   transform: scale(0.9);
   transition: all 0.5s ease-out;
-
   .logo {
     flex-grow: 1;
     background: no-repeat;
@@ -23,7 +22,6 @@
     transform: scale(0.9);
     transition: all 0.3s ease-in;
   }
-
   .dws-menu {
     position: relative;
     top: 30%;
@@ -31,7 +29,6 @@
     right: 14.4%;
     height: 48px;
     margin-bottom: -0.1%;
-
     ul.dws-ul {
       display: flex;
       justify-content: center;
@@ -43,7 +40,6 @@
         transition: all .4s ease-in;
         margin: 0 3px;
         letter-spacing: 1px;
-
         a {
           font-family: Exo2Regular, serif;
           font-weight: bold;
@@ -53,10 +49,8 @@
           margin: 2px 5px;
           top: -1px;
         }
-
         &:hover {
           background-color: rgba(167, 121, 83, 0.2);
-
           a {
             color: rgba(167, 121, 83, 0.96);
           }
@@ -74,7 +68,6 @@
     }
   }
 }
-
 .menu-application-corrected {
   max-width: 100%;
   height: 60px;
@@ -83,20 +76,17 @@
   top: 0;
   transform: scale(1);
   transition: all 0.5s ease-out;
-
   .logo {
     margin-left: 2%;
     margin-top: -3px;
     transform: scale(0.7);
     transition: all 0.3s ease-in;
   }
-
   .dws-menu {
     top: 25%;
     transition: all 0.3s ease-in;
   }
 }
-
 .menu-application-corrected-scroll {
   position: fixed;
   top: 0;
@@ -105,7 +95,6 @@
   height: 42px !important;
   margin: 0 !important;
   transform: scale(1) !important;
-
   .logo {
     transform: scale(.5);
     margin-left: 0;
@@ -115,32 +104,26 @@
   .dws-menu {
     top: 4px;
     transition: all 0.4s ease-in;
-
     ul.dws-ul {
       margin: 5px 0 5px 5px;
       transition: all 0.4s ease-in;
       .dws-li {
         transition: all .4s ease-in;
       }
-
     }
   }
 }
-
 .mob-menu {
   display: none;
 }
-
 .dws-menu-mob {
   display: none;
 }
-
 @media all and (max-width: 1000px) {
   .menu-application {
     margin-left: 0;
   }
 }
-
 @media all and (max-width: 800px) {
   .menu-application, .menu-application-corrected {
     display: none;
@@ -156,7 +139,6 @@
     right: 21px;
     cursor: pointer;
     transition: all 1s;
-
     .line {
       transition: all 1s;
       transform: rotate(0deg);
@@ -168,7 +150,6 @@
       opacity: 1;
       margin: 4px 9px;
     }
-
     .line_2 {
       transition: all 1s;
       transform: translateX(0px);
@@ -184,7 +165,6 @@
     transition: all 1s;
     top: 20px;
     right: 20px;
-
     .line_1 {
       transition: all 1s;
       transform: rotate(490deg);
@@ -198,7 +178,6 @@
       position: relative;
       top: 3px;
     }
-
     .line_3 {
       transition: all 1s;
       transform: rotate(-490deg);
@@ -211,7 +190,6 @@
       position: relative;
       top: -3px;
     }
-
     .line_2 {
       transform: translateX(200px);
       opacity: 0;
@@ -223,30 +201,24 @@
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-
     z-index: 1000;
-
     top: 0;
     right: 0;
     transform: translateX(0px);
     animation: animateMenuVisible 1s ease-out;
-
     .dws-ul-mob {
       display: flex;
       margin: auto;
       flex-direction: column;
       align-items: flex-start;
       padding: 5px;
-
       .dws-li-mob {
         padding: 5px;
         margin: 5px;
         list-style-type: none;
-
         a {
           color: white;
         }
-
         &:hover {
           a {
             color: #EEFF32;
@@ -254,8 +226,6 @@
           }
         }
       }
-
-
     }
   }
   .dws-menu-mob-hidden {
@@ -269,7 +239,6 @@
     right: 0;
     transform: translateX(-1000px);
     animation: animateMenuHidden 1s ease-in;
-
     .dws-ul-mob {
       display: flex;
       margin: auto;
@@ -279,11 +248,9 @@
       transition: all 0.5s ease-out;
       padding: 5px;
       list-style-type: none;
-
       .dws-li-mob {
         padding: 5px;
         margin: 5px;
-
         a {
           color: white;
         }
@@ -328,19 +295,14 @@
       transform: translateX(0px);
     }
   }
-
 }
-
 @media all and (max-width: 530px) {
-
   .dws-menu-mob-active {
     display: flex;
     width: 100%;
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-
-
     top: 0;
     right: 0;
     transform: translateX(0px);
@@ -352,19 +314,15 @@
     background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed !important;
-
-
     top: 0;
     right: 0;
     transform: translateX(-1000px);
     animation: animateMenuHidden 1.5s ease-in;
-
     .dws-ul-mob {
       opacity: 0;
       transition: all 0.5s ease-out;
     }
   }
-
   @keyframes animateMenuVisible {
     0% {
       width: 100%;
@@ -403,5 +361,4 @@
       transform: translateX(0px);
     }
   }
-
 }

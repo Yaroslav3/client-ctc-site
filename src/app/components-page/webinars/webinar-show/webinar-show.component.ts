@@ -60,7 +60,6 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
       this.startPage();
       this.loader = false;
       this.loaderComponent.stopLoaderPageSpinner();
-      this.headerControl.buttonTop();
     }, 700);
   }
   ngAfterContentChecked() {
@@ -73,15 +72,14 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
       this.count = Object.keys(this.webinarCountStatuses).length;
     });
   }
+  order() {
+    this.searchId.getWebinarId(this.idWebinar);
+    this.route.navigate(['webinars/webinar-order-form']);
+  }
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
     this.headerControl.menuScrolling = false;
     this.loaderComponent.stopLoaderPageSpinner();
-  }
-  order() {
-    this.searchId.getWebinarId(this.idWebinar);
-    console.log(this.idWebinar);
-    this.route.navigate(['webinars/webinar-order-form']);
   }
 }
 
