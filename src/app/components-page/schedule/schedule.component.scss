@@ -2,34 +2,34 @@
   padding-left: 40px;
   padding-right: 52px;
   .calendar-container {
-    margin-top: 80px;
+    margin-top: 40px;
   }
 }
-:host ::ng-deep #myCalendar {
-  .fc-center h2 {
-    color: #480505;
-    font-size: 21px;
-    font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-  tr td .fc-today {
-    background-color: #f3f3f3;
-    font-weight: bold;
-  }
-  .fc-event {
-    border-radius: 0;
-    line-height: 1.5;
-    cursor: pointer;
-  }
-  .fc-state-default.fc-corner-right {
-    border-radius: 0;
-  }
-  .fc-state-default.fc-corner-left {
-    border-radius: 0;
-    /* border-top-left-radius: 4px; */
-    /* border-bottom-left-radius: 4px; */
-  }
-}
+//:host ::ng-deep #myCalendar {
+//  .fc-center h2 {
+//    color: #480505;
+//    font-size: 21px;
+//    font-weight: bold;
+//    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+//  }
+//  tr td .fc-today {
+//    background-color: #f3f3f3;
+//    font-weight: bold;
+//  }
+//  .fc-event {
+//    border-radius: 0;
+//    line-height: 1.5;
+//    cursor: pointer;
+//  }
+//  .fc-state-default.fc-corner-right {
+//    border-radius: 0;
+//  }
+//  .fc-state-default.fc-corner-left {
+//    border-radius: 0;
+//    /* border-top-left-radius: 4px; */
+//    /* border-bottom-left-radius: 4px; */
+//  }
+//}
 /*------------------------- Modal window -------------------------------*/
 .modal-header i {
   font-size: 14px;
@@ -86,7 +86,6 @@
       .calendar-icon {
         padding-left: 2px;
         position: relative;
-
         top: 1px;
         &:before {
           font-size: 27px;
@@ -167,6 +166,66 @@
     }
   }
 }
+:host ::ng-deep.full-calendar {
+  font-family: var(--font-webinars-main);
+  .fc-toolbar {
+    .fc-left {
+      .fc-button-group {
+        .fc-button {
+          padding: 0.4em 0.6em;
+          font-size: 13px;
+          line-height: 17px;
+          border: none;
+        }
+        .fc-button:not(:first-child) {
+          margin-left: 2px;
+        }
+        .fc-button-primary {
+          color: #fff;
+          background-color: rgba(0, 0, 0, 0.6);
+          border-color: #fff;
+        }
+      }
+      .fc-today-button {
+        padding: 0.4em 0.6em;
+        font-size: 13px;
+        line-height: 17px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-color: #fff;
+        &:disabled {
+          color: #fff;
+          background-color: rgba(0, 0, 0, 0.4);
+          border-color: chocolate;
+        }
+      }
+    }
+    .fc-center {
+      h2 {
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+    .fc-right {
+      .fc-button {
+        padding: 0.4em 0.6em;
+        font-size: 13px;
+        line-height: 17px;
+        border: none;
+      }
+      .fc-button-primary {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-color: #fff;
+      }
+      .fc-button-primary:disabled {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.4);
+        border-color: chocolate;
+      }
+    }
+  }
+}
 @media all and (max-width: 1400px) {
   .body-modal {
     .content-modal {
@@ -196,8 +255,41 @@
     .content-modal {
       left: 10%;
       right: 10%;
-      //bottom: 30%;
-      //top: 30%;
+    }
+  }
+}
+@media all and (max-width: 800px) {
+  .calendar {
+    padding: 10px;
+    .calendar-container {
+      margin-top: 20px !important;
+    }
+  }
+}
+@media all and (max-width: 600px) {
+  :host ::ng-deep.calendar {
+    .calendar-container {
+      .full-calendar {
+        .fc-toolbar {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: space-between;
+          width: 100%;
+          .fc-left {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+          }
+          .fc-center {
+            padding-top: 10px;
+            h2 {
+            }
+          }
+          .fc-right {
+            margin: 10px;
+          }
+        }
+      }
     }
   }
 }

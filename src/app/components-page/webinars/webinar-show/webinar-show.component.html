@@ -2,8 +2,7 @@
   <div class="all-content" [@fadingAwayAnimate]>
     <app-loader *ngIf="loader"></app-loader>
     <div class="coach-header" [@fadingAwayAnimate] *ngIf="!loader">
-      <div class="btn-corrected"
-           [routerLink]="['/webinars']">
+      <div class="btn-corrected" appBackLink>
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>

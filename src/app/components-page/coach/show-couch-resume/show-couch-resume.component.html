@@ -1,8 +1,7 @@
 <div class="wrapper" [@fadingAwayAnimate]>
   <div *ngIf="trainers" class="block-coach-show-trainer">
     <div class="coach-header">
-      <div class="btn-corrected"
-           [routerLink]="['/trainings/coach']">
+      <div class="btn-corrected" appBackLink>
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>

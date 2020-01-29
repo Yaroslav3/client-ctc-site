@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="calendar" [@fadingAwayAnimate]>
     <div class="calendar-container" *ngIf="events">
-      <full-calendar [@fadingAwayAnimate]
+      <full-calendar class="full-calendar" [@fadingAwayAnimate]
                      [plugins]="options.plugins"
                      [editable]="options.editable"
                      [eventLimit]="options.eventLimit"
