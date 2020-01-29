@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {StartingLoadService} from '../../../../../shared/services/starting-load.service';
 import {SearchByIdService} from '../../../../../shared/services/search-by-id.service';
 import {StatusLiqPay} from '../../../../../shared/model/statusLiqPay';
@@ -12,16 +11,13 @@ import {StatusLiqPay} from '../../../../../shared/model/statusLiqPay';
 export class OrderStatusComponent implements OnInit {
   idWebinar: number;
   messageStatus: string;
-  constructor(private route: Router,
-              private loadingService: StartingLoadService,
-              private searchById: SearchByIdService) {
+  constructor(
+    private loadingService: StartingLoadService,
+    private searchById: SearchByIdService) {
   }
   ngOnInit() {
     this.idWebinar = this.searchById.setWebinarId();
     this.status(this.idWebinar);
-  }
-  back() {
-    this.route.navigate(['webinars']);
   }
   // status LoqPay
   status(id: number) {

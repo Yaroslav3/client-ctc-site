@@ -43,7 +43,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked, OnDestroy
       eventLimit: false,
       timeZoneParam: 'Europe/Kiev',
       locale: 'RU',
-      height: 750,
+      height: 600,
       header: {
         left: 'prev,next today',
         center: 'title',

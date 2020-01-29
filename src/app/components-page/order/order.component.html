@@ -3,15 +3,15 @@
     <app-loader *ngIf="loader"></app-loader>
     <div class="coach-header" *ngIf="!loader">
       <div class="btn-corrected"
-           *ngIf="selectedTrainerId"
-           [routerLink]="['/trainings/coach/resume', selectedTrainerId.id]">
+           appBackLink
+           *ngIf="selectedTrainerId">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>
       </div>
       <div class=" btn-corrected"
-           *ngIf="!selectedTrainerId"
-           [routerLink]="['/trainings/coach']">
+           appBackLink
+           *ngIf="!selectedTrainerId">
           <span class="fas fa-chevron-left">
           <span class="btn-text">Назад</span>
         </span>

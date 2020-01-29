@@ -26,7 +26,6 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.5",
     "@ngrx/store": "latest",
     "@rxweb/reactive-form-validators": "^1.9.7",
-    "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "ngx-spinner": "^8.1.0",
     "redux": "^4.0.5",

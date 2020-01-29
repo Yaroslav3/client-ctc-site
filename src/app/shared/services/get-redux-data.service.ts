@@ -93,9 +93,7 @@ export class GetReduxDataService {
   getAllDateCalendarState() {
     this.store.select('stateStartApplication', 'dataCalendar').subscribe(dateCalendar => {
       this.allDateCalendar = dateCalendar;
-      console.log(dateCalendar);
     });
-
     return this.allDateCalendar;
   }
 }

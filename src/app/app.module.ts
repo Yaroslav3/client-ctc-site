@@ -37,6 +37,7 @@ import {loadingTrainersReducer} from './reduxe/trainers/trainers.reducer';
 import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
 import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {FullCalendarModule} from '@fullcalendar/angular';
+import { BackLinkDirective } from './shared/directives/back-link.directive';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {FullCalendarModule} from '@fullcalendar/angular';
     HiddenHeaderDirective,
     ScrollDirective,
     DelayDirective,
+    BackLinkDirective,
   ],
   imports: [
     BrowserModule,

@@ -46,7 +46,6 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
     this.cdRef.detectChanges();
-    this.stickyMenu(this.scrollPosition);
   }
   scrollEvent(scrollPosition: number) {
     this.scrollPosition = scrollPosition;
@@ -66,12 +65,12 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   buttonTop() {
     window.scroll(0, 0);
   }
-  stickyMenu(scrollPosition) {
-    const menu = this.elRef.nativeElement.querySelector('app-menu').offsetTop - 30;
-    if (scrollPosition > menu) {
-      this.menuScrolling = true;
-    } else {
-      this.menuScrolling = false;
-    }
-  }
+  // stickyMenu(scrollPosition) {
+  //   const menu = this.elRef.nativeElement.querySelector('app-menu').offsetTop - 30;
+  //   if (scrollPosition > menu) {
+  //     this.menuScrolling = true;
+  //   } else {
+  //     this.menuScrolling = false;
+  //   }
+  // }
 }

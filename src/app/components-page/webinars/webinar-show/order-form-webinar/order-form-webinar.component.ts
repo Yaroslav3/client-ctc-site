@@ -34,14 +34,14 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
   isLiqPayTwo = false;
   isLiqPayTree = false;
   liqPayOrder = new LiqPayOrder();
-  constructor(private router: Router,
-              private headerControl: MainLayoutComponent,
-              private getReduxData: GetReduxDataService,
-              private fb: FormBuilder,
-              private route: Router,
-              private store: Store<AppState>,
-              private order: OrderService,
-              private searchById: SearchByIdService) {
+  constructor(
+    private headerControl: MainLayoutComponent,
+    private getReduxData: GetReduxDataService,
+    private fb: FormBuilder,
+    private route: Router,
+    private store: Store<AppState>,
+    private order: OrderService,
+    private searchById: SearchByIdService) {
   }
   ngOnInit() {
     this.startPage();
@@ -72,9 +72,6 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
   }
   public get f() {
     return this.formLiqPay.controls;
-  }
-  back() {
-    this.router.navigate(['webinars/webinar-show', this.idWebinar]);
   }
   orderWebinar() {
     this.isSubmitted = true;
