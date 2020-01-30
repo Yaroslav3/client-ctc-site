@@ -3,7 +3,7 @@ import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-hea
 import {CalendarTrainings} from '../../shared/model/CalendarTrainings.model';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {OptionsInput, preventDefault} from '@fullcalendar/core';
+import {OptionsInput} from '@fullcalendar/core';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./schedule.component.scss'],
   animations: [fadingAwayAnimate]
 })
-export class ScheduleComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class ScheduleComponent implements OnInit, AfterContentChecked {
   location: string;
   events: CalendarTrainings;
   options: OptionsInput;
@@ -31,6 +31,11 @@ export class ScheduleComponent implements OnInit, AfterContentChecked, OnDestroy
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
     this.dateEventCalendar = this.getReduxData.getAllDateCalendarState();
     this.getAllDateCalendar();
+    console.log(this.dateEventCalendar.length);
+    if (this.dateEventCalendar.length === 0) {
+      console.log('fff');
+      this.route.navigate(['/home']);
+    }
   }
   ngAfterContentChecked(): void {
   }
@@ -80,9 +85,6 @@ export class ScheduleComponent implements OnInit, AfterContentChecked, OnDestroy
     this.modelCalendarTrainingsDate.start = model.event.start;
     this.modelCalendarTrainingsDate.end = model.event.end;
     this.modelCalendarTrainingsDate.title = model.event.title;
-  }
-  ngOnDestroy(): void {
-    // this.headerControl.menuScrolling = false;
   }
   modalClose() {
     this.visualScrollLine();
