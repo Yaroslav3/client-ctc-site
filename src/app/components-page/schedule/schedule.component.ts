@@ -53,7 +53,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth, dayGridWeek, dayGridDay'
+        right: 'dayGridMonth, dayGridWeek, dayGridDay, list'
       },
       buttonText: {
         today: 'Сегодня',
