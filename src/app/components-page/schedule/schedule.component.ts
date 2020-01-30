@@ -7,6 +7,7 @@ import {OptionsInput} from '@fullcalendar/core';
 import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
+import {ViewportScroller} from '@angular/common';
 
 @Component({
   selector: 'app-schedule',
@@ -23,6 +24,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   modelCalendarTrainingsDate = new CalendarTrainings();
   constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
               private route: Router,
+              readonly viewportScroller: ViewportScroller,
               private headerControl: MainLayoutComponent,
               private getReduxData: GetReduxDataService) {
     this.location = 'schedule';
@@ -31,9 +33,8 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
     this.dateEventCalendar = this.getReduxData.getAllDateCalendarState();
     this.getAllDateCalendar();
-    console.log(this.dateEventCalendar.length);
+    this.viewportScroller.scrollToPosition([0, 400]);
     if (this.dateEventCalendar.length === 0) {
-      console.log('fff');
       this.route.navigate(['/home']);
     }
   }

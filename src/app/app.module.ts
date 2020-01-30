@@ -37,7 +37,8 @@ import {loadingTrainersReducer} from './reduxe/trainers/trainers.reducer';
 import {loadingWebinarsReducer} from './reduxe/vebinars/webinars.reducer';
 import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {FullCalendarModule} from '@fullcalendar/angular';
-import { BackLinkDirective } from './shared/directives/back-link.directive';
+import {BackLinkDirective} from './shared/directives/back-link.directive';
+import {loadingRoomsReducer} from './reduxe/room/room.reducer';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { BackLinkDirective } from './shared/directives/back-link.directive';
         stateStartApplication: startApplicationReducer,
         stateTrainers: loadingTrainersReducer,
         stateTrainings: loadingTrainingsReducer,
-        stateWebinars: loadingWebinarsReducer
+        stateWebinars: loadingWebinarsReducer,
+        stateRoom: loadingRoomsReducer
       }),
     NgxSpinnerModule,
     BrowserAnimationsModule,

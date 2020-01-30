@@ -1,0 +1,241 @@
+:host ::ng-deep.wrapper {
+  .all-content {
+    margin-right: 20px;
+    margin-left: 20px;
+    min-height: 14vh;
+    .alert-massage {
+      padding: 20px 50px;
+      border-radius: 2px;
+      font-family: var(--font-traning-coash);
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      .massage-text {
+        color: white;
+        letter-spacing: 2px;
+        font-size: 16px;
+      }
+    }
+    .block-room {
+      max-width: 94%;
+      margin: auto;
+      .room-show-content {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 10px 30px 10px;
+        margin-bottom: 30px;
+        border-bottom: 2px solid silver;
+        .img-show {
+          min-width: 38%;
+          display: flex;
+          flex-direction: column;
+          .img-room {
+            width: auto;
+            img {
+              width: 100%;
+              background-size: cover;
+            }
+          }
+          .bl-1 {
+            margin: 5px 0;
+            padding: 5px 0;
+            .capacity {
+              font-size: 15px;
+              font-family: var(--fonts-main);
+              color: #143E5F;
+            }
+            .strength {
+              font-size: 15px;
+              font-family: var(--fonts-main);
+              color: seagreen;
+              margin-left: 10px;
+              border-bottom: 1px solid;
+            }
+          }
+          .bl-text {
+            padding: 5px 0;
+            span {
+              font-family: var(--fonts-main);
+              color: #72827C;
+              padding: 5px 0;
+            }
+          }
+          .currency-room {
+            padding: 10px;
+            background-color: #ebebeb;
+            border-radius: 2px;
+            text-align: center;
+            color: #179918;
+            p {
+              margin: -5px;
+              .time, .dey {
+                font-family: var(--fonts-main);
+                font-size: 16px;
+              }
+            }
+          }
+        }
+        .info-room-show {
+          display: flex;
+          flex-direction: column;
+          padding-left: 40px;
+          min-width: 58%;
+          .name-room {
+            margin: 0;
+            padding: 15px 10px;
+            background-color: #EBEBEB;
+            font-size: 18px;
+            font-family: var(--fonts-main);
+            color: #355F80;
+          }
+          .editor-show-room {
+            margin-bottom: 50px;
+            min-height: 28vh;
+            padding: 5px 0;
+            .myEditor {
+              .angular-editor-wrapper {
+                .angular-editor-textarea {
+                  margin: 2px !important;
+                  border: none !important;
+                  padding: 5px !important;
+                  resize: none !important;
+                }
+              }
+            }
+          }
+          .btn-buy-room {
+            display: flex;
+            justify-content: flex-end;
+            button {
+              width: 400px;
+              height: 45px;
+              size: 20px;
+              border: 0;
+              font-size: 20px;
+              color: #f3f3f3;
+              background-color: #717171;
+              box-shadow: 0 2px 2px rgba(28, 15, 25, 0.3);
+              cursor: pointer;
+              transition: all 0.4s ease-in-out;
+              &:hover {
+                transition: all 0.4s ease-in;
+                background-color: rgba(34, 56, 67, .5);
+                box-shadow: 0 2px 2px rgba(28, 15, 25, 0.3);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    max-width: 1180px;
+    .all-content {
+      margin-right: 40px;
+      margin-left: 40px;
+    }
+  }
+}
+@media only screen and (max-width: 980px) {
+  .wrapper {
+    max-width: 970px;
+  }
+  .room-show-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    .img-show {
+      width: 100%;
+      height: auto;
+      padding-bottom: 20px;
+      .bl-1 {
+        .capacity {
+          font-size: 12px !important;
+        }
+        .strength {
+          font-size: 13px !important;
+        }
+      }
+      .bl-text {
+        padding: 5px 0;
+        span {
+          font-size: 12px !important;
+        }
+      }
+      .currency-room {
+        padding: 5px;
+        p {
+          margin: -5px;
+          .time, .dey {
+            font-family: var(--fonts-main);
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .info-room-show {
+      padding-left: 10px !important;
+      min-width: 60% !important;
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .wrapper {
+    .all-content {
+      margin: 40px 20px 20px 10px;
+      .block-room {
+        min-width: 100%;
+        .room-show-content {
+          .img-show {
+            min-width: 40%;
+          }
+        }
+      }
+    }
+  }
+}
+//@media only screen and (max-width: 768px) {
+//  .wrapper {
+//    max-width: 760px;
+//  }
+//}
+@media only screen and (max-width: 700px) {
+  .wrapper {
+    .all-content {
+      .block-room {
+        .room-show-content {
+          margin-top: 30px;
+          flex-direction: column;
+          .info-room-show {
+            .btn-buy-room {
+              justify-content: center;
+              button {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    max-width: 470px;
+    font-size: 15px;
+    .all-content {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

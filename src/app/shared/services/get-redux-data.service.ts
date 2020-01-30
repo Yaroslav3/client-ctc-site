@@ -8,6 +8,7 @@ import {WebinarInscription} from '../model/WebinarInscription.model';
 import {WebinarOrderForm} from '../model/WebinarOrderForm.model';
 import {date} from '@rxweb/reactive-form-validators';
 import {CalendarTrainings} from '../model/CalendarTrainings.model';
+import {Room} from '../model/Room.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class GetReduxDataService {
   oneWebinar;
   webinarsInscription: WebinarInscription;
   allDateCalendar: CalendarTrainings;
+  allRoom: Room;
   constructor(private store: Store<AppState>) {
   }
   getOneTrainer(id) {
@@ -95,6 +97,12 @@ export class GetReduxDataService {
       this.allDateCalendar = dateCalendar;
     });
     return this.allDateCalendar;
+  }
+  getAllRoomState() {
+    this.store.select('stateRoom', 'roomRental').subscribe(allRoom => {
+      this.allRoom = allRoom;
+    });
+    return this.allRoom;
   }
 }
 
