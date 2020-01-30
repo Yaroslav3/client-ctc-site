@@ -1,21 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
+import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
+import {Room} from '../../shared/model/Room.model';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-room-rental',
   templateUrl: './room-rental.component.html',
   styleUrls: ['./room-rental.component.scss']
 })
-export class RoomRentalComponent implements OnInit {
-
+export class RoomRentalComponent implements OnInit, AfterContentChecked {
   location: string;
-
-  constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService) {
+  room: Room;
+  isList: boolean;
+  editorConfig: AngularEditorConfig = {
+    editable: false,
+    showToolbar: false,
+    height: 'auto',
+    defaultFontSize: '5',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    customClasses: [ // optional
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ]
+  };
+  constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
+              private getReduxData: GetReduxDataService) {
     this.location = 'room-rental';
   }
-
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
+    this.room = this.getReduxData.getAllRoomState();
+    if (this.room) {
+      this.isList = false;
+    } else {
+      this.isList = true;
+    }
   }
-
+  ngAfterContentChecked(): void {
+    this.room = this.getReduxData.getAllRoomState();
+  }
 }

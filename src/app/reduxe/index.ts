@@ -8,13 +8,14 @@ import {WebinarInscription} from '../shared/model/WebinarInscription.model';
 import {OrderTrainingsForm} from '../shared/model/OrderTrainings.model';
 import {WebinarOrderForm} from '../shared/model/WebinarOrderForm.model';
 import {CalendarTrainings} from '../shared/model/CalendarTrainings.model';
+import {Room} from '../shared/model/Room.model';
 
 export interface AppState {
   stateStartApplication: {
     footerInfo: User,
     photoHeader: PhotoHeaderModel,
     inscriptions: Inscriptions,
-    dataCalendar: CalendarTrainings
+    dataCalendar: CalendarTrainings,
   };
   stateTrainers: {
     trainers: Trainers,
@@ -27,6 +28,9 @@ export interface AppState {
     webinars: Webinars,
     webinarsInscription: WebinarInscription,
     orderWebinarForm: WebinarOrderForm,
+  };
+  stateRoom: {
+    roomRental: Room;
   };
 }
 

@@ -1,2 +1,45 @@
-<p>room-rental works!</p>
-<a routerLink="home">rtyrtyr</a>
+<div class="wrapper">
+  <div class="all-content">
+    <div *ngIf="isList == true"
+         class="alert-massage" role="alert">
+      <span class="massage-text">Нет залов !</span>
+    </div>
+    <div class="block-room" *ngIf="isList == false">
+      <div class="room-show-content" *ngFor="let elem of room; let i=index">
+        <div class="img-show">
+          <div class="img-room">
+            <img [src]="'data:image/jpg;base64,' +room[i].photoRoom[0].photo" alt="Random first slide">
+          </div>
+          <p class="bl-1">
+            <span class="capacity">Количество учасников: </span>
+            <span class="strength"> {{room[i].roomCapacity}} человек </span>
+          </p>
+          <div class="bl-text">
+            <span>Цена:</span>
+          </div>
+          <div class="currency-room" *ngFor="let elem2 of room[i].priseRoom">
+            <p>
+              <span class="time">Час/ </span>
+              <span class="time">{{elem2.priceHour}} {{elem2.currency}}</span></p>
+            <p>
+              <span class="dey">День/</span>
+              <span class="dey">{{elem2.priceDay}} {{elem2.currency}}</span></p>
+          </div>
+        </div>
+        <div class="info-room-show">
+          <p class="name-room"> {{elem.nameRoom}}</p>
+          <div class="editor-show-room">
+            <angular-editor class="myEditor" [(ngModel)]="room[i].articleRoom[0].descriptionArticle"
+                            [config]="editorConfig"></angular-editor>
+          </div>
+          <div class="btn-buy-room">
+            <button [routerLink]="['/room-rental/show',elem.id]">Заказать</button>
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

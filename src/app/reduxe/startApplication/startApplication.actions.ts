@@ -4,7 +4,8 @@ export enum StartLoadingInfoApplication {
   AddPhoto = 'AddPhoto',
   FooterInfoData = 'FooterInfoData',
   AllInscriptions = 'AllInscriptions',
-  AllEventCalendarDate = 'AllEventCalendarDate'
+  AllEventCalendarDate = 'AllEventCalendarDate',
+
 }
 
 export class AddPhoto implements Action {
@@ -30,6 +31,7 @@ export class AllEventDateCalendar implements Action {
   constructor(public payload) {
   }
 }
+
 
 export type InfoStartApplication =
   AddPhoto | InfoFooter | InscriptionsAll | AllEventDateCalendar;

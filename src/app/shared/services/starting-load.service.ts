@@ -12,6 +12,8 @@ import {Inscriptions} from '../model/Inscriptions.model';
 import {Webinars} from '../model/Webinars.model';
 import {AllWebinars, AllWebinarsInscription} from '../../reduxe/vebinars/webinars.action';
 import {WebinarInscription} from '../model/WebinarInscription.model';
+import {Room} from '../model/Room.model';
+import {AllRoomData} from '../../reduxe/room/room.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +83,11 @@ export class StartingLoadService {
   getAllDataCalendar() {
     return this.http.get(this.host + environment.apiUrlGetAllDateCalendar).subscribe(dataCalendar => {
       this.store.dispatch(new AllEventDateCalendar(dataCalendar));
+    });
+  }
+  getAllRoom() {
+    return this.http.get<any>(this.host + environment.apiUrlRoomAll).subscribe((allRoom: Room) => {
+      this.store.dispatch(new AllRoomData(allRoom));
     });
   }
 }

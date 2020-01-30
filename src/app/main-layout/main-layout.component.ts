@@ -35,6 +35,7 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
     this.startLoad.getAllInscriptions();
     this.startLoad.getWebinarsInscription();
     this.startLoad.getAllDataCalendar();
+    this.startLoad.getAllRoom();
     this.loader = true;
     this.loaderComponent.stopSpinner();
   }
