@@ -1,10 +1,12 @@
 <div class="wrapper">
   <div class="all-content">
-    <div *ngIf="isList == true"
+    <div *ngIf="isList == true" appBackLink
+         [@fadingAwayAnimate]
          class="alert-massage" role="alert">
       <span class="massage-text">Нет залов !</span>
     </div>
-    <div class="block-room" *ngIf="isList == false">
+    <div class="block-room" *ngIf="isList == false"
+         [@fadingAwayAnimate]>
       <div class="room-show-content" *ngFor="let elem of room; let i=index">
         <div class="img-show">
           <div class="img-room">
@@ -18,12 +20,31 @@
             <span>Цена:</span>
           </div>
           <div class="currency-room" *ngFor="let elem2 of room[i].priseRoom">
-            <p>
-              <span class="time">Час/ </span>
-              <span class="time">{{elem2.priceHour}} {{elem2.currency}}</span></p>
-            <p>
-              <span class="dey">День/</span>
-              <span class="dey">{{elem2.priceDay}} {{elem2.currency}}</span></p>
+            <table>
+              <tr>
+                <td class="name-period ">
+                  <span class="time">Час: </span></td>
+                <td class="cost">
+                  <span class="dey">{{elem2.priceDay}}</span>
+                  <span class="currency">{{elem2.currency}}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="name-period">
+                  <span class="dey">День:</span></td>
+                <td class="cost">
+                  <span class="time">{{elem2.priceHour}}</span>
+                  <span class="currency">{{elem2.currency}}</span>
+                </td>
+              </tr>
+            </table>
+            <!--            <p>-->
+            <!--              <span class="time">Час/ </span>-->
+            <!--              <span class="time">{{elem2.priceHour}} {{elem2.currency}}</span></p>-->
+            <!--            <p>-->
+            <!--              <span class="dey">День/</span>-->
+            <!--              <span class="dey">{{elem2.priceDay}} {{elem2.currency}}</span>-->
+            <!--            </p>-->
           </div>
         </div>
         <div class="info-room-show">

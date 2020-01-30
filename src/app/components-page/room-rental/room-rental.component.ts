@@ -3,11 +3,13 @@ import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-hea
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {Room} from '../../shared/model/Room.model';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
+import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 
 @Component({
   selector: 'app-room-rental',
   templateUrl: './room-rental.component.html',
-  styleUrls: ['./room-rental.component.scss']
+  styleUrls: ['./room-rental.component.scss'],
+  animations: [fadingAwayAnimate]
 })
 export class RoomRentalComponent implements OnInit, AfterContentChecked {
   location: string;
