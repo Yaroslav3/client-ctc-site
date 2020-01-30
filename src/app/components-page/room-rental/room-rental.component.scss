@@ -33,6 +33,7 @@
             img {
               width: 100%;
               background-size: cover;
+              border-radius: 2px;
             }
           }
           .bl-1 {
@@ -65,11 +66,27 @@
             border-radius: 2px;
             text-align: center;
             color: #179918;
-            p {
-              margin: -5px;
-              .time, .dey {
-                font-family: var(--fonts-main);
-                font-size: 16px;
+            table {
+              margin: auto;
+              tr {
+                .name-period {
+                  text-align: right;
+                }
+                .cost {
+                  text-align: left;
+                  .dey, .time {
+                    min-width: 40px;
+                    font-family: var(--fonts-main);
+                    font-size: 16px;
+                    text-align: center;
+                    display: inline-block;
+                  }
+                  .currency {
+                    width: auto;
+                    text-align: left;
+                    padding-left: 5px;
+                  }
+                }
               }
             }
           }
@@ -88,8 +105,8 @@
             color: #355F80;
           }
           .editor-show-room {
-            margin-bottom: 50px;
-            min-height: 28vh;
+            margin-bottom: 10px;
+            min-height: 38vh;
             padding: 5px 0;
             .myEditor {
               .angular-editor-wrapper {
@@ -175,7 +192,7 @@
       }
     }
     .info-room-show {
-      padding-left: 10px !important;
+      padding-left: 10px;
       min-width: 60% !important;
     }
   }
@@ -195,11 +212,6 @@
     }
   }
 }
-//@media only screen and (max-width: 768px) {
-//  .wrapper {
-//    max-width: 760px;
-//  }
-//}
 @media only screen and (max-width: 700px) {
   .wrapper {
     .all-content {
@@ -208,6 +220,7 @@
           margin-top: 30px;
           flex-direction: column;
           .info-room-show {
+            padding-left: 0;
             .btn-buy-room {
               justify-content: center;
               button {
