@@ -182,17 +182,10 @@
       }
       .currency-room {
         padding: 5px;
-        p {
-          margin: -5px;
-          .time, .dey {
-            font-family: var(--fonts-main);
-            font-size: 12px;
-          }
-        }
       }
     }
     .info-room-show {
-      padding-left: 10px;
+      padding-left: 10px !important;
       min-width: 60% !important;
     }
   }
@@ -220,7 +213,7 @@
           margin-top: 30px;
           flex-direction: column;
           .info-room-show {
-            padding-left: 0;
+            padding-left: 0 !important;
             .btn-buy-room {
               justify-content: center;
               button {
