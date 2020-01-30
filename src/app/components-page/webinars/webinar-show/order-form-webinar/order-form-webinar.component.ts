@@ -83,9 +83,6 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     this.isLiqPayOne = false;
     this.isLiqPayTwo = true;
   }
-  ngOnDestroy(): void {
-    this.headerControl.visibleHeaderComponent();
-  }
   liqPayInvoiceWebinar() {
     const webinarOrder = new WebinarOrder(
       this.f.name.value,
@@ -123,5 +120,8 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     if (this.formLiqPay.controls.phone.valid) {
       this.store.dispatch(new OrderWebinarPhoneUser(this.formLiqPay.controls.phone.value));
     }
+  }
+  ngOnDestroy(): void {
+    this.headerControl.visibleHeaderComponent();
   }
 }

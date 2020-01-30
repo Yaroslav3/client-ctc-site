@@ -1,24 +1,55 @@
 .all-content {
   margin-right: 130px;
   margin-left: 130px;
+  margin-top: 90px;
+  min-height: 67vh;
+  .content-order-status {
+    background-color: white;
+    min-height: 60vh;
+    display: flex;
+    margin: auto;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    .alert {
+      padding: 20px 50px;
+      border-radius: 2px;
+      font-family: var(--font-traning-coash);
+      text-align: center;
+    }
+    .alert-primary {
+      background: rgba(0, 0, 0, 0.3);
+      .massage-text {
+        color: white;
+        letter-spacing: 2px;
+        font-size: 16px;
+      }
+    }
+    .alert-success {
+      background: rgba(210, 245, 245, 0.3);
+      .massage-text {
+        color: green;
+      }
+    }
+    .alert-danger {
+      background: rgba(244, 238, 224, 0.3);
+      .massage-text {
+        color: orangered;
+      }
+    }
+    .alert-warning {
+      background: rgba(255, 231, 234, 0.3);
+      .massage-text {
+        color: red;
+      }
+    }
+  }
+}
+@media all and (max-width: 800px) {
+  .all-content {
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-top: 40px;
+  }
 }
 
-//-------------------  Btn back----------------------------//
-.btn-back {
-  padding-bottom: 20px;
-}
-
-.btn {
-  border-radius: 0;
-}
-
-//--------------------------------------------------------//
-
-.white_bg {
-  background-color: white;
-}
-
-.bl-block {
-  display: flex;
-  flex-direction: column;
-}
