@@ -1,0 +1,52 @@
+<div class="position-content" [@fadingAwayAnimate]>
+  <div class="select-block-time">
+    <div class="input-group">
+      <div class="position-element-input input-position">
+        <input class="form-control form-input" [(ngModel)]="date"
+               required (ngModelChange)="select(date)"
+               title="dateEvent"
+               ngbDatepicker
+               #e="ngbDatepicker">
+        <label class="text-label form-label">Выбери дату:</label>
+        <div class="btn-block-calendar">
+          <button class="btn-calendar" (click)="e.toggle()" type="button"><i
+            class="far fa-calendar-alt calendar-icon"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="select-time-order">
+      <label class="chose-text">Выбор времени:</label>
+      <div class="time-order">
+        <div class="position-input" *ngFor="let data of timeCheckbox; let i=index">
+          <label for="one{{i}}" class="container">{{data.value.time}}
+            <input #inputs name="trainers" type="checkbox" id="one{{i}}"
+                   [disabled]="timeChoice[i].status == true"
+                   (change)="onChange(data.value.time, $event.target.checked)">
+            <div class="time-check-block" [@fadingAwayAnimate] *ngIf="timeChoice[i].status == false">
+              <span class="checkmark">{{data.value.time}}</span>
+            </div>
+          </label>
+        </div>
+        <div class="error-time" [@fadingAwayAnimate] *ngIf="datePicker == true">
+          <div class="error-alert">
+            <span class="error-alert__text">
+              Пожалуйста, сначала выберите дату, а зтем желаемое время.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="error-no-selected" [@fadingAwayAnimate]>
+    <span class="error-no-selected__text" [@fadingAwayAnimate] *ngIf="selectedData">Вы не выбрали дату </span>
+    <span class="error-no-selected__text" [@fadingAwayAnimate] *ngIf="selectedTime">Вы не выбрали время </span>
+  </div>
+  <div class="btn-order-time">
+    <button class="btn-go-order" (click)="nextOnOrder()">
+      <span class="btn-go-order__text">Далее</span>
+      <i class="fas fa-long-arrow-alt-right btn-go-order__icon"></i>
+    </button>
+  </div>
+</div>
+
+

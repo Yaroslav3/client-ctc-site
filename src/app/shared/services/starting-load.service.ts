@@ -90,4 +90,7 @@ export class StartingLoadService {
       this.store.dispatch(new AllRoomData(allRoom));
     });
   }
+  periodDayRoom(startDay: string, endDay: string, id: number) {
+    return this.http.get(`${this.host + environment.apiUrlRoomPeriodDayOrder}/${startDay}/${endDay}/${id}`);
+  }
 }

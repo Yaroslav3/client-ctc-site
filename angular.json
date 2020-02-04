@@ -31,7 +31,8 @@
               "src/styles.scss",
               "src/assets/fonts/Casiopea/stylesheet.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -97,7 +98,6 @@
               "src/styles.scss"
             ],
             "scripts": [
-
             ]
           }
         },

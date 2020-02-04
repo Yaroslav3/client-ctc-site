@@ -6,7 +6,6 @@ import {Inscriptions} from '../model/Inscriptions.model';
 import {Webinars} from '../model/Webinars.model';
 import {WebinarInscription} from '../model/WebinarInscription.model';
 import {WebinarOrderForm} from '../model/WebinarOrderForm.model';
-import {date} from '@rxweb/reactive-form-validators';
 import {CalendarTrainings} from '../model/CalendarTrainings.model';
 import {Room} from '../model/Room.model';
 
@@ -23,6 +22,7 @@ export class GetReduxDataService {
   webinarsInscription: WebinarInscription;
   allDateCalendar: CalendarTrainings;
   allRoom: Room;
+  oneRoom;
   constructor(private store: Store<AppState>) {
   }
   getOneTrainer(id) {
@@ -103,6 +103,11 @@ export class GetReduxDataService {
       this.allRoom = allRoom;
     });
     return this.allRoom;
+  }
+  getOneRoomState(id: number) {
+    this.oneRoom = this.getAllRoomState();
+    this.oneRoom = this.oneRoom.find(r => r.id.toString() === id);
+    return this.oneRoom;
   }
 }
 
