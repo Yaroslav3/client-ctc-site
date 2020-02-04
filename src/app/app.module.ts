@@ -39,6 +39,9 @@ import {loadingTrainingsReducer} from './reduxe/trainings/trainings.reducer';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {BackLinkDirective} from './shared/directives/back-link.directive';
 import {loadingRoomsReducer} from './reduxe/room/room.reducer';
+import {SliderComponent} from './global-components/slider/slider.component';
+import {HourlySelectionComponent} from './components-page/room-rental/show-room-info/hourly-selection/hourly-selection.component';
+import {ChoiceOfDaysComponent} from './components-page/room-rental/show-room-info/choice-of-days/choice-of-days.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import {loadingRoomsReducer} from './reduxe/room/room.reducer';
     ScrollDirective,
     DelayDirective,
     BackLinkDirective,
+    SliderComponent,
+    ChoiceOfDaysComponent,
+    HourlySelectionComponent
   ],
   imports: [
     BrowserModule,

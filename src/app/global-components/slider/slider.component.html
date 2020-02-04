@@ -1,0 +1,30 @@
+<div class="slider-wrapper">
+  <div class="slider-item">
+    <div class="img-item">
+      <img class="img-slider"
+           [ngStyle]="{width: width+'px', maxHeight:  height+ 'px'}"
+           [attr.id]="id"
+           #img
+           [src]="'data:image/jpg;base64,' + pictureImg"
+           alt="photo">
+    </div>
+    <div class="btn-block-slider" *ngIf="hidden">
+      <div (click)="prev()" class="btn-next">
+        <i class="fas fa-chevron-left icon-left"></i>
+      </div>
+      <div (click)="next()" class="btn-prev">
+        <i class="fas fa-chevron-right icon-right"></i>
+      </div>
+    </div>
+    <div class="block-nav" *ngIf="hidden" #controlСursor>
+      <div class="item-item" *ngFor=" let item of allPhoto; let i=index;">
+        <span class="item" [attr.id]="i"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

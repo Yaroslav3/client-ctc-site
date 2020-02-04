@@ -31,7 +31,7 @@ import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
   animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
-  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
+  // providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   loader: boolean;

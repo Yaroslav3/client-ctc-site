@@ -47,7 +47,9 @@
                             [config]="editorConfig"></angular-editor>
           </div>
           <div class="btn-buy-room">
-            <button [routerLink]="['/room-rental/show',elem.id]">Заказать</button>
+            <div class="btn-all-application" [routerLink]="['/room-rental/show',elem.id]">
+              <span class="btn-text">Оформить заказ</span>
+            </div>
           </div>
           <router-outlet></router-outlet>
         </div>
