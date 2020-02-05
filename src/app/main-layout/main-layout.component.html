@@ -1,8 +1,8 @@
-<app-loader *ngIf="!loader"
-            [@fadingAwayAnimate]>
-</app-loader>
+<app-loader-start-app *ngIf="loader"
+                      [@fadingAwayAnimate]>
+</app-loader-start-app>
 <div
-  *ngIf="loader"
+  *ngIf="!loader"
   [@fadingAwayAnimate]>
   <app-header
     [correctedHeader]="hiddenHeader"

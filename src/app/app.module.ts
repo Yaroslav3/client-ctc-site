@@ -14,7 +14,6 @@ import {TrainingsComponent} from './components-page/trainings/trainings.componen
 import {HeaderComponent} from './global-components/header/header.component';
 import {FooterComponent} from './global-components/footer/footer.component';
 import {MenuComponent} from './global-components/menu/menu.component';
-import {LoaderComponent} from './global-components/loader/loader.component';
 import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {TrainingShowComponent} from './components-page/trainings/training-show/training-show.component';
 import {CoachComponent} from './components-page/coach/coach.component';
@@ -42,6 +41,10 @@ import {loadingRoomsReducer} from './reduxe/room/room.reducer';
 import {SliderComponent} from './global-components/slider/slider.component';
 import {HourlySelectionComponent} from './components-page/room-rental/show-room-info/hourly-selection/hourly-selection.component';
 import {ChoiceOfDaysComponent} from './components-page/room-rental/show-room-info/choice-of-days/choice-of-days.component';
+import {LoaderPageSpinnerComponent} from './global-components/loader/loader-page-spinner/loader-page-spinner.component';
+import {LoaderStartAppComponent} from './global-components/loader/loader-start-app/loader-start-app.component';
+import {LoaderSmallSpinnerComponent} from './global-components/loader/loader-small-spinner/loader-small-spinner.component';
+import {LoaderSmallSpinnerBtnComponent} from './global-components/loader/loader-small-spinner-btn/loader-small-spinner-btn.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,6 @@ import {ChoiceOfDaysComponent} from './components-page/room-rental/show-room-inf
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    LoaderComponent,
     MainLayoutComponent,
     TrainingShowComponent,
     CoachComponent,
@@ -72,7 +74,11 @@ import {ChoiceOfDaysComponent} from './components-page/room-rental/show-room-inf
     BackLinkDirective,
     SliderComponent,
     ChoiceOfDaysComponent,
-    HourlySelectionComponent
+    HourlySelectionComponent,
+    LoaderPageSpinnerComponent,
+    LoaderStartAppComponent,
+    LoaderSmallSpinnerComponent,
+    LoaderSmallSpinnerBtnComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +102,7 @@ import {ChoiceOfDaysComponent} from './components-page/room-rental/show-room-inf
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  providers: [LoaderComponent, HeaderComponent],
+  providers: [HeaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

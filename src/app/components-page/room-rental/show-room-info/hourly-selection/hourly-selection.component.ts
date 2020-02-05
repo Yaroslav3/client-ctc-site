@@ -4,25 +4,26 @@ import {RoomDateService} from '../../../../shared/services/room-date.service';
 import {RoomTimeOrder} from '../../../../shared/model/RoomTimeOrder.model';
 import {DatePipe} from '@angular/common';
 import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
-import {Route, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {LoaderSmallSpinnerBtnComponent} from '../../../../global-components/loader/loader-small-spinner-btn/loader-small-spinner-btn.component';
 
 @Component({
   selector: 'app-hourly-selection',
   templateUrl: './hourly-selection.component.html',
   styleUrls: ['./hourly-selection.component.scss'],
   animations: [showAnimate, fadingAwayAnimate],
-  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
+  providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}, LoaderSmallSpinnerBtnComponent]
 })
 export class HourlySelectionComponent implements OnInit {
   date: Date;
   arrayTime = [];
-  isCheckDate: boolean;
   datePicker: boolean;
   selectedData: boolean;
   selectedTime: boolean;
   timeCheckbox: any = [];
+  loaderTimePeriod: boolean;
   @Input() idRoom;
-  @ViewChildren('inputs') public inputs: ElementRef<HTMLInputElement>[];
+  @ViewChildren('input') public inputs: ElementRef<HTMLInputElement>[];
   timeChoice = [
     {time: '10:00 - 11:00', status: false},
     {time: '11:00 - 12:00', status: false},
@@ -35,6 +36,7 @@ export class HourlySelectionComponent implements OnInit {
     {time: '18:00 - 19:00', status: false}
   ];
   constructor(private roomDate: RoomDateService,
+              private loader: LoaderSmallSpinnerBtnComponent,
               private route: Router) {
   }
   ngOnInit() {
@@ -42,10 +44,11 @@ export class HourlySelectionComponent implements OnInit {
   }
   // get all time day
   private getAllTimeDay() {
+    // переопределяем массив объектов (списка времени) в другой формат
     this.timeCheckbox = Object.keys(this.timeChoice).map(key =>
       ({time: key, number: key, value: this.timeChoice[key]}));
   }
-  select(startPeriod: string) {
+  selectDataCalendar(startPeriod: Date) {
     this.selectedData = false;
     this.datePicker = false;
     this.selectedTime = false;
@@ -60,25 +63,28 @@ export class HourlySelectionComponent implements OnInit {
     this.inputs.forEach(check => {
       check.nativeElement.checked = false;
     });
-    this.arrayTime = [];
+    this.arrayTime = []; // при выборе даты очищаем массив с выбранным временем
   }
   dateTime(start: string, end: string) {
+    this.loaderTimePeriod = true;
+    this.loader.startSmallSpinnerBtn();
     this.roomDate.timeOneDayRoom(start, end, this.idRoom).subscribe((data: RoomTimeOrder) => {
-        this.showTimeOrder(data);
-        console.log(data);
-      }
-    );
+      setTimeout(() => {
+        if (!data) {
+        } else {
+          this.showTimeOrder(data);
+          console.log(data);
+          this.loaderTimePeriod = false;
+          this.loader.stopSmallSpinnerBtn();
+        }
+      }, 1000);
+    });
   }
   private showTimeOrder(data: RoomTimeOrder) {
     console.log(data);
-    if (Object.keys(data).length === 0) {
-      for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
-        this.timeChoice[b].status = false;
-      }
-    } else {
-      for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
-        this.timeChoice[b].status = false;
-      }
+    // при поступлении данных переводим все значения чекбоксов в положение false при любых роскладах
+    for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
+      this.timeChoice[b].status = false;
     }
     for (let i = 0; i < Object.keys(data).length; i++) {
       for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
@@ -92,7 +98,6 @@ export class HourlySelectionComponent implements OnInit {
   onChange(time: string, isChecked: boolean) {
     this.selectedTime = false;
     if (this.date) {
-      console.log(this.date);
       const roomTimeOrder = new RoomTimeOrder();
       const numberEnd = time.lastIndexOf('-');
       const end = numberEnd + 2;
@@ -103,6 +108,7 @@ export class HourlySelectionComponent implements OnInit {
         // end time;
         roomTimeOrder.endDate = this.createNumberData(Number(num));
         this.arrayTime.push(roomTimeOrder);
+        console.log(this.arrayTime);
       } else {
         for (let i = 0; i < this.arrayTime.length; i++) {
           if (new Date(this.arrayTime[i].startDate).getHours() === this.createNumberData(Number(num - 1)).getHours()) {

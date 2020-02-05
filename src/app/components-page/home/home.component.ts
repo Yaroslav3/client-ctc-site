@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {StartingLoadService} from '../../shared/services/starting-load.service';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
 
 @Component({

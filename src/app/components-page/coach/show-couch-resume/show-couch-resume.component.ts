@@ -60,7 +60,6 @@ export class ShowCouchResumeComponent implements OnInit, OnDestroy, AfterContent
       this.idCoach = coachId.id;
       this.getFonts();
       this.getOneTrainer(this.idCoach);
-
     });
   }
   ngAfterContentChecked(): void {

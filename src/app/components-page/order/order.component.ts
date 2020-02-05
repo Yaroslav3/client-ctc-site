@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {Trainings} from '../../shared/model/Trainings.model';
 import {Order} from '../../shared/model/Order.model';
 import {OrderService} from '../../shared/services/order.service';
-import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {DateValidator} from '../../shared/validators/validators.date';
@@ -11,7 +11,6 @@ import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
 import {hiddenAnimate, showAnimate, fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
-import {LoaderComponent} from '../../global-components/loader/loader.component';
 import {SearchByIdService} from '../../shared/services/search-by-id.service';
 import {OrderTrainingsForm} from '../../shared/model/OrderTrainings.model';
 import {
@@ -25,11 +24,13 @@ import {
   OrderTrainingsReduxTraining
 } from '../../reduxe/trainings/trainings.action';
 import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
+import {LoaderSmallSpinnerComponent} from '../../global-components/loader/loader-small-spinner/loader-small-spinner.component';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
+  providers: [LoaderSmallSpinnerComponent],
   animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
   // providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
@@ -59,7 +60,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     private orderService: OrderService,
     private getReduxData: GetReduxDataService,
     private router: ActivatedRoute,
-    private loaderComponent: LoaderComponent,
+    private loaderComponent: LoaderSmallSpinnerComponent,
     private headerControl: MainLayoutComponent,
     private renderer: Renderer2,
     private getTrainerForId: SearchByIdService,
@@ -191,7 +192,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
   trainingRedux() {
     if (this.orderForm.controls.training.valid) {
-      console.log('sdsdfsdf--111');
       this.store.dispatch(new OrderTrainingsReduxTraining(this.orderForm.controls.training.value));
     }
   }

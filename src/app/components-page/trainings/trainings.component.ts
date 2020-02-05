@@ -3,14 +3,15 @@ import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-hea
 import {Inscriptions} from '../../shared/model/Inscriptions.model';
 import {Trainings} from '../../shared/model/Trainings.model';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
-import {LoaderComponent} from '../../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
+import {LoaderPageSpinnerComponent} from '../../global-components/loader/loader-page-spinner/loader-page-spinner.component';
 
 @Component({
   selector: 'app-trainings',
   templateUrl: './trainings.component.html',
   styleUrls: ['./trainings.component.scss'],
+  providers: [LoaderPageSpinnerComponent],
   animations: [fadingAwayAnimate]
 })
 export class TrainingsComponent implements OnInit, AfterViewChecked {
@@ -21,7 +22,7 @@ export class TrainingsComponent implements OnInit, AfterViewChecked {
   constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
               private router: Router,
               private getReduxData: GetReduxDataService,
-              private loaderComponent: LoaderComponent,
+              private loaderComponent: LoaderPageSpinnerComponent,
   ) {
     this.location = 'trainings';
   }

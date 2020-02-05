@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="all-content-order" [@fadingAwayAnimate]>
-    <app-loader *ngIf="loader"></app-loader>
+    <app-loader-small-spinner *ngIf="loader"></app-loader-small-spinner>
     <div class="coach-header" *ngIf="!loader">
       <div class="btn-corrected"
            appBackLink
@@ -72,7 +72,7 @@
                   </div>
                 </div>
                 <div class="calendar-checkout">
-                  <app-loader *ngIf="loaderSubmit" [@fadingAwayAnimate]></app-loader>
+                  <app-loader-small-spinner *ngIf="loaderSubmit" [@fadingAwayAnimate]></app-loader-small-spinner>
                   <div [@fadingAwayAnimate]>
                     <p>Дата и выбор тренига</p>
                     <div class="block-order-group">

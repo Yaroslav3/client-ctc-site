@@ -1,13 +1,14 @@
 import {AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
 import {StartingLoadService} from '../shared/services/starting-load.service';
-import {LoaderComponent} from '../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../shared/animations/fading-away.animate';
+import {LoaderStartAppComponent} from '../global-components/loader/loader-start-app/loader-start-app.component';
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
-  animations: [fadingAwayAnimate]
+  animations: [fadingAwayAnimate],
+  providers: [LoaderStartAppComponent]
 })
 export class MainLayoutComponent implements OnInit, AfterContentChecked {
   loader: boolean;
@@ -19,25 +20,27 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
     private cdRef: ChangeDetectorRef,
     private startLoad: StartingLoadService,
     private elRef: ElementRef,
-    private loaderComponent: LoaderComponent,
+    private loaderComponent: LoaderStartAppComponent,
   ) {
     this.menuScrolling = false;
     this.hiddenHeader = false;
   }
   ngOnInit() {
-    this.loader = false;
-    this.loaderComponent.startSpinner();
-    this.startLoad.getPhotoStartPageGetAll();
-    this.startLoad.getAllTrainers();
-    this.startLoad.getFooterInfo();
-    this.startLoad.getAllTrainings();
-    this.startLoad.getWebinars();
-    this.startLoad.getAllInscriptions();
-    this.startLoad.getWebinarsInscription();
-    this.startLoad.getAllDataCalendar();
-    this.startLoad.getAllRoom();
     this.loader = true;
-    this.loaderComponent.stopSpinner();
+    this.loaderComponent.startSpinner();
+    setTimeout(() => {
+      this.startLoad.getPhotoStartPageGetAll();
+      this.startLoad.getAllTrainers();
+      this.startLoad.getFooterInfo();
+      this.startLoad.getAllTrainings();
+      this.startLoad.getWebinars();
+      this.startLoad.getAllInscriptions();
+      this.startLoad.getWebinarsInscription();
+      this.startLoad.getAllDataCalendar();
+      this.startLoad.getAllRoom();
+      this.loader = false;
+      this.loaderComponent.stopSpinner();
+    }, 1000);
   }
   hiddenHeaderComponent() {
     this.hiddenHeader = true;

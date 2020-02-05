@@ -6,16 +6,17 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../../shared/services/get-redux-data.service';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
 import {StartingLoadService} from '../../../shared/services/starting-load.service';
-import {LoaderComponent} from '../../../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../../../shared/animations/fading-away.animate';
 import {FilePdfService} from '../../../shared/services/file-pdf.service';
 import {FontJsonFileService} from '../../../shared/services/font-json-file.service';
 import {SearchByIdService} from '../../../shared/services/search-by-id.service';
+import {LoaderPageSpinnerComponent} from '../../../global-components/loader/loader-page-spinner/loader-page-spinner.component';
 
 @Component({
   selector: 'app-training-show',
   templateUrl: './training-show.component.html',
   styleUrls: ['./training-show.component.scss'],
+  providers: [LoaderPageSpinnerComponent],
   animations: [fadingAwayAnimate]
 })
 export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDestroy {
@@ -31,7 +32,7 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
               private getReduxData: GetReduxDataService,
               private headerControl: MainLayoutComponent,
               private startingLoad: StartingLoadService,
-              private loaderComponent: LoaderComponent,
+              private loaderComponent: LoaderPageSpinnerComponent,
               private router: Router,
               private transferToId: SearchByIdService,
               private fontService: FontJsonFileService,
