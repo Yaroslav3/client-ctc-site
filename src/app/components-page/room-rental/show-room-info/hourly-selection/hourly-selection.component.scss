@@ -105,7 +105,9 @@
               input:checked ~ div .checkmark {
                 transition: all .3s ease-in;
                 background-color: #48898b;
-                color: white;
+                span {
+                  color: white;
+                }
               }
               .time-check-block, .no-active {
                 position: relative;
