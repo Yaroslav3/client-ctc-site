@@ -50,11 +50,10 @@
             </div>
           </div>
           <div class="content-selected-period">
-            <app-hourly-selection  *ngIf="showHour" [idRoom]=id></app-hourly-selection>
-            <app-choice-of-days  *ngIf="showDay" [idRoom]=id></app-choice-of-days>
+            <app-hourly-selection *ngIf="showHour" [idRoom]=id></app-hourly-selection>
+            <app-choice-of-days *ngIf="showDay" [idRoom]=id></app-choice-of-days>
           </div>
         </div>
-        <!--          -->
         <!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;select many day date-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
         <!--                <div *ngIf="isChoiceOrder == false">-->
         <!--                  <div class="input-group">-->
@@ -102,18 +101,19 @@
         <!--                      </div>-->
         <!--                    </div>-->
         <!--                  </div>-->
-<!--                          <div class="btn-select">-->
-<!--                            <button type="button" class="btn-back" routerLink="/room-rental"><i class="fas fa-chevron-left"></i> Назад-->
-<!--                            </button>-->
-<!--                            <button type="button" class="btn-go" (click)="nextOnOrder()">Продолжыить</button>-->
-<!--                          </div>-->
+        <!--                          <div class="btn-select">-->
+        <!--                            <button type="button" class="btn-back" routerLink="/room-rental"><i class="fas fa-chevron-left"></i> Назад-->
+        <!--                            </button>-->
+        <!--                            <button type="button" class="btn-go" (click)="nextOnOrder()">Продолжыить</button>-->
+        <!--                          </div>-->
         <!--                </div>-->
         <!--              </div>-->
       </div>
-      <!--    <div class="description-info-room">-->
-      <!--      <angular-editor id="myEditor" [(ngModel)]="room.articleRoom[0].descriptionArticle"-->
-      <!--                      [config]="editorConfig"></angular-editor>-->
-      <!--  </div>-->
+    </div>
+    <div class="description-info-room">
+      <angular-editor class="myEditor"
+                      [ngModel]="room.articleRoom[0].descriptionArticle"
+                      [config]="editorConfig"></angular-editor>
     </div>
   </div>
-
+</div>

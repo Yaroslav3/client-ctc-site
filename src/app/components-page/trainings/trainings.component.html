@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="all-content" [@fadingAwayAnimate]>
-    <app-loader *ngIf="loader"></app-loader>
+    <app-loader-page-spinner *ngIf="loader"></app-loader-page-spinner>
     <div *ngIf="!loader" [@fadingAwayAnimate]>
       <div class="industries-trainings">
         <div class="list-industries" *ngFor="let elem of inscriptions;">

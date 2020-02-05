@@ -1,8 +1,8 @@
 <div class="wrapper">
   <div class="all-content">
-    <app-loader *ngIf="loader"
-                [@fadingAwayAnimate]>
-    </app-loader>
+    <app-loader-page-spinner *ngIf="loader"
+                             [@fadingAwayAnimate]>
+    </app-loader-page-spinner>
     <div class="coach-header"
          [@fadingAwayAnimate]
          *ngIf="!loader">

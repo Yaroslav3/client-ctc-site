@@ -4,14 +4,15 @@ import {Webinars} from '../../../shared/model/Webinars.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
-import {LoaderComponent} from '../../../global-components/loader/loader.component';
 import {fadingAwayAnimate} from '../../../shared/animations/fading-away.animate';
 import {SearchByIdService} from '../../../shared/services/search-by-id.service';
+import {LoaderPageSpinnerComponent} from '../../../global-components/loader/loader-page-spinner/loader-page-spinner.component';
 
 @Component({
   selector: 'app-webinar-show',
   templateUrl: './webinar-show.component.html',
   styleUrls: ['./webinar-show.component.scss'],
+  providers:[LoaderPageSpinnerComponent],
   animations: [fadingAwayAnimate]
 })
 export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDestroy {
@@ -47,7 +48,7 @@ export class WebinarShowComponent implements OnInit, AfterContentChecked, OnDest
   constructor(
     private getReduxData: GetReduxDataService,
     private headerControl: MainLayoutComponent,
-    private loaderComponent: LoaderComponent,
+    private loaderComponent: LoaderPageSpinnerComponent,
     private route: Router,
     private searchId: SearchByIdService,
     private router: ActivatedRoute) {

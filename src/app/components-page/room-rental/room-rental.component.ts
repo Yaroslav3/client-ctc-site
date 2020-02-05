@@ -4,7 +4,6 @@ import {GetReduxDataService} from '../../shared/services/get-redux-data.service'
 import {Room} from '../../shared/model/Room.model';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
-import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 
 @Component({
   selector: 'app-room-rental',

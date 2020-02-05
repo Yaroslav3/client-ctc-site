@@ -3,7 +3,7 @@
     <div class="input-group">
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="date"
-               required (ngModelChange)="select(date)"
+               required (ngModelChange)="selectDataCalendar(date)"
                title="dateEvent"
                ngbDatepicker
                #e="ngbDatepicker">
@@ -15,23 +15,29 @@
       </div>
     </div>
     <div class="select-time-order">
-      <label class="chose-text">Выбор времени:</label>
-      <div class="time-order">
-        <div class="position-input" *ngFor="let data of timeCheckbox; let i=index">
-          <label for="one{{i}}" class="container">{{data.value.time}}
-            <input #inputs name="trainers" type="checkbox" id="one{{i}}"
-                   [disabled]="timeChoice[i].status == true"
-                   (change)="onChange(data.value.time, $event.target.checked)">
-            <div class="time-check-block" [@fadingAwayAnimate] *ngIf="timeChoice[i].status == false">
-              <span class="checkmark">{{data.value.time}}</span>
-            </div>
-          </label>
-        </div>
-        <div class="error-time" [@fadingAwayAnimate] *ngIf="datePicker == true">
-          <div class="error-alert">
+      <div class="position-select-time-order">
+        <label class="chose-text">Выбор времени:</label>
+        <div class="time-order">
+          <div class="position-input" *ngFor="let data of timeCheckbox; let i=index">
+            <label for="one{{i}}" class="container">{{data.value.time}}
+              <input #input name="trainers" type="checkbox" id="one{{i}}"
+                     [disabled]="timeChoice[i].status == true"
+                     (change)="onChange(data.value.time, $event.target.checked)">
+              <div class="time-check-block" [@fadingAwayAnimate]
+                   [ngClass]="{'no-active' : timeChoice[i].status}">
+                <app-loader-small-spinner-btn class="loader"
+                                              *ngIf="loaderTimePeriod"></app-loader-small-spinner-btn>
+                <span class="checkmark"
+                      [ngClass]="{'loader': loaderTimePeriod}"> <span> {{data.value.time }}</span></span>
+              </div>
+            </label>
+          </div>
+          <div class="error-time" [@fadingAwayAnimate] *ngIf="datePicker == true">
+            <div class="error-alert">
             <span class="error-alert__text">
               Пожалуйста, сначала выберите дату, а зтем желаемое время.
             </span>
+            </div>
           </div>
         </div>
       </div>
