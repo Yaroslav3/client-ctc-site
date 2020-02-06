@@ -6,6 +6,9 @@ import {DatePipe} from '@angular/common';
 import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
 import {LoaderSmallSpinnerBtnComponent} from '../../../../global-components/loader/loader-small-spinner-btn/loader-small-spinner-btn.component';
+import {AppState} from '../../../../reduxe';
+import {HourlyOrder} from '../../../../reduxe/room/room.actions';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-hourly-selection',
@@ -16,6 +19,7 @@ import {LoaderSmallSpinnerBtnComponent} from '../../../../global-components/load
 })
 export class HourlySelectionComponent implements OnInit {
   date: Date;
+  dateError: boolean;
   arrayTime = [];
   datePicker: boolean;
   selectedData: boolean;
@@ -37,6 +41,7 @@ export class HourlySelectionComponent implements OnInit {
   ];
   constructor(private roomDate: RoomDateService,
               private loader: LoaderSmallSpinnerBtnComponent,
+              private store: Store<AppState>,
               private route: Router) {
   }
   ngOnInit() {
@@ -49,21 +54,32 @@ export class HourlySelectionComponent implements OnInit {
       ({time: key, number: key, value: this.timeChoice[key]}));
   }
   selectDataCalendar(startPeriod: Date) {
+    console.log(startPeriod);
     this.selectedData = false;
     this.datePicker = false;
     this.selectedTime = false;
-    const end = new Date(startPeriod);
-    const start = new Date(this.date);
-    end.setDate(start.getDate());
-    start.setHours(10);
-    start.setMinutes(0);
-    end.setHours(20);
-    end.setMinutes(0);
-    this.dateTime(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
-    this.inputs.forEach(check => {
-      check.nativeElement.checked = false;
-    });
-    this.arrayTime = []; // при выборе даты очищаем массив с выбранным временем
+    if (startPeriod === null) {
+      this.dateError = false;
+      return;
+    } else {
+      if (typeof startPeriod === 'object') {
+        this.dateError = false;
+        const end = new Date(startPeriod);
+        const start = new Date(this.date);
+        end.setDate(start.getDate());
+        start.setHours(10);
+        start.setMinutes(0);
+        end.setHours(20);
+        end.setMinutes(0);
+        this.dateTime(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
+        this.inputs.forEach(check => {
+          check.nativeElement.checked = false;
+        });
+        this.arrayTime = []; // при выборе даты очищаем массив с выбранным временем
+      } else {
+        this.dateError = true;
+      }
+    }
   }
   dateTime(start: string, end: string) {
     this.loaderTimePeriod = true;
@@ -81,7 +97,6 @@ export class HourlySelectionComponent implements OnInit {
     });
   }
   private showTimeOrder(data: RoomTimeOrder) {
-    console.log(data);
     // при поступлении данных переводим все значения чекбоксов в положение false при любых роскладах
     for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
       this.timeChoice[b].status = false;
@@ -144,15 +159,8 @@ export class HourlySelectionComponent implements OnInit {
     } else if (this.arrayTime.length === 0) {
       this.selectedTime = true;
     } else {
-      //   this.transferDatePeriodService.clearData();
-      //   /**
-      //    * redirect to order time room;
-      //    * ***/
-      //   this.transferRoomOrderService.setData(this.arrayTime);
-      //   // console.log(this.arrayTime);
-      console.log(this.arrayTime);
+      this.store.dispatch(new HourlyOrder(this.arrayTime));
       this.route.navigate(['room', 'order', this.idRoom]);
-      // }
     }
   }
 }

@@ -31,6 +31,8 @@ export interface AppState {
   };
   stateRoom: {
     roomRental: Room;
+    dataHourlyOrder: [],
+    dataChoiceOfDays: []
   };
 }
 

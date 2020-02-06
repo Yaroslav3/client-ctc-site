@@ -1,6 +1,8 @@
 import {InfoLoadingRoom, LoadingRoom} from './room.actions';
 const initialStateRoom = {
-  roomRental: []
+  roomRental: [],
+  dataHourlyOrder: [],
+  dataChoiceOfDays: []
 };
 export function loadingRoomsReducer(state = initialStateRoom, action: InfoLoadingRoom) {
   switch (action.type) {
@@ -8,6 +10,16 @@ export function loadingRoomsReducer(state = initialStateRoom, action: InfoLoadin
       return {
         ...state,
         roomRental: action.payload
+      };
+    case LoadingRoom.RoomDataHourlyOrder:
+      return {
+        ...state,
+        dataHourlyOrder: action.payload
+      };
+    case LoadingRoom.RoomChoiceOfDays:
+      return {
+        ...state,
+        dataChoiceOfDays: action.payload
       };
     default:
       return state;
