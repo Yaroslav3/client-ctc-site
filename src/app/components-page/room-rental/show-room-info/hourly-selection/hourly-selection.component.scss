@@ -1,7 +1,8 @@
 .position-content {
-  height: 380px;
+  height: 254px;
   background: white;
   position: relative;
+  border-radius: 6px;
   .select-block-time {
     width: 100%;
     display: flex;
@@ -22,11 +23,21 @@
           color: #757575;
           border-top-left-radius: 2px;
           border-bottom-left-radius: 2px;
+          transition: all 0.5s ease-in-out;
+        }
+        .invalid {
+          transition: all 0.5s ease-in;
+          border: 1px solid #F3ADAD !important;
         }
         .text-label {
           padding-top: 10px;
           font-size: 15px;
           color: #949494;
+          transition: all 0.5s ease-in-out;
+        }
+        .invalid__text {
+          transition: all 0.5s ease-in;
+          color: #F3ADAD !important;
         }
         .btn-block-calendar {
           .btn-calendar {
@@ -52,6 +63,18 @@
               background-color: #eaeaea;
             }
           }
+        }
+      }
+      .error-data {
+        width: 80%;
+        background: #EBEBEB;
+        padding: 10px 20px;
+        margin: auto;
+        text-align: center;
+        border-radius: 2px;
+        &__text {
+          color: #FFA288;
+          font-size: 12px;
         }
       }
     }
@@ -173,7 +196,7 @@
     text-align: center;
     padding: 10px;
     &__text {
-      color: #FFA288;
+      color: #F3ADAD;
       background: #EBEBEB;
       padding: 10px 20px;
       margin: 0 1px 0 1px;
@@ -312,18 +335,37 @@
     }
   }
 }
+@media all and (max-width: 1444px) {
+  .position-content {
+    height: 336px;
+  }
+}
+@media all and (max-width: 1220px) {
+  .position-content {
+    height: 353px;
+  }
+}
 @media all and (max-width: 1050px) {
   .position-content {
+    height: 261px;
     .error-no-selected {
-      left: 50%;
-      &__text {
-      }
+      left: 50.7%;
     }
     .btn-order-time {
       position: absolute;
       bottom: 5px;
       left: 10px;
     }
+  }
+}
+@media all and (max-width: 870px) {
+  .position-content {
+    height: 341px;
+  }
+}
+@media all and (max-width: 736px) {
+  .position-content {
+    height: 358px;
   }
 }
 @media all and (max-width: 610px) {
@@ -345,7 +387,7 @@
 @media all and (max-width: 500px) {
   .position-content {
     .error-no-selected {
-      left: -6%;
+      left: -1%;
       right: 0;
       width: 100%;
       bottom: -54px;

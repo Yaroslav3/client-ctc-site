@@ -18,4 +18,8 @@ export class RoomDateService {
   timeOneDayRoom(startDay: string, endDay: string, id: number) {
     return this.http.get(`${this.host + environment.apiUrlRoomDayTimeOrder}/${startDay}/${endDay}/${id}`);
   }
+  // Choice time on many day;
+  periodDayRoom(startDay: string, endDay: string, id: number) {
+    return this.http.get(`${this.host + environment.apiUrlRoomPeriodDayOrder}/${startDay}/${endDay}/${id}`);
+  }
 }

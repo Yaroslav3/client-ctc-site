@@ -3,15 +3,24 @@
     <div class="input-group">
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="date"
+               [ngClass]="{'invalid': dateError}"
                required (ngModelChange)="selectDataCalendar(date)"
                title="dateEvent"
                ngbDatepicker
                #e="ngbDatepicker">
-        <label class="text-label form-label">Выбери дату:</label>
+        <label class="text-label form-label" [ngClass]="{'invalid__text': dateError}">Выбери дату:</label>
         <div class="btn-block-calendar">
-          <button class="btn-calendar" (click)="e.toggle()" type="button">
+          <button class="btn-calendar"
+                  type="button"
+                  (click)="e.toggle()"
+                  [ngClass]="{'invalid': dateError}">
             <i class="far fa-calendar-alt calendar-icon"></i></button>
         </div>
+      </div>
+      <div class="error-data"
+           *ngIf="dateError"
+           [@fadingAwayAnimate]>
+        <span class="error-data__text">Пожалуйста, введите корректную дату</span>
       </div>
     </div>
     <div class="select-time-order">
