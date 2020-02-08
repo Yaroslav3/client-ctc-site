@@ -54,7 +54,6 @@ export class HourlySelectionComponent implements OnInit {
       ({time: key, number: key, value: this.timeChoice[key]}));
   }
   selectDataCalendar(startPeriod: Date) {
-    console.log(startPeriod);
     this.selectedData = false;
     this.datePicker = false;
     this.selectedTime = false;
