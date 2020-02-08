@@ -8,8 +8,9 @@
   .content-input {
     width: 50%;
     .input-group {
-      padding: 5px 1px 5px 1px;
+      padding: 19px 1px 5px 1px;
       width: 100%;
+      position: relative;
       .position-element-input {
         display: flex;
         justify-content: space-between;
@@ -20,7 +21,7 @@
           border: 1px solid #5F9EA0;
           padding: 1px 10px;
           font-size: 15px;
-          color: #757575;
+          color: #5F9EA0;
           border-top-left-radius: 2px;
           border-bottom-left-radius: 2px;
           transition: all 0.5s ease-in-out;
@@ -78,8 +79,8 @@
           color: #FFA288;
           font-size: 13px;
         }
-        .err-end-data {
-          font-size: 10px;
+        .err-data {
+          font-size: 13px;
         }
       }
     }
@@ -89,34 +90,121 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     .selected-period-visualisation {
+      padding: 6px 5px;
+      border: 1px solid transparent;
       p {
         min-height: 18px;
         color: #218B8B;
         margin: 1px;
-        padding: 1px;
+        padding: 4px;
+        transition: all 0.4s ease-in-out;
+        position: relative;
+        ::ng-deep .loader-text {
+          .smallSpinner {
+            .overlay {
+              background: transparent !important;
+              border: 1px solid transparent !important;
+            }
+          }
+        }
         .name {
-          width: 115px;
+          width: 104px;
           text-align: left;
           display: inline-block;
           font-size: 13px;
         }
         .data-period {
           width: 80px;
-          text-align: left;
           padding-left: 5px;
           display: inline-block;
           font-size: 13px;
+          text-align: center;
         }
         .time-period {
-          width: 80px;
+          width: 76px;
           text-align: left;
           padding-left: 5px;
           display: inline-block;
           font-size: 13px;
         }
       }
+      .hidden-block {
+        opacity: 0;
+      }
+      .errorData {
+        transition: all 0.4s ease-in;
+        background: #FFA288;
+        border-radius: 2px;
+        color: white;
+      }
+      .errorDataLoader {
+        transition: all 0s ease-in;
+        background: transparent !important;
+      }
     }
+    .btn-order-day {
+      position: absolute;
+      bottom: 5px;
+      left: 16%;
+      .btn-go-order {
+        padding: 5px 40px;
+        border: 1px solid silver;
+        border-radius: 2px;
+        cursor: pointer;
+        background: white;
+        &__text {
+          color: #2C6365;
+          font-size: 13px;
+        }
+        &__icon {
+          &:before {
+            font-size: 13px;
+            color: #2C6365;
+            position: relative;
+            top: 1px;
+            left: 30px;
+          }
+        }
+      }
+      &:hover {
+        .btn-go-order {
+          transition: all .3s ease-in;
+          background-color: #2C6365;
+          &__text {
+            transition: all .3s ease-in;
+            color: white;
+          }
+          &__icon {
+            &:before {
+              transition: all .3s ease-in;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.validated {
+  transition: all 0.4s ease-in;
+  border: 1px solid silver !important;
+  position: relative;
+  border-radius: 3px;
+}
+.cool-icon {
+  position: absolute;
+  transition: all 0.2s ease-in;
+  &:before {
+    transition: all 0.2s ease-in;
+    position: relative;
+    background: white;
+    top: -18px;
+    left: 119px;
+    font-size: 17px;
+    color: silver;
+    padding: 2px 10px;
   }
 }
 input:disabled, button:disabled {
@@ -159,5 +247,43 @@ input:disabled, button:disabled {
     font-size: 14px;
     color: #008B8B !important;
     transition: all 0.2s ease-out;
+  }
+}
+@media all and (max-width: 640px) {
+  .block-selected-content {
+    flex-direction: column;
+    height: 333px;
+    .content-input {
+      width: 99%;
+      .input-group {
+        padding: 2px 1px 5px 1px;
+      }
+      .block-error {
+        .error-item {
+        }
+      }
+    }
+    .content-info {
+      width: 99%;
+      margin: 2px auto 40px auto;
+      .selected-period-visualisation {
+        p {
+          .name {
+          }
+          .data-period {
+          }
+          .time-period {
+          }
+        }
+        .errorData {
+        }
+      }
+      .btn-order-day {
+        bottom: -36px;
+        left: 5%;
+        right: 5%;
+        text-align: center;
+      }
+    }
   }
 }

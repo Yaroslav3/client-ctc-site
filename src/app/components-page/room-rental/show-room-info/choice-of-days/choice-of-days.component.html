@@ -1,65 +1,101 @@
 <div class="block-selected-content" [@fadingAwayAnimate]>
   <div class="content-input">
     <div class="input-group">
+      <app-loader-small-spinner-btn *ngIf="loaderStartDate"></app-loader-small-spinner-btn>
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="dateStart"
-               [ngClass]="{'invalid': dateError}"
+               [ngClass]="{'invalid': errorInvalidStartDay}"
                required (ngModelChange)="selectDataCalendarStart(dateStart)"
-               title="dateEvent"
                ngbDatepicker
                #beginningOfPeriod="ngbDatepicker">
-        <label class="text-label form-label" [ngClass]="{'invalid__text': dateError}">Первый день:</label>
+        <label class="text-label form-label" [ngClass]="{'invalid__text': errorInvalidStartDay}">Первый день:</label>
         <div class="btn-block-calendar">
           <button class="btn-calendar"
                   type="button"
                   (click)="beginningOfPeriod.toggle()"
-                  [ngClass]="{'invalid': dateError}">
+                  [ngClass]="{'invalid': errorInvalidStartDay}">
             <i class="far fa-calendar-alt calendar-icon"></i></button>
         </div>
       </div>
     </div>
     <div class="block-error">
-      <div class="error-item" *ngIf="errorStartData" [@showAnimate]>
-        <span>Указаная дата не свободна для выбора </span>
+      <div class="error-item" *ngIf="errorStartData && !loaderStartDate && !loaderEndDate" [@showAnimate]>
+        <span class="err-data"> Указаная дата не свободна для выбора </span>
       </div>
-      <div class="error-item" *ngIf="errorEndData" [@showAnimate]>
-        <span class="err-end-data">В указанный период даты заняты, выберите пожалуйста другой период</span>
+      <div class="error-item" *ngIf="errorEndData  && !loaderEndDate && !loaderStartDate" [@showAnimate]>
+        <span class="err-data">В указанный вами период даты заняты</span>
+      </div>
+      <div class="error-item" *ngIf="errorInvalidStartDay || errorInvalidEndDay && !loaderStartDate" [@showAnimate]>
+        <span class="err-data"> Пожалуйста, введите корректную дату</span>
+      </div>
+      <div class="error-item" *ngIf="wrongDateSelected" [@showAnimate]>
+        <span class="err-data"> Неправильно выбрана дата</span>
       </div>
     </div>
     <div class="input-group">
+      <app-loader-small-spinner-btn *ngIf="loaderEndDate"></app-loader-small-spinner-btn>
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="dateEnd"
-               [ngClass]="{'invalid': dateError}"
+               [ngClass]="{'invalid': errorInvalidEndDay}"
                required (ngModelChange)="selectDataCalendarEnd(dateEnd)"
-               title="dateEvent"
-               [disabled]="disabledStartDate"
+               [disabled]="disabledEndDate"
                ngbDatepicker
                #endOfPeriod="ngbDatepicker">
-        <label class="text-label form-label" [ngClass]="{'invalid__text': dateError}">Последний день:</label>
+        <label class="text-label form-label" [ngClass]="{'invalid__text': errorInvalidEndDay}">Последний день:</label>
         <div class="btn-block-calendar">
           <button class="btn-calendar"
                   type="button"
-                  [disabled]="disabledStartDate"
+                  [disabled]="disabledEndDate"
                   (click)="endOfPeriod.toggle()"
-                  [ngClass]="{'invalid': dateError}">
+                  [ngClass]="{'invalid': errorInvalidEndDay}">
             <i class="far fa-calendar-alt calendar-icon"></i></button>
         </div>
       </div>
     </div>
   </div>
   <div class="content-info">
-    <div class="selected-period-visualisation">
-      <p class="selected-period-visualisation__start" *ngIf="!errorStartData">
-        <span class="name" [@fadingAwayAnimate] *ngIf="dateStart">Первый день: </span>
-        <span class="data-period" [@fadingAwayAnimate] *ngIf="dateStart">{{dateStart | date:'yyyy/LL/dd'}}</span>
-        <span class="time-period" [@fadingAwayAnimate] *ngIf="dateStart">10:00 - 19:00</span>
+    <div class="selected-period-visualisation"
+         [ngClass]="{'validated': btnNext  && !loaderStartDate && !loaderEndDate}">
+      <i class="far fa-thumbs-up cool-icon" [@fadingAwayAnimate]
+         *ngIf="btnNext && !loaderStartDate && !loaderEndDate"></i>
+      <p class="selected-period-visualisation__start"
+         [ngClass]="{'errorData': errorStartData, 'errorDataLoader': loaderStartDate, 'hidden-block': errorInvalidStartDay}">
+        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderStartDate"></app-loader-small-spinner-btn>
+        <span *ngIf="!loaderStartDate">
+           <span class="name" [@fadingAwayAnimate]
+                 *ngIf="dateStart">Первый день: </span>
+           <span class="data-period" [@fadingAwayAnimate]
+                 [ngClass]="{'errorData': wrongDateSelected}"
+                 *ngIf="dateStart">{{visibleDataStart | date:'yyyy/LL/dd'}}</span>
+           <span class="time-period" [@fadingAwayAnimate]
+                 *ngIf="dateStart">10:00 - 19:00</span>
+        </span>
       </p>
-      <p class="selected-period-visualisation__end">
-        <span class="name" [@fadingAwayAnimate] *ngIf="dateEnd">Последний день: </span>
-        <span class="data-period" [@fadingAwayAnimate] *ngIf="dateEnd">{{dateEnd | date:'yyyy/LL/dd'}}</span>
-        <span class="time-period" [@fadingAwayAnimate] *ngIf="dateEnd">10:00 - 19:00</span>
+      <p class="selected-period-visualisation__end"
+         [ngClass]="{'errorData': errorEndData, 'errorDataLoader': loaderEndDate, 'hidden-block': errorInvalidEndDay}">
+        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderEndDate"></app-loader-small-spinner-btn>
+        <span *ngIf="!loaderEndDate">
+             <span class="name" [@fadingAwayAnimate]
+                   *ngIf="dateEnd">Последний день:
+             </span>
+             <span class="data-period" [@fadingAwayAnimate]
+                   [ngClass]="{'errorData': wrongDateSelected}"
+                   *ngIf="dateEnd">
+             <span>{{visibleDataEnd | date:'yyyy/LL/dd'}}</span></span>
+             <span class="time-period" [@fadingAwayAnimate]
+                   *ngIf="dateEnd">10:00 - 19:00</span>
+        </span>
       </p>
+    </div>
+    <div class="btn-order-day"
+         (click)="nextOnOrder()"
+         *ngIf="btnNext && !loaderStartDate && !loaderEndDate" [@fadingAwayAnimate]>
+      <button class="btn-go-order">
+        <span class="btn-go-order__text">Далее</span>
+        <i class="fas fa-long-arrow-alt-right btn-go-order__icon"></i>
+      </button>
     </div>
   </div>
 </div>
+
 

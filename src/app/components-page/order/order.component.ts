@@ -3,7 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {Trainings} from '../../shared/model/Trainings.model';
 import {Order} from '../../shared/model/Order.model';
 import {OrderService} from '../../shared/services/order.service';
-import {NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {AppState} from '../../reduxe';
 import {Store} from '@ngrx/store';
 import {DateValidator} from '../../shared/validators/validators.date';
@@ -30,9 +30,8 @@ import {LoaderSmallSpinnerComponent} from '../../global-components/loader/loader
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss'],
-  providers: [LoaderSmallSpinnerComponent],
+  providers: [LoaderSmallSpinnerComponent, {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
-  // providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}]
 })
 export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   loader: boolean;
@@ -158,7 +157,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.loaderComponent.startSmallSpinner();
     const order: Order = new Order();
     order.orderTrainers = this.myForm.controls.orderTrainers.value.join(' , ');
-    order.date = this.orderForm.controls.date.value;
+    order.date = this.orderForm.controls.date.value.toString();
     order.training = this.orderForm.controls.training.value;
     order.country = this.orderForm.controls.country.value;
     order.city = this.orderForm.controls.city.value;
@@ -186,6 +185,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
   // ____form filling methods from state___
   dataRedux() {
+    console.log(this.orderForm.controls.date.value);
     if (this.orderForm.controls.date.valid) {
       this.store.dispatch(new OrderTrainingsReduxDate(this.orderForm.controls.date.value));
     }
