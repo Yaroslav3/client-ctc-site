@@ -1,1 +1,161 @@
-<p>order-room works!</p>
+<div class="wrapper" [@fadingAwayAnimate]>
+  <div class="all-content">
+    <div class="btn-corrected" appBackLink>
+          <span class="fas fa-chevron-left">
+          <span class="btn-text">Назад</span>
+        </span>
+    </div>
+    <div class="block-order-room">
+      <div class="bl-info">
+        <!---------------------------------------- Hour block --------------------------------------------------------->
+        <div class="time-room" *ngIf="isDateTimeRoom">
+          <div class="order-info-text">
+            <i class="fas fa-info order-info-text__icon-info"></i>
+            <span class="order-info-text__text">Информация о заказе</span>
+          </div>
+          <div class="block-time-start">
+            <i class="far fa-calendar-alt block-time-start__calendar-icon"></i>
+            <span class="block-time-start__text">Дата события: </span>
+            <span class="block-time-start__date"> {{date | date: 'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="block-order-list-time">
+            <i class="far fa-clock block-order-list-time__icon-clock"></i>
+            <span class="block-order-list-time__text"> Выбранное время :</span>
+            <div class="block-order-list-time__show-block">
+              <div class="time-show" *ngFor="let elem of  visualisationTimeOrder">
+                <span class="time-show-start">{{elem.startDate | date :'HH-mm'}} - </span>
+                <span class="time-show-end">{{elem.endDate | date :'HH-mm'}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="block-price">
+            <div class="block-price-descriptions">
+              <i class="fas fa-dollar-sign block-price-descriptions__icon-currency"></i>
+              <span class="block-price-descriptions__text"> Цена заказа: </span>
+              <span class="block-price-descriptions__currency"> {{room.priseRoom[0].priceHour}}/ час </span>
+            </div>
+            <div *ngIf="room" class="prise-order">
+              <i class="fas fa-shopping-cart prise-order__icons-hopping-cart"></i>
+              <span class="prise-order__prise">{{room.priseRoom[0].priceHour * numOrder}} </span>
+              <span class="prise-order__currency">{{room.priseRoom[0].currency}}</span>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------- Day block --------------------------------------------------------->
+        <div class="day-room" *ngIf="isDateDayRoom">
+          <div class="order-info-text">
+            <i class="fas fa-info order-info-text__icon-info"></i>
+            <span class="order-info-text__text">Информация о заказе</span>
+          </div>
+          <div class="block-time-start">
+            <i class="far fa-calendar-alt block-time-start__calendar-icon"></i>
+            <span class="block-time-start__text">Дата начала: </span>
+            <span class="block-time-start__date"> {{visualisationDayOrder.startDate | date: 'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="block-time-end">
+            <i class="far fa-calendar-alt block-time-end__calendar-icon"></i>
+            <span class="block-time-end__text">Дата окончания: </span>
+            <span class="block-time-end__date"> {{visualisationDayOrder.endDate | date: 'yyyy-MM-dd'}}</span>
+          </div>
+          <div class="block-order-list-time">
+            <i class="far fa-clock block-order-list-time__icon-clock"></i>
+            <span class="block-order-list-time__text"> Ваше время в выбраные дни :</span>
+            <div class="block-order-list-time__show-block-day">
+              <div class="time-show">
+                <span class="time-show-start"> 10-00 - </span>
+                <span class="time-show-end"> 19-00</span>
+              </div>
+            </div>
+          </div>
+          <div class="block-price">
+            <div class="block-price-descriptions">
+              <i class="fas fa-dollar-sign block-price-descriptions__icon-currency"></i>
+              <span class="block-price-descriptions__text"> Цена заказа: </span>
+              <span class="block-price-descriptions__currency"> {{room.priseRoom[0].priceDay}}/ день </span>
+            </div>
+            <div *ngIf="room" class="prise-order">
+              <i class="fas fa-shopping-cart prise-order__icons-hopping-cart"></i>
+              <span class="prise-order__prise">{{room.priseRoom[0].priceDay * countDay}} </span>
+              <span class="prise-order__currency">{{room.priseRoom[0].currency}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-client">
+        <form class="form" name="form" [formGroup]="formGroup" (ngSubmit)="createRoomPrice()" novalidate>
+          <div class="input-filed input-position">
+            <input class="form-input"
+                   required formControlName="name"
+                   type="text" name="name" title="ФИО"
+                   [ngClass]="{invalid: isSubmitted && f.name.errors, ngValid: !f.name.errors}">
+            <label class="form-label">ФИО</label>
+            <div class="error-input">
+              <div *ngIf="isSubmitted && f.name.errors">
+                <span [@showAnimate] *ngIf="f.name.errors.required">* заполни поле </span>
+                <span [@showAnimate] *ngIf="f.name.errors.maxlength">* не более 50 символов </span>
+              </div>
+            </div>
+          </div>
+          <div class="input-filed input-position">
+            <input class="form-input"
+                   required formControlName="email"
+                   name="email" title="email"
+                   [ngClass]="{invalid: isSubmitted && f.email.errors, ngValid: !f.email.errors}">
+            <label class="form-label">Email</label>
+            <div class="error-input">
+              <div *ngIf="isSubmitted && f.email.errors">
+                <span [@showAnimate] *ngIf="f.email.errors.required">* заполни поле </span>
+                <span [@showAnimate] *ngIf="f.email.errors.email">* поле не формата email</span>
+              </div>
+            </div>
+          </div>
+          <div class="input-filed input-position">
+            <input class="form-input"
+                   required formControlName="phone"
+                   type="phone"
+                   name="phone" title="Телефон"
+                   [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}">
+            <label class="form-label">Телефон</label>
+            <div class="error-input">
+              <div *ngIf="isSubmitted && f.phone.errors">
+                <span [@showAnimate] *ngIf="f.phone.errors.required">* заполни поле </span>
+                <span [@showAnimate] *ngIf="f.phone.errors.maxlength">* не более 7 символов </span>
+              </div>
+            </div>
+          </div>
+          <div class="input-filed  input-position">
+            <textarea class="form-input textarea" required type="text"
+                      formControlName="description"
+                      name="description"></textarea>
+            <label class="form-label">Дополнительные сведения</label>
+            <div class="error-input">
+              <div *ngIf="isSubmitted && f.description.errors">
+                <span [@showAnimate] *ngIf="f.description.errors.maxlength">* не более 500 символов </span>
+              </div>
+            </div>
+          </div>
+          <div class="btn-block-by-room">
+            <button class="by-room-btn">
+              <span class="by-room-btn__text">Оформить заказ</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <!--      <div class="btn-liqPay">-->
+      <!--        <div *ngIf="isInputInf == false">-->
+      <!--          <div class="r-b-liqPay">-->
+      <!--            <button (click)="liqPayInvoiceRoom()">-->
+      <!--              <img src="assets/img/visa-mastercard.png">-->
+      <!--            </button>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--        <div *ngIf="isMassage == true">-->
+      <!--          <div class="alert alert-secondary" role="alert">-->
+      <!--            Дата и время уже заняты , выберете пожайлуста другой диапазон времени...!!!-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>
+

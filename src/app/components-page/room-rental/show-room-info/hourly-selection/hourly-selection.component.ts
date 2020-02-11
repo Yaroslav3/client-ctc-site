@@ -88,7 +88,6 @@ export class HourlySelectionComponent implements OnInit {
         if (!data) {
         } else {
           this.showTimeOrder(data);
-          console.log(data);
           this.loaderTimePeriod = false;
           this.loader.stopSmallSpinnerBtn();
         }
@@ -122,7 +121,6 @@ export class HourlySelectionComponent implements OnInit {
         // end time;
         roomTimeOrder.endDate = this.createNumberData(Number(num));
         this.arrayTime.push(roomTimeOrder);
-        console.log(this.arrayTime);
       } else {
         for (let i = 0; i < this.arrayTime.length; i++) {
           if (new Date(this.arrayTime[i].startDate).getHours() === this.createNumberData(Number(num - 1)).getHours()) {
