@@ -49,7 +49,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       this.showBlockTimeOrder();
       this.showBlockDayOrder();
       if (!this.timeOrder && !this.dayOrder || !this.room) {
-        // this.route.navigate(['/room-rental']);
+        this.route.navigate(['/room-rental']);
       }
     });
   }
@@ -57,7 +57,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     return this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.maxLength(7)]],
+      phone: ['', [Validators.required, Validators.minLength(14)]],
       description: ['', [Validators.maxLength(500)]],
     });
   }
@@ -95,8 +95,8 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     this.headerControl.menuScrolling = false;
   }
   createRoomPrice() {
-    this.isSubmitted = true;
     if (this.formGroup.invalid) {
+      this.isSubmitted = true;
       return;
     }
   }

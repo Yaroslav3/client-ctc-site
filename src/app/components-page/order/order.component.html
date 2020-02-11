@@ -171,17 +171,16 @@
                           <span>{{orderError.nameSurname}}</span>
                         </div>
                       </div>
-                      <input formControlName="phone" class="input" name="phone" type="text"
-                             pattern="[0-9]*" minlength="10" maxlength="10"
+                      <input formControlName="phone" class="input" name="phone"  type="tel"
                              [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
                              (input)="phoneRedux()"
                              [ngModel]="this.formRedux.phone"
-                             placeholder="№ телефона (0992223344)*">
+                             appPhoneMask
+                             placeholder="№ телефона (XXX)-XXX-XXXX*">
                       <div class="error-input">
                         <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors,">
                           <span *ngIf="f.phone.errors.required">* заполни поле </span>
-                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в поле должно быть 10 чисел</span>
-                          <span *ngIf="f.phone.errors.numeric" [@showAnimate]> * только числа </span>
+                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в  введите номер телефона в формате (XXX)-XXX-XXXX</span>
                         </div>
                         <div [@fadingAwayAnimate] *ngIf="orderError">
                           <span>{{orderError.phone}}</span>

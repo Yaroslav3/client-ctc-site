@@ -58,19 +58,19 @@
                   </div>
                 </div>
                 <div class="input-filed">
-                  <input formControlName="phone" class="input" name="phone" type="text" pattern="[0-9]*" minlength="10"
+                  <input formControlName="phone" class="input" name="phone" type="tel"
                          [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
                          [ngModel]="formOrder.phone"
                          (input)="phoneRedux()"
-                         maxlength="10" title="номер телефона"
-                         placeholder="№ телефона (0992223344) *">
+                         appPhoneMask
+                         title="номер телефона"
+                         placeholder="№ телефона (XXX)-XXX-XXXX*">
                   <div class="error-input">
                     <div *ngIf="isSubmitted && f.phone.errors">
                       <div *ngIf="f.phone.errors.required" [@showAnimate]><span>* заполни поле </span>
                       </div>
                       <div>
-                        <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в поле должно быть 10 чисел</span>
-                        <span *ngIf="f.phone.errors.numeric" [@showAnimate]> * только числа </span>
+                        <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в  введите номер телефона в формате (XXX)-XXX-XXXX</span>
                       </div>
                     </div>
                   </div>

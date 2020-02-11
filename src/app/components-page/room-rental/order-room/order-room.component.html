@@ -82,7 +82,7 @@
         </div>
       </div>
       <div class="info-client">
-          <p class="form-order-banner">Форма заказа</p>
+        <p class="form-order-banner">Форма заказа</p>
         <form class="form" name="form" [formGroup]="formGroup" (ngSubmit)="createRoomPrice()" novalidate>
           <div class="input-filed input-position">
             <input class="form-input"
@@ -112,15 +112,19 @@
           </div>
           <div class="input-filed input-position">
             <input class="form-input"
+                   type="tel"
                    required formControlName="phone"
-                   type="phone"
                    name="phone" title="Телефон"
+                   appPhoneMask
                    [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}">
-            <label class="form-label">Телефон</label>
+            <label class="form-label">
+              <span>Телефон</span>
+              <span [@fadingAwayAnimate] class="number">(XXX)-XXX-XXXX</span>
+            </label>
             <div class="error-input">
               <div *ngIf="isSubmitted && f.phone.errors">
                 <span [@showAnimate] *ngIf="f.phone.errors.required">* заполни поле </span>
-                <span [@showAnimate] *ngIf="f.phone.errors.maxlength">* не более 7 символов </span>
+                <span [@showAnimate] *ngIf="f.phone.errors.minlength">* введите номер телефона в формате (XXX)-XXX-XXXX </span>
               </div>
             </div>
           </div>

@@ -178,7 +178,7 @@
       margin: 10px;
       padding: 15px 15px 5px 15px;
       border: 1px solid #80A0A2;
-      border-radius: 4px;
+      border-radius: 2px;
       .form-order-banner {
         top: 109px;
         padding: 5px 10px;
@@ -211,9 +211,10 @@
             margin: auto;
             display: flex;
             color: #80A0A2;
+            font-size: 13px;
           }
           .textarea {
-            height: 65px;
+            height: 70px;
           }
           .form-label {
             position: absolute;
@@ -224,7 +225,11 @@
             z-index: 100;
             color: #80A0A2;
             font-size: 13px;
-            display: inline-block;
+            display: flex;
+            .number {
+              transition: all 0.2s ease-out;
+              display: none;
+            }
           }
           .form-input:focus ~ .form-label {
             top: -25px;
@@ -233,6 +238,11 @@
             font-size: 13px;
             color: #008B8B;
             transition: all 0.2s ease-in;
+            .number {
+              transition: all 0.2s ease-in;
+              display: block;
+              padding-left: 10px;
+            }
           }
           .form-input:not(:focus):valid ~ .form-label {
             top: -25px;
@@ -241,6 +251,9 @@
             font-size: 13px;
             color: #008B8B;
             transition: all 0.2s ease-out;
+            .number {
+              display: none;
+            }
           }
           .error-input {
             min-height: 20px;
@@ -263,12 +276,13 @@
           width: 95%;
           text-align: end;
           .by-room-btn {
-            padding: 9px 12px;
+            padding: 8px 12px;
             background: #EBEBEB;
             border-radius: 2px;
             transition: all 0.2s ease-out;
             cursor: pointer;
-            border: 1px solid silver;
+            border: none;
+            //border: 1px solid silver;
             &__text {
               transition: all 0.25s ease-out;
               font-size: 14px;
