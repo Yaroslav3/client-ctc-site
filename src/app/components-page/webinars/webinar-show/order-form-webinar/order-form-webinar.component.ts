@@ -8,7 +8,6 @@ import {WebinarOrder} from '../../../../shared/model/WebinarOrder.model';
 import {OrderService} from '../../../../shared/services/order.service';
 import {GetReduxDataService} from '../../../../shared/services/get-redux-data.service';
 import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
-import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../reduxe';
 import {OrderWebinarEmailUser, OrderWebinarNameUser, OrderWebinarPhoneUser} from '../../../../reduxe/vebinars/webinars.action';
@@ -66,8 +65,7 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     return this.formLiqPay = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(10),
-        RxwebValidators.numeric({acceptValue: NumericValueType.PositiveNumber, allowDecimal: false})]],
+      phone: ['', [Validators.required, Validators.minLength(14)]],
     });
   }
   public get f() {

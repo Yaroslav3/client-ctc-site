@@ -7,10 +7,10 @@
   border-radius: 6px;
   .content-input {
     width: 50%;
+    position: relative;
     .input-group {
       padding: 19px 1px 5px 1px;
       width: 100%;
-      position: relative;
       .position-element-input {
         display: flex;
         justify-content: space-between;
@@ -209,7 +209,7 @@
 }
 input:disabled, button:disabled {
   background: #EBEBEB !important;
-  border: 1px solid silver !important;
+  border: 1px solid white !important;
 }
 // ___style input______
 .input-position {

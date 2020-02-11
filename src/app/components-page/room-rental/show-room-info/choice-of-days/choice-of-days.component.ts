@@ -34,8 +34,8 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   nextEndDeyValid = false;
   @Input() idRoom;
   wrongDateSelected: boolean;
-  loaderStartDate = false;
-  loaderEndDate = false;
+  loaderComponent = false;
+
   constructor(private roomDate: RoomDateService,
               private route: Router,
               private loader: LoaderSmallSpinnerBtnComponent,
@@ -91,7 +91,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   }
   periodStartDayRoom(start: string, end: string) {
     this.loader.startSmallSpinnerBtn();
-    this.loaderStartDate = true;
+    this.loaderComponent = true;
     this.roomDate.periodDayRoom(start, end, this.idRoom).subscribe((data: StatusMessage) => {
       setTimeout(() => {
         if (data.message === 'not empty') {
@@ -104,7 +104,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
           this.errorStartData = false;
         }
         this.visibleDataStart = new Date(start);
-        this.loaderStartDate = false;
+        this.loaderComponent = false;
         this.loader.stopSmallSpinnerBtn();
       }, 2000);
     });
@@ -152,7 +152,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   }
   periodEndDayRoom(start: string, end: string) {
     this.loader.startSmallSpinnerBtn();
-    this.loaderEndDate = true;
+    this.loaderComponent = true;
     this.roomDate.periodDayRoom(start, end, this.idRoom).subscribe((data: StatusMessage) => {
       setTimeout(() => {
         if (data.message === 'not empty') {
@@ -165,7 +165,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
           this.errorStartData = false;
         }
         this.visibleDataEnd = new Date(end);
-        this.loaderEndDate = false;
+        this.loaderComponent = false;
         this.loader.stopSmallSpinnerBtn();
       }, 2000);
     });

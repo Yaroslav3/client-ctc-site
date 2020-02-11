@@ -23,7 +23,6 @@ import {
   OrderTrainingsReduxPhone,
   OrderTrainingsReduxTraining
 } from '../../reduxe/trainings/trainings.action';
-import {NumericValueType, RxwebValidators} from '@rxweb/reactive-form-validators';
 import {LoaderSmallSpinnerComponent} from '../../global-components/loader/loader-small-spinner/loader-small-spinner.component';
 
 @Component({
@@ -110,8 +109,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       city: ['', [Validators.required]],
       company: ['', [Validators.required]],
       nameSurname: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.minLength(10),
-        RxwebValidators.numeric({acceptValue: NumericValueType.PositiveNumber, allowDecimal: false})]],
+      phone: ['', [Validators.required, Validators.minLength(14)]],
       country: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       description: ['', [Validators.maxLength(1025)]],
@@ -157,7 +155,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     this.loaderComponent.startSmallSpinner();
     const order: Order = new Order();
     order.orderTrainers = this.myForm.controls.orderTrainers.value.join(' , ');
-    order.date = this.orderForm.controls.date.value.toString();
+    order.date = this.orderForm.controls.date.value;
     order.training = this.orderForm.controls.training.value;
     order.country = this.orderForm.controls.country.value;
     order.city = this.orderForm.controls.city.value;

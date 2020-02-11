@@ -1,7 +1,7 @@
 <div class="block-selected-content" [@fadingAwayAnimate]>
   <div class="content-input">
+    <app-loader-small-spinner-btn *ngIf="loaderComponent"></app-loader-small-spinner-btn>
     <div class="input-group">
-      <app-loader-small-spinner-btn *ngIf="loaderStartDate"></app-loader-small-spinner-btn>
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="dateStart"
                [ngClass]="{'invalid': errorInvalidStartDay}"
@@ -19,13 +19,13 @@
       </div>
     </div>
     <div class="block-error">
-      <div class="error-item" *ngIf="errorStartData && !loaderStartDate && !loaderEndDate" [@showAnimate]>
+      <div class="error-item" *ngIf="errorStartData && !loaderComponent" [@showAnimate]>
         <span class="err-data"> Указаная дата не свободна для выбора </span>
       </div>
-      <div class="error-item" *ngIf="errorEndData  && !loaderEndDate && !loaderStartDate" [@showAnimate]>
+      <div class="error-item" *ngIf="errorEndData  && !loaderComponent" [@showAnimate]>
         <span class="err-data">В указанный вами период даты заняты</span>
       </div>
-      <div class="error-item" *ngIf="errorInvalidStartDay || errorInvalidEndDay && !loaderStartDate" [@showAnimate]>
+      <div class="error-item" *ngIf="errorInvalidStartDay || errorInvalidEndDay && !loaderComponent" [@showAnimate]>
         <span class="err-data"> Пожалуйста, введите корректную дату</span>
       </div>
       <div class="error-item" *ngIf="wrongDateSelected" [@showAnimate]>
@@ -33,7 +33,6 @@
       </div>
     </div>
     <div class="input-group">
-      <app-loader-small-spinner-btn *ngIf="loaderEndDate"></app-loader-small-spinner-btn>
       <div class="position-element-input input-position">
         <input class="form-control form-input" [(ngModel)]="dateEnd"
                [ngClass]="{'invalid': errorInvalidEndDay}"
@@ -55,13 +54,13 @@
   </div>
   <div class="content-info">
     <div class="selected-period-visualisation"
-         [ngClass]="{'validated': btnNext  && !loaderStartDate && !loaderEndDate}">
+         [ngClass]="{'validated': btnNext  && !loaderComponent}">
       <i class="far fa-thumbs-up cool-icon" [@fadingAwayAnimate]
-         *ngIf="btnNext && !loaderStartDate && !loaderEndDate"></i>
+         *ngIf="btnNext && !loaderComponent"></i>
       <p class="selected-period-visualisation__start"
-         [ngClass]="{'errorData': errorStartData, 'errorDataLoader': loaderStartDate, 'hidden-block': errorInvalidStartDay}">
-        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderStartDate"></app-loader-small-spinner-btn>
-        <span *ngIf="!loaderStartDate">
+         [ngClass]="{'errorData': errorStartData, 'errorDataLoader': loaderComponent, 'hidden-block': errorInvalidStartDay}">
+        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderComponent"></app-loader-small-spinner-btn>
+        <span *ngIf="!loaderComponent">
            <span class="name" [@fadingAwayAnimate]
                  *ngIf="dateStart">Первый день: </span>
            <span class="data-period" [@fadingAwayAnimate]
@@ -72,9 +71,9 @@
         </span>
       </p>
       <p class="selected-period-visualisation__end"
-         [ngClass]="{'errorData': errorEndData, 'errorDataLoader': loaderEndDate, 'hidden-block': errorInvalidEndDay}">
-        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderEndDate"></app-loader-small-spinner-btn>
-        <span *ngIf="!loaderEndDate">
+         [ngClass]="{'errorData': errorEndData, 'errorDataLoader': loaderComponent, 'hidden-block': errorInvalidEndDay}">
+        <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderComponent"></app-loader-small-spinner-btn>
+        <span *ngIf="!loaderComponent">
              <span class="name" [@fadingAwayAnimate]
                    *ngIf="dateEnd">Последний день:
              </span>
@@ -89,7 +88,7 @@
     </div>
     <div class="btn-order-day"
          (click)="nextOnOrder()"
-         *ngIf="btnNext && !loaderStartDate && !loaderEndDate" [@fadingAwayAnimate]>
+         *ngIf="btnNext && !loaderComponent" [@fadingAwayAnimate]>
       <button class="btn-go-order">
         <span class="btn-go-order__text">Далее</span>
         <i class="fas fa-long-arrow-alt-right btn-go-order__icon"></i>

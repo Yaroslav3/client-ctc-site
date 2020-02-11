@@ -14,10 +14,11 @@ export class OrderService {
   }
   saveOrder(order: Order) {
     return this.http.post(this.host + environment.apiUrlTrainingsOrder, order, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }
+    );
   }
   createWebinarOrder(webinarOrder: WebinarOrder) {
     return this.http.post(this.host + environment.apiUrlCreateWebinarOrder, webinarOrder);
