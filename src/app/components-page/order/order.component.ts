@@ -68,7 +68,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
   ngOnInit() {
     this.loader = true;
-    window.scroll(0, 0);
     this.headerControl.hiddenHeaderComponent();
     this.loaderComponent.startSmallSpinner();
     this.myForm = this.fb.group({orderTrainers: this.fb.array([])});
