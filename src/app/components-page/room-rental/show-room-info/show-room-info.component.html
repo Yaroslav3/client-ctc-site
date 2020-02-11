@@ -54,60 +54,6 @@
             <app-choice-of-days *ngIf="showDay" [idRoom]=id></app-choice-of-days>
           </div>
         </div>
-        <!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;select many day date-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-        <!--                <div *ngIf="isChoiceOrder == false">-->
-        <!--                  <div class="input-group">-->
-        <!--                    <label>Дата окончания:</label>-->
-        <!--                    <input class="form-control" [(ngModel)]="dateManyDay"-->
-        <!--                           placeholder="yyyy-mm-dd"-->
-        <!--                           required (ngModelChange)="selectPeriodDate($event)"-->
-        <!--                           title="dateEvent"-->
-        <!--                           ngbDatepicker-->
-        <!--                           #e="ngbDatepicker">-->
-        <!--                    <div class="input-group-append">-->
-        <!--                      <button class="btn btn-outline-secondary calendar" (click)="e.toggle()" type="button"><i-->
-        <!--                        class="far fa-calendar-alt"></i></button>-->
-        <!--                    </div>-->
-        <!--                  </div>-->
-        <!--                  <div class="error-time" *ngIf="isCheckDate == true">-->
-        <!--                    <div class="alert alert-danger" role="alert">-->
-        <!--                      Дата в указанном промежутке уже занята.-->
-        <!--                    </div>-->
-        <!--                  </div>-->
-        <!--                  <div class="btn-select">-->
-        <!--                    <button type="button" class="btn-back" routerLink="/room-rental"><i class="fas fa-chevron-left"></i> Назад-->
-        <!--                    </button>-->
-        <!--                    <button type="button" class="btn-go" [disabled]="isDisabledBtnPeriodDay" (click)="nextOnOrder()">-->
-        <!--                      Продолжыить-->
-        <!--                    </button>-->
-        <!--                  </div>-->
-        <!--                </div>-->
-        <!--                &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;select one day date and time-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-        <!--                <div *ngIf="isChoiceOrder == true" class="select-time-order">-->
-        <!--                  <label class="chose-text">Выбор времени:</label>-->
-        <!--                  <div class="time-order">-->
-        <!--                    <div *ngFor="let data of timeCheckbox; let i=index">-->
-        <!--                      <label for="one{{i}}" class="container">{{data.value.time}}-->
-        <!--                        <input #inputs name="trainers" type="checkbox" id="one{{i}}" [disabled]="timeChoice[i].status == true"-->
-        <!--                               (change)="onChange(data.value.time, $event.target.checked)">-->
-        <!--                        <div *ngIf="timeChoice[i].status == false">-->
-        <!--                          <span class="checkmark">{{data.value.time}}</span>-->
-        <!--                        </div>-->
-        <!--                      </label>-->
-        <!--                    </div>-->
-        <!--                    <div class="error-time" *ngIf="isEmptyArray == true">-->
-        <!--                      <div class="alert alert-danger" role="alert">-->
-        <!--                        Пожалуйста, выберите хотя бы один промежуток времени.-->
-        <!--                      </div>-->
-        <!--                    </div>-->
-        <!--                  </div>-->
-        <!--                          <div class="btn-select">-->
-        <!--                            <button type="button" class="btn-back" routerLink="/room-rental"><i class="fas fa-chevron-left"></i> Назад-->
-        <!--                            </button>-->
-        <!--                            <button type="button" class="btn-go" (click)="nextOnOrder()">Продолжыить</button>-->
-        <!--                          </div>-->
-        <!--                </div>-->
-        <!--              </div>-->
       </div>
     </div>
     <div class="description-info-room">

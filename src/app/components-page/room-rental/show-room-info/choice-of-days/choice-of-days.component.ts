@@ -48,10 +48,12 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
     this.btnVisible();
   }
   selectDataCalendarStart(startPeriod: Date) {
+    console.log(startPeriod);
     if (startPeriod === null) {
       this.errorInvalidStartDay = false;
       this.errorEndData = false;
       this.errorStartData = false;
+      this.btnNext = false;
       return;
     } else {
       const dataFormat = new Date(startPeriod);
@@ -60,6 +62,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
         this.disabledEndDate = false;
         this.nextStartDeyValid = true;
         this.errorEndData = false;
+        this.visibleDataStart = startPeriod;
         this.errorInvalidStartDay = false;
         const start = new Date(startPeriod);
         start.setMinutes(0);
@@ -80,11 +83,9 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       } else {
         this.errorStartData = false;
         this.errorInvalidStartDay = true;
-        if (this.errorInvalidStartDay) {
-          this.errorStartData = false;
-          this.errorEndData = false;
-          this.wrongDateSelected = false;
-        }
+        this.btnNext = false;
+        this.errorEndData = false;
+        this.wrongDateSelected = false;
       }
     }
   }
@@ -113,6 +114,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       this.errorInvalidEndDay = false;
       this.errorStartData = false;
       this.errorEndData = false;
+      this.btnNext = false;
     } else {
       const dataFormat = new Date(endPeriod);
       if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
@@ -138,6 +140,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       } else {
         this.nextEndDeyValid = false;
         this.errorInvalidEndDay = true;
+        this.btnNext = false;
         if (this.errorInvalidEndDay) {
           this.errorEndData = false;
           this.wrongDateSelected = false;
@@ -161,7 +164,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
           this.errorEndData = false;
           this.errorStartData = false;
         }
-        this.visibleDataStart = new Date(end);
+        this.visibleDataEnd = new Date(end);
         this.loaderEndDate = false;
         this.loader.stopSmallSpinnerBtn();
       }, 2000);
