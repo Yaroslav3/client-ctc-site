@@ -4,10 +4,18 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GetReduxDataService} from '../../../shared/services/get-redux-data.service';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../reduxe';
-import {ChoiceOfDays, HourlyOrder} from '../../../reduxe/room/room.actions';
+import {
+  ChoiceOfDays,
+  FormDescriptionsOrderRoom,
+  FormEmailOrderRoom,
+  FormNameOrderRoom,
+  FormPhoneOrderRoom,
+  HourlyOrder
+} from '../../../reduxe/room/room.actions';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {fadingAwayAnimate, showAnimate} from '../../../shared/animations/fading-away.animate';
 import * as moment from 'moment';
+import {RoomOrderForm} from '../../../shared/model/room/RoomOrderForm.model';
 
 @Component({
   selector: 'app-order-room',
@@ -29,6 +37,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
   countDay: number;
   formGroup: FormGroup;
   isSubmitted = false;
+  formRedux;
   constructor(private headerControl: MainLayoutComponent,
               private getReduxData: GetReduxDataService,
               private fb: FormBuilder,
@@ -42,6 +51,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.router.params.subscribe((params: Params) => {
       this.idRoom = params.id;
+      this.formRedux = this.getReduxData.getFormOrderState();
       this.room = this.getReduxData.getOneRoomState(this.idRoom);
       this.timeOrder = this.getReduxData.getOrderTimeState();
       this.dayOrder = this.getReduxData.getOrderDayState();
@@ -98,6 +108,27 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     if (this.formGroup.invalid) {
       this.isSubmitted = true;
       return;
+    }
+  }
+  // ____form filling methods from state___
+  nameRedux() {
+    if (this.formGroup.controls.name.valid) {
+      this.store.dispatch(new FormNameOrderRoom(this.formGroup.controls.name.value));
+    }
+  }
+  emailRedux() {
+    if (this.formGroup.controls.email.valid) {
+      this.store.dispatch(new FormEmailOrderRoom(this.formGroup.controls.email.value));
+    }
+  }
+  phoneRedux() {
+    if (this.formGroup.controls.phone.valid) {
+      this.store.dispatch(new FormPhoneOrderRoom(this.formGroup.controls.phone.value));
+    }
+  }
+  descriptionRedux() {
+    if (this.formGroup.controls.description.valid) {
+      this.store.dispatch(new FormDescriptionsOrderRoom(this.formGroup.controls.description.value));
     }
   }
 }

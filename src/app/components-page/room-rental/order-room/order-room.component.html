@@ -87,6 +87,8 @@
           <div class="input-filed input-position">
             <input class="form-input"
                    required formControlName="name"
+                   [ngModel]="this.formRedux.name"
+                   (input)="nameRedux()"
                    type="text" name="name" title="ФИО"
                    [ngClass]="{invalid: isSubmitted && f.name.errors, ngValid: !f.name.errors}">
             <label class="form-label">ФИО</label>
@@ -99,6 +101,8 @@
           </div>
           <div class="input-filed input-position">
             <input class="form-input"
+                   [ngModel]="this.formRedux.email"
+                   (input)="emailRedux()"
                    required formControlName="email"
                    name="email" title="email"
                    [ngClass]="{invalid: isSubmitted && f.email.errors, ngValid: !f.email.errors}">
@@ -113,6 +117,8 @@
           <div class="input-filed input-position">
             <input class="form-input"
                    type="tel"
+                   [ngModel]="this.formRedux.phone"
+                   (input)="phoneRedux()"
                    required formControlName="phone"
                    name="phone" title="Телефон"
                    appPhoneMask
@@ -124,14 +130,18 @@
             <div class="error-input">
               <div *ngIf="isSubmitted && f.phone.errors">
                 <span [@showAnimate] *ngIf="f.phone.errors.required">* заполни поле </span>
-                <span [@showAnimate] *ngIf="f.phone.errors.minlength">* введите номер телефона в формате (XXX)-XXX-XXXX </span>
+                <span [@showAnimate]
+                      *ngIf="f.phone.errors.minlength">* введите номер телефона в формате (XXX)-XXX-XXXX </span>
               </div>
             </div>
           </div>
           <div class="input-filed  input-position">
             <textarea class="form-input textarea" required type="text"
                       formControlName="description"
-                      name="description"></textarea>
+                      [ngModel]="this.formRedux.description"
+                      (input)="descriptionRedux()"
+                      name="description">
+            </textarea>
             <label class="form-label">Дополнительные сведения</label>
             <div class="error-input">
               <div *ngIf="isSubmitted && f.description.errors">

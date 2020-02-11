@@ -9,6 +9,7 @@ import {OrderTrainingsForm} from '../shared/model/OrderTrainings.model';
 import {WebinarOrderForm} from '../shared/model/WebinarOrderForm.model';
 import {CalendarTrainings} from '../shared/model/CalendarTrainings.model';
 import {Room} from '../shared/model/Room.model';
+import {RoomOrderForm} from '../shared/model/room/RoomOrderForm.model';
 
 export interface AppState {
   stateStartApplication: {
@@ -33,7 +34,7 @@ export interface AppState {
     roomRental: Room;
     dataHourlyOrder: [],
     dataChoiceOfDays: [],
-    orderRoom: []
+    orderFormRoom: RoomOrderForm;
   };
 }
 

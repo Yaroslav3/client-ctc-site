@@ -9,6 +9,7 @@ import {WebinarOrderForm} from '../model/WebinarOrderForm.model';
 import {CalendarTrainings} from '../model/CalendarTrainings.model';
 import {Room} from '../model/Room.model';
 import {date} from '@rxweb/reactive-form-validators';
+import {RoomOrderForm} from '../model/room/RoomOrderForm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -123,6 +124,13 @@ export class GetReduxDataService {
       orderDay = dateOrderDay;
     });
     return orderDay;
+  }
+  getFormOrderState() {
+    let formOrderRoom = {};
+    this.store.select('stateRoom', 'orderFormRoom').subscribe((dateFormOrderRoom: RoomOrderForm) => {
+      formOrderRoom = dateFormOrderRoom;
+    });
+    return formOrderRoom;
   }
 }
 
