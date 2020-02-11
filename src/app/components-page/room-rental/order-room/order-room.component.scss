@@ -179,6 +179,16 @@
       padding: 15px 15px 5px 15px;
       border: 1px solid #80A0A2;
       border-radius: 4px;
+      .form-order-banner {
+        top: 109px;
+        padding: 5px 10px;
+        color: #80A0A2;
+        font-size: 17px;
+        display: inline-block;
+        position: absolute;
+        z-index: 6;
+        background: #FBFBFB
+      }
       .form {
         display: flex;
         flex-direction: column;
@@ -200,6 +210,7 @@
             transition: all 0.2s ease-out;
             margin: auto;
             display: flex;
+            color: #80A0A2;
           }
           .textarea {
             height: 65px;
@@ -252,17 +263,18 @@
           width: 95%;
           text-align: end;
           .by-room-btn {
-            padding: 10px;
-            border: none;
+            padding: 9px 12px;
             background: #EBEBEB;
-            border-radius: 3px;
+            border-radius: 2px;
             transition: all 0.2s ease-out;
             cursor: pointer;
+            border: 1px solid silver;
             &__text {
               transition: all 0.25s ease-out;
               font-size: 14px;
               color: #144E22;
-              font-weight: bold;
+              //font-weight: bold;
+              font-weight: normal;
             }
             &:hover {
               transition: all 0.2s ease-in;
@@ -336,6 +348,11 @@
     margin-right: 20px;
     margin-left: 20px;
     margin-top: 50px;
+    .info-client {
+      .form-order-banner {
+        top: 38px !important;
+      }
+    }
   }
 }
 @media all and (max-width: 700px) {
@@ -359,6 +376,9 @@
       flex-direction: column;
       align-items: center;
       .bl-info {
+        border-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
         width: 90%;
         .time-room, .day-room {
           .block-order-list-time {
@@ -370,8 +390,12 @@
       }
       .info-client {
         width: 90%;
+        margin-top: -11px;
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         .form {
-          padding: 5px 0;
+          padding: 6px 0;
         }
       }
     }
