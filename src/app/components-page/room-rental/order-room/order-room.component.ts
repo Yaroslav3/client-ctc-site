@@ -15,7 +15,9 @@ import {
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {fadingAwayAnimate, showAnimate} from '../../../shared/animations/fading-away.animate';
 import * as moment from 'moment';
-import {RoomOrderForm} from '../../../shared/model/room/RoomOrderForm.model';
+import {RoomDateService} from '../../../shared/services/room-date.service';
+import {StatusMessage} from '../../../shared/model/room/statusMessage.model';
+import {OrderRoom} from '../../../shared/model/room/OrderRoom.model';
 
 @Component({
   selector: 'app-order-room',
@@ -38,11 +40,14 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   isSubmitted = false;
   formRedux;
+  existTimePeriod = false;
+  payment = false;
   constructor(private headerControl: MainLayoutComponent,
               private getReduxData: GetReduxDataService,
               private fb: FormBuilder,
               private store: Store<AppState>,
               private route: Router,
+              private roomData: RoomDateService,
               private router: ActivatedRoute) {
     this.headerControl.hiddenHeaderComponent();
     this.isDateTimeRoom = false;
@@ -63,6 +68,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       }
     });
   }
+  // ____________________form validators_________
   createFormGroup() {
     return this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
@@ -74,6 +80,18 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
   public get f() {
     return this.formGroup.controls;
   }
+  informationAboutOrder() {
+    const order = new OrderRoom();
+    order.nameSurname = this.f.name.value;
+    order.email = this.f.email.value;
+    order.phone = this.f.phone.value;
+    order.currency = this.room.priseRoom[0].currency;
+    order.description = this.f.description.value;
+    order.roomRentalId = this.idRoom;
+    order.nameRoom = this.room.nameRoom;
+    return order;
+  }
+  // __________show temporary or daily room rental_____
   showBlockTimeOrder() {
     if (this.timeOrder.length > 0) {
       this.isDateTimeRoom = true;
@@ -98,17 +116,68 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       this.isDateDayRoom = false;
     }
   }
-  ngOnDestroy(): void {
-    this.headerControl.visibleHeaderComponent();
-    this.store.dispatch(new HourlyOrder({}));
-    this.store.dispatch(new ChoiceOfDays({}));
-    this.headerControl.menuScrolling = false;
-  }
-  createRoomPrice() {
+  //
+  // validation of the form for the accuracy of the entered data
+  formValidation() {
     if (this.formGroup.invalid) {
       this.isSubmitted = true;
       return;
+    } else {
+      if (this.timeOrder.length > 0) {
+        this.payment = true;
+      }
+      if (Object.keys(this.dayOrder).length > 0) {
+      }
     }
+  }
+  //
+  // check if time is taken in a given period
+  checkTimeRoom() {
+    let orderTime;
+    for (let i = 0; i < this.timeOrder.length; i++) {
+      orderTime = this.timeOrder.map(key => ({
+        roomRentalId: this.idRoom,
+        startDate: new Date(this.timeOrder[0].startDate + 'Z'),
+        endDate: new Date(this.timeOrder[this.timeOrder.length - 1].endDate + 'Z')
+      }));
+    }
+    this.roomData.checkedTimeRoom(orderTime, this.idRoom).subscribe((data: StatusMessage) => {
+      if (data.message === 'no exist') {
+        this.existTimePeriod = false;
+        this.saveTimeOrderServer();
+      } else if (data.message === 'exist') {
+        this.existTimePeriod = true;
+      }
+    });
+  }
+  //
+  // create order room time by one day;
+  private saveTimeOrderServer() {
+    const order = this.informationAboutOrder();
+    order.price = this.room.priseRoom[0].priceHour * this.timeOrder.length;
+    order.startTime = new Date(this.timeOrder[0].startDate + 'Z');
+    order.endTime = new Date((this.timeOrder[this.timeOrder.length - 1].endDate + 'Z'));
+    console.log(order);
+    this.roomData.createOrderRoom(order).subscribe((date: OrderRoom) => {
+      console.log(date);
+      // if (date !== null) {
+      //   for (let i = 0; i < Object.keys(this.arrayOrder).length; i++) {
+      //     this.orderTime = Object.keys(this.arrayOrder).map(key =>
+      //       ({
+      //         roomRentalId: this.id,
+      //         orderRoomId: date.id,
+      //         startDate: new Date(this.arrayOrder[key].startDate + 'Z'),
+      //         endDate: new Date(this.arrayOrder[key].endDate + 'Z')
+      //       }));
+      //   }
+      //   console.log(this.orderTime);
+      //   this.roomDateService.createTimeOrderRoom(this.orderTime).subscribe(data => {
+      //     console.log(data);
+      //   });
+      // }
+    });
+  }
+  liqPayInvoiceRoom() {
   }
   // ____form filling methods from state___
   nameRedux() {
@@ -130,5 +199,15 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     if (this.formGroup.controls.description.valid) {
       this.store.dispatch(new FormDescriptionsOrderRoom(this.formGroup.controls.description.value));
     }
+  }
+  ngOnDestroy(): void {
+    this.headerControl.visibleHeaderComponent();
+    this.store.dispatch(new HourlyOrder({}));
+    this.store.dispatch(new ChoiceOfDays({}));
+    this.headerControl.menuScrolling = false;
+  }
+  backToForm() {
+    this.payment = false;
+    this.formRedux = this.getReduxData.getFormOrderState();
   }
 }

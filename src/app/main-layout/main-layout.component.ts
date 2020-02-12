@@ -2,6 +2,7 @@ import {AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnInit} f
 import {StartingLoadService} from '../shared/services/starting-load.service';
 import {fadingAwayAnimate} from '../shared/animations/fading-away.animate';
 import {LoaderStartAppComponent} from '../global-components/loader/loader-start-app/loader-start-app.component';
+import {RoomDateService} from '../shared/services/room-date.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -19,6 +20,7 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   constructor(
     private cdRef: ChangeDetectorRef,
     private startLoad: StartingLoadService,
+    private roomDate: RoomDateService,
     private elRef: ElementRef,
     private loaderComponent: LoaderStartAppComponent,
   ) {
@@ -37,7 +39,7 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
       this.startLoad.getAllInscriptions();
       this.startLoad.getWebinarsInscription();
       this.startLoad.getAllDataCalendar();
-      this.startLoad.getAllRoom();
+      this.roomDate.getAllRoom();
       this.loader = false;
       this.loaderComponent.stopSpinner();
     }, 1000);

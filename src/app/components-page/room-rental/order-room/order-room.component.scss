@@ -91,7 +91,7 @@
             padding-left: 8px;
           }
           &__show-block, &__show-block-day {
-            height: 210px;
+            height: 228px;
             padding: 25px 5px;
             .time-show {
               padding: 1px;
@@ -117,7 +117,7 @@
             }
           }
           &__show-block-day {
-            height: 170px;
+            height: 186px;
           }
         }
         .block-price {
@@ -179,20 +179,71 @@
       padding: 15px 15px 5px 15px;
       border: 1px solid #80A0A2;
       border-radius: 2px;
+      position: relative;
       .form-order-banner {
-        top: 109px;
+        top: -22px;
         padding: 5px 10px;
         color: #80A0A2;
         font-size: 17px;
         display: inline-block;
         position: absolute;
         z-index: 6;
-        background: #FBFBFB
+        background: #FBFBFB;
+        left: 33px;
+      }
+      .back-to-form {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        cursor: pointer;
+        &__text {
+          color: #80A0A2;
+          font-size: 12px;
+          text-decoration: underline;
+          transition: all 0.2s ease-out;
+        }
+        &:hover {
+          .back-to-form__text {
+            transition: all 0.2s ease-in;
+            color: #144e22;
+          }
+        }
+      }
+      .alert-warning {
+        text-align: center;
+        background: #EBEBEB;
+        padding: 15px;
+        border-radius: 2px;
+        &__text {
+          color: #F3ADAD;
+          font-size: 15px;
+        }
+      }
+      .btn-payment {
+        width: 35%;
+        margin: auto;
+        .liqPay-btn-payment {
+          border: 1px solid #80A0A2;
+          border-radius: 2px;
+          padding: 10px;
+          cursor: pointer;
+          transition: all 0.3s ease-out;
+          margin: 3px;
+          img {
+            width: 100%;
+            background-size: cover;
+          }
+          &:hover {
+            transition: all 0.3s ease-in;
+            border: 1px solid #80A0A2;
+            box-shadow: 0 0 5px #80A0A2;
+          }
+        }
       }
       .form {
         display: flex;
         flex-direction: column;
-        padding: 20px 20px 10px 20px;
+        padding: 37px 20px 10px 20px;
         // ___style input______
         .input-filed, .input-position {
           display: inline-block;
@@ -260,7 +311,7 @@
             display: flex;
             max-width: 90%;
             padding: 10px;
-            margin: -8px 0 0 25px;
+            margin: -8px 0 0 0;
             span {
               color: #a01809;
               font-size: 12px;
@@ -302,6 +353,11 @@
           }
         }
       }
+    }
+    .info-client-time-exist {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
@@ -353,6 +409,9 @@
       }
       .info-client {
         width: 65%;
+        .btn-payment {
+          width: 50%;
+        }
       }
     }
   }
@@ -364,7 +423,8 @@
     margin-top: 50px;
     .info-client {
       .form-order-banner {
-        top: 38px !important;
+        top: -26px !important;
+        left: 21px !important;
       }
     }
   }
@@ -408,9 +468,15 @@
         border-top: none;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+        .form-order-banner {
+          top: -350px !important;
+        }
         .form {
           padding: 6px 0;
         }
+      }
+      .info-client-time-exist {
+        padding: 15px 15px 44px 15px;
       }
     }
   }
