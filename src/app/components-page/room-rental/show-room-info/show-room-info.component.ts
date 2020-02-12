@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Room} from '../../../shared/model/Room.model';
 import {GetReduxDataService} from '../../../shared/services/get-redux-data.service';
 import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
@@ -45,6 +45,7 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
     ]
   };
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private headerControl: MainLayoutComponent,
               private roomDate: RoomDateService,
               private getReduxDat: GetReduxDataService) {
@@ -54,6 +55,9 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((param: Params) => {
       this.room = this.getReduxDat.getOneRoomState(param.id);
       this.id = param.id;
+      if (!this.room) {
+        this.router.navigate(['/room-rental']);
+      }
     });
   }
   showChoiceOfDays() {

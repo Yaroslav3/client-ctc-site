@@ -4,6 +4,7 @@ import {SearchByIdService} from '../../../../../shared/services/search-by-id.ser
 import {StatusLiqPay} from '../../../../../shared/model/statusLiqPay';
 import {MainLayoutComponent} from '../../../../../main-layout/main-layout.component';
 import {fadingAwayAnimate} from '../../../../../shared/animations/fading-away.animate';
+import {StatusPaymentService} from '../../../../../shared/services/status-payment.service';
 
 @Component({
   selector: 'app-order-status',
@@ -16,7 +17,7 @@ export class OrderStatusComponent implements OnInit, OnDestroy {
   messageStatus: string;
   constructor(
     private headerControl: MainLayoutComponent,
-    private loadingService: StartingLoadService,
+    private statusPayment: StatusPaymentService,
     private searchById: SearchByIdService) {
   }
   ngOnInit() {
@@ -26,7 +27,7 @@ export class OrderStatusComponent implements OnInit, OnDestroy {
   }
   // status LoqPay
   status(id: number) {
-    this.loadingService.statusLiqPay(id).subscribe((data: StatusLiqPay) => {
+    this.statusPayment.statusLiqPay(id).subscribe((data: StatusLiqPay) => {
       this.messageStatus = data.message;
     });
   }

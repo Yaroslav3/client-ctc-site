@@ -180,7 +180,7 @@
                       <div class="error-input">
                         <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors,">
                           <span *ngIf="f.phone.errors.required">* заполни поле </span>
-                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>*в  введите номер телефона в формате (XXX)-XXX-XXXX</span>
+                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>* телефона в формате (XXX)-XXX-XXXX</span>
                         </div>
                         <div [@fadingAwayAnimate] *ngIf="orderError">
                           <span>{{orderError.phone}}</span>

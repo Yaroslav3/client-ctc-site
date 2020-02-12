@@ -81,9 +81,25 @@
           </div>
         </div>
       </div>
-      <div class="info-client">
+      <div class="info-client"
+           [ngClass]="{'info-client-time-exist': existTimePeriod, 'info-client-time-exist': payment}">
         <p class="form-order-banner">Форма заказа</p>
-        <form class="form" name="form" [formGroup]="formGroup" (ngSubmit)="createRoomPrice()" novalidate>
+        <div class="back-to-form" (click)="backToForm()" [@showAnimate] *ngIf="payment">
+          <span class="back-to-form__text"> Вернуться к форме</span>
+        </div>
+        <div class="alert-warning" *ngIf="existTimePeriod" [@showAnimate]>
+          <span
+            class="alert-warning__text"> Дата и время уже заняты , выберете пожайлуста другой диапазон времени...!!!</span>
+        </div>
+        <div class="btn-payment" *ngIf="payment" [@showAnimate]>
+          <div class="liqPay-btn-payment" (click)="checkTimeRoom()">
+            <img src="assets/img/visa-mastercard.png">
+          </div>
+        </div>
+        <form class="form" name="form"
+              [@showAnimate]
+              *ngIf="!existTimePeriod && !payment"
+              [formGroup]="formGroup" (ngSubmit)="formValidation()" novalidate>
           <div class="input-filed input-position">
             <input class="form-input"
                    required formControlName="name"
@@ -131,7 +147,7 @@
               <div *ngIf="isSubmitted && f.phone.errors">
                 <span [@showAnimate] *ngIf="f.phone.errors.required">* заполни поле </span>
                 <span [@showAnimate]
-                      *ngIf="f.phone.errors.minlength">* введите номер телефона в формате (XXX)-XXX-XXXX </span>
+                      *ngIf="f.phone.errors.minlength">*телефона в формате (XXX)-XXX-XXXX </span>
               </div>
             </div>
           </div>
@@ -144,7 +160,7 @@
             </textarea>
             <label class="form-label">Дополнительные сведения</label>
             <div class="error-input">
-              <div *ngIf="isSubmitted && f.description.errors">
+              <div *ngIf="f.description.errors">
                 <span [@showAnimate] *ngIf="f.description.errors.maxlength">* не более 500 символов </span>
               </div>
             </div>
@@ -156,20 +172,6 @@
           </div>
         </form>
       </div>
-      <!--      <div class="btn-liqPay">-->
-      <!--        <div *ngIf="isInputInf == false">-->
-      <!--          <div class="r-b-liqPay">-->
-      <!--            <button (click)="liqPayInvoiceRoom()">-->
-      <!--              <img src="assets/img/visa-mastercard.png">-->
-      <!--            </button>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <div *ngIf="isMassage == true">-->
-      <!--          <div class="alert alert-secondary" role="alert">-->
-      <!--            Дата и время уже заняты , выберете пожайлуста другой диапазон времени...!!!-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
     </div>
   </div>
 </div>

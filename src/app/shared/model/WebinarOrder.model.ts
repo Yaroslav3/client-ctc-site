@@ -1,6 +1,4 @@
 export class WebinarOrder {
-  // id?: number;
-  // status?: string;
   nameAndLastName: string;
   email: string;
   phone: string;
@@ -12,10 +10,7 @@ export class WebinarOrder {
   idWebinars: number;
   constructor(nameAndLastName: string, status: string, email: string, phone: string, countPerson: number, price: number,
               currency: string, nameWebinar: string, theme: string, idWebinars: number,
-              // id?: number
   ) {
-    // this.id = id;
-    // this.status = status;
     this.nameAndLastName = nameAndLastName;
     this.email = email;
     this.phone = phone;

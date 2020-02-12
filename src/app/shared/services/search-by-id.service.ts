@@ -18,7 +18,6 @@ export class SearchByIdService {
     this.webinar = id;
   }
   setWebinarId() {
-    console.log(this.webinar);
     return this.webinar;
   }
 }
