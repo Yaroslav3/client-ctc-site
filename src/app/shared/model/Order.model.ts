@@ -5,19 +5,16 @@ export class Order {
   city: string;
   company: string;
   nameSurname: string;
-  phone: string;
+  phone: number;
   country: string;
   email: string;
   description: string;
   orderTrainers: string;
   status: boolean;
   time: Date;
-
-
   constructor(id?: number, date?: string, training?: string, city?: string, company?: string, nameSurname?: string,
-              phone?: string, country?: string, email?: string, description?: string, orderTrainers?: string,
+              phone?: number, country?: string, email?: string, description?: string, orderTrainers?: string,
               status?: boolean, time?: Date) {
-
     this.id = id;
     this.date = date;
     this.training = training;

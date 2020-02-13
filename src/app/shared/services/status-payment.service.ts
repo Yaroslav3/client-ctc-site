@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../reduxe';
 
 @Injectable({
   providedIn: 'root'

@@ -73,23 +73,12 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     return this.formGroup = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(14)]],
+      phone: ['', [Validators.required, Validators.maxLength(14), Validators.minLength(14)]],
       description: ['', [Validators.maxLength(500)]],
     });
   }
   public get f() {
     return this.formGroup.controls;
-  }
-  informationAboutOrder() {
-    const order = new OrderRoom();
-    order.nameSurname = this.f.name.value;
-    order.email = this.f.email.value;
-    order.phone = this.f.phone.value;
-    order.currency = this.room.priseRoom[0].currency;
-    order.description = this.f.description.value;
-    order.roomRentalId = this.idRoom;
-    order.nameRoom = this.room.nameRoom;
-    return order;
   }
   // __________show temporary or daily room rental_____
   showBlockTimeOrder() {
@@ -116,8 +105,18 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       this.isDateDayRoom = false;
     }
   }
-  //
-  // validation of the form for the accuracy of the entered data
+  informationAboutOrder() {
+    const order = new OrderRoom();
+    order.nameSurname = this.f.name.value;
+    order.email = this.f.email.value;
+    order.phone = Number(this.f.phone.value.replace(/[- ()]/g, ''));
+    order.currency = this.room.priseRoom[0].currency;
+    order.description = this.f.description.value;
+    order.roomRentalId = +this.idRoom;
+    order.nameRoom = this.room.nameRoom;
+    return order;
+  }
+  // _______________________validation of the form for the accuracy of the entered data_________________________
   formValidation() {
     if (this.formGroup.invalid) {
       this.isSubmitted = true;
@@ -130,9 +129,10 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       }
     }
   }
-  //
+  // ________________методлы для оформления заказа по часовому периоду______________________
   // check if time is taken in a given period
   checkTimeRoom() {
+    console.log(this.formGroup.controls.phone.value);
     let orderTime;
     for (let i = 0; i < this.timeOrder.length; i++) {
       orderTime = this.timeOrder.map(key => ({
@@ -143,41 +143,53 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     }
     this.roomData.checkedTimeRoom(orderTime, this.idRoom).subscribe((data: StatusMessage) => {
       if (data.message === 'no exist') {
+        // добавляем необходимые данные по заказу для блока почасового выбора времени
+        const order = this.informationAboutOrder();
+        order.price = this.room.priseRoom[0].priceHour * this.timeOrder.length;
+        order.startTime = new Date(this.timeOrder[0].startDate + 'Z');
+        order.endTime = new Date((this.timeOrder[this.timeOrder.length - 1].endDate + 'Z'));
+        order.createOrderTime = new Date();
+        console.log(order);
         this.existTimePeriod = false;
-        this.saveTimeOrderServer();
+        // вызываем метод для перенаправля юзера на оплату и результат записываем в переменную.
+        const statusPayment = this.liqPayInvoiceRoom(order);
+        if (statusPayment) { // если оплата успешная то закрываем за юзером выбранное время
+          this.saveTimeOrderServer(order);
+        } else { // если нет то выводим сообщение о ошибке
+          console.log('ошибка по оплате');
+        }
       } else if (data.message === 'exist') {
         this.existTimePeriod = true;
+        this.payment = false;
       }
     });
   }
   //
-  // create order room time by one day;
-  private saveTimeOrderServer() {
-    const order = this.informationAboutOrder();
-    order.price = this.room.priseRoom[0].priceHour * this.timeOrder.length;
-    order.startTime = new Date(this.timeOrder[0].startDate + 'Z');
-    order.endTime = new Date((this.timeOrder[this.timeOrder.length - 1].endDate + 'Z'));
-    console.log(order);
+  // create order room time by one day
+  // метод коорый передает в админку время которое нужно забронировать данному юзеру
+  private saveTimeOrderServer(order) {
     this.roomData.createOrderRoom(order).subscribe((date: OrderRoom) => {
       console.log(date);
-      // if (date !== null) {
-      //   for (let i = 0; i < Object.keys(this.arrayOrder).length; i++) {
-      //     this.orderTime = Object.keys(this.arrayOrder).map(key =>
-      //       ({
-      //         roomRentalId: this.id,
-      //         orderRoomId: date.id,
-      //         startDate: new Date(this.arrayOrder[key].startDate + 'Z'),
-      //         endDate: new Date(this.arrayOrder[key].endDate + 'Z')
-      //       }));
-      //   }
-      //   console.log(this.orderTime);
-      //   this.roomDateService.createTimeOrderRoom(this.orderTime).subscribe(data => {
-      //     console.log(data);
-      //   });
-      // }
+      if (date !== null) {
+        let timeOrder;
+        for (let i = 0; i < this.timeOrder.length; i++) {
+          timeOrder = Object.keys(this.timeOrder).map(key =>
+            ({
+              roomRentalId: this.idRoom,
+              orderRoomId: date.id,
+              startDate: new Date(this.timeOrder[key].startDate + 'Z'),
+              endDate: new Date(this.timeOrder[key].endDate + 'Z')
+            }));
+        }
+        this.roomData.createTimeOrderRoom(timeOrder).subscribe(data => {
+          console.log(data);
+        });
+      }
     });
   }
-  liqPayInvoiceRoom() {
+  // метод который наравляет юзера на оплату
+  liqPayInvoiceRoom(order: OrderRoom) {
+    return true;
   }
   // ____form filling methods from state___
   nameRedux() {
