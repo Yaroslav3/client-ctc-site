@@ -82,24 +82,25 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     this.isLiqPayTwo = true;
   }
   liqPayInvoiceWebinar() {
-    const webinarOrder = new WebinarOrder(
-      this.f.name.value,
-      null,
-      this.f.email.value,
-      this.f.phone.value,
-      this.webinar.countPerson,
-      this.webinar.price,
-      this.webinar.currency,
-      this.webinar.name,
-      this.webinar.theme,
-      this.webinar.id
-    );
+    const webinarOrder = new WebinarOrder();
+    webinarOrder.nameAndLastName = this.f.name.value;
+    webinarOrder.email = this.f.email.value;
+    webinarOrder.phone = Number(this.f.phone.value.replace(/[- ()]/g, ''));
+    webinarOrder.countPerson = this.webinar.countPerson;
+    webinarOrder.price = this.webinar.price;
+    webinarOrder.currency = this.webinar.currency;
+    webinarOrder.nameWebinar = this.webinar.name;
+    webinarOrder.theme = this.webinar.theme;
+    webinarOrder.idWebinars = this.webinar.id;
     console.log(webinarOrder);
+    console.log(webinarOrder.phone.toString().length);
     this.order.createWebinarOrder(webinarOrder).subscribe((data: LiqPayOrder) => {
       this.liqPayOrder = data;
       this.isLiqPayTwo = false;
       this.isLiqPayTree = true;
       this.isPaymentMethod = false;
+    }, error => {
+      console.log(error);
     });
   }
   // ____form filling methods from state___

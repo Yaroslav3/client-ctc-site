@@ -176,6 +176,7 @@
                              (input)="phoneRedux()"
                              [ngModel]="this.formRedux.phone"
                              appPhoneMask
+                             maxlength="14"
                              placeholder="№ телефона (XXX)-XXX-XXXX*">
                       <div class="error-input">
                         <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors,">

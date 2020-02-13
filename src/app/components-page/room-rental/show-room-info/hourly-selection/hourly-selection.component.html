@@ -17,9 +17,16 @@
             <i class="far fa-calendar-alt calendar-icon"></i></button>
         </div>
       </div>
+      <div class="error-time" [@showAnimate] *ngIf="datePicker == true">
+        <div class="error-alert">
+            <span class="error-alert__text">
+              Пожалуйста, сначала выберите дату, а зтем желаемое время.
+            </span>
+        </div>
+      </div>
       <div class="error-data"
            *ngIf="dateError"
-           [@fadingAwayAnimate]>
+           [@showAnimate]>
         <span class="error-data__text">Пожалуйста, введите корректную дату</span>
       </div>
     </div>
@@ -40,13 +47,6 @@
                       [ngClass]="{'loader': loaderTimePeriod}"> <span> {{data.value.time }}</span></span>
               </div>
             </label>
-          </div>
-          <div class="error-time" [@fadingAwayAnimate] *ngIf="datePicker == true">
-            <div class="error-alert">
-            <span class="error-alert__text">
-              Пожалуйста, сначала выберите дату, а зтем желаемое время.
-            </span>
-            </div>
           </div>
         </div>
       </div>

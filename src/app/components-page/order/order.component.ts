@@ -160,10 +160,9 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     order.city = this.orderForm.controls.city.value;
     order.company = this.orderForm.controls.company.value;
     order.nameSurname = this.orderForm.controls.nameSurname.value;
-    order.phone = this.orderForm.controls.phone.value;
+    order.phone = Number(this.orderForm.controls.phone.value.replace(/[- ()]/g, ''));
     order.email = this.orderForm.controls.email.value;
     order.description = this.orderForm.controls.description.value;
-    console.log(order);
     this.orderService.saveOrder(order).subscribe(() => {
         setTimeout(() => {
           this.isSubmitted = true;
@@ -175,7 +174,6 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
         }, 1000);
       },
       error => {
-        console.log(error);
         this.orderError = error.error;
         this.isCreated = false;
       });

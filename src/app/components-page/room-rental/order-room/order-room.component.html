@@ -82,7 +82,7 @@
         </div>
       </div>
       <div class="info-client"
-           [ngClass]="{'info-client-time-exist': existTimePeriod, 'info-client-time-exist': payment}">
+           [ngClass]="{'info-client-time-exist': existTimePeriod, 'info-client-time-exist-payment': payment}">
         <p class="form-order-banner">Форма заказа</p>
         <div class="back-to-form" (click)="backToForm()" [@showAnimate] *ngIf="payment">
           <span class="back-to-form__text"> Вернуться к форме</span>
@@ -138,6 +138,7 @@
                    required formControlName="phone"
                    name="phone" title="Телефон"
                    appPhoneMask
+                   maxlength="14"
                    [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}">
             <label class="form-label">
               <span>Телефон</span>

@@ -8,6 +8,9 @@
   .content-input {
     width: 50%;
     position: relative;
+    background: #EFEFEF;
+    border-radius: 2px;
+    margin: 2px;
     .input-group {
       padding: 19px 1px 5px 1px;
       width: 100%;
@@ -18,7 +21,7 @@
         .form-control {
           width: 100%;
           height: 38px;
-          border: 1px solid #5F9EA0;
+          border: 1px solid #80A0A2;
           padding: 1px 10px;
           font-size: 15px;
           color: #5F9EA0;
@@ -45,7 +48,7 @@
             background: white;
             width: 100%;
             height: 42px;
-            border: 1px solid #5F9EA0;
+            border: 1px solid #80A0A2;
             border-top-right-radius: 2px;
             border-bottom-right-radius: 2px;
             padding: 10px 14px;
@@ -91,8 +94,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    background: #EFEFEF;
+    border-radius: 2px;
+    margin: 2px;
     .selected-period-visualisation {
-      padding: 6px 5px;
+      padding: 6px 2px;
       border: 1px solid transparent;
       p {
         min-height: 18px;
@@ -110,7 +116,7 @@
           }
         }
         .name {
-          width: 104px;
+          width: 103px;
           text-align: left;
           display: inline-block;
           font-size: 13px;
@@ -146,11 +152,11 @@
     }
     .btn-order-day {
       position: absolute;
-      bottom: 5px;
-      left: 16%;
+      left: 135%;
+      top: 107px;
       .btn-go-order {
-        padding: 5px 40px;
-        border: 1px solid silver;
+        padding: 8px 40px;
+        border: 1px solid #92A0A2;
         border-radius: 2px;
         cursor: pointer;
         background: white;
@@ -199,7 +205,7 @@
   &:before {
     transition: all 0.2s ease-in;
     position: relative;
-    background: white;
+    background: #EFEFEF;
     top: -18px;
     left: 119px;
     font-size: 17px;
@@ -249,7 +255,7 @@ input:disabled, button:disabled {
     transition: all 0.2s ease-out;
   }
 }
-@media all and (max-width: 640px) {
+@media all and (max-width: 650px) {
   .block-selected-content {
     flex-direction: column;
     height: 333px;
@@ -267,6 +273,7 @@ input:disabled, button:disabled {
       width: 99%;
       margin: 2px auto 40px auto;
       .selected-period-visualisation {
+        margin: 19px 0;
         p {
           .name {
           }
@@ -279,7 +286,7 @@ input:disabled, button:disabled {
         }
       }
       .btn-order-day {
-        bottom: -36px;
+        top: -137px;
         left: 5%;
         right: 5%;
         text-align: center;

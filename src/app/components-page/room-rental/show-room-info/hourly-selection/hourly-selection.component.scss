@@ -1,8 +1,8 @@
 .position-content {
-  height: 254px;
+  min-height: 254px;
   background: white;
-  position: relative;
   border-radius: 6px;
+  position: relative;
   .select-block-time {
     width: 100%;
     display: flex;
@@ -10,6 +10,10 @@
     .input-group {
       padding: 28px 1px 20px 1px;
       width: 50%;
+      background: #EFEFEF;
+      border-radius: 2px;
+      margin: 2px;
+      min-height: 150px;
       .position-element-input {
         display: flex;
         justify-content: space-between;
@@ -65,6 +69,21 @@
           }
         }
       }
+      .error-time {
+        width: 100%;
+        margin: 10px 0;
+        .error-alert {
+          padding: 10px 0;
+          margin: 10px 0;
+          background-color: #EBEBEB;
+          text-align: center;
+          border-radius: 3px;
+          &__text {
+            font-size: 11px;
+            color: #FFA288;
+          }
+        }
+      }
       .error-data {
         width: 80%;
         background: #EBEBEB;
@@ -79,8 +98,11 @@
       }
     }
     .select-time-order {
-      width: 49%;
+      width: 50%;
       position: relative;
+      background: #EFEFEF;
+      border-radius: 2px;
+      margin: 2px;
       .position-select-time-order {
         display: flex;
         flex-direction: column;
@@ -171,28 +193,13 @@
             }
           }
         }
-        .error-time {
-          width: 100%;
-          margin: 10px 0;
-          .error-alert {
-            padding: 10px 0;
-            margin: 10px 0;
-            background-color: #EBEBEB;
-            text-align: center;
-            border-radius: 3px;
-            &__text {
-              font-size: 11px;
-              color: #FFA288;
-            }
-          }
-        }
       }
     }
   }
   .error-no-selected {
     position: absolute;
-    bottom: 2px;
-    left: 10%;
+    bottom: 10px;
+    left: -7px;
     text-align: center;
     padding: 10px;
     &__text {
@@ -204,9 +211,13 @@
     }
   }
   .btn-order-time {
-    position: absolute;
-    bottom: 5px;
-    right: 50px;
+    width: 98.3%;
+    padding: 6px;
+    margin: 2px;
+    border-radius: 2px;
+    background: #EFEFEF;
+    display: flex;
+    justify-content: flex-end;
     .btn-go-order {
       padding: 5px 40px;
       border: 1px solid #48898b;
@@ -335,51 +346,42 @@
     }
   }
 }
-@media all and (max-width: 1462px) {
-  .position-content {
-    height: 336px;
-  }
-}
-@media all and (max-width: 1220px) {
-  .position-content {
-    height: 353px;
-  }
-}
 @media all and (max-width: 1050px) {
   .position-content {
-    height: 261px;
     .error-no-selected {
-      left: 50.7%;
-    }
-    .btn-order-time {
-      position: absolute;
-      bottom: 5px;
-      left: 10px;
+      bottom: 10px;
+      left: -6px;
     }
   }
 }
-@media all and (max-width: 870px) {
+@media all and (max-width: 880px) {
   .position-content {
-    height: 341px;
+    .error-no-selected {
+      bottom: 1px;
+      left: -9px;
+    }
   }
 }
-@media all and (max-width: 736px) {
-  .position-content {
-    height: 358px;
-  }
-}
-@media all and (max-width: 610px) {
+@media all and (max-width: 625px) {
   .position-content {
     .select-block-time {
       justify-content: center;
       flex-direction: column;
       .input-group {
-        width: 100%;
-        padding: 5px 1px 0 1px;
+        width: 96.7%;
+        padding: 2px 10px;
+        margin: 2px auto;
       }
       .select-time-order {
-        width: 100%;
+        width: 96.7%;
         padding: 2px 10px;
+        margin: 2px auto;
+        .position-select-time-order {
+          padding: 10px 5px 20px 5px;
+          .chose-text {
+            padding-top: 0;
+          }
+        }
       }
     }
   }
@@ -397,21 +399,14 @@
     }
   }
 }
-@media all and (max-width: 446px) {
-  .position-content {
-    height: 435px;
-  }
-}
 @media all and (max-width: 400px) {
   .position-content {
     .select-block-time {
       .input-group {
         width: 90%;
-        margin: auto;
       }
       .select-time-order {
         width: 90%;
-        margin: auto;
         .time-order {
           position: relative;
           left: 10px;
@@ -421,11 +416,18 @@
         }
       }
     }
+    .btn-order-time {
+      width: 92.4%;
+      margin: auto;
+    }
+    .error-no-selected {
+      width: 90%;
+      margin: auto;
+    }
   }
 }
 @media all and (max-width: 319px) {
   .position-content {
-    height: 600px;
     .error-no-selected {
       .error-no-selected__text {
         padding: 10px 20px !important;

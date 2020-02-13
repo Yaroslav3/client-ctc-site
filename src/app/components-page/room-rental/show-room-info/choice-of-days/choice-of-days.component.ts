@@ -106,7 +106,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
         this.visibleDataStart = new Date(start);
         this.loaderComponent = false;
         this.loader.stopSmallSpinnerBtn();
-      }, 2000);
+      }, 1000);
     });
   }
   selectDataCalendarEnd(endPeriod: Date) {
