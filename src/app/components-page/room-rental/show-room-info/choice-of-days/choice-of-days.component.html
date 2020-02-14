@@ -56,7 +56,7 @@
     <div class="selected-period-visualisation"
          [ngClass]="{'validated': btnNext  && !loaderComponent}">
       <i class="far fa-thumbs-up cool-icon" [@fadingAwayAnimate]
-         *ngIf="btnNext && !loaderComponent"></i>
+         *ngIf="btnNext && !loaderComponent "></i>
       <p class="selected-period-visualisation__start"
          [ngClass]="{'errorData': errorStartData, 'errorDataLoader': loaderComponent, 'hidden-block': errorInvalidStartDay}">
         <app-loader-small-spinner-btn class="loader-text" *ngIf="loaderComponent"></app-loader-small-spinner-btn>

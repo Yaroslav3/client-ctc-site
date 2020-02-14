@@ -29,6 +29,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
   idRoom;
   room;
   date: Date;
+  translateDaysToTime = new Map<Date, Date>(); // переменная которая хранит значения перевода дний во время.
   timeOrder;
   visualisationTimeOrder;
   visualisationDayOrder;
@@ -67,6 +68,10 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
         this.route.navigate(['/room-rental']);
       }
     });
+  }
+  backToForm() {
+    this.payment = false;
+    this.formRedux = this.getReduxData.getFormOrderState();
   }
   // ____________________form validators_________
   createFormGroup() {
@@ -126,14 +131,23 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
         this.payment = true;
       }
       if (Object.keys(this.dayOrder).length > 0) {
+        this.payment = true;
       }
     }
   }
-  // ________________методлы для оформления заказа по часовому периоду______________________
-  // check if time is taken in a given period
+  // ________________методлы для оформления заказа по часовому  или длительному периоду ______________________
+  checkRoom() {
+    if (this.timeOrder.length > 0) { // почасовой период
+      this.checkTimeRoom();
+    }
+    if (Object.keys(this.dayOrder).length > 0) { // длительный период
+      this.checkTimeDayRoom();
+    }
+  }
+  // _____________почасовой период________
   checkTimeRoom() {
-    console.log(this.formGroup.controls.phone.value);
     let orderTime;
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.timeOrder.length; i++) {
       orderTime = this.timeOrder.map(key => ({
         roomRentalId: this.idRoom,
@@ -149,7 +163,6 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
         order.startTime = new Date(this.timeOrder[0].startDate + 'Z');
         order.endTime = new Date((this.timeOrder[this.timeOrder.length - 1].endDate + 'Z'));
         order.createOrderTime = new Date();
-        console.log(order);
         this.existTimePeriod = false;
         // вызываем метод для перенаправля юзера на оплату и результат записываем в переменную.
         const statusPayment = this.liqPayInvoiceRoom(order);
@@ -172,6 +185,7 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       console.log(date);
       if (date !== null) {
         let timeOrder;
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < this.timeOrder.length; i++) {
           timeOrder = Object.keys(this.timeOrder).map(key =>
             ({
@@ -187,10 +201,108 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
       }
     });
   }
+  // ________________длительный период______________________
+  private checkTimeDayRoom() {
+    const time = [];
+    for (let i = 0; i < this.countDay; i++) {
+      for (let e = 0; e < 9; e++) {
+        const start = new Date();
+        const end = new Date();
+        start.setFullYear(this.dayOrder.startDate.getFullYear());
+        start.setMonth(this.dayOrder.startDate.getMonth());
+        start.setDate(this.dayOrder.startDate.getDate() + i);
+        start.setHours(10 + e);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        end.setFullYear(this.dayOrder.startDate.getFullYear());
+        end.setMonth(this.dayOrder.startDate.getMonth());
+        end.setDate(this.dayOrder.startDate.getDate() + i);
+        end.setHours((10 + 1) + e);
+        end.setMinutes(0);
+        end.setSeconds(0);
+        this.translateDaysToTime.set(end, start);
+      }
+    }
+    this.translateDaysToTime.forEach((start, end) => {
+      time.push({
+        roomRentalId: this.idRoom,
+        startDate: new Date(start + 'Z'),
+        endDate: new Date(end + 'Z')
+      });
+    });
+    // проверяем зането ли время
+    this.roomData.checkedTimeRoom(time, this.idRoom).subscribe((data: StatusMessage) => {
+      if (data.message === 'no exist') {
+        const {startTime, endTime} = this.setTime();
+        const order = this.informationAboutOrder();
+        order.price = this.room.priseRoom[0].priceDay * this.countDay;
+        order.startTime = startTime;
+        order.endTime = endTime;
+        this.existTimePeriod = false;
+        // вызываем метод для перенаправля юзера на оплату и результат записываем в переменную.
+        const statusPayment = this.liqPayInvoiceRoom(order);
+        if (statusPayment) {
+          this.saveManyDateTime(order);
+        }
+      } else if (data.message === 'exist') {
+        console.log('exist');
+        this.existTimePeriod = true;
+        this.payment = false;
+      }
+    });
+  }
+  // ________устанавливаем начало и конец времени_________
+  // set the beginning and end of time
+  private setTime() {
+    const timeStart = new Date();
+    timeStart.setFullYear(this.dayOrder.startDate.getFullYear());
+    timeStart.setMonth(this.dayOrder.startDate.getMonth());
+    timeStart.setDate(this.dayOrder.startDate.getDate());
+    timeStart.setHours(10);
+    timeStart.setMinutes(0);
+    timeStart.setSeconds(0);
+    const startTime = new Date(timeStart + 'Z');
+    const timeEnd = new Date();
+    timeEnd.setFullYear(this.dayOrder.endDate.getFullYear());
+    timeEnd.setMonth(this.dayOrder.endDate.getMonth());
+    timeEnd.setDate(this.dayOrder.endDate.getDate());
+    timeEnd.setHours(19);
+    timeEnd.setMinutes(0);
+    timeEnd.setSeconds(0);
+    const endTime = new Date(timeEnd + 'Z');
+    return {startTime, endTime};
+  }
+  // _____сохраняем значения длительного периода переформитировав дату в часы________
+  // save order many day time;
+  private saveManyDateTime(order) {
+    const resultArray = [];
+    this.roomData.createOrderRoom(order).subscribe((date: OrderRoom) => {
+      console.log(date);
+      if (date !== null) {
+        this.translateDaysToTime.forEach((start, end) => {
+          resultArray.push({
+            roomRentalId: this.idRoom,
+            orderRoomId: date.id,
+            startDate: new Date(start + 'Z'),
+            endDate: new Date(end + 'Z')
+          });
+        });
+        this.roomData.createTimeOrderRoom(resultArray).subscribe(data => {
+          console.log(data);
+        });
+      }
+    });
+  }
   // метод который наравляет юзера на оплату
   liqPayInvoiceRoom(order: OrderRoom) {
     return true;
   }
+  //
+  //
+  //
+  //
+  //
+  //
   // ____form filling methods from state___
   nameRedux() {
     if (this.formGroup.controls.name.valid) {
@@ -217,9 +329,5 @@ export class OrderRoomComponent implements OnInit, OnDestroy {
     this.store.dispatch(new HourlyOrder({}));
     this.store.dispatch(new ChoiceOfDays({}));
     this.headerControl.menuScrolling = false;
-  }
-  backToForm() {
-    this.payment = false;
-    this.formRedux = this.getReduxData.getFormOrderState();
   }
 }
