@@ -5,8 +5,11 @@
   min-height: 40vh;
   position: relative;
   .title {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 12px;
     h3 {
       font-size: 20px;
+      margin-bottom: 0;
       font-family: var(--font-coach-header);
       color: #666666;
       font-weight: bold;
@@ -15,43 +18,46 @@
   }
   //-------------------- Trainers -----------------------------------//
   .coach-block {
+    margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     .trainer-block {
-      width: 270px;
+      width: 320px;
       height: auto;
-      padding-bottom: 5px;
       margin: 10px;
+      position: relative;
       transition: all 0.5s ease-out;
-      border: 1px solid silver;
+      border: 1px solid var(--color-border);
       border-radius: 2px;
       .picture-trainer {
         width: 100%;
-        height: 200px;
+        height: 220px;
         overflow: hidden;
         img {
           transition: all 0.5s ease-out;
           width: 100%;
-          height: 200px;
+          height: 220px;
           border-radius: 1px;
         }
       }
       .bl-tol {
-        padding: 10px;
+        padding: 10px 5px 2px 5px;
         .name, .surname {
           font-size: 16px;
           color: #607d8b;
           font-family: var(--fonts-coach-trainer);
           text-align: center;
           font-weight: bold;
+          margin: 15px 1px;
         }
         .surname {
-          margin-top: -5px;
           text-transform: uppercase;
         }
         .bl-height {
-          height: 28px;
+          border-top: 1px solid var(--color-border);
+          margin: 0 1px;
+          padding: 4px 1px;
           p {
             font-size: 12px;
             color: #607d8b;
@@ -60,37 +66,92 @@
             font-weight: bold;
           }
         }
+      }
+      //.btn-block-trainer {
+      //  height: 0;
+      //  position: absolute;
+      //  bottom: 0;
+      //  width: 0;
+      //  overflow: hidden;
+      //  transition: all 0.3s ease-in;
+      //  .btn-trainer {
+      //    bottom: 0;
+      //    position: absolute;
+      //    height: 45px;
+      //    width: 100%;
+      //    .btn-text {
+      //      height: 45px;
+      //      padding: 15px 0;
+      //      font-size: 0;
+      //      opacity: 0;
+      //      transition: all 0.2s ease-in;
+      //      display: inline-block;
+      //      color: white;
+      //      width: 100%;
+      //      text-align: center;
+      //      transform: translateX(400px);
+      //    }
+      //  }
+      //}
+      .btn-block-trainer {
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        transition: all 0.5s ease-out;
+        width: 0;
+        overflow: hidden;
         .btn-trainer {
-          display: flex;
-          justify-content: center;
-          .btn-all-application {
-            .btn-text{
-              font-size: 15px;
-            }
+          bottom: 0;
+          position: absolute;
+          height: 45px;
+          width: 100%;
+          .btn-text {
+            height: 45px;
+            padding: 15px 0;
+            font-size: 0;
+            opacity: 0;
+            transition: all 0.2s ease-in;
+            display: inline-block;
+            color: white;
+            width: 100%;
+            text-align: center;
+            transform: translateX(400px);
           }
         }
       }
       &:hover {
         transition: all 0.5s ease-out;
         background-color: #f9f9f9;
-        box-shadow: 0 2px 12px rgba(28, 15, 25, 0.3);
+        box-shadow: 0 2px 12px rgba(28, 15, 25, 0.5);
         overflow: hidden;
         .picture-trainer {
           img {
             transition: all 0.7s ease-out;
-            transform: scale(1.01);
             border-radius: 1px;
           }
         }
-        .bl-tol {
+        .btn-block-trainer {
+          transition: all 0.7s ease-in;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.1);
           .btn-trainer {
-            .btn-all-application {
-              background: rgba(100, 128, 149, 0.6);
-              transition: all 0.7s ease-out;
-              border: 1px solid silver;
-              .btn-text {
-                color: white;
-              }
+            bottom: 0;
+            position: absolute;
+            width: 100%;
+            cursor: pointer;
+            .btn-text {
+              height: 45px;
+              background: var(--background-btn);
+              transition: all 0.7s ease-in;
+              padding: 15px 0;
+              font-size: 13px;
+              opacity: 1;
+              display: inline-block;
+              color: white;
+              width: 100%;
+              text-align: center;
+              transform: translateX(0px);
             }
           }
         }

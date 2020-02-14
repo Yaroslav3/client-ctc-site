@@ -33,12 +33,24 @@
   --font-footer-regular: 'Casiopea_Regular', serif;
   --font-footer-header: 'Ubuntu_Rehular', serif;
 }
+:root {
+  --background-main-aplication: #FBFBFB;
+  --color-main-text-aplication: #555555;
+  --color-border: #80A0A2;
+
+  --header-background: #EBEBEB;
+  --header-color-text: #355F80;
+  --background-btn: #4c677b;
+  --background-btn-text: #92A0A2;
+  --background-hover-btn: #EBEBEB;
+  --color-hover-btn-text: #48433F;
+
+}
 *, :active, :focus, :hover {
   -webkit-tap-highlight-color: transparent;
   outline: 0;
   outline-offset: 0;
 }
-
 html, body, iframe {
   box-sizing: border-box;
   //height: 100%;
@@ -74,7 +86,7 @@ html, body, iframe {
 // Стили для кнопки в приложении
 .btn-all-application {
   display: inline-block;
-  border: 1px solid #648095;
+  border: 1px solid var(--color-border);
   transition: all 0.5s ease-out;
   padding: 6px 10px;
   background: transparent;
@@ -95,19 +107,19 @@ html, body, iframe {
     }
   }
   &:hover {
-    background: rgba(100, 128, 149, 0.6) !important;
-    border: 1px solid white;
+    background: var(--background-hover-btn) !important;
+    //border: 1px solid white;
     //border-radius: 3px;
     transition: all 0.5s ease-in;
     .btn-text {
-      color: white;
+      color: var(--color-hover-btn-text);
       transition: all 0.5s ease-in;
       i {
         position: relative;
         top: 0;
         left: -3px;
         font-size: 14px;
-        color: #648095;
+        color: var(--color-hover-btn-text);
         transition: all 0.5s ease-in;
       }
     }
@@ -118,7 +130,7 @@ html, body, iframe {
   margin-bottom: 20px;
   transition: all .3s ease-out;
   background: transparent;
-  border: 1px solid #648095;
+  border: 1px solid var(--color-border);
   padding: 5px 15px;
   z-index: 999;
   cursor: pointer;
@@ -146,14 +158,14 @@ html, body, iframe {
   &:hover {
     border: 1px solid silver;
     transition: all .3s ease-in;
-    background: rgba(100, 128, 149, 0.6);
+    background: var(--background-hover-btn);
     .fa-chevron-left {
       transition: all .2s ease-out;
-      color: white;
+      color: var(--color-hover-btn-text);
     }
     .btn-text {
       transition: all .3s ease-in;
-      color: white;
+      color: var(--color-hover-btn-text);
     }
   }
 }

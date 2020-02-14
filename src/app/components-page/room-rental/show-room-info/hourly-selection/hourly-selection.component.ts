@@ -95,7 +95,7 @@ export class HourlySelectionComponent implements OnInit {
     });
   }
   private showTimeOrder(data: RoomTimeOrder) {
-    // при поступлении данных переводим все значения чекбоксов в положение false при любых роскладах
+    // при поступлении данных переводим все значения чекбоксов в положение false при любых раскладах
     for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
       this.timeChoice[b].status = false;
     }

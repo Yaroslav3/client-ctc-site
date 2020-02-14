@@ -29,70 +29,118 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    .training-info-block {
-      flex: 1;
+    .position-block-trainings {
+      margin: 20px 10px;
+      border: 1px solid #F3F3F3;
+      transition: all 0.4s ease-out;
       width: 370px;
       height: auto;
-      border-radius: 2px;
-      padding-bottom: 20px;
-      margin: 20px 20px;
-      box-shadow: 0 2px 2px rgba(28, 15, 25, 0.1);
-      transition: all 0.4s ease-out;
-      border: 1px solid #F3F3F3;
-      img {
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        width: 100%;
-        height: 200px;
-        transition: all 0.4s ease-out;
-        border-bottom: 1px solid transparent;
-      }
-      &:hover {
-        transition: all 0.4s ease-in;
-        background: #F3F3F3;
-        box-shadow: 0 0 6px rgba(28, 15, 25, 0.2);
+      position: relative;
+      min-height: 379px;
+      .training-info-block {
         img {
-          border-bottom: 1px solid #9A9A9A;
-          transition: all 0.4s ease-in;
-          -webkit-filter: grayscale(80%);
-          -moz-filter: grayscale(80%);
-          -ms-filter: grayscale(80%);
-          -o-filter: grayscale(80%);
-          filter: grayscale(80%);
-          filter: gray; /* IE 6-9 */
+          border-top-left-radius: 2px;
+          border-top-right-radius: 2px;
+          width: 100%;
+          height: 200px;
+          transition: all 0.4s ease-out;
+          border-bottom: 1px solid transparent;
+        }
+        .down-info {
+          padding: 10px;
+          background: #f0f0f0;
+          border-radius: 2px;
+          h3 {
+            color: #4d4d4d;
+            font-weight: bold;
+            font-family: var(--font-traning-coash);
+            font-size: 20px;
+            text-transform: uppercase;
+          }
+          .bl {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            span {
+              font-size: 13px;
+              font-family: var(--font-traning-bl-info);
+            }
+          }
         }
       }
-    }
-    .down-info {
-      padding: 10px;
-      h3 {
-        color: #4d4d4d;
-        font-weight: bold;
-        font-family: var(--font-traning-coash);
-        font-size: 20px;
-        text-transform: uppercase;
-      }
-      .bl {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        span {
-          font-size: 13px;
-          font-family: var(--font-traning-bl-info);
-        }
-      }
-      .btn-training {
+      .block-btn-training {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
-        padding-top: 10px;
-        .btn-all-application {
-          .btn-text {
+        margin-top: 4px;
+        background: #f0f0f0;
+        border-radius: 2px;
+        .btn-training {
+          padding: 10px;
+          &__text {
             font-size: 14px;
+            transition: all 0.5s ease-out;
+            color: var(--color-main-text-aplication);
+          }
+        }
+      }
+      &:hover {
+        position: relative;
+        .block-btn-training {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: -5px;
+          left: 0;
+          -webkit-animation: showHover 0.4s ease-in;
+          -moz-animation: showHover 0.4s ease-in;
+          -o-animation: showHover 0.4s ease-in;
+          animation: showHover 0.4s ease-in;
+          //background: #4c677b;
+          background: rgb(0, 0, 0, 0.1);
+          .btn-training {
+            cursor: pointer;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            background: var(--background-btn);
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+            &__text {
+              -webkit-animation: showText 0.4s ease-in;
+              -moz-animation: showText 0.4s ease-in;
+              -o-animation: showText 0.4s ease-in;
+              animation: showText 0.4s ease-in;
+              font-size: 13px;
+              color: white;
+            }
           }
         }
       }
     }
+  }
+}
+@keyframes showText {
+  0% {
+    font-size: 0;
+  }
+  99% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 13px;
+    color: white;
+  }
+}
+@keyframes showHover {
+  0% {
+    width: 0;
+    //background: rgb(0, 0, 0, 0.5);
+    background: rgba(251, 251, 251, 1);
+  }
+  100% {
+    width: 100%;
+    background: rgb(0, 0, 0, 0.1);
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -108,11 +156,22 @@
   .wrapper {
     max-width: 970px;
     .training-info-block {
-      width: 520px;
+      //width: 520px;
       height: auto;
       img {
         width: 100%;
         height: 270px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    .all-content {
+      margin-right: 10px;
+      margin-left: 10px;
+      .position-block-trainings {
+        width: 300px;
       }
     }
   }
@@ -141,12 +200,21 @@
         }
       }
       .training-info-block {
-        width: 420px;
         height: auto;
         img {
           width: 100%;
           height: 230px;
         }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 665px) {
+  .wrapper {
+    .all-content {
+      .position-block-trainings {
+        width: 70%;
+        margin: 20px auto;
       }
     }
   }
@@ -169,12 +237,15 @@
           font-size: 12px;
         }
       }
-      .training-info-block {
-        width: 320px;
-        height: auto;
-        img {
-          width: 100%;
-          height: 170px;
+      .position-block-trainings {
+        width: 90%;
+        margin: 20px auto;
+        .training-info-block {
+          height: auto;
+          img {
+            width: 100%;
+            //height: 170px;
+          }
         }
       }
     }
