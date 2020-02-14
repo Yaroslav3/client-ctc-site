@@ -236,16 +236,14 @@
           left: 30px;
         }
       }
-    }
-    &:hover {
-      .btn-go-order {
+      &:hover {
         transition: all .3s ease-in;
         background-color: #2C6365;
-        &__text {
+        .btn-go-order__text {
           transition: all .3s ease-in;
           color: white;
         }
-        &__icon {
+        .btn-go-order__icon {
           &:before {
             transition: all .3s ease-in;
             color: white;
@@ -343,6 +341,14 @@
     justify-content: space-evenly !important;
     .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
       color: #698585 !important;
+    }
+  }
+}
+@media all and (max-width: 1444px) {
+  .position-content {
+    .error-no-selected {
+      bottom: 1px;
+      left: -7px;
     }
   }
 }

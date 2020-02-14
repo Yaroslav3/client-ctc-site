@@ -92,8 +92,6 @@ export class OrderFormWebinarComponent implements OnInit, AfterContentChecked, O
     webinarOrder.nameWebinar = this.webinar.name;
     webinarOrder.theme = this.webinar.theme;
     webinarOrder.idWebinars = this.webinar.id;
-    console.log(webinarOrder);
-    console.log(webinarOrder.phone.toString().length);
     this.order.createWebinarOrder(webinarOrder).subscribe((data: LiqPayOrder) => {
       this.liqPayOrder = data;
       this.isLiqPayTwo = false;

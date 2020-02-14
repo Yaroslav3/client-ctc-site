@@ -35,7 +35,6 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   @Input() idRoom;
   wrongDateSelected: boolean;
   loaderComponent = false;
-
   constructor(private roomDate: RoomDateService,
               private route: Router,
               private loader: LoaderSmallSpinnerBtnComponent,
@@ -96,6 +95,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       setTimeout(() => {
         if (data.message === 'not empty') {
           this.errorStartData = true;
+          this.btnNext = false;
           this.disabledEndDate = false;
           if (this.errorStartData) {
             this.errorEndData = false;
@@ -115,6 +115,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       this.errorStartData = false;
       this.errorEndData = false;
       this.btnNext = false;
+      return;
     } else {
       const dataFormat = new Date(endPeriod);
       if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
@@ -157,6 +158,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       setTimeout(() => {
         if (data.message === 'not empty') {
           this.errorEndData = true;
+          this.btnNext = false;
           if (this.errorEndData) {
             this.errorStartData = false;
           }
@@ -175,6 +177,16 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       !this.wrongDateSelected && !this.errorInvalidStartDay && !this.errorInvalidEndDay) {
       this.btnNext = true;
     } else {
+      this.btnNext = false;
+    }
+    if (this.dateStart === null || this.dateEnd === null) {
+      this.btnNext = false;
+      this.errorEndData = false;
+      this.errorStartData = false;
+    }
+    if (this.errorInvalidEndDay || this.errorInvalidStartDay) {
+      this.errorStartData = false;
+      this.errorEndData = false;
       this.btnNext = false;
     }
   }
