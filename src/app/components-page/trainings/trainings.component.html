@@ -9,27 +9,21 @@
         </div>
       </div>
       <div class="block-add-trainings">
-        <div *ngFor="let training of trainings; let i = index">
-          <a>
-            <div class="training-info-block"
-                 *ngFor="let elem of trainings[i].photoTrainings;">
-              <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
-              <div class="down-info">
-                <h3>{{training.name}}</h3>
-                <div class="bl">
-                  <span>{{training.briefly}}</span>
-                </div>
-                <hr>
-                <div class="btn-training">
-                  <button type="button"
-                          class="btn-all-application"
-                          (click)="noClickTrainings(training.id)">
-                    <span class="btn-text">Заказть корпоративный тренинг</span>
-                  </button>
-                </div>
+        <div class="position-block-trainings" *ngFor="let training of trainings; let i = index">
+          <div class="training-info-block" *ngFor="let elem of trainings[i].photoTrainings;">
+            <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
+            <div class="down-info">
+              <h3>{{training.name}}</h3>
+              <div class="bl">
+                <span>{{training.briefly}}</span>
               </div>
             </div>
-          </a>
+          </div>
+          <div class="block-btn-training">
+            <div class="btn-training" (click)="noClickTrainings(training.id)">
+              <span class="btn-training__text">Заказть корпоративный тренинг</span>
+            </div>
+          </div>
         </div>
       </div>
       <br/>
