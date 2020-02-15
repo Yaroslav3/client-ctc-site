@@ -3,6 +3,7 @@ import {StartingLoadService} from '../shared/services/starting-load.service';
 import {fadingAwayAnimate} from '../shared/animations/fading-away.animate';
 import {LoaderStartAppComponent} from '../global-components/loader/loader-start-app/loader-start-app.component';
 import {RoomDateService} from '../shared/services/room-date.service';
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-main-layout',
@@ -38,7 +39,6 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
       this.startLoad.getWebinars();
       this.startLoad.getAllInscriptions();
       this.startLoad.getWebinarsInscription();
-      this.startLoad.getAllDataCalendar();
       this.roomDate.getAllRoom();
       this.loader = false;
       this.loaderComponent.stopSpinner();
@@ -71,6 +71,7 @@ export class MainLayoutComponent implements OnInit, AfterContentChecked {
   buttonTop() {
     window.scroll(0, 0);
   }
+
   // stickyMenu(scrollPosition) {
   //   const menu = this.elRef.nativeElement.querySelector('app-menu').offsetTop - 30;
   //   if (scrollPosition > menu) {

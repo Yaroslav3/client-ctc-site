@@ -74,9 +74,4 @@ export class StartingLoadService {
         this.store.dispatch(new AllWebinarsInscription(webinarsInscription));
       });
   }
-  getAllDataCalendar() {
-    return this.http.get(this.host + environment.apiUrlGetAllDateCalendar).subscribe(dataCalendar => {
-      this.store.dispatch(new AllEventDateCalendar(dataCalendar));
-    });
-  }
 }
