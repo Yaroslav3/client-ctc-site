@@ -55,14 +55,13 @@
             flex-flow: row wrap;
             justify-content: center;
             .coach-block-content {
-              a {
+              position: relative;
+              .list-training {
                 text-decoration: none;
+                margin: 10px;
                 .trainer-block {
-                  width: 170px;
-                  height: auto;
-                  padding-bottom: 5px;
-                  margin: 10px;
-                  box-shadow: 0 2px 2px rgba(28, 15, 25, 0.1);
+                  width: 200px;
+                  height: 240px;
                   cursor: pointer;
                   transition: all 0.4s ease-in;
                   img {
@@ -72,33 +71,69 @@
                     border-radius: 1px;
                   }
                   .bl-tol {
-                    padding: 10px;
-                    h3 {
+                    padding: 10px 5px 5px 5px;
+                    background: var(--background-color-body-blok);
+                    .name, .surname {
+                      margin: 10px 0;
+                      text-transform: uppercase;
                       font-size: 12px;
-                      color: #607d8b;
+                      color: var(--color-text-block-coach);
                       font-family: var(--font-traning-coash);
                       text-align: center;
-                      font-weight: bold;
-                    }
-                    .surname {
-                      margin-top: -5px;
-                      text-transform: uppercase;
-                    }
-                    .bl-height {
-                      height: 28px;
-                      p {
-                        font-size: 10px;
-                        color: #607d8b;
-                        font-family: var(--font-traning-coash);
-                        text-align: center;
-                        font-weight: bold;
-                      }
                     }
                   }
-                  &:hover {
-                    transition: all 0.4s ease-in;
-                    background-color: #f9f9f9;
-                    box-shadow: 0 2px 2px rgba(28, 15, 25, 0.3);
+                  .bl-height {
+                    margin: 2px 0;
+                    background: var(--background-color-body-blok);
+                    min-height: 28px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .scope {
+                      font-size: 12px;
+                      color: var(--color-text-block-coach);
+                      font-family: var(--font-traning-coash);
+                      text-align: center;
+                    }
+                    .next-info-coach {
+                      display: none;
+                    }
+                  }
+                }
+              }
+              &:hover {
+                .bl-height {
+                  position: absolute;
+                  width: 91%;
+                  height: 93%;
+                  top: 8px;
+                  left: 9px;
+                  -webkit-animation: showHover 0.5s ease-in;
+                  -moz-animation: showHover 0.5s ease-in;
+                  -o-animation: showHover 0.5s ease-in;
+                  animation: showHover 0.5s ease-in;
+                  background: rgba(0, 0, 0, 0.1) !important;
+                  .scope {
+                    display: none !important;
+                  }
+                  .next-info-coach {
+                    -webkit-animation: showText 0.4s ease-in;
+                    -moz-animation: showText 0.4s ease-in;
+                    -o-animation: showText 0.4s ease-in;
+                    animation: showText 0.4s ease-in;
+                    position: absolute;
+                    bottom: 0;
+                    color: var(--color-white);
+                    width: 100%;
+                    font-size: 12px;
+                    margin: 2px 0;
+                    padding: 2px 0;
+                    background: var(--background-btn);
+                    text-align: center;
+                    height: 29px;
+                    display: flex !important;
+                    align-items: center;
+                    justify-content: center;
                   }
                 }
               }
@@ -167,21 +202,28 @@
     }
   }
 }
-//:host ::ng-deep #myEditor {
-//  .angular-editor-textarea {
-//    border: none;
-//  }
-//  .angular-editor-wrapper .angular-editor-textarea blockquote {
-//    margin: 0 0 0 0 !important;
-//  }
-//  #editor {
-//    resize: none;
-//  }
-//  .angular-editor .angular-editor-wrapper .angular-editor-textarea {
-//    padding: 0 !important;
-//  }
-//}
-
+@keyframes showHover {
+  0% {
+    width: 0;
+    background: rgba(251, 251, 251, 1);
+  }
+  100% {
+    width: 91%;
+    background: rgba(0, 0, 0, .1);
+  }
+}
+@keyframes showText {
+  0% {
+    font-size: 0;
+  }
+  99% {
+    font-size: 0;
+  }
+  100% {
+    font-size: 13px;
+    color: white;
+  }
+}
 :host ::ng-deep.angular-editor-wrapper {
   .angular-editor-textarea {
     margin: 2px !important;

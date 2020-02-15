@@ -31,7 +31,6 @@
     justify-content: center;
     .position-block-trainings {
       margin: 20px 10px;
-      border: 1px solid #F3F3F3;
       transition: all 0.4s ease-out;
       width: 370px;
       height: auto;
@@ -48,7 +47,7 @@
         }
         .down-info {
           padding: 10px;
-          background: #f0f0f0;
+          background: var(--background-color-body-blok);
           border-radius: 2px;
           h3 {
             color: #4d4d4d;
@@ -72,7 +71,7 @@
         display: flex;
         justify-content: center;
         margin-top: 4px;
-        background: #f0f0f0;
+        background: var(--background-color-body-blok);
         border-radius: 2px;
         .btn-training {
           padding: 10px;
@@ -85,6 +84,17 @@
       }
       &:hover {
         position: relative;
+        .training-info-block {
+          img {
+            transition: all 0.4s ease-in;
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray; /* IE 6-9 */
+          }
+        }
         .block-btn-training {
           position: absolute;
           width: 100%;
@@ -95,7 +105,6 @@
           -moz-animation: showHover 0.4s ease-in;
           -o-animation: showHover 0.4s ease-in;
           animation: showHover 0.4s ease-in;
-          //background: #4c677b;
           background: rgb(0, 0, 0, 0.1);
           .btn-training {
             cursor: pointer;
@@ -112,7 +121,7 @@
               -o-animation: showText 0.4s ease-in;
               animation: showText 0.4s ease-in;
               font-size: 13px;
-              color: white;
+              color: var(--color-white);
             }
           }
         }
@@ -134,8 +143,7 @@
 }
 @keyframes showHover {
   0% {
-    width: 0;
-    //background: rgb(0, 0, 0, 0.5);
+    width: 0;;
     background: rgba(251, 251, 251, 1);
   }
   100% {
