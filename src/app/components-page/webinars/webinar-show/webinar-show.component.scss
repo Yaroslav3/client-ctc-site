@@ -32,7 +32,7 @@
           display: flex;
           flex-direction: column;
           position: relative;
-          color: #ffffff;
+          color: var(--color-white);
           margin-top: -265px;
           .bl-w-text {
             p {
@@ -41,10 +41,10 @@
               margin-top: 20px;
               font-size: 25px;
               text-indent: 0.8em;
-              color: #ffffff;
+              color: var(--color-white);
               font-family: var(--font-webinars-show);
               font-weight: bold;
-              background-color: rgba(1, 3, 7, 0.2);
+              background-color: var(--background-darken-opacity-block);
               border-radius: 1px;
             }
           }
@@ -72,14 +72,14 @@
               font-size: 18px;
             }
             span {
-              color: #fc575e;
+              color: var(--color-red);
               font-weight: bold;
             }
             .bl-w-count-null {
               width: 100%;
               margin: 20px;
-              background-color: rgba(1, 3, 7, 0.2);
-              color: #ff424a;
+              background-color: var(--background-darken-opacity-block);
+              color: var(--color-red);
               text-align: center;
               font-size: 25px;
               font-weight: bold;
@@ -117,7 +117,7 @@
               width: 100%;
               tr {
                 font-size: 15px;
-                background-color: #EAEAEA !important;
+                background-color: var(--background-table-light) !important;
                 border-radius: 10px;
                 th {
                   font-size: 15px;
@@ -125,18 +125,18 @@
                   font-weight: 500;
                   text-align: center;
                   .text-table {
-                    color: #555555 !important;
+                    color: var(--color-text-table-ligh) !important;
                   }
                 }
                 .number-of-seats {
-                  color: #648095;
-                  background-color: #dad3e8;
+                  color: var(--color-white);
+                  background-color: var(--background-table-dark);
                   text-align: center;
                 }
                 .price-w {
-                  color: green;
+                  color: var(--color-white);
                   text-align: center;
-                  background-color: #dad3e8;
+                  background-color: var(--background-table-dark);
                 }
               }
             }

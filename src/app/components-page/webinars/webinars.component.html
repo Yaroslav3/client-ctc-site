@@ -9,48 +9,46 @@
         </div>
       </div>
       <div class="block-add-webinar">
-        <div *ngFor="let webinar of webinars; let i = index">
-          <div>
-            <a (click)="noClickWebinars(webinar.id)">
-              <div class="webinar-info-block" *ngFor="let elem of webinars[i].photoWebinars;">
-                <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
-                <br>
-                <br>
-                <div class="down-info">
-                  <h3>{{webinar.name}}</h3>
-                  <div class="bl">
-                    <span>{{webinar.theme}}</span>
-                  </div>
+        <div class="list-webinar" *ngFor="let webinar of webinars; let i = index">
+          <div class="webinar-img" *ngFor="let elem of webinars[i].photoWebinars;">
+            <img [src]="'data:image/jpg;base64,' + elem.photo" alt="photo">
+          </div>
+          <div class="down-info">
+            <div class="name-webinar">
+              <span class="name-webinar__text">{{webinar.name}}</span></div>
+            <div class="theme-webinar">
+              <span class="theme-webinar__text">{{webinar.theme}}</span>
+            </div>
+          </div>
+          <div class="detail-webinar">
+            <div class="w-count-price">
+              <div class="position-price">
+                <div class="count" *ngIf="webinar.countPerson - count[i] > 0">
+                  <span class="count__text">Количество свободных мест: </span>
+                  <span class="count__number">{{webinar.countPerson - count[i]}}</span>
                 </div>
-                <div class="w-count-price">
-                  <div class="count" *ngIf="webinar.countPerson - count[i] > 0">
-                    <span>осталось мест: </span>
-                    <span class="count-w">
-                      {{webinar.countPerson - count[i]}}
-                    </span>
-                  </div>
-                  <div class="count" *ngIf="webinar.countPerson - count[i] <= 0">
-                    <span class="zero">Все бидеты проданы!</span>
-                  </div>
-                  <div class="price">
-                    <span>{{webinar.price}} {{webinar.currency}}</span>
-                  </div>
+                <div class="count" *ngIf="webinar.countPerson - count[i] <= 0">
+                  <span class="count__zero">Все бидеты проданы!</span>
                 </div>
-                <div class="wb-i">
-                  <div class="bl-wb">
-                    <div class="date">
-                      <span>{{webinar.dateEvent| date: 'dd.MM.yyyy'}}</span>
-                    </div>
-                    <div class="time">
-                      <span>{{webinar.timeEvent}}</span>
-                    </div>
-                  </div>
-                  <div class="city">
-                    <span>{{webinar.city}}</span>
-                  </div>
+                <div class="price">
+                  <span class="price__text">{{webinar.price}} {{webinar.currency}}</span>
                 </div>
               </div>
-            </a>
+              <div class="bl-wb">
+                <div class="date">
+                  <span class="date__number">{{webinar.dateEvent| date: 'dd.MM.yyyy'}}</span>
+                </div>
+                <div class="time">
+                  <span class="time__number">{{webinar.timeEvent}}</span>
+                </div>
+              </div>
+              <div class="city">
+                <span class="city__text">{{webinar.city}}</span>
+              </div>
+            </div>
+            <div class="block-next-detail-webinar" (click)="noClickWebinars(webinar.id)">
+              <span class="block-next-detail-webinar__text">Посмотреть детально</span>
+            </div>
           </div>
         </div>
       </div>

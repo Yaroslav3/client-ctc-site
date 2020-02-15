@@ -4,7 +4,7 @@
   margin-top: 90px;
   min-height: 67vh;
   .content-order-status {
-    background-color: white;
+    background-color: var(--background-white);
     min-height: 60vh;
     display: flex;
     margin: auto;
@@ -20,27 +20,27 @@
     .alert-primary {
       background: rgba(0, 0, 0, 0.3);
       .massage-text {
-        color: white;
+        color: var(--color-white);
         letter-spacing: 2px;
         font-size: 16px;
       }
     }
     .alert-success {
-      background: rgba(210, 245, 245, 0.3);
+      background: var(--background-alert);
       .massage-text {
-        color: green;
+        color: var(--color-alert-success);
       }
     }
     .alert-danger {
-      background: rgba(244, 238, 224, 0.3);
+      background: var(--background-alert);
       .massage-text {
-        color: orangered;
+        color: var(--color-alert-danger);
       }
     }
     .alert-warning {
-      background: rgba(255, 231, 234, 0.3);
+      background: var(--background-alert);
       .massage-text {
-        color: red;
+        color: var(--color-alert-warning);
       }
     }
   }
