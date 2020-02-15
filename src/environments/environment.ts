@@ -27,7 +27,7 @@ export const environment = {
   apiUrlCreateWebinarOrder: 'api/webinar/order/save',
   apiUrlWebinarOrderStatus: 'api/webinar/order/status',
   // Calendar;
-  apiUrlGetAllDateCalendar: 'api/calendar/get_all_data',
+  apiUrlGetAllDateCalendar: 'api/calendar/get_data_period',
   // Room rental;
   apiUrlRoomAll: 'api/room/rental/all_room',
   apiUrlRoomOne: 'api/room/rental/one_room',

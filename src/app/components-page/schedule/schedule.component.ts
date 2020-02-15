@@ -8,6 +8,7 @@ import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
+import {DateService} from '../../shared/services/date.service';
 
 @Component({
   selector: 'app-schedule',
@@ -26,12 +27,13 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
               private route: Router,
               readonly viewportScroller: ViewportScroller,
               private headerControl: MainLayoutComponent,
-              private getReduxData: GetReduxDataService) {
+              private getReduxData: GetReduxDataService,
+              private dateService: DateService) {
     this.location = 'schedule';
   }
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.dateEventCalendar = this.getReduxData.getAllDateCalendarState();
+    this.dateEventCalendar = this.dateService.getRangeDataCalendar(new Date(), new Date());
     this.getAllDateCalendar();
     this.viewportScroller.scrollToPosition([0, 400]);
     if (this.dateEventCalendar.length === 0) {
@@ -40,8 +42,9 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
   }
+
+
   getAllDateCalendar() {
-    this.dateEventCalendar = this.getReduxData.getAllDateCalendarState();
     this.events = this.dateEventCalendar;
     this.options = {
       plugins: [dayGridPlugin],
