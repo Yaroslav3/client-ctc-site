@@ -75,6 +75,7 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
       this.showBlockPDF();
       this.startingLoad.getOneTrainings(params.id).subscribe((oneTraining: TrainingsShow) => {
         this.training = oneTraining;
+        console.log('oneTraining', oneTraining)
         this.startingLoad.getSkillTrainerOneTrainer(params.id).subscribe((skill: Trainers) => {
           this.trainers = skill;
         });
