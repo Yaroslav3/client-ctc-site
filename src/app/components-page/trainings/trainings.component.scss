@@ -67,6 +67,9 @@
           }
         }
       }
+      .block-btn {
+        display: none;
+      }
       .block-btn-training {
         display: flex;
         justify-content: center;
@@ -93,6 +96,20 @@
             -o-filter: grayscale(100%);
             filter: grayscale(100%);
             filter: gray; /* IE 6-9 */
+          }
+        }
+        .block-btn {
+          display: flex;
+          justify-content: center;
+          margin-top: 4px;
+          background: var(--background-color-body-blok);
+          border-radius: 2px;
+          .btn-training {
+            padding: 10px;
+            &__text {
+              font-size: 14px;
+              color: var(--color-main-text-aplication);
+            }
           }
         }
         .block-btn-training {
