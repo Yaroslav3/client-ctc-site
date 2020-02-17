@@ -28,6 +28,7 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
   training: TrainingsShow;
   trainers: Trainers;
   loader: boolean;
+  visibleTrainers = false;
   constructor(private idTraining: ActivatedRoute,
               private getReduxData: GetReduxDataService,
               private headerControl: MainLayoutComponent,
@@ -79,6 +80,12 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
         this.training = oneTraining;
         this.startingLoad.getSkillTrainerOneTrainer(params.id).subscribe((skill: Trainers) => {
           this.trainers = skill;
+          if (Object.keys(this.trainers).length === 0) {
+            this.visibleTrainers = false;
+            console.log(Object.keys(this.trainers).length === 0);
+          } else {
+            this.visibleTrainers = true;
+          }
         });
       });
     });

@@ -44,98 +44,102 @@
         .bl-block-editor {
           margin: 50px;
           .bl-t {
+            border-top: 1px solid var(--color-border);
+            padding: 15px 5px;
+            border-bottom: 1px solid var(--color-border);
             span {
               color: #23344d;
               font-weight: bold;
               font-family: var(--font-traning-coash);
             }
-          }
-          .coach-block {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: center;
-            .coach-block-content {
-              position: relative;
-              .list-training {
-                text-decoration: none;
-                margin: 10px;
-                .trainer-block {
-                  width: 200px;
-                  height: 240px;
-                  cursor: pointer;
-                  transition: all 0.4s ease-in;
-                  img {
-                    width: 100%;
-                    height: 130px;
-                    background-size: cover;
-                    border-radius: 2px;
-                  }
-                  .bl-tol {
-                    border-radius: 2px;
-                    padding: 10px 5px 5px 5px;
-                    background: var(--background-color-body-blok);
-                    .name, .surname {
-                      margin: 10px 0;
-                      text-transform: uppercase;
-                      font-size: 12px;
-                      color: var(--color-text-block-coach);
-                      font-family: var(--font-traning-coash);
-                      text-align: center;
+            .coach-block {
+              display: flex;
+              flex-flow: row wrap;
+              justify-content: center;
+              .coach-block-content {
+                position: relative;
+                .list-training {
+                  text-decoration: none;
+                  margin: 10px;
+                  .trainer-block {
+                    width: 200px;
+                    height: 240px;
+                    cursor: pointer;
+                    transition: all 0.4s ease-in;
+                    img {
+                      width: 100%;
+                      height: 130px;
+                      background-size: cover;
+                      border-radius: 2px;
                     }
-                  }
-                  .bl-height {
-                    border-radius: 2px;
-                    margin: 2px 0;
-                    background: var(--background-color-body-blok);
-                    min-height: 28px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    .bl-tol {
+                      border-radius: 2px;
+                      padding: 10px 5px 5px 5px;
+                      background: var(--background-color-body-blok);
+                      .name, .surname {
+                        margin: 10px 0;
+                        text-transform: uppercase;
+                        font-size: 12px;
+                        color: var(--color-text-block-coach);
+                        font-family: var(--font-traning-coash);
+                        text-align: center;
+                      }
+                    }
                     .scope {
-                      font-size: 12px;
-                      color: var(--color-text-block-coach);
-                      font-family: var(--font-traning-coash);
-                      text-align: center;
+                      border-radius: 2px;
+                      margin: 2px 0;
+                      background: var(--background-color-body-blok);
+                      min-height: 28px;
+                      display: -webkit-box;
+                      display: flex;
+                      -webkit-box-pack: center;
+                      justify-content: center;
+                      -webkit-box-align: center;
+                      align-items: center;
+                      &__text {
+                        font-size: 12px;
+                        color: var(--color-text-block-coach);
+                        font-family: var(--font-traning-coash);
+                        text-align: center;
+                      }
                     }
-                    .next-info-coach {
+                    .bl-height {
                       display: none;
                     }
                   }
                 }
-              }
-              &:hover {
-                .bl-height {
-                  position: absolute;
-                  width: 91%;
-                  height: 93%;
-                  top: 8px;
-                  left: 9px;
-                  -webkit-animation: showHover 0.5s ease-in;
-                  -moz-animation: showHover 0.5s ease-in;
-                  -o-animation: showHover 0.5s ease-in;
-                  animation: showHover 0.5s ease-in;
-                  background: rgba(0, 0, 0, 0.1) !important;
-                  .scope {
-                    display: none !important;
-                  }
-                  .next-info-coach {
-                    -webkit-animation: showText 0.4s ease-in;
-                    -moz-animation: showText 0.4s ease-in;
-                    -o-animation: showText 0.4s ease-in;
-                    animation: showText 0.4s ease-in;
+                &:hover {
+                  .bl-height {
+                    display: block !important;
                     position: absolute;
-                    bottom: 0;
-                    color: var(--color-white);
-                    width: 100%;
-                    font-size: 12px;
-                    margin: 2px 0;
-                    padding: 2px 0;
-                    background: var(--background-btn);
-                    text-align: center;
-                    height: 29px;
-                    display: flex !important;
-                    align-items: center;
-                    justify-content: center;
+                    width: 91%;
+                    height: 93%;
+                    top: 8px;
+                    left: 9px;
+                    -webkit-animation: showHover 0.5s ease-in;
+                    -moz-animation: showHover 0.5s ease-in;
+                    -o-animation: showHover 0.5s ease-in;
+                    animation: showHover 0.5s ease-in;
+                    background: rgba(0, 0, 0, 0.1) !important;
+                    .next-info-coach {
+                      -webkit-animation: showText 0.4s ease-in;
+                      -moz-animation: showText 0.4s ease-in;
+                      -o-animation: showText 0.4s ease-in;
+                      animation: showText 0.4s ease-in;
+                      position: absolute;
+                      bottom: 0;
+                      color: var(--color-white);
+                      width: 100%;
+                      font-size: 12px;
+                      margin: 2px 0;
+                      padding: 2px 0;
+                      background: var(--background-btn);
+                      text-align: center;
+                      height: 29px;
+                      display: flex !important;
+                      align-items: center;
+                      justify-content: center;
+                    }
                   }
                 }
               }

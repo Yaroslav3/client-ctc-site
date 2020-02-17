@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Trainings} from '../../shared/model/Trainings.model';
 import {Order} from '../../shared/model/Order.model';
@@ -32,7 +32,7 @@ import {LoaderSmallSpinnerComponent} from '../../global-components/loader/loader
   providers: [LoaderSmallSpinnerComponent, {provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}],
   animations: [hiddenAnimate, showAnimate, fadingAwayAnimate],
 })
-export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class OrderComponent implements OnInit, OnDestroy {
   loader: boolean;
   orderError: Order;
   isCreated = false;
@@ -84,9 +84,10 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.loader = false;
     }
     if (this.selectedTrainerId === undefined) {
-      this.selectedTrainer();
       console.log(this.selectedTrainerId);
       this.trainersCheckbox = this.getReduxData.getTrainers();
+      this.trainings = this.getReduxData.getTrainingsAll();
+      this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
       console.log(this.trainersCheckbox);
       if (!this.trainersCheckbox.length) {
         this.routerLink.navigate(['trainings/coach']);
@@ -95,11 +96,18 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.loader = false;
     }
   }
-  ngAfterContentChecked(): void {
-  }
   selectedTrainer() {
+    let starus;
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
-    this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+    if (selectedTrainerId === undefined || selectedTrainerId === null) {
+      starus = undefined;
+      // console.log(this.trainersCheckbox);
+      // this.trainersCheckbox = this.getReduxData.getTrainers();
+      // this.trainings = this.getReduxData.getTrainingsAll();
+    } else {
+      starus = this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+    }
+    return starus;
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
@@ -163,6 +171,7 @@ export class OrderComponent implements OnInit, AfterContentChecked, OnDestroy {
     order.phone = Number(this.orderForm.controls.phone.value.replace(/[- ()]/g, ''));
     order.email = this.orderForm.controls.email.value;
     order.description = this.orderForm.controls.description.value;
+    console.log(order);
     this.orderService.saveOrder(order).subscribe(() => {
         setTimeout(() => {
           this.isSubmitted = true;
