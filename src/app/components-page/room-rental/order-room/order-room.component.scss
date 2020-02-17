@@ -446,18 +446,25 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         .form-order-banner {
-          top: -350px !important;
+          top: -306px !important;
         }
         .form {
           padding: 6px 0;
         }
+        .back-to-form {
+          position: absolute;
+          top: -31px;
+          left: 16px;
+          cursor: pointer;
+        }
       }
-      .info-client-time-exist {
-        padding: 15px 15px 44px 15px;
-      }
+    }
+    .info-client-time-exist {
+      padding: 15px 15px 44px 15px;
     }
   }
 }
+
 
 
 

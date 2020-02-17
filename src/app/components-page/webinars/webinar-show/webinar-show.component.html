@@ -11,26 +11,27 @@
         <div class="bl-block">
           <div class="bl-img">
             <img [src]="'data:image/jpg;base64,' + webinar.photoWebinars[0].photo">
-          </div>
-          <div class="bl-w-info">
-            <div class="bl-w-text">
-              <p class="name-w">{{webinar.name}}</p>
-              <p>{{webinar.theme}}</p>
-            </div>
-            <div class="bl-w-price">
-              <p class="date">{{webinar.dateEvent| date: 'dd.MM.yyyy'}}</p>
-              <p>{{webinar.timeEvent}}</p>
-            </div>
-            <div class="bl-w-count" *ngIf="webinar.countPerson-count > 0">
-              <p> осталось мест: <span>{{webinar.countPerson - count}}</span></p>
-              <p> {{webinar.price}} {{webinar.currency}}</p>
-            </div>
-            <div class="bl-w-count" *ngIf="webinar.countPerson-count <= 0">
-              <div class="bl-w-count-null">
-                Все бидеты на вебинар проданы!
+            <div class="bl-w-info">
+              <div class="bl-w-text">
+                <p class="name-w">{{webinar.name}}</p>
+                <p>{{webinar.theme}}</p>
+              </div>
+              <div class="bl-w-price">
+                <p class="date">{{webinar.dateEvent| date: 'dd.MM.yyyy'}}</p>
+                <p>{{webinar.timeEvent}}</p>
+              </div>
+              <div class="bl-w-count" *ngIf="webinar.countPerson-count > 0">
+                <p> осталось мест: <span>{{webinar.countPerson - count}}</span></p>
+                <p> {{webinar.price}} {{webinar.currency}}</p>
+              </div>
+              <div class="bl-w-count" *ngIf="webinar.countPerson-count <= 0">
+                <div class="bl-w-count-null">
+                  Все бидеты на вебинар проданы!
+                </div>
               </div>
             </div>
           </div>
+
           <div class="bl-block-editor">
             <div class="webinar-description">
               <p>Описание вебинара</p>

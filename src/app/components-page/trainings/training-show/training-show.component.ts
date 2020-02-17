@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Trainers} from '../../../shared/model/Trainers.model';
 import {TrainingsShow} from '../../../shared/model/TrainingsShow.model';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
@@ -19,7 +19,7 @@ import {LoaderPageSpinnerComponent} from '../../../global-components/loader/load
   providers: [LoaderPageSpinnerComponent],
   animations: [fadingAwayAnimate]
 })
-export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDestroy {
+export class TrainingShowComponent implements OnInit, OnDestroy {
   id: number;
   pdfBlockVisual: boolean;
   pdfFile;
@@ -75,7 +75,9 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
       this.id = params.id;
       this.startingLoad.getOneTrainings(params.id).subscribe((oneTraining: TrainingsShow) => {
         if (oneTraining.pdf) {
-          this.showBlockPDF();
+          this.pdfBlockVisual = true;
+        } else {
+          this.pdfBlockVisual = false;
         }
         this.training = oneTraining;
         this.startingLoad.getSkillTrainerOneTrainer(params.id).subscribe((skill: Trainers) => {
@@ -92,11 +94,6 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
     this.loader = false;
     this.loaderComponent.stopLoaderPageSpinner();
   }
-  ngAfterContentChecked(): void {
-    this.idTraining.params.subscribe((params: Params) => {
-      // this.training = this.getReduxData.getOneTraining(params.id);
-    });
-  }
   getFonts() { // download fonts for editorConfig.
     this.fontService.getFontJsonFile().subscribe(result => {
       for (let i = 0; i < Object.keys(result).length; i++) {
@@ -104,14 +101,12 @@ export class TrainingShowComponent implements OnInit, AfterContentChecked, OnDes
       }
     });
   }
-  downloadPDF() {
-    window.open(this.pdfFile);
-  }
-  showBlockPDF() {
+  downloadPDF() { // метод который загружает pdf файл
     this.filePDFService.downloadPdq(this.id).subscribe((result) => {
       if (result) {
         this.pdfBlockVisual = true;
         this.pdfFile = window.URL.createObjectURL(result);
+        window.open(this.pdfFile);
       } else {
         this.pdfBlockVisual = false;
       }

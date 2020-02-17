@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {RoomDateService} from '../../../../shared/services/room-date.service';
 import {RoomTimeOrder} from '../../../../shared/model/RoomTimeOrder.model';
 import {DatePipe} from '@angular/common';
@@ -41,11 +41,13 @@ export class HourlySelectionComponent implements OnInit {
   ];
   constructor(private roomDate: RoomDateService,
               private loader: LoaderSmallSpinnerBtnComponent,
+              private config: NgbDatepickerConfig,
               private store: Store<AppState>,
               private route: Router) {
   }
   ngOnInit() {
     this.getAllTimeDay();
+    this.dataCorrectedCalendar();
   }
   // get all time day
   private getAllTimeDay() {
@@ -79,6 +81,14 @@ export class HourlySelectionComponent implements OnInit {
         this.dateError = true;
       }
     }
+  }
+  dataCorrectedCalendar() { // метод который деактивирует прошедшую дату
+    const current = new Date();
+    this.config.minDate = {
+      year: current.getFullYear(), month:
+        current.getMonth() + 1, day: current.getDate()
+    };
+    this.config.outsideDays = 'hidden';
   }
   dateTime(start: string, end: string) {
     this.loaderTimePeriod = true;

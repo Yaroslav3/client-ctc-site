@@ -3,10 +3,6 @@
 @import "./scss/vars";
 @import "./scss/rest";
 @import "src/assets/scss/sprire";
-//@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-//@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css";
-//@import "../node_modules/fullcalendar/dist/fullcalendar.css";
-////
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 :root {
@@ -58,13 +54,15 @@
   --color-border-input-valid: #97C1E1;
   --background-alert: rgba(210, 245, 245, 0.3);
   --background-darken-opacity-block: rgba(1, 3, 7, 0.2);
-  --color-red:#ff424a;
+  --color-red: #ff424a;
   --color-alert-success: #008000;
   --color-alert-danger: #FF4500;
   --color-alert-warning: #FF0000;
-  --color-paragraph-title:#4d4d4d;
-  --color-paragraph-description:#565d65;
-  --background-dark-ligh:rgba(0, 0, 0, .1);
+  --color-paragraph-title: #4d4d4d;
+  --color-paragraph-description: #565d65;
+  --background-dark-ligh: rgba(0, 0, 0, .1);
+  --input-checkbox-color: #147d67;
+  --input-checkbox-background: #147d67;
 }
 *, :active, :focus, :hover {
   -webkit-tap-highlight-color: transparent;
@@ -114,6 +112,7 @@ html, body, iframe {
 .wrapper {
   max-width: 1500px;
   margin: 0 auto;
+
 }
 // Стили для кнопки в приложении
 .btn-all-application {
