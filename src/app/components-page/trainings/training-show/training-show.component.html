@@ -21,55 +21,55 @@
           </div>
           <div class="bl-block-editor">
             <angular-editor id="myEditor" [(ngModel)]="training.description"
-                            [config]="editorConfig"></angular-editor>
-            <hr>
-            <div class="bl-t">
+                            [config]="editorConfig">
+            </angular-editor>
+            <div class="bl-t" *ngIf="visibleTrainers === true">
               <span>Тренеры :</span>
-            </div>
-            <div class="coach-block">
-              <div class="coach-block-content" *ngFor="let elem of trainers">
-                <div class="list-training" [routerLink]="['/trainings/coach/resume/', elem.id]">
-                  <div class="trainer-block">
-                    <img [src]="'data:image/jpg;base64,'+ elem['photo'][0]['photo']" alt="Trainings">
-                    <br>
-                    <div class="bl-tol">
-                      <h3 class="name">{{elem.name}}</h3>
-                      <h3 class="surname">{{elem.surname}}</h3>
-                    </div>
-                    <div class="bl-height">
-                      <p class="scope">{{elem.scope}}</p>
-                      <p class="next-info-coach">Подробнее</p>
+              <div class="coach-block">
+                <div class="coach-block-content" *ngFor="let elem of trainers">
+                  <div class="list-training" [routerLink]="['/trainings/coach/resume/', elem.id]">
+                    <div class="trainer-block">
+                      <img [src]="'data:image/jpg;base64,'+ elem['photo'][0]['photo']" alt="Trainings">
+                      <br>
+                      <div class="bl-tol">
+                        <h3 class="name">{{elem.name}}</h3>
+                        <h3 class="surname">{{elem.surname}}</h3>
+                      </div>
+                      <div class="scope">
+                        <p class="scope__text">{{elem.scope}}</p>
+                      </div>
+                      <div class="bl-height">
+                        <p class="next-info-coach">Подробнее</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <hr>
           </div>
-        </div>
-        <div class="pdf-block" *ngIf="pdfBlockVisual">
-          <div class="text-info-pdf">
-            <p>Распечатайте презентацию тренинга для вашего руководителя </p>
-          </div>
-          <div class="pdf-btn">
-            <div class="img-pdf" (click)="downloadPDF()">
-              <img src="/assets/img/pdf.png" alt="pdf">
+          <div class="pdf-block" *ngIf="pdfBlockVisual">
+            <div class="text-info-pdf">
+              <p>Распечатайте презентацию тренинга для вашего руководителя </p>
+            </div>
+            <div class="pdf-btn">
+              <div class="img-pdf" (click)="downloadPDF()">
+                <img src="/assets/img/pdf.png" alt="pdf">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="bl-button">
-          <div class="bl-two">
-            <div class="btn-t">
-              <button class="btn btn-outline-secondary"
-                      (click)="transitionToOrder()"
-              > заказть корпоративный
-                тренинг
-              </button>
+          <div class="bl-button">
+            <div class="bl-two">
+              <div class="btn-t">
+                <button class="btn btn-outline-secondary"
+                        (click)="transitionToOrder()"
+                > заказть корпоративный
+                  тренинг
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
