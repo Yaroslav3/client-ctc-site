@@ -8,7 +8,7 @@ import {MainLayoutComponent} from '../../main-layout/main-layout.component';
 import {fadingAwayAnimate} from '../../shared/animations/fading-away.animate';
 import {Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
-import {DateService} from '../../shared/services/date.service';
+import {DateCalendarService} from '../../shared/services/date-calendar.service';
 
 @Component({
   selector: 'app-schedule',
@@ -28,12 +28,16 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
               readonly viewportScroller: ViewportScroller,
               private headerControl: MainLayoutComponent,
               private getReduxData: GetReduxDataService,
-              private dateService: DateService) {
+              private dateService: DateCalendarService) {
     this.location = 'schedule';
   }
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.dateEventCalendar = this.dateService.getRangeDataCalendar(new Date(), new Date());
+    const st = new Date();
+    st.setMonth(st.getMonth() + 1);
+    console.log(st);
+    this.dateEventCalendar = this.dateService.getRangeDataCalendar(new Date(), st);
+    console.log(this.dateEventCalendar.valueOf());
     this.getAllDateCalendar();
     this.viewportScroller.scrollToPosition([0, 400]);
     if (this.dateEventCalendar.length === 0) {
@@ -42,8 +46,6 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
   }
-
-
   getAllDateCalendar() {
     this.events = this.dateEventCalendar;
     this.options = {

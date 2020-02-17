@@ -63,7 +63,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private getTrainerForId: SearchByIdService,
   ) {
-    this.config.outsideDays = 'hidden';
     this.loaderSubmit = false;
   }
   ngOnInit() {
@@ -75,9 +74,11 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.createFormGroup();
     this.trainersCheckbox = this.getReduxData.getTrainers();
     this.trainings = this.getReduxData.getTrainingsAll();
+    this.dataCorrectedCalendar();
     if (this.selectedTrainerId) {
       this.photoTrainerSelectedCheckbox = this.selectedTrainerId.photo[0].photo;
       this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
+      this.dataCorrectedCalendar();
       this.formRedux.training = this.formRedux.training ? this.formRedux.training : this.trainings[0].name;
       this.onChange(this.selectedTrainerId.name, this.selectedTrainerId.surname, true, this.selectedTrainerId);
       this.startComponentCheckboxCoach(this.selectedTrainerId);
@@ -88,6 +89,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.trainersCheckbox = this.getReduxData.getTrainers();
       this.trainings = this.getReduxData.getTrainingsAll();
       this.formRedux = this.getReduxData.getTrainingFormState() as OrderTrainingsForm;
+      this.dataCorrectedCalendar();
       console.log(this.trainersCheckbox);
       if (!this.trainersCheckbox.length) {
         this.routerLink.navigate(['trainings/coach']);
@@ -97,17 +99,22 @@ export class OrderComponent implements OnInit, OnDestroy {
     }
   }
   selectedTrainer() {
-    let starus;
+    let status;
     const selectedTrainerId = this.getTrainerForId.setOrderTrainerId();
     if (selectedTrainerId === undefined || selectedTrainerId === null) {
-      starus = undefined;
-      // console.log(this.trainersCheckbox);
-      // this.trainersCheckbox = this.getReduxData.getTrainers();
-      // this.trainings = this.getReduxData.getTrainingsAll();
+      status = undefined;
     } else {
-      starus = this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
+      status = this.selectedTrainerId = this.getReduxData.getOneTrainer(selectedTrainerId);
     }
-    return starus;
+    return status;
+  }
+  dataCorrectedCalendar() { // метод который деактивирует прошедшую дату
+    const current = new Date();
+    this.config.minDate = {
+      year: current.getFullYear(), month:
+        current.getMonth() + 1, day: current.getDate()
+    };
+    this.config.outsideDays = 'hidden';
   }
   createFormGroup() {
     return this.orderForm = this.fb.group({
@@ -171,7 +178,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     order.phone = Number(this.orderForm.controls.phone.value.replace(/[- ()]/g, ''));
     order.email = this.orderForm.controls.email.value;
     order.description = this.orderForm.controls.description.value;
-    console.log(order);
     this.orderService.saveOrder(order).subscribe(() => {
         setTimeout(() => {
           this.isSubmitted = true;

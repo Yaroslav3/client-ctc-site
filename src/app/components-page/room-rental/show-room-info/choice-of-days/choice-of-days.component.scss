@@ -253,6 +253,66 @@ input:disabled, button:disabled {
     transition: all 0.2s ease-out;
   }
 }
+//_____________ style calendar_____________________
+::ng-deep.show {
+  top: -44px !important;
+  left: -2px !important;
+  right: 47px !important;
+  margin: auto !important;
+  background: #FBFBFB;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  width: 100%;
+  z-index: 200;
+  .ngb-dp-header {
+    width: 80% !important;
+    margin: 20px auto !important;
+    .ng-star-inserted {
+      .ngb-dp-arrow {
+        .ngb-dp-navigation-chevron {
+          color: green;
+        }
+      }
+      .ngb-dp-navigation-select {
+        .custom-select {
+          border-radius: 2px !important;
+          border: 1px solid var(--color-border) !important;
+          margin-left: 4px !important;
+          color: cadetblue !important;
+        }
+      }
+    }
+  }
+  .ngb-dp-months {
+    justify-content: space-evenly;
+    ngb-datepicker-month-view {
+      .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
+        border-bottom: none;
+        .ngb-dp-weekday, .small, .ng-star-inserted {
+          background: var(--background-main-aplication);
+          color: var(--color-input-text);
+          border-radius: 0;
+          //border-bottom: 1px solid var(--color-border);
+        }
+        .ngb-dp-today {
+          .btn-light {
+            color: var(--color-white) !important;
+            background: var(--background-btn-text) !important;
+            border-radius: 2px !important;
+          }
+        }
+        .ngb-dp-day {
+          .btn-light {
+            color: var(--background-btn);
+          }
+        }
+      }
+      .ng-star-inserted {
+        color: var(--color-input-text);
+      }
+    }
+  }
+}
 @media all and (max-width: 1380px) {
   .block-selected-content {
     .content-info {
@@ -281,6 +341,11 @@ input:disabled, button:disabled {
       height: 252px;
       width: 50%;
       margin: 0 2px 0 0;
+      .btn-order-day {
+        position: absolute;
+        right: -291px;
+        top: 108px;
+      }
     }
   }
 }

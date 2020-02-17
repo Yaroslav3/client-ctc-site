@@ -9,7 +9,7 @@
     transition: all linear 0.3s;
     box-sizing: border-box;
     .white_bg {
-      background-color: white;
+      background-color: var(--background-white);
       padding: 10px;
       .coach-info {
         display: flex;
@@ -18,7 +18,7 @@
           h5 {
             font-size: 12px;
             font-family: var(--font-show-couch-resume);
-            color: #45689c;
+            color: var(--header-color-text);
             font-weight: bold;
             margin: 16px 0;
             text-align: center;
@@ -34,7 +34,7 @@
             .name-surname-coach {
               margin: 10px 15px;
               font-size: 20px;
-              color: #666666;
+              color: var(--color-paragraph-description);
               border-bottom: 1px solid;
               display: inline-block;
             }
@@ -72,7 +72,7 @@
                   .contact-info-text {
                     span {
                       border-bottom: 1px solid;
-                      color: #666666;
+                      color: var(--color-paragraph-description);
                     }
                   }
                   .contacts-url {
@@ -82,7 +82,7 @@
                       a {
                         .fa-facebook-square, .fa-linkedin {
                           font-size: 27px;
-                          color: #3B5998;
+                          color: var(--header-color-text);
                           transition: all 0.4s ease;
                           &:hover {
                             transition: all 0.4s ease-in-out;
@@ -98,13 +98,13 @@
                         display: flex;
                         -webkit-box-pack: justify;
                         justify-content: flex-start;
-                        color: #666666;
+                        color: var(--color-paragraph-description);
                         align-items: flex-end;
                         width: 95%;
                         margin: 5px 0;
                         .fa-at, .fa-skype {
                           font-size: 16px;
-                          color: #3B5998;
+                          color: var(--header-color-text);
                         }
                         .text {
                           position: relative;
@@ -131,7 +131,7 @@
               .training-coach {
                 .title-training {
                   font-size: 16px;
-                  color: #502405;
+                  color: var(--color-main-text-aplication);
                   font-family: var(--font-show-couch-resume);
                   margin: 1px 5px;
                   display: inline-block;
@@ -140,7 +140,7 @@
                 .name-trainings {
                   &__text {
                     display: inline-block;
-                    color: #502405;
+                    color: var(--color-main-text-aplication);
                     font-size: 12px;
                     &:first-letter {
                       text-transform: uppercase;
@@ -167,7 +167,7 @@
               padding: 3px;
               .contact-info-text {
                 span {
-                  color: #666666;
+                  color: var(--color-main-text-aplication);
                 }
               }
               .contacts-url {
@@ -177,7 +177,7 @@
                   a {
                     .fa-facebook-square, .fa-linkedin {
                       font-size: 27px;
-                      color: #3B5998;
+                      color: var(--header-color-text);
                       transition: all 0.4s ease;
                       &:hover {
                         transition: all 0.4s ease-in-out;
@@ -193,12 +193,12 @@
                     display: flex;
                     -webkit-box-pack: justify;
                     justify-content: flex-start;
-                    color: #666666;
+                    color: var(--color-main-text-aplication);
                     align-items: flex-end;
                     width: 95%;
                     .fa-at, .fa-skype {
                       font-size: 16px;
-                      color: #3B5998;
+                      color: var(--header-color-text);
                     }
                     .text {
                       position: relative;
@@ -227,7 +227,7 @@
           .training-coach {
             .title-training {
               font-size: 16px;
-              color: #502405;
+              color: var(--color-main-text-aplication);
               font-family: var(--font-show-couch-resume);
               margin: 1px 5px;
               display: inline-block;
@@ -236,7 +236,7 @@
             .name-trainings {
               &__text {
                 display: inline-block;
-                color: #502405;
+                color: var(--color-main-text-aplication);
                 font-size: 12px;
                 &:first-letter {
                   text-transform: uppercase;

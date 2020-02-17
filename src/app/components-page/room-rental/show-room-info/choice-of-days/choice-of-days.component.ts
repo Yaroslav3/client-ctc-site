@@ -1,6 +1,6 @@
 import {AfterContentChecked, Component, Input, OnInit} from '@angular/core';
 import {fadingAwayAnimate, showAnimate} from '../../../../shared/animations/fading-away.animate';
-import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {RoomDateService} from '../../../../shared/services/room-date.service';
 import {DatePipe} from '@angular/common';
 import {StatusMessage} from '../../../../shared/model/room/statusMessage.model';
@@ -37,17 +37,18 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   loaderComponent = false;
   constructor(private roomDate: RoomDateService,
               private route: Router,
+              private config: NgbDatepickerConfig,
               private loader: LoaderSmallSpinnerBtnComponent,
               private store: Store<AppState>
   ) {
   }
   ngOnInit() {
+    this.dataCorrectedCalendar();
   }
   ngAfterContentChecked(): void {
     this.btnVisible();
   }
   selectDataCalendarStart(startPeriod: Date) {
-    console.log(startPeriod);
     if (startPeriod === null) {
       this.errorInvalidStartDay = false;
       this.errorEndData = false;
@@ -57,6 +58,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
     } else {
       const dataFormat = new Date(startPeriod);
       if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
+        this.dataCorrectedCalendar(startPeriod);
         this.disabledEndDate = false;
         this.disabledEndDate = false;
         this.nextStartDeyValid = true;
@@ -119,6 +121,7 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
     } else {
       const dataFormat = new Date(endPeriod);
       if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
+        this.dataCorrectedCalendar();
         this.errorInvalidEndDay = false;
         this.visibleDataEnd = this.dateEnd;
         this.nextEndDeyValid = true;
@@ -189,11 +192,23 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       this.errorEndData = false;
       this.btnNext = false;
     }
+    if (this.wrongDateSelected) {
+      this.dataCorrectedCalendar();
+    }
   }
   private transform(value: string) {
     const datePipe = new DatePipe('en-US');
     value = datePipe.transform(value, 'yyyy-MM-dd HH:mm');
     return value;
+  }
+  dataCorrectedCalendar(data?: Date) { // метод который деактивирует прошедшую дату
+    const current = data ? data : new Date();
+    console.log(current);
+    this.config.minDate = {
+      year: current.getFullYear(), month:
+        current.getMonth() + 1, day: current.getDate()
+    };
+    this.config.outsideDays = 'hidden';
   }
   nextOnOrder() {
     if (this.btnNext) {

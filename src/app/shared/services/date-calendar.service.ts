@@ -8,7 +8,7 @@ import {environment} from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class DateService {
+export class DateCalendarService {
   private readonly host: string;
 
   constructor(private http: HttpClient,

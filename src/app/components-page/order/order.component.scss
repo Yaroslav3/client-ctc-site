@@ -12,18 +12,15 @@
       transition: all linear 0.3s;
       box-sizing: border-box;
       .white_bg {
-        background-color: white;
+        background-color: var(--background-white);
         padding: 5px 10px 5px 10px;
         .content-order {
           .alert-order-success {
             max-width: 83%;
             height: 54vh;
             padding: 20px 20px 20px 20px;
-            /* border-radius: 2px; */
             background-color: transparent;
-            color: #67575A;
-            /* box-shadow: 0 0 16px silver; */
-            /* border: 1px solid silver; */
+            color: var(--color-input-text);
             display: -webkit-box;
             display: flex;
             -webkit-box-align: center;
@@ -49,7 +46,7 @@
                 margin: 15px;
                 text-align: center;
                 font-size: 20px;
-                color: #909B8E;
+                color: var(--color-text-table-ligh);
                 font-weight: bold;
               }
             }
@@ -70,7 +67,7 @@
                 .trainer-checkout {
                   width: 60%;
                   padding: 0 3%;
-                  color: #909B8E;
+                  color: var(----color-hover-btn-text);
                   .trainer-visualisation {
                     display: flex;
                     flex-direction: column;
@@ -98,6 +95,7 @@
                       text-align: center;
                       font-size: 20px;
                       margin-top: 0;
+                      color: var(--color-text-table-ligh);
                     }
                     .position-content-checkout {
                       display: flex;
@@ -113,6 +111,7 @@
                           position: relative;
                           cursor: pointer;
                           font-size: 12px;
+                          color: var(--color-text-table-ligh);
                           padding: 5px 6px 5px 27px;
                           -webkit-user-select: none;
                           -moz-user-select: none;
@@ -121,8 +120,8 @@
                           transition: all 0.5s;
                           &:hover {
                             transition: all 0.5s;
-                            background: #F3F3F3;
-                            color: #147d67;
+                            background: var(--background-main-aplication);
+                            color: var(--input-checkbox-color);
                           }
                         }
                         input {
@@ -140,8 +139,8 @@
                           &:checked {
                             ~ .checkmark {
                               transition: all 0.5s ease-in;
-                              background-color: #147d67;
-                              border: 1px solid silver;
+                              background-color: var(--input-checkbox-background);
+                              border: 1px solid var(--color-border);
                             }
                           }
                           &:checked {
@@ -152,12 +151,12 @@
                               transform: scale(.7) rotate(45deg);
                             }
                             .container {
-                              color: red;
+                              color: var(--color-red);
                             }
                           }
                         }
                         .checkmark {
-                          border: 1px solid #147d67;
+                          border: 1px solid var(--input-checkbox-background);
                           position: absolute;
                           width: 15px;
                           height: 15px;
@@ -172,7 +171,7 @@
                             top: 7px;
                             width: 5px;
                             height: 10px;
-                            border: solid white;
+                            border: solid var(--background-main-aplication);
                             border-width: 0 3px 3px 0;
                             -webkit-transform: rotate(45deg);
                             -ms-transform: rotate(45deg);
@@ -180,10 +179,10 @@
                           }
                         }
                         .noChecked {
-                          background: #515EDD;
+                          background: var(--header-color-text);
                         }
                         .noChecked {
-                          background: red;
+                          background: var(--color-red);
                         }
                       }
                       .block-selected-photo {
@@ -196,7 +195,7 @@
                         }
                         .btn-detail-trainer {
                           padding: 3px 11px;
-                          border: 1px solid silver;
+                          border: 1px solid var(--header-background);
                           max-width: 100%;
                           display: block;
                           text-align: center;
@@ -205,8 +204,8 @@
                           transition: all 0.4s ease-out;
                           &:hover {
                             transition: all 0.4s ease-in;
-                            background: rgba(0, 0, 0, 0.3);
-                            color: white;
+                            background: var(--background-darken-opacity-block);
+                            color: var(--color-white);
                           }
                         }
                       }
@@ -216,7 +215,7 @@
                       p {
                         text-align: left;
                         font-size: 12px;
-                        color: #515EDD;
+                        color: var(--header-color-text);
                         font-family: var(--font-order-description-choice);
                       }
                     }
@@ -227,7 +226,7 @@
                   border-radius: 5px;
                   text-align: center;
                   p {
-                    color: #909B8E;
+                    color: var(--color-text-table-ligh);
                     font-size: 18px;
                     text-align: center;
                     margin: 10px;
@@ -244,25 +243,25 @@
                         height: 39px;
                         border-bottom-left-radius: 3px;
                         border-top-left-radius: 3px;
-                        border: 1px solid #949494;
+                        border: 1px solid var(--color-border);
                         text-indent: 0.2em;
                         font-size: 13px;
                         width: 100%;
                         transition: all .4s ease-in-out;
                         text-align: left;
                         padding-left: 10px;
-                        background-color: white;
-                        color: #757575;
+                        background-color: var(--background-white);
+                        color: var(--color-border);
                       }
                       .input-group-append {
                         .calendar {
                           height: 43px;
                           width: 35px;
                           outline: none;
-                          border: 1px solid #949494;
+                          border: 1px solid var(--color-border);
                           border-bottom-right-radius: 3px;
                           border-top-right-radius: 3px;
-                          background: white;
+                          background: var(--background-white);
                           transition: all .4s ease-in;
                           .calendar-icon {
                             &:before {
@@ -270,16 +269,16 @@
                               font-size: 24px;
                               position: relative;
                               top: -1px;
-                              color: #6E6E6E;
+                              color: var(--color-border);
                             }
                           }
                           &:hover {
                             transition: all .4s ease-in;
-                            background-color: rgba(0, 0, 0, .4);
+                            background-color: var(--background-darken-opacity-block);
                             .calendar-icon {
                               &:before {
                                 transition: all .4s ease-in;
-                                color: white;
+                                color: var(--color-white);
                               }
                             }
                           }
@@ -292,10 +291,8 @@
                       min-height: 20px;
                       margin: -8px 0 0 25px;
                       span {
-                        color: #a01809;
+                        color: var(--color-red);
                         font-size: 12px;
-                        /* font-family: var(--font-order); */
-                        /* font-weight: bold; */
                         font-style: italic;
                       }
                     }
@@ -304,11 +301,11 @@
                       height: 35px;
                       border-radius: 3px;
                       text-indent: 0.6em;
-                      border: 1px solid #949494;
+                      border: 1px solid var(--color-border);
                       margin: 5px auto;
                       font-family: var(--font-order);
                       font-size: 13px;
-                      color: #7a7a7a;
+                      color: var(--color-border);
                       transition: all .4s ease-in-out;
                       .select-input {
                       }
@@ -327,23 +324,23 @@
                       width: 90%;
                       height: 35px;
                       border-radius: 3px;
-                      border: 1px solid #949494;
+                      border: 1px solid var(--color-border);
                       text-indent: 0.9em;
                       font-size: 13px;
                       margin: 5px auto;
                       transition: all .4s ease-in-out;
-                      color: #828482;
+                      color: var(--color-border);
                     }
                     .textarea-form {
                       width: 90%;
                       height: 135px;
                       border-radius: 3px;
-                      border: 1px solid #949494;
+                      border: 1px solid var(--color-border);
                       text-indent: 0.8em;
                       margin: 5px auto;
                       font-size: 13px;
                       transition: all .4s ease-in-out;
-                      color: #828482;
+                      color: var(--color-border);
                     }
                   }
                   .btn-order {
@@ -358,13 +355,13 @@
                       border: 0;
                       margin: 5px auto;
                       font-size: 15px;
-                      background-color: #6e6e6e;
+                      background-color: var(--color-input-text);
                       color: white;
                       font-family: var(--font-order);
                       cursor: pointer;
                       &:hover {
                         transition: all 0.5s ease-in;
-                        background-color: #3c3c3c;
+                        opacity: 0.6;
                       }
                     }
                   }
@@ -378,12 +375,12 @@
   }
 }
 .invalid {
-  border: 1px solid #F3ADAD !important;
+  border: 1px solid var(--color-border-input-invalid) !important;
   transition: all .4s ease-in;
-  box-shadow: 0 0 2px #F3CECE;
+  box-shadow: 0 0 2px  var(--color-border-input-invalid);
 }
 .ngValid {
-  border: 1px solid #97C1E1 !important;
+  border: 1px solid var(--color-border-input-valid) !important;
   transition: all .4s ease-in;
 }
 .data-input {
@@ -395,17 +392,17 @@
   position: relative;
   min-height: 694px;
 }
+//_____________ style calendar_____________________
 ::ng-deep.show {
-  //position: fixed !important;
   top: -44px !important;
-  left: -4px !important;
+  left: -2px !important;
   right: 47px !important;
   margin: auto !important;
   background: #FBFBFB;
-  border: 1px solid silver;
-  box-shadow: 0 0 2px black;
-  border-radius: 1px;
-  width: 91%;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  width: 100%;
+  z-index: 200;
   .ngb-dp-header {
     width: 80% !important;
     margin: 20px auto !important;
@@ -415,9 +412,10 @@
           color: green;
         }
       }
-      .ngb-dp-navigation-select, .ng-star-inserted {
+      .ngb-dp-navigation-select {
         .custom-select {
           border-radius: 2px !important;
+          border: 1px solid var(--color-border) !important;
           margin-left: 4px !important;
           color: cadetblue !important;
         }
@@ -425,9 +423,32 @@
     }
   }
   .ngb-dp-months {
-    justify-content: space-evenly !important;
-    .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
-      color: #698585 !important;
+    justify-content: space-evenly;
+    ngb-datepicker-month-view {
+      .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
+        border-bottom: none;
+        .ngb-dp-weekday, .small, .ng-star-inserted {
+          background: var(--background-main-aplication);
+          color: var(--color-input-text);
+          border-radius: 0;
+          //border-bottom: 1px solid var(--color-border);
+        }
+        .ngb-dp-today {
+          .btn-light {
+            color: var(--color-white) !important;
+            background: var(--background-btn-text) !important;
+            border-radius: 2px !important;
+          }
+        }
+        .ngb-dp-day {
+          .btn-light {
+            color: var(--background-btn);
+          }
+        }
+      }
+      .ng-star-inserted {
+        color: var(--color-input-text);
+      }
     }
   }
 }

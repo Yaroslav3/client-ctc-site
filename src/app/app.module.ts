@@ -45,7 +45,7 @@ import {LoaderPageSpinnerComponent} from './global-components/loader/loader-page
 import {LoaderStartAppComponent} from './global-components/loader/loader-start-app/loader-start-app.component';
 import {LoaderSmallSpinnerComponent} from './global-components/loader/loader-small-spinner/loader-small-spinner.component';
 import {LoaderSmallSpinnerBtnComponent} from './global-components/loader/loader-small-spinner-btn/loader-small-spinner-btn.component';
-import { PhoneMaskDirective } from './shared/directives/phone-mask.directive';
+import {PhoneMaskDirective} from './shared/directives/phone-mask.directive';
 
 @NgModule({
   declarations: [

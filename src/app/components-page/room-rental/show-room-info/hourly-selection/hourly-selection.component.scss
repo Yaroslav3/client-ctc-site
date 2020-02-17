@@ -331,9 +331,8 @@
   right: 47px !important;
   margin: auto !important;
   background: #FBFBFB;
-  border: 1px solid silver;
-  box-shadow: 0 0 2px black;
-  border-radius: 1px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
   width: 100%;
   z-index: 200;
   .ngb-dp-header {
@@ -345,9 +344,10 @@
           color: green;
         }
       }
-      .ngb-dp-navigation-select, .ng-star-inserted {
+      .ngb-dp-navigation-select {
         .custom-select {
           border-radius: 2px !important;
+          border: 1px solid var(--color-border) !important;
           margin-left: 4px !important;
           color: cadetblue !important;
         }
@@ -355,9 +355,32 @@
     }
   }
   .ngb-dp-months {
-    justify-content: space-evenly !important;
-    .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
-      color: #698585 !important;
+    justify-content: space-evenly;
+    ngb-datepicker-month-view {
+      .ngb-dp-week, .ngb-dp-weekdays, .ng-star-inserted {
+        border-bottom: none;
+        .ngb-dp-weekday, .small, .ng-star-inserted {
+          background: var(--background-main-aplication);
+          color: var(--color-input-text);
+          border-radius: 0;
+          //border-bottom: 1px solid var(--color-border);
+        }
+        .ngb-dp-today {
+          .btn-light {
+            color: var(--color-white) !important;
+            background: var(--background-btn-text) !important;
+            border-radius: 2px !important;
+          }
+        }
+        .ngb-dp-day {
+          .btn-light {
+            color: var(--background-btn);
+          }
+        }
+      }
+      .ng-star-inserted {
+        color: var(--color-input-text);
+      }
     }
   }
 }
@@ -464,6 +487,9 @@
         .time-order {
           position: relative;
           left: 10px;
+          .position-input {
+            left: -12px !important;
+          }
           .error-time {
             margin: 0;
           }
