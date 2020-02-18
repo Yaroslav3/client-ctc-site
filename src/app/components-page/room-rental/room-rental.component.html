@@ -1,23 +1,16 @@
 <div class="wrapper">
   <div class="all-content">
-    <div *ngIf="isList == true" appBackLink
+    <div *ngIf="isList"
          [@fadingAwayAnimate]
          class="alert-massage" role="alert">
       <span class="massage-text">Нет залов !</span>
     </div>
-    <div class="block-room" *ngIf="isList == false"
-         [@fadingAwayAnimate]>
+    <div class="block-room" *ngIf="!isList" [@fadingAwayAnimate]>
       <div class="room-show-content" *ngFor="let elem of room; let i=index">
-        <div class="img-show">
-          <div class="img-room">
-            <img [src]="'data:image/jpg;base64,' +room[i].photoRoom[0].photo" alt="Random first slide">
-          </div>
-          <p class="bl-1">
-            <span class="capacity">Количество учасников: </span>
-            <span class="strength"> {{room[i].roomCapacity}} человек </span>
-          </p>
-          <div class="bl-text">
-            <span>Цена:</span>
+        <app-slider class="app-slider" [photo]="elem.photoRoom"></app-slider>
+        <div class="info-room">
+          <div class="name-room">
+            <span class="name-room__text">{{elem.nameRoom}}</span>
           </div>
           <div class="currency-room" *ngFor="let elem2 of room[i].priseRoom">
             <table>
@@ -39,23 +32,18 @@
               </tr>
             </table>
           </div>
-        </div>
-        <div class="info-room-show">
-          <p class="name-room"> {{elem.nameRoom}}</p>
-          <div class="editor-show-room">
-            <angular-editor class="myEditor" [(ngModel)]="room[i].articleRoom[0].descriptionArticle"
-                            [config]="editorConfig"></angular-editor>
+          <p class="bl-1">
+            <span class="capacity">Количество учасников: </span>
+            <span class="strength"> до {{elem.roomCapacity}} чел. </span>
+          </p>
+          <div class="btn-detail-room" [routerLink]="['/room-rental/show',elem.id]">
+            <span class="btn-detail-room__text">Подробнее</span>
           </div>
-          <div class="btn-buy-room" >
-            <div class="btn-all-application" [routerLink]="['/room-rental/show',elem.id]">
-              <span class="btn-text">Оформить заказ</span>
-            </div>
-          </div>
-          <router-outlet></router-outlet>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
