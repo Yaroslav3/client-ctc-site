@@ -1,14 +1,14 @@
 :host ::ng-deep.wrapper {
   .all-content {
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 120px;
+    margin-left: 120px;
     min-height: 14vh;
     .alert-massage {
       padding: 20px 50px;
       border-radius: 2px;
       font-family: var(--font-traning-coash);
       text-align: center;
-      background: rgba(0, 0, 0, 0.3);
+      background: var(--background-dark-midel);
       .massage-text {
         color: white;
         letter-spacing: 2px;
@@ -16,53 +16,36 @@
       }
     }
     .block-room {
-      max-width: 94%;
-      margin: auto;
+      width: 99%;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       .room-show-content {
-        display: flex;
-        flex-direction: row;
-        padding: 10px 10px 30px 10px;
-        margin-bottom: 30px;
-        border-bottom: 2px solid silver;
-        .img-show {
-          min-width: 38%;
-          display: flex;
-          flex-direction: column;
-          .img-room {
-            width: auto;
-            img {
-              width: 100%;
-              background-size: cover;
-              border-radius: 2px;
-            }
+        width: 360px;
+        margin: 15px;
+        padding: 0 0 10px 0;
+        border: 1px solid #EEF1F2;
+        border-radius: 2px;
+        transition: all 0.1s ease-out;
+        position: relative;
+        .app-slider {
+          border-top-right-radius: 2px;
+          border-top-left-radius: 2px;
+          //height: 200px;
+          .img-item {
+            height: 200px;
           }
-          .bl-1 {
-            margin: 5px 0;
-            padding: 5px 0;
-            .capacity {
-              font-size: 15px;
-              font-family: var(--fonts-main);
+        }
+        .info-room {
+          .name-room {
+            padding: 15px 3px 3px 3px;
+            text-align: center;
+            &__text {
               color: #143E5F;
-            }
-            .strength {
-              font-size: 15px;
-              font-family: var(--fonts-main);
-              color: seagreen;
-              margin-left: 10px;
-              border-bottom: 1px solid;
-            }
-          }
-          .bl-text {
-            padding: 5px 0;
-            span {
-              font-family: var(--fonts-main);
-              color: #72827C;
-              padding: 5px 0;
             }
           }
           .currency-room {
-            padding: 5px;
-            background-color: #ebebeb;
             border-radius: 2px;
             text-align: center;
             color: #179918;
@@ -71,17 +54,20 @@
               tr {
                 .name-period {
                   text-align: right;
+                  font-size: 12px;
+                  display: inline-block;
                 }
                 .cost {
                   text-align: left;
                   .dey, .time {
-                    min-width: 40px;
+                    min-width: 30px;
                     font-family: var(--fonts-main);
-                    font-size: 16px;
+                    font-size: 12px;
                     text-align: center;
                     display: inline-block;
                   }
                   .currency {
+                    font-size: 12px;
                     width: auto;
                     text-align: left;
                     padding-left: 5px;
@@ -90,42 +76,53 @@
               }
             }
           }
-        }
-        .info-room-show {
-          display: flex;
-          flex-direction: column;
-          padding-left: 40px;
-          min-width: 58%;
-          .name-room {
+          .bl-1 {
+            text-align: center;
             margin: 0;
-            padding: 15px 10px;
-            background-color: #EBEBEB;
-            font-size: 18px;
-            font-family: var(--fonts-main);
-            color: #355F80;
-          }
-          .editor-show-room {
-            margin-bottom: 10px;
-            min-height: 38vh;
-            padding: 5px 0;
-            .myEditor {
-              .angular-editor-wrapper {
-                .angular-editor-textarea {
-                  margin: 2px !important;
-                  border: none !important;
-                  padding: 5px !important;
-                  resize: none !important;
-                }
-              }
+            padding: 1px 0;
+            .capacity {
+              font-size: 13px;
+              font-family: var(--fonts-main);
+              color: #143E5F;
+            }
+            .strength {
+              font-size: 13px;
+              font-family: var(--fonts-main);
+              color: lightsalmon;
+              margin-left: 10px;
             }
           }
-          .btn-buy-room {
-            display: flex;
-            justify-content: flex-end;
-            .btn-all-application {
-              .btn-text {
-                font-family: var(--fonts-main);
-              }
+          .btn-detail-room {
+            transition: all 0.2s ease-out;
+            opacity: 0;
+            width: 100%;
+            height: 0;
+            top: 0;
+            position: absolute;
+            text-align: center;
+            &__text {
+              font-size: 0;
+              color: white;
+            }
+          }
+        }
+        &:hover {
+          transition: all 0.1s ease-in;
+          border: 1px solid #E6E9EA;
+          .btn-detail-room {
+            cursor: pointer;
+            height: 20px;
+            transition: all 0.2s ease-in;
+            opacity: 1;
+            position: absolute;
+            background: var(--background-dark-midel);
+            width: 100%;
+            text-align: center;
+            top: 0;
+            padding: 5px 0;
+            &__text {
+              font-size: 15px;
+              color: white;
             }
           }
         }
@@ -137,88 +134,22 @@
   .wrapper {
     max-width: 1180px;
     .all-content {
-      margin-right: 40px;
-      margin-left: 40px;
+      margin-right: 10px;
+      margin-left: 10px;
     }
   }
 }
-@media only screen and (max-width: 980px) {
-  .wrapper {
-    max-width: 970px;
-  }
-  .room-show-content {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    .img-show {
-      width: 100%;
-      height: auto;
-      padding-bottom: 20px;
-      .bl-1 {
-        .capacity {
-          font-size: 12px !important;
-        }
-        .strength {
-          font-size: 13px !important;
-        }
-      }
-      .bl-text {
-        padding: 5px 0;
-        span {
-          font-size: 12px !important;
-        }
-      }
-      .currency-room {
-        padding: 5px;
-      }
-    }
-    .info-room-show {
-      padding-left: 10px !important;
-      min-width: 60% !important;
-    }
-  }
-}
-@media only screen and (max-width: 800px) {
-  .wrapper {
-    .all-content {
-      margin: 40px 20px 20px 10px;
-      .block-room {
-        min-width: 100%;
-        .room-show-content {
-          .img-show {
-            min-width: 40%;
-          }
-        }
-      }
-    }
-  }
-}
-@media only screen and (max-width: 700px) {
-  .wrapper {
+@media only screen and (max-width: 830px) {
+  :host ::ng-deep .wrapper {
     .all-content {
       .block-room {
         .room-show-content {
-          margin-top: 30px;
-          flex-direction: column;
-          .info-room-show {
-            padding-left: 0 !important;
-            .btn-buy-room {
-              justify-content: center;
-              .btn-all-application {
-                width: 100%;
-                height: 45px;
-                font-size: 20px;
-                background-color: #717171;
-                box-shadow: 0 2px 2px rgba(28, 15, 25, 0.3);
-                cursor: pointer;
-                transition: all 0.4s ease-in-out;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .btn-text {
-                  color: white;
-                }
-              }
+          width: 100%;
+          .app-slider {
+            border-top-right-radius: 2px;
+            border-top-left-radius: 2px;
+            .img-item {
+              height: auto !important;
             }
           }
         }
@@ -226,10 +157,15 @@
     }
   }
 }
+@media only screen and (max-width: 800px) {
+  .wrapper {
+    .all-content {
+      margin: 40px 20px 20px 10px;
+    }
+  }
+}
 @media only screen and (max-width: 480px) {
   .wrapper {
-    max-width: 470px;
-    font-size: 15px;
     .all-content {
       margin-right: 5px;
       margin-left: 5px;
