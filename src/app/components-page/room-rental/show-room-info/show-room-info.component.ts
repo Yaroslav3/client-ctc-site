@@ -20,7 +20,6 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
   room: Room;
   showHour = true;
   showDay = false;
-  stickyBlock = false;
   editorConfig: AngularEditorConfig = {
     editable: false,
     showToolbar: false,
@@ -72,14 +71,6 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
-  }
-  stickyBlockOrder(scrollPosition) {
-    const positionBlock = this.elRef.nativeElement.querySelector('.position-description-info-room').offsetTop - 50;
-    console.log(positionBlock);
-    if (scrollPosition > positionBlock) {
-      this.stickyBlock = true;
-    } else {
-      this.stickyBlock = false;
-    }
+    window.scroll(0, 0);
   }
 }

@@ -24,6 +24,7 @@ export class WebinarsComponent implements OnInit, AfterContentChecked {
   }
   ngOnInit() {
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
+    window.scroll(0, 0);
   }
   ngAfterContentChecked(): void {
     this.inscriptions = this.getReduxData.getWebinarsInscription();

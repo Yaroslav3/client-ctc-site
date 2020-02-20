@@ -12,7 +12,7 @@
       transition: all linear 0.3s;
       box-sizing: border-box;
       .white_bg {
-        background-color: var(--background-white);
+        background-color: var(--background-main-aplication);
         padding: 5px 10px 5px 10px;
         .content-order {
           .alert-order-success {
@@ -43,7 +43,7 @@
               width: 100%;
               h1 {
                 font-family: var(--font-order-checkout);
-                margin: 15px;
+                margin: 20px 15px;
                 text-align: center;
                 font-size: 20px;
                 color: var(--color-text-table-ligh);
@@ -91,11 +91,20 @@
                     }
                   }
                   .list-visualisation-trainers {
+                    padding: 10px;
+                    border: 1px solid silver;
+                    border-radius: 2px;
+                    position: relative;
+                    min-height: 236px;
                     .header-text-block-checkout {
                       text-align: center;
                       font-size: 20px;
                       margin-top: 0;
                       color: var(--color-text-table-ligh);
+                      position: absolute;
+                      top: -19px;
+                      left: 10px;
+                      background: var(--background-main-aplication);
                     }
                     .position-content-checkout {
                       display: flex;
@@ -188,24 +197,27 @@
                       .block-selected-photo {
                         max-width: 250px;
                         height: 200px;
+                        position: relative;
                         .img {
                           width: 250px;
                           height: 200px;
                           background-size: cover;
                         }
                         .btn-detail-trainer {
-                          padding: 3px 11px;
-                          border: 1px solid var(--header-background);
-                          max-width: 100%;
+                          padding: 11px 0;
                           display: block;
                           text-align: center;
                           font-size: 12px;
                           cursor: pointer;
                           transition: all 0.4s ease-out;
+                          position: absolute;
+                          bottom: 0;
+                          width: 100%;
+                          background: var(--background-darken-opacity-block);
+                          color: var(--color-white);
                           &:hover {
                             transition: all 0.4s ease-in;
-                            background: var(--background-darken-opacity-block);
-                            color: var(--color-white);
+                            background: black;
                           }
                         }
                       }
@@ -213,23 +225,32 @@
                     .description-choice {
                       width: 100%;
                       p {
-                        text-align: left;
+                        text-align: center;
                         font-size: 12px;
                         color: var(--header-color-text);
                         font-family: var(--font-order-description-choice);
+                        position: absolute;
+                        bottom: 0;
                       }
                     }
                   }
                 }
                 .calendar-checkout {
                   width: 40%;
-                  border-radius: 5px;
                   text-align: center;
-                  p {
+                  border: 1px solid silver;
+                  border-radius: 2px;
+                  padding: 12px 0 11px 0;
+                  position: relative;
+                  .header-form-text {
                     color: var(--color-text-table-ligh);
                     font-size: 18px;
                     text-align: center;
                     margin: 10px;
+                    position: absolute;
+                    top: -29px;
+                    background: #FFFFFF;
+                    left: 11px;
                   }
                   .block-order-group {
                     display: flex;
@@ -315,7 +336,8 @@
                       width: 90%;
                       margin: 0 auto;
                       p {
-                        font-size: 10px;
+                        color: var(--color-paragraph-description);
+                        font-size: 12px;
                         margin: 0;
                         padding: 0;
                       }
@@ -377,7 +399,7 @@
 .invalid {
   border: 1px solid var(--color-border-input-invalid) !important;
   transition: all .4s ease-in;
-  box-shadow: 0 0 2px  var(--color-border-input-invalid);
+  box-shadow: 0 0 2px var(--color-border-input-invalid);
 }
 .ngValid {
   border: 1px solid var(--color-border-input-valid) !important;
@@ -387,11 +409,11 @@
   padding: 0 20px;
   width: 33%;
 }
-.calendar-checkout {
-  margin-top: -2px;
-  position: relative;
-  min-height: 694px;
-}
+//.calendar-checkout {
+//  margin-top: -2px;
+//  position: relative;
+//  min-height: 694px;
+//}
 //_____________ style calendar_____________________
 ::ng-deep.show {
   top: -44px !important;
@@ -637,7 +659,7 @@
                   }
                   .calendar-checkout {
                     width: 100%;
-                    margin: 5px;
+                    margin-top: 23px;
                     p {
                       font-size: 20px;
                       margin: 10px 5px;
