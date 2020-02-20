@@ -7,65 +7,17 @@
     </div>
     <div class="header-component">
       <h4 class="name-room">{{room.nameRoom}}</h4>
-      <div class="price-room">
-        <div class="block-number-of-participants">
-          <span class="capacity">Количество учасников: </span>
-          <span class="strength"> {{room.roomCapacity}} человек </span>
-        </div>
-        <div class="bl-room">
-          <table>
-            <tr>
-              <td class="name-period ">
-                <span class="time">Час: </span></td>
-              <td class="cost">
-                <span class="dey">{{room.priseRoom[0].priceDay}}</span>
-                <span class="currency">{{room.priseRoom[0].currency}}</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="name-period">
-                <span class="dey">День:</span></td>
-              <td class="cost">
-                <span class="time">{{room.priseRoom[0].priceHour}}</span>
-                <span class="currency">{{room.priseRoom[0].currency}}</span>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
     </div>
     <div class="content-room-info">
-      <app-slider class="slider-component"
-                  [photo]="room.photoRoom"
-      ></app-slider>
+      <div class="slider-block">
+        <app-slider class="slider-component"
+                    [photo]="room.photoRoom"
+        ></app-slider>
+      </div>
+    </div>
+    <div class="position-description-info-room">
       <div class="text-info-room">
         <div class="header-room">
-          <div class="price-room">
-            <div class="block-number-of-participants">
-              <span class="capacity">Количество учасников: </span>
-              <span class="strength"> {{room.roomCapacity}} человек </span>
-            </div>
-            <div class="bl-room">
-              <table>
-                <tr>
-                  <td class="name-period ">
-                    <span class="time">Час: </span></td>
-                  <td class="cost">
-                    <span class="dey">{{room.priseRoom[0].priceDay}}</span>
-                    <span class="currency">{{room.priseRoom[0].currency}}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="name-period">
-                    <span class="dey">День:</span></td>
-                  <td class="cost">
-                    <span class="time">{{room.priseRoom[0].priceHour}}</span>
-                    <span class="currency">{{room.priseRoom[0].currency}}</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
           <div class="select-period">
             <div class="selection-of-items"
                  (click)="showHourlySelection()"
@@ -81,13 +33,66 @@
             <app-hourly-selection *ngIf="showHour" [idRoom]=id></app-hourly-selection>
             <app-choice-of-days *ngIf="showDay" [idRoom]=id></app-choice-of-days>
           </div>
+          <div class="price-room">
+            <div class="block-number-of-participants">
+              <span class="capacity">Количество учасников: </span>
+              <span class="strength"> {{room.roomCapacity}} чел. </span>
+            </div>
+            <div class="bl-room">
+              <table>
+                <tr>
+                  <td class="name-period ">
+                    <span class="time">Час: </span></td>
+                  <td class="cost">
+                    <span class="dey">{{room.priseRoom[0].priceHour}}</span>
+                    <span class="currency">{{room.priseRoom[0].currency}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="name-period">
+                    <span class="dey">День:</span></td>
+                  <td class="cost">
+                    <span class="time">{{room.priseRoom[0].priceDay }}</span>
+                    <span class="currency">{{room.priseRoom[0].currency}}</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="description-info-room">
-      <angular-editor class="myEditor"
-                      [ngModel]="room.articleRoom[0].descriptionArticle"
-                      [config]="editorConfig"></angular-editor>
+      <div class="price-room-mob">
+        <div class="block-number-of-participants">
+          <span class="capacity">Количество учасников: </span>
+          <span class="strength"> {{room.roomCapacity}} чел. </span>
+        </div>
+        <div class="bl-room">
+          <table>
+            <tr>
+              <td class="name-period ">
+                <span class="time">Час: </span></td>
+              <td class="cost">
+                <span class="dey">{{room.priseRoom[0].priceHour }}</span>
+                <span class="currency">{{room.priseRoom[0].currency}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="name-period">
+                <span class="dey">День:</span></td>
+              <td class="cost">
+                <span class="time">{{room.priseRoom[0].priceDay}}</span>
+                <span class="currency">{{room.priseRoom[0].currency}}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="description-info-room">
+        <angular-editor class="myEditor"
+                        [ngModel]="room.articleRoom[0].descriptionArticle"
+                        [config]="editorConfig">
+        </angular-editor>
+      </div>
     </div>
   </div>
 </div>

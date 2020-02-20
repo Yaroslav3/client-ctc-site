@@ -26,8 +26,6 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
   visibleDataEnd: Date;
   errorStartData = false;
   errorEndData = false;
-  errorInvalidStartDay = false;
-  errorInvalidEndDay = false;
   disabledEndDate = true;
   btnNext = false;
   nextStartDeyValid = false;
@@ -49,135 +47,108 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
     this.btnVisible();
   }
   selectDataCalendarStart(startPeriod: Date) {
-    if (startPeriod === null) {
-      this.errorInvalidStartDay = false;
+    const dataFormat = new Date(startPeriod);
+    if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
+      this.dataCorrectedCalendar(startPeriod);
+      this.disabledEndDate = false;
+      this.disabledEndDate = false;
+      this.nextStartDeyValid = true;
       this.errorEndData = false;
+      this.visibleDataStart = startPeriod;
+      const start = new Date(startPeriod);
+      start.setMinutes(0);
+      start.setHours(0);
+      const end = new Date(this.dateEnd ? this.dateEnd : startPeriod);
+      end.setMinutes(59);
+      end.setHours(23);
+      if (start.valueOf() > end.valueOf()) {
+        this.wrongDateSelected = true;
+        this.errorStartData = false;
+        this.errorEndData = false;
+        this.nextStartDeyValid = false;
+        return;
+      } else {
+        this.wrongDateSelected = false;
+        this.periodStartDayRoom(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
+      }
+    } else {
       this.errorStartData = false;
       this.btnNext = false;
-      return;
-    } else {
-      const dataFormat = new Date(startPeriod);
-      if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
-        this.dataCorrectedCalendar(startPeriod);
-        this.disabledEndDate = false;
-        this.disabledEndDate = false;
-        this.nextStartDeyValid = true;
-        this.errorEndData = false;
-        this.visibleDataStart = startPeriod;
-        this.errorInvalidStartDay = false;
-        const start = new Date(startPeriod);
-        start.setMinutes(0);
-        start.setHours(0);
-        const end = new Date(this.dateEnd ? this.dateEnd : startPeriod);
-        end.setMinutes(59);
-        end.setHours(23);
-        if (start.valueOf() > end.valueOf()) {
-          this.wrongDateSelected = true;
-          this.errorStartData = false;
-          this.errorEndData = false;
-          this.nextStartDeyValid = false;
-          return;
-        } else {
-          this.wrongDateSelected = false;
-          this.periodStartDayRoom(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
-        }
-      } else {
-        this.errorStartData = false;
-        this.errorInvalidStartDay = true;
-        this.btnNext = false;
-        this.errorEndData = false;
-        this.wrongDateSelected = false;
-      }
+      this.errorEndData = false;
+      this.wrongDateSelected = false;
     }
   }
   periodStartDayRoom(start: string, end: string) {
     this.loader.startSmallSpinnerBtn();
     this.loaderComponent = true;
     this.roomDate.periodDayRoom(start, end, this.idRoom).subscribe((data: StatusMessage) => {
-      setTimeout(() => {
-        if (data.message === 'not empty') {
-          this.errorStartData = true;
-          this.btnNext = false;
-          this.disabledEndDate = false;
-          if (this.errorStartData) {
-            this.errorEndData = false;
-          }
-        } else {
-          this.errorStartData = false;
-        }
-        this.visibleDataStart = new Date(start);
-        this.loaderComponent = false;
-        this.loader.stopSmallSpinnerBtn();
-      }, 1000);
+      // setTimeout(() => {
+      if (data.message === 'not empty') {
+        this.errorStartData = true;
+        this.btnNext = false;
+        this.disabledEndDate = false;
+        this.errorEndData = false;
+      } else {
+        this.errorStartData = false;
+      }
+      this.dataCorrectedCalendar();
+      this.visibleDataStart = new Date(start);
+      this.loaderComponent = false;
+      this.loader.stopSmallSpinnerBtn();
+      // }, 1000);
     });
   }
   selectDataCalendarEnd(endPeriod: Date) {
-    if (endPeriod === null) {
-      this.errorInvalidEndDay = false;
-      this.errorStartData = false;
-      this.errorEndData = false;
-      this.btnNext = false;
-      return;
-    } else {
-      const dataFormat = new Date(endPeriod);
-      if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
-        this.dataCorrectedCalendar();
-        this.errorInvalidEndDay = false;
-        this.visibleDataEnd = this.dateEnd;
-        this.nextEndDeyValid = true;
-        const start = new Date(this.dateStart);
-        start.setMinutes(0);
-        start.setHours(0);
-        const end = new Date(endPeriod);
-        end.setMinutes(59);
-        end.setHours(23);
-        if (start.valueOf() > end.valueOf()) {
-          this.wrongDateSelected = true;
-          this.errorStartData = false;
-          this.errorEndData = false;
-          this.nextEndDeyValid = false;
-          return;
-        } else {
-          this.wrongDateSelected = false;
-          this.periodEndDayRoom(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
-        }
-      } else {
+    const dataFormat = new Date(endPeriod);
+    if (moment(dataFormat, 'YYYY-MM-DD', true).isValid()) {
+      this.dataCorrectedCalendar();
+      this.visibleDataEnd = this.dateEnd;
+      this.nextEndDeyValid = true;
+      const start = new Date(this.dateStart);
+      start.setMinutes(0);
+      start.setHours(0);
+      const end = new Date(endPeriod);
+      end.setMinutes(59);
+      end.setHours(23);
+      if (start.valueOf() > end.valueOf()) {
+        this.wrongDateSelected = true;
+        this.errorStartData = false;
+        this.errorEndData = false;
         this.nextEndDeyValid = false;
-        this.errorInvalidEndDay = true;
-        this.btnNext = false;
-        if (this.errorInvalidEndDay) {
-          this.errorEndData = false;
-          this.wrongDateSelected = false;
-          this.errorStartData = false;
-          this.nextStartDeyValid = false;
-        }
+        return;
+      } else {
+        this.wrongDateSelected = false;
+        this.periodEndDayRoom(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
       }
+    } else {
+      this.nextEndDeyValid = false;
+      this.btnNext = false;
     }
   }
   periodEndDayRoom(start: string, end: string) {
     this.loader.startSmallSpinnerBtn();
     this.loaderComponent = true;
     this.roomDate.periodDayRoom(start, end, this.idRoom).subscribe((data: StatusMessage) => {
-      setTimeout(() => {
-        if (data.message === 'not empty') {
-          this.errorEndData = true;
-          this.btnNext = false;
-          if (this.errorEndData) {
-            this.errorStartData = false;
-          }
-        } else {
-          this.errorEndData = false;
+      // setTimeout(() => {
+      if (data.message === 'not empty') {
+        this.errorEndData = true;
+        this.btnNext = false;
+        if (this.errorEndData) {
           this.errorStartData = false;
         }
-        this.visibleDataEnd = new Date(end);
-        this.loaderComponent = false;
-        this.loader.stopSmallSpinnerBtn();
-      }, 2000);
+      } else {
+        this.errorEndData = false;
+        this.errorStartData = false;
+      }
+      this.visibleDataEnd = new Date(end);
+      this.loaderComponent = false;
+      this.loader.stopSmallSpinnerBtn();
+      // }, 2000);
     });
   }
   btnVisible() {
     if (!this.errorEndData && !this.errorStartData && this.visibleDataStart && this.visibleDataEnd &&
-      !this.wrongDateSelected && !this.errorInvalidStartDay && !this.errorInvalidEndDay) {
+      !this.wrongDateSelected) {
       this.btnNext = true;
     } else {
       this.btnNext = false;
@@ -186,11 +157,6 @@ export class ChoiceOfDaysComponent implements OnInit, AfterContentChecked {
       this.btnNext = false;
       this.errorEndData = false;
       this.errorStartData = false;
-    }
-    if (this.errorInvalidEndDay || this.errorInvalidStartDay) {
-      this.errorStartData = false;
-      this.errorEndData = false;
-      this.btnNext = false;
     }
     if (this.wrongDateSelected) {
       this.dataCorrectedCalendar();

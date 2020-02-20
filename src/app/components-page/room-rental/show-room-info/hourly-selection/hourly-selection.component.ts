@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {AfterContentChecked, Component, ElementRef, Input, OnInit, ViewChildren} from '@angular/core';
 import {NgbDateAdapter, NgbDateNativeAdapter, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import {RoomDateService} from '../../../../shared/services/room-date.service';
 import {RoomTimeOrder} from '../../../../shared/model/RoomTimeOrder.model';
@@ -17,15 +17,14 @@ import {Store} from '@ngrx/store';
   animations: [showAnimate, fadingAwayAnimate],
   providers: [{provide: NgbDateAdapter, useClass: NgbDateNativeAdapter}, LoaderSmallSpinnerBtnComponent]
 })
-export class HourlySelectionComponent implements OnInit {
-  date: Date;
+export class HourlySelectionComponent implements OnInit, AfterContentChecked {
+  date = new Date();
   dateError: boolean;
   arrayTime = [];
-  datePicker: boolean;
-  selectedData: boolean;
   selectedTime: boolean;
   timeCheckbox: any = [];
   loaderTimePeriod: boolean;
+  validations = false;
   @Input() idRoom;
   @ViewChildren('input') public inputs: ElementRef<HTMLInputElement>[];
   timeChoice = [
@@ -48,6 +47,10 @@ export class HourlySelectionComponent implements OnInit {
   ngOnInit() {
     this.getAllTimeDay();
     this.dataCorrectedCalendar();
+    this.selectDataCalendar(undefined, this.date);
+  }
+  ngAfterContentChecked(): void {
+    this.error();
   }
   // get all time day
   private getAllTimeDay() {
@@ -55,31 +58,28 @@ export class HourlySelectionComponent implements OnInit {
     this.timeCheckbox = Object.keys(this.timeChoice).map(key =>
       ({time: key, number: key, value: this.timeChoice[key]}));
   }
-  selectDataCalendar(startPeriod: Date) {
-    this.selectedData = false;
-    this.datePicker = false;
+  selectDataCalendar(startPeriod?: Date, date?: Date) {
     this.selectedTime = false;
-    if (startPeriod === null) {
+    if (typeof startPeriod === 'object' || typeof date === 'object') {
       this.dateError = false;
-      return;
-    } else {
-      if (typeof startPeriod === 'object') {
-        this.dateError = false;
-        const end = new Date(startPeriod);
-        const start = new Date(this.date);
-        end.setDate(start.getDate());
-        start.setHours(10);
-        start.setMinutes(0);
-        end.setHours(20);
-        end.setMinutes(0);
-        this.dateTime(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
+      startPeriod = startPeriod ? startPeriod : date;
+      console.log(startPeriod);
+      const end = new Date(startPeriod);
+      const start = new Date(this.date);
+      end.setDate(start.getDate());
+      start.setHours(10);
+      start.setMinutes(0);
+      end.setHours(20);
+      end.setMinutes(0);
+      this.dateTime(this.transform(String(start.valueOf())), this.transform(String(end.valueOf())));
+      if (typeof startPeriod === 'object' && date === undefined) {
         this.inputs.forEach(check => {
           check.nativeElement.checked = false;
         });
-        this.arrayTime = []; // при выборе даты очищаем массив с выбранным временем
-      } else {
-        this.dateError = true;
       }
+      this.arrayTime = []; // при выборе даты очищаем массив с выбранным временем
+    } else {
+      this.dateError = true;
     }
   }
   dataCorrectedCalendar() { // метод который деактивирует прошедшую дату
@@ -94,17 +94,17 @@ export class HourlySelectionComponent implements OnInit {
     this.loaderTimePeriod = true;
     this.loader.startSmallSpinnerBtn();
     this.roomDate.timeOneDayRoom(start, end, this.idRoom).subscribe((data: RoomTimeOrder) => {
-      setTimeout(() => {
-        if (!data) {
-        } else {
-          this.showTimeOrder(data);
-          this.loaderTimePeriod = false;
-          this.loader.stopSmallSpinnerBtn();
-        }
-      }, 1000);
+      // setTimeout(() => {
+      if (!data) {
+      } else {
+        this.showTimeOrder(data);
+        this.loaderTimePeriod = false;
+        this.loader.stopSmallSpinnerBtn();
+      }
+      // }, 1000);
     });
   }
-  private showTimeOrder(data: RoomTimeOrder) {
+  showTimeOrder(data: RoomTimeOrder) {
     // при поступлении данных переводим все значения чекбоксов в положение false при любых раскладах
     for (let b = 0; b < Object.keys(this.timeChoice).length; b++) {
       this.timeChoice[b].status = false;
@@ -138,11 +138,9 @@ export class HourlySelectionComponent implements OnInit {
           }
         }
       }
-    } else {
-      this.datePicker = true;
     }
   }
-  private createNumberData(endNumber: number) {
+  createNumberData(endNumber: number) {
     const datePipe = new DatePipe('en-US');
     this.date.setHours(endNumber);
     this.date.setMinutes(0);
@@ -150,20 +148,25 @@ export class HourlySelectionComponent implements OnInit {
     const s = datePipe.transform(this.date, 'short');
     return new Date(s);
   }
-  private transformTime(value: string) {
+  transformTime(value: string) {
     const datePipe = new DatePipe('en-US');
     value = datePipe.transform(value, 'HH:mm');
     return value;
   }
-  private transform(value: string) {
+  transform(value: string) {
     const datePipe = new DatePipe('en-US');
     value = datePipe.transform(value, 'yyyy-MM-dd HH:mm');
     return value;
   }
+  error() {
+    if (this.selectedTime) {
+      this.validations = false;
+    } else {
+      this.validations = true;
+    }
+  }
   nextOnOrder() {
-    if (!this.date) {
-      this.selectedData = true;
-    } else if (this.arrayTime.length === 0) {
+    if (this.arrayTime.length === 0) {
       this.selectedTime = true;
     } else {
       this.store.dispatch(new HourlyOrder(this.arrayTime));

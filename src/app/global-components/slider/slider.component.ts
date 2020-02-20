@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostBinding, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {fadingAwayAnimate, showAnimate} from '../../shared/animations/fading-away.animate';
 import {animate, AnimationBuilder, keyframes, state, style, transition, trigger} from '@angular/animations';
 
@@ -21,6 +21,7 @@ export class SliderComponent implements OnInit {
   @ViewChild('controlСursor', {static: false}) controlСursor: ElementRef;
   constructor(private renderer: Renderer2,
               private elRef: ElementRef,
+              private changeDetector: ChangeDetectorRef,
               public builder: AnimationBuilder) {
   }
   animate() {
@@ -77,6 +78,7 @@ export class SliderComponent implements OnInit {
   }
   addControlVisualisation(id: any) {
     setTimeout(() => {
+      this.changeDetector.detectChanges();
       const cursor = this.controlСursor.nativeElement.getElementsByClassName('item');
       const bb = cursor.namedItem(id);
       this.renderer.addClass(bb, 'active-control');
@@ -84,6 +86,7 @@ export class SliderComponent implements OnInit {
   }
   deleteControlVisualisation(id: any) {
     setTimeout(() => {
+      this.changeDetector.detectChanges();
       const cursor = this.controlСursor.nativeElement.getElementsByClassName('item');
       const bb = cursor.namedItem(id);
       this.renderer.removeClass(bb, 'active-control');
