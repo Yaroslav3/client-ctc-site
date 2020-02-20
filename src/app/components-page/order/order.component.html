@@ -74,7 +74,7 @@
                 <div class="calendar-checkout">
                   <app-loader-small-spinner *ngIf="loaderSubmit" [@fadingAwayAnimate]></app-loader-small-spinner>
                   <div [@fadingAwayAnimate]>
-                    <p>Дата и выбор тренига</p>
+                    <p class="header-form-text"> Дата и выбор тренига</p>
                     <div class="block-order-group">
                       <div class="input-group">
                         <input formControlName="date" id="end-event" class="form-control"
@@ -171,7 +171,7 @@
                           <span>{{orderError.nameSurname}}</span>
                         </div>
                       </div>
-                      <input formControlName="phone" class="input" name="phone"  type="tel"
+                      <input formControlName="phone" class="input" name="phone" type="tel"
                              [ngClass]="{invalid: isSubmitted && f.phone.errors, ngValid: !f.phone.errors}"
                              (input)="phoneRedux()"
                              [ngModel]="this.formRedux.phone"
@@ -181,7 +181,8 @@
                       <div class="error-input">
                         <div [@fadingAwayAnimate] *ngIf="isSubmitted && f.phone.errors,">
                           <span *ngIf="f.phone.errors.required">* заполни поле </span>
-                          <span *ngIf="f.phone.errors.minlength" [@showAnimate]>* телефона в формате (XXX)-XXX-XXXX</span>
+                          <span *ngIf="f.phone.errors.minlength"
+                                [@showAnimate]>* телефона в формате (XXX)-XXX-XXXX</span>
                         </div>
                         <div [@fadingAwayAnimate] *ngIf="orderError">
                           <span>{{orderError.phone}}</span>

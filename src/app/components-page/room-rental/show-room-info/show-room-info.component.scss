@@ -62,6 +62,8 @@
         padding: 10px 10px 15px 10px;
         margin-top: 10px;
         border-radius: 2px;
+        position: sticky;
+        top: 50px;
         .price-room {
           display: flex;
           justify-content: center;
@@ -246,6 +248,7 @@
       .text-info-room {
         width: 100% !important;
         .header-room {
+          position: initial;
           .select-period {
             justify-content: space-between !important;
             flex-direction: row !important;

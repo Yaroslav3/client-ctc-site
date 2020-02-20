@@ -10,35 +10,40 @@
     box-sizing: border-box;
     .white_bg {
       background-color: var(--background-white);
-      padding: 10px;
-      .coach-info {
+      .header-component-trainer {
         display: flex;
+        background: var(--header-background);
+        justify-content: space-between;
+        flex-wrap: wrap;
+        text-align: center;
         .coach-title {
-          width: 10%;
           h5 {
             font-size: 12px;
             font-family: var(--font-show-couch-resume);
             color: var(--header-color-text);
             font-weight: bold;
-            margin: 16px 0;
+            padding: 16px;
+            margin: 0;
             text-align: center;
           }
         }
+        .coach-name {
+          font-family: var(--font-show-couch-resume);
+          .name-surname-coach {
+            margin: 10px 15px;
+            font-size: 20px;
+            color: var(--color-paragraph-description);
+            border-bottom: 1px solid;
+            display: inline-block;
+          }
+        }
+      }
+      .coach-info {
+        display: flex;
         .block-content {
-          width: 90%;
+          width: 100%;
           display: flex;
           flex-direction: column;
-          .coach-name {
-            width: 100%;
-            font-family: var(--font-show-couch-resume);
-            .name-surname-coach {
-              margin: 10px 15px;
-              font-size: 20px;
-              color: var(--color-paragraph-description);
-              border-bottom: 1px solid;
-              display: inline-block;
-            }
-          }
           .block-content-coach {
             display: flex;
             flex-direction: row;
@@ -57,93 +62,100 @@
               }
             }
             .coach-img {
-              flex-grow: 1;
               max-width: 30%;
               padding: 5px;
-              img {
-                width: 100%;
-                padding-bottom: 20px;
-              }
-              .block-img-info {
-                display: flex;
-                flex-direction: column;
-                .contact-block {
-                  padding: 3px;
-                  .contact-info-text {
-                    span {
-                      border-bottom: 1px solid;
-                      color: var(--color-paragraph-description);
+              position: relative;
+              .position-trainer-block {
+                position: sticky;
+                top: 50px;
+                border: 1px solid silver;
+                padding: 10px;
+                border-radius: 2px;
+                img {
+                  width: 100%;
+                  padding-bottom: 20px;
+                }
+                .block-img-info {
+                  display: flex;
+                  flex-direction: column;
+                  .contact-block {
+                    padding: 3px;
+                    .contact-info-text {
+                      span {
+                        border-bottom: 1px solid;
+                        color: var(--color-paragraph-description);
+                      }
                     }
-                  }
-                  .contacts-url {
-                    .link {
-                      margin: 5px 5px 5px 0;
-                      display: inline-block;
-                      a {
-                        .fa-facebook-square, .fa-linkedin {
-                          font-size: 27px;
-                          color: var(--header-color-text);
-                          transition: all 0.4s ease;
-                          &:hover {
-                            transition: all 0.4s ease-in-out;
-                            opacity: .5;
+                    .contacts-url {
+                      .link {
+                        margin: 5px 5px 5px 0;
+                        display: inline-block;
+                        a {
+                          .fa-facebook-square, .fa-linkedin {
+                            font-size: 27px;
+                            color: var(--header-color-text);
+                            transition: all 0.4s ease;
+                            &:hover {
+                              transition: all 0.4s ease-in-out;
+                              opacity: .5;
+                            }
+                          }
+                        }
+                      }
+                    }
+                    .contact-address {
+                      .link-address {
+                        a {
+                          display: flex;
+                          -webkit-box-pack: justify;
+                          justify-content: flex-start;
+                          color: var(--color-paragraph-description);
+                          align-items: flex-end;
+                          width: 95%;
+                          margin: 5px 0;
+                          .fa-at, .fa-skype {
+                            font-size: 16px;
+                            color: var(--header-color-text);
+                          }
+                          .text {
+                            position: relative;
+                            top: -2px;
+                            left: 8px;
+                            font-size: 12px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                           }
                         }
                       }
                     }
                   }
-                  .contact-address {
-                    .link-address {
-                      a {
-                        display: flex;
-                        -webkit-box-pack: justify;
-                        justify-content: flex-start;
-                        color: var(--color-paragraph-description);
-                        align-items: flex-end;
-                        width: 95%;
-                        margin: 5px 0;
-                        .fa-at, .fa-skype {
-                          font-size: 16px;
-                          color: var(--header-color-text);
-                        }
-                        .text {
-                          position: relative;
-                          top: -2px;
-                          left: 8px;
-                          font-size: 12px;
-                          overflow: hidden;
-                          text-overflow: ellipsis;
-                        }
+                  .btn-or {
+                    margin: 0 auto;
+                    padding: 10px;
+                    .btn-all-application {
+                      .btn-text {
+                        font-size: 12px;
                       }
                     }
                   }
                 }
-                .btn-or {
-                  margin: 0 auto;
-                  padding: 10px;
-                  .btn-all-application {
-                    .btn-text {
-                      font-size: 12px;
-                    }
-                  }
-                }
-              }
-              .training-coach {
-                .title-training {
-                  font-size: 16px;
-                  color: var(--color-main-text-aplication);
-                  font-family: var(--font-show-couch-resume);
-                  margin: 1px 5px;
-                  display: inline-block;
-                  border-bottom: 1px solid;
-                }
-                .name-trainings {
-                  &__text {
-                    display: inline-block;
+                .training-coach {
+                  .title-training {
+                    font-size: 16px;
                     color: var(--color-main-text-aplication);
-                    font-size: 12px;
-                    &:first-letter {
-                      text-transform: uppercase;
+                    font-family: var(--font-show-couch-resume);
+                    margin: 1px 5px;
+                    display: inline-block;
+                    border-bottom: 1px solid;
+                  }
+                  .name-trainings {
+                    &__text {
+                      display: inline-block;
+                      color: var(--color-main-text-aplication);
+                      font-size: 12px;
+                      &:first-letter {
+                        text-transform: uppercase;
+                      }
                     }
                   }
                 }
