@@ -16,8 +16,9 @@
       </div>
     </div>
     <div class="position-description-info-room">
-      <div class="text-info-room">
-        <div class="header-room">
+      <div class="text-info-room"
+           appScroll (numberScroll)="stickyBlockOrder($event)">
+        <div class="header-room" [ngClass]="{'stickyBlock': stickyBlock}">
           <div class="select-period">
             <div class="selection-of-items"
                  (click)="showHourlySelection()"

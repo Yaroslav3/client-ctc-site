@@ -54,6 +54,7 @@
       width: 30%;
       height: auto;
       padding-left: 2px;
+      position: relative;
       .header-room {
         display: flex;
         flex-direction: column;
@@ -169,6 +170,14 @@
     }
   }
 }
+.stickyBlock {
+  position: sticky;
+  top: 50px;
+  box-shadow: 0 0 2px var(--background-room-rental);
+}
+.fixedBlock {
+  position: relative;
+}
 @media all and (max-width: 1300px) {
   .all-content {
     .position-description-info-room {
@@ -207,10 +216,10 @@
     }
     .position-description-info-room {
       .text-info-room {
-        width: 38%;
+        width: 33%;
       }
       .description-info-room {
-        width: 62%;
+        width: 67%;
       }
     }
   }

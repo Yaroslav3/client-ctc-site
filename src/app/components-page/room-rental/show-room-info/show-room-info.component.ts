@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Room} from '../../../shared/model/Room.model';
@@ -20,6 +20,7 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
   room: Room;
   showHour = true;
   showDay = false;
+  stickyBlock = false;
   editorConfig: AngularEditorConfig = {
     editable: false,
     showToolbar: false,
@@ -48,6 +49,7 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
               private router: Router,
               private headerControl: MainLayoutComponent,
               private roomDate: RoomDateService,
+              private elRef: ElementRef,
               private getReduxDat: GetReduxDataService) {
     this.headerControl.hiddenHeaderComponent();
   }
@@ -70,5 +72,14 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.headerControl.visibleHeaderComponent();
+  }
+  stickyBlockOrder(scrollPosition) {
+    const positionBlock = this.elRef.nativeElement.querySelector('.position-description-info-room').offsetTop - 50;
+    console.log(positionBlock);
+    if (scrollPosition > positionBlock) {
+      this.stickyBlock = true;
+    } else {
+      this.stickyBlock = false;
+    }
   }
 }
