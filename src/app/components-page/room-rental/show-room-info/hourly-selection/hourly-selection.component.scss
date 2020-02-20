@@ -1,31 +1,28 @@
 .position-content {
-  background: white;
   border-radius: 6px;
   position: relative;
   width: 100%;
   .select-block-time {
     display: flex;
-    //justify-content: space-around;
     flex-direction: column;
     .input-group {
-      padding: 28px 1px 3px 1px;
-      background: #EFEFEF;
+      padding: 2px 1px 3px 1px;
+      background: var(--background-main-aplication);
       border-radius: 2px;
-      margin-top: 2px;
-      min-height: 150px;
+      width: 92.4%;
+      margin: auto;
       .position-element-input {
         display: flex;
         justify-content: space-between;
-        margin: 20px 10px;
+        margin: 20px 10px 0 10px;
         .form-control {
-          width: 100%;
+          width: 86%;
           height: 38px;
-          border: 1px solid #5F9EA0;
-          padding: 1px 10px;
-          font-size: 15px;
-          color: #5F9EA0;
-          border-top-left-radius: 2px;
-          border-bottom-left-radius: 2px;
+          background: var(--background-main-aplication);
+          border-bottom: 1px solid var(--color-room-rental);
+          padding: 1px 4px;
+          font-size: 27px;
+          color: var(--header-color-text);
           transition: all 0.5s ease-in-out;
         }
         .invalid {
@@ -44,75 +41,48 @@
         }
         .btn-block-calendar {
           .btn-calendar {
-            background: white;
+            background: var(--background-main-aplication);
             width: 100%;
-            height: 42px;
-            border: 1px solid #5F9EA0;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-            padding: 10px 14px;
+            height: 41px;
+            border: none;
+            border-bottom: 1px solid var(--background-room-rental);
+            padding: 10px 8px;
             transition: all 0.3s ease-in;
             cursor: pointer;
             .calendar-icon {
               &:before {
                 transition: all 0.4s ease-out;
-                color: #528182;
-                font-size: 18px;
+                color: var(--color-room-rental);
+                font-size: 31px;
+                position: relative;
+                top: -7px;
+                left: 0;
               }
             }
             &:hover {
               transition: all 0.3s ease-in;
-              //border: 1px solid silver;
               background-color: #eaeaea;
             }
           }
         }
       }
-      .error-time {
-        width: 100%;
-        margin: 10px 0;
-        .error-alert {
-          padding: 10px 0;
-          margin: 10px 0;
-          background-color: #EBEBEB;
-          text-align: center;
-          border-radius: 3px;
-          &__text {
-            font-size: 11px;
-            color: #FFA288;
-          }
-        }
-      }
-      .error-data {
-        width: 80%;
-        background: #EBEBEB;
-        padding: 10px 20px;
-        margin: auto;
-        text-align: center;
-        border-radius: 2px;
-        &__text {
-          color: #FFA288;
-          font-size: 12px;
-        }
-      }
     }
     .select-time-order {
       position: relative;
-      background: #EFEFEF;
+      background: var(--background-main-aplication);
       border-radius: 2px;
       margin-top: 2px;
       .position-select-time-order {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        padding: 50px 21px;
+        padding: 5px 5px 14px 5px;
+        width: 92%;
+        margin: auto;
         .chose-text {
-          width: 90%;
-          padding-top: 10px;
-          padding-right: 2%;
+          width: 100%;
           font-size: 13px;
           text-align: center;
-          color: #355F80;
+          color: var(--background-room-rental);
           margin: auto;
         }
         .time-order {
@@ -120,42 +90,24 @@
           flex-flow: row wrap;
           justify-content: center;
           .position-input {
-            //padding: 2px;
-            //position: relative;
-            //left: -18px;
-            padding: 2px;
+            padding: 0;
             position: relative;
-            left: 0;
-            top: 14px;
+            left: -8px;
             .container {
-              //width: 110px;
-              //font-family: Exo2Regular, serif;
-              //display: block;
-              //position: relative;
-              //margin-top: 20px;
-              //margin-left: 15px;
-              //font-size: 12px;
-              //-webkit-user-select: none;
-              //-moz-user-select: none;
-              //-ms-user-select: none;
-              //user-select: none;
-              //text-align: center;
-              //color: silver;
-              //padding-top: 4px;
-              width: 80px;
+              width: 110px;
               font-family: Exo2Regular, serif;
               display: block;
               position: relative;
-              font-size: 11px;
+              margin-top: 20px;
+              margin-left: 15px;
+              font-size: 12px;
               -webkit-user-select: none;
               -moz-user-select: none;
               -ms-user-select: none;
               user-select: none;
               text-align: center;
               color: silver;
-              //padding-top: 4px;
-              padding: 0;
-              height: 30px;
+              padding-top: 4px;
               input {
                 position: absolute;
                 opacity: 0;
@@ -165,7 +117,8 @@
               }
               input:checked ~ div .checkmark {
                 transition: all .3s ease-in;
-                background-color: #48898b;
+                background-color: var(--background-room-rental);
+                border: 1px solid var(--background-room-rental);
                 span {
                   color: white;
                 }
@@ -184,19 +137,22 @@
                   height: 30px;
                   align-items: center;
                   display: flex;
-                  width: 80px;
-                  //width: 110px;
+                  width: 110px;
                   justify-content: center;
                   margin-top: -6px;
                   background-color: #f4f4f4;
-                  border: 1px solid #5F9EA0;
+                  border: 1px solid var(--background-room-rental);
                   span {
                     transition: all 0.3s ease-out;
-                    color: #5F9EA0;
+                    color: var(--color-room-rental);
                   }
                 }
                 .checkmark:hover {
-                  background-color: #eaeaea;
+                  background-color: var(--background-room-rental);
+                  opacity: 0.7;
+                  span {
+                    color: white;
+                  }
                 }
               }
               .no-active {
@@ -213,49 +169,67 @@
       }
     }
   }
-  .error-no-selected {
-    position: absolute;
-    left: 25%;
-    text-align: center;
-    padding: 10px;
-    bottom: 3px;
-    z-index: 12;
-    &__text {
-      color: #F3ADAD;
-      background: #EBEBEB;
-      padding: 10px 20px;
-      margin: 0 1px 0 1px;
-      border-radius: 2px;
+  .error-time {
+    width: 100%;
+    margin: 10px 0;
+    .error-alert {
+      padding: 10px 0;
+      margin: 10px 0;
+      background-color: #EBEBEB;
+      text-align: center;
+      border-radius: 3px;
+      &__text {
+        font-size: 11px;
+        color: #FFA288;
+      }
     }
   }
-  .btn-order-time {
-    padding: 6px;
-    margin-top: 2px;
+  .error-data {
+    width: 80%;
+    background: #EBEBEB;
+    padding: 10px 20px;
+    margin: auto;
+    text-align: center;
     border-radius: 2px;
-    background: #EFEFEF;
+    &__text {
+      color: #FFA288;
+      font-size: 12px;
+    }
+  }
+}
+.error-no-selected {
+  text-align: center;
+  .btn-order-time {
+    padding: 4px 0;
+    border-radius: 2px;
+    background: var(--background-main-aplication);
     display: flex;
     justify-content: center;
+    width: 100%;
     .btn-go-order {
-      padding: 5px 40px;
-      border: 1px solid #48898b;
+      padding: 5px 36px;
+      border: 1px solid var(--background-room-rental);
       border-radius: 2px;
       cursor: pointer;
+      position: relative;
+      transition: all .3s ease-out;
       &__text {
+        transition: all .3s ease-out;
         color: #2C6365;
         font-size: 13px;
       }
       &__icon {
         &:before {
           font-size: 13px;
-          color: #2C6365;
-          position: relative;
-          top: 1px;
-          left: 30px;
+          color: var(--color-room-rental);
+          position: absolute;
+          top: 10px;
+          right: 9px;
         }
       }
       &:hover {
         transition: all .3s ease-in;
-        background-color: #2C6365;
+        background-color: var(--background-room-rental);
         .btn-go-order__text {
           transition: all .3s ease-in;
           color: white;
@@ -268,6 +242,15 @@
         }
       }
     }
+  }
+  &__text {
+    color: #F3ADAD;
+    background: #EBEBEB;
+    padding: 10px 10px;
+    margin: 0 1px 0 1px;
+    border-radius: 2px;
+    display: inline-block;
+    text-align: center;
   }
 }
 .loader {
@@ -307,7 +290,7 @@
     z-index: 100;
     color: #FBFBFB;
   }
-  .form-input:focus ~ .form-label {
+  .form-input:read-only ~ .form-label {
     top: -33px;
     left: 5px;
     padding: 4px 0;
@@ -389,8 +372,18 @@
     .select-block-time {
       .select-time-order {
         .position-select-time-order {
-          padding: 22px 5px;
+          padding: 7px 5px;
+          width: 100%;
         }
+      }
+    }
+  }
+}
+@media all and (max-width: 1300px) {
+  .position-content {
+    .select-block-time {
+      .input-group {
+        width: 100%;
       }
     }
   }
@@ -418,25 +411,19 @@
     .select-block-time {
       flex-direction: inherit;
       .input-group {
-        width: 50%;
-        margin: 0 2px 0 0;
+        width: 100%;
+        margin: 0;
       }
       .select-time-order {
-        width: 50%;
-        margin: 0 0 0 2px;
+        width: 100%;
       }
     }
     .error-no-selected {
-      bottom: 2px;
-      left: -10px
-    }
-  }
-}
-@media all and (max-width: 880px) {
-  .position-content {
-    .error-no-selected {
-      bottom: 1px;
-      left: -9px;
+      position: absolute;
+      bottom: 16px;
+      left: 129px;
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -463,20 +450,7 @@
       }
     }
     .error-no-selected {
-      left: 28%;
-    }
-  }
-}
-@media all and (max-width: 500px) {
-  .position-content {
-    .error-no-selected {
-      left: -1%;
-      right: 0;
-      width: 100%;
-      bottom: 3px;
-      .error-no-selected__text {
-        padding: 10px 60px !important;
-      }
+      position: initial;
     }
   }
 }
@@ -501,10 +475,10 @@
       margin: auto;
       padding: 6px 0;
     }
-    .error-no-selected {
-      width: 90%;
-      margin: auto;
-    }
+    //.error-no-selected {
+    //  width: 90%;
+    //  margin: auto;
+    //}
   }
 }
 @media all and (max-width: 319px) {

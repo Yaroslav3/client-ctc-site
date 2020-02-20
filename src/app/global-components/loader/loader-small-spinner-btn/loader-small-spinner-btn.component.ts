@@ -15,7 +15,7 @@ export class LoaderSmallSpinnerBtnComponent {
         type: 'ball-clip-rotate',
         size: 'small',
         bdColor: 'rgba(0,0,0, .1)',
-        color: '#5F9EA0',
+        color: '#495057',
         zIndex: 1,
         fullScreen: false
       });

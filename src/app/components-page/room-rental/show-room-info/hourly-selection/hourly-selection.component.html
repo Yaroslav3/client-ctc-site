@@ -6,9 +6,9 @@
                [ngClass]="{'invalid': dateError}"
                required (ngModelChange)="selectDataCalendar(date)"
                title="dateEvent"
+               readonly
                ngbDatepicker
                #e="ngbDatepicker">
-        <label class="text-label form-label" [ngClass]="{'invalid__text': dateError}">Выбери дату:</label>
         <div class="btn-block-calendar">
           <button class="btn-calendar"
                   type="button"
@@ -16,18 +16,6 @@
                   [ngClass]="{'invalid': dateError}">
             <i class="far fa-calendar-alt calendar-icon"></i></button>
         </div>
-      </div>
-      <div class="error-time" [@showAnimate] *ngIf="datePicker == true">
-        <div class="error-alert">
-            <span class="error-alert__text">
-              Пожалуйста, сначала выберите дату, а зтем желаемое время.
-            </span>
-        </div>
-      </div>
-      <div class="error-data"
-           *ngIf="dateError"
-           [@showAnimate]>
-        <span class="error-data__text">Пожалуйста, введите корректную дату</span>
       </div>
     </div>
     <div class="select-time-order">
@@ -52,16 +40,16 @@
       </div>
     </div>
   </div>
-  <div class="error-no-selected" [@fadingAwayAnimate]>
-    <span class="error-no-selected__text" [@fadingAwayAnimate] *ngIf="selectedData">Вы не выбрали дату </span>
-    <span class="error-no-selected__text" [@fadingAwayAnimate] *ngIf="selectedTime">Вы не выбрали время </span>
-  </div>
-  <div class="btn-order-time">
-    <button class="btn-go-order" (click)="nextOnOrder()">
-      <span class="btn-go-order__text">Далее</span>
-      <i class="fas fa-long-arrow-alt-right btn-go-order__icon"></i>
-    </button>
+  <div class="error-no-selected">
+    <div class="btn-order-time" *ngIf="validations" [@showAnimate]>
+      <button class="btn-go-order" (click)="nextOnOrder()">
+        <span class="btn-go-order__text">Далее</span>
+        <i class="fas fa-long-arrow-alt-right btn-go-order__icon"></i>
+      </button>
+    </div>
+    <span class="error-no-selected__text" [@showAnimate] *ngIf="selectedTime">Вы не выбрали время </span>
   </div>
 </div>
+
 
 
