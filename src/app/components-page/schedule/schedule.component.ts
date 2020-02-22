@@ -56,12 +56,14 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     this.viewportScroller.scrollToPosition([0, 400]);
   }
   calculateData(startDate: number, endData: number) {
-    this.dateService.getRangeDataCalendar(this.transform(String(startDate.valueOf())), this.transform(String(endData.valueOf()))).subscribe(d => {
-      this.dateEventCalendar = d;
-      this.getAllDateCalendar(d);
-      this.dataVisualisations();
-      this.loaderPage.stopLoaderPageSpinner();
-      this.loader = false;
+    this.dateService.getRangeDataCalendar(this.transform(String(startDate.valueOf())), this.transform(String(endData.valueOf()))).subscribe(response => {
+      if (response) {
+        this.dateEventCalendar = response;
+        this.getAllDateCalendar(response);
+        this.dataVisualisations();
+        this.loaderPage.stopLoaderPageSpinner();
+        this.loader = false;
+      }
     });
   }
   transform(value: string) {
