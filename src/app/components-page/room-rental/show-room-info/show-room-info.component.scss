@@ -53,7 +53,7 @@
     .text-info-room {
       width: 30%;
       height: auto;
-      padding-left: 2px;
+      padding: 0;
       position: relative;
       .header-room {
         display: flex;
@@ -270,7 +270,7 @@
       .price-room-mob {
         display: flex;
         align-items: center;
-        width: 100%;
+        width: 99.8%;
         justify-content: space-around;
         border: 1px solid #C0C0C0;
         margin: 10px 0;

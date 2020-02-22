@@ -54,6 +54,9 @@
     }
   }
 }
+.header-mob {
+  display: none;
+}
 @media all and (max-width: 1500px) {
   .top-pic {
     height: 35vw;
@@ -85,6 +88,27 @@
     .top-pic-video-text {
       font-size: 18px !important;
       transition: .1s all;
+    }
+  }
+}
+@media all and (max-width: 800px) {
+  header {
+    .top-pic {
+      display: none;
+    }
+    .header-mob {
+      display: flex;
+      height: 45px;
+      align-items: center;
+      background: black;
+      .top-pic-mob {
+        margin: 0;
+        &__text {
+          margin: 0;
+          color: var(--background-main-aplication);
+          text-align: center;
+        }
+      }
     }
   }
 }

@@ -38,7 +38,6 @@
             flex-direction: column;
             width: 100%;
             height: auto;
-            margin-top: 20px;
             .text-checkout {
               width: 100%;
               h1 {
@@ -77,6 +76,7 @@
                       .img {
                         max-width: 350px;
                         background-size: cover;
+                        border-radius: 2px;
                       }
                     }
                     .block-description-trainer {
@@ -98,7 +98,7 @@
                     min-height: 236px;
                     .header-text-block-checkout {
                       text-align: center;
-                      font-size: 20px;
+                      font-size: 18px;
                       margin-top: 0;
                       color: var(--color-text-table-ligh);
                       position: absolute;
@@ -240,7 +240,7 @@
                   text-align: center;
                   border: 1px solid silver;
                   border-radius: 2px;
-                  padding: 12px 0 11px 0;
+                  padding: 12px 0 20px 0;
                   position: relative;
                   .header-form-text {
                     color: var(--color-text-table-ligh);
@@ -249,7 +249,7 @@
                     margin: 10px;
                     position: absolute;
                     top: -29px;
-                    background: #FFFFFF;
+                    background: var(--background-main-aplication);
                     left: 11px;
                   }
                   .block-order-group {

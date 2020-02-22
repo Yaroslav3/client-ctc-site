@@ -79,16 +79,19 @@
             text-align: center;
             margin: 0;
             padding: 1px 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
             .capacity {
               font-size: 13px;
               font-family: var(--fonts-main);
               color: #143E5F;
+              padding: 5px;
             }
             .strength {
               font-size: 13px;
               font-family: var(--fonts-main);
               color: lightsalmon;
-              margin-left: 10px;
             }
           }
           .btn-detail-room {

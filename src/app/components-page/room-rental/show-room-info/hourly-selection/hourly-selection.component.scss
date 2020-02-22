@@ -199,6 +199,8 @@
 }
 .error-no-selected {
   text-align: center;
+  margin-top: 3px;
+  height: 40px;
   .btn-order-time {
     padding: 4px 0;
     border-radius: 2px;
@@ -207,7 +209,7 @@
     justify-content: center;
     width: 100%;
     .btn-go-order {
-      padding: 5px 36px;
+      padding: 6px 36px;
       border: 1px solid var(--background-room-rental);
       border-radius: 2px;
       cursor: pointer;
@@ -400,10 +402,11 @@
     }
     .error-no-selected {
       position: absolute;
-      bottom: 16px;
-      left: 129px;
+      bottom: -3px;
+      left: 11px;
+      display: -webkit-box;
       display: flex;
-      justify-content: center;
+      justify-content: center
     }
   }
 }
@@ -426,6 +429,11 @@
           width: 90%;
           .chose-text {
             padding-top: 0;
+          }
+          .time-order {
+            .position-input {
+              left: -6px;
+            }
           }
         }
       }

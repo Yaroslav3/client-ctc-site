@@ -7,6 +7,7 @@ import {MainLayoutComponent} from '../../../main-layout/main-layout.component';
 import {RoomDateService} from '../../../shared/services/room-date.service';
 import {NgbDateAdapter, NgbDateNativeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import {fadingAwayAnimate, showAnimate} from '../../../shared/animations/fading-away.animate';
+import {FontJsonFileService} from '../../../shared/services/font-json-file.service';
 
 @Component({
   selector: 'app-show-room-info',
@@ -20,11 +21,13 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
   room: Room;
   showHour = true;
   showDay = false;
+  fonts = [];
   editorConfig: AngularEditorConfig = {
     editable: false,
     showToolbar: false,
     height: 'auto',
     defaultFontSize: '5',
+    fonts: this.fonts,
     minHeight: '5rem',
     placeholder: 'Enter text here...',
     translate: 'no',
@@ -49,15 +52,24 @@ export class ShowRoomInfoComponent implements OnInit, OnDestroy {
               private headerControl: MainLayoutComponent,
               private roomDate: RoomDateService,
               private elRef: ElementRef,
+              private fontService: FontJsonFileService,
               private getReduxDat: GetReduxDataService) {
     this.headerControl.hiddenHeaderComponent();
   }
   ngOnInit() {
+    this.getFonts();
     this.route.params.subscribe((param: Params) => {
       this.room = this.getReduxDat.getOneRoomState(param.id);
       this.id = param.id;
       if (!this.room) {
         this.router.navigate(['/room-rental']);
+      }
+    });
+  }
+  getFonts() { // download fonts for editorConfig.
+    this.fontService.getFontJsonFile().subscribe(result => {
+      for (let i = 0; i < Object.keys(result).length; i++) {
+        this.fonts[i] = result[i];
       }
     });
   }
