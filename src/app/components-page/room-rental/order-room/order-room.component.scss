@@ -15,6 +15,9 @@
       border-radius: 2px;
       .time-room, .day-room {
         font-size: 13px;
+        .form-order-banner-mob {
+          display: none;
+        }
         .order-info-text {
           margin: 3px;
           padding: 12px 4px;
@@ -432,6 +435,18 @@
         border-bottom-right-radius: 0;
         width: 90%;
         .time-room, .day-room {
+          position: relative;
+          .form-order-banner-mob {
+            top: -39px;
+            padding: 5px 10px;
+            color: #80A0A2;
+            font-size: 17px;
+            display: inline-block;
+            position: absolute;
+            z-index: 6;
+            background: #FBFBFB;
+            left: 0;
+          }
           .block-order-list-time {
             &__show-block, &__show-block-day {
               height: auto;
@@ -446,7 +461,7 @@
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         .form-order-banner {
-          top: -306px !important;
+          display: none;
         }
         .form {
           padding: 6px 0;

@@ -14,6 +14,7 @@ export class DateCalendarService {
     this.host = environment.host;
   }
   getRangeDataCalendar(start: string, end: string) {
+    console.log(typeof start, ':', start, '-', typeof end, ':', end);
     return this.http.get(`${this.host + environment.apiUrlGetAllDateCalendar}/${start}/${end}`);
   }
 }

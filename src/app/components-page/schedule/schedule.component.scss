@@ -1,14 +1,52 @@
 :host ::ng-deep.calendar {
   padding-left: 40px;
   padding-right: 52px;
+  position: relative;
+  min-height: 63vh;
   .calendar-container {
     margin-top: 40px;
+    .positions-btn-calendar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      .btn-month-block, .btn-for-the-current-month {
+        display: flex;
+        justify-content: center;
+        .btn-calendar {
+          padding: 10px 10px;
+          background: var(--background-room-rental);
+          color: white;
+          margin: 2px;
+          border-radius: 2px;
+          cursor: pointer;
+          transition: all 0.4s ease-in-out;
+          .icon-arrow {
+            padding: 0 8px;
+          }
+          &:hover {
+            transition: all 0.4s ease-in;
+            background: #2F3338;
+          }
+        }
+      }
+      .data-block {
+        align-items: center;
+        display: flex;
+        &__text {
+          font-size: 20px;
+          color: var(--color-room-rental);
+        }
+      }
+    }
     .full-calendar {
       font-family: var(--font-webinars-main);
       color: #9F9FA9;
       .fc-toolbar {
+        display: none;
         .fc-left {
+          //display: none;
           .fc-button-group {
+            display: none;
             .fc-button {
               padding: 0.4em 0.6em;
               font-size: 13px;
@@ -39,12 +77,14 @@
           }
         }
         .fc-center {
+          display: none;
           h2 {
             font-size: 20px;
             color: rgba(0, 0, 0, 0.6);
           }
         }
         .fc-right {
+          display: none;
           .fc-button {
             padding: 0.4em 0.6em;
             font-size: 13px;

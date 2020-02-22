@@ -21,7 +21,7 @@ export class SliderComponent implements OnInit {
   @ViewChild('controlСursor', {static: false}) controlСursor: ElementRef;
   constructor(private renderer: Renderer2,
               private elRef: ElementRef,
-              private changeDetector: ChangeDetectorRef,
+              // private changeDetector: ChangeDetectorRef,
               public builder: AnimationBuilder) {
   }
   animate() {
@@ -36,12 +36,12 @@ export class SliderComponent implements OnInit {
     player.play();
   }
   ngOnInit() {
-    console.log(this.photo);
     this.allPhoto = this.photo.map(p => p.photo);
     this.pictureImg = this.allPhoto[this.numberImg = 0];
-    this.addControlVisualisation(this.id);
     if (this.photo.length <= 1) {
       this.hidden = false;
+    } else {
+      this.addControlVisualisation(this.id);
     }
   }
   next() {
@@ -78,7 +78,7 @@ export class SliderComponent implements OnInit {
   }
   addControlVisualisation(id: any) {
     setTimeout(() => {
-      this.changeDetector.detectChanges();
+      // this.changeDetector.detectChanges();
       const cursor = this.controlСursor.nativeElement.getElementsByClassName('item');
       const bb = cursor.namedItem(id);
       this.renderer.addClass(bb, 'active-control');
@@ -86,7 +86,7 @@ export class SliderComponent implements OnInit {
   }
   deleteControlVisualisation(id: any) {
     setTimeout(() => {
-      this.changeDetector.detectChanges();
+      // this.changeDetector.detectChanges();
       const cursor = this.controlСursor.nativeElement.getElementsByClassName('item');
       const bb = cursor.namedItem(id);
       this.renderer.removeClass(bb, 'active-control');

@@ -24,7 +24,6 @@ export class TrainingShowComponent implements OnInit, OnDestroy {
   pdfBlockVisual: boolean;
   pdfFile;
   fonts = [];
-  selectFile: File = null;
   training: TrainingsShow;
   trainers: Trainers;
   loader: boolean;
