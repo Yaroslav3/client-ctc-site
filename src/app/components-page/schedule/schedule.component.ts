@@ -57,6 +57,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   }
   calculateData(startDate: number, endData: number) {
     this.dateService.getRangeDataCalendar(this.transform(String(startDate.valueOf())), this.transform(String(endData.valueOf()))).subscribe(d => {
+      console.log(d);
       this.dateEventCalendar = d;
       this.getAllDateCalendar(d);
       this.dataVisualisations();
@@ -74,8 +75,6 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     this.counterMonth++;
     const endOfTheMonth = new Date().setMonth(new Date().getMonth() + this.counterMonth);
     const beginningOfTheMonth = new Date(endOfTheMonth).setMonth(new Date(endOfTheMonth).getMonth() - 1);
-    // console.log(this.transform(String(beginningOfTheMonth.valueOf())));
-    // console.log(this.transform(String(endOfTheMonth.valueOf())));
     this.calculateData(beginningOfTheMonth, endOfTheMonth);
     setTimeout(() => {
       const calendarApi = this.calendarComponent.getApi();
@@ -93,7 +92,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   dataVisualisations() {
     setTimeout(() => {
       const calendarApi = this.calendarComponent.getApi();
-      this.dataVisual = calendarApi.el.textContent.split('г.', 1) + 'г';
+      this.dataVisual = calendarApi.el.textContent.split('г', 1) + 'г';
     });
   }
   todayCalendar() {
@@ -107,6 +106,7 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     setTimeout(() => {
       const status = 'dayGridMonth';
       const calendarApi = this.calendarComponent.getApi();
+      console.log(calendarApi);
       calendarApi.state.viewType = status;
       calendarApi.getDate();
       calendarApi.next();
