@@ -4,11 +4,13 @@
     <div class="calendar-container" *ngIf="!loader">
       <div class="positions-btn-calendar">
         <div class="btn-month-block">
-          <div class="btn-calendar" (click)="prevCalendar()">
-            <i class="fas fa-chevron-left icon-arrow"></i>
-          </div>
-          <div class="btn-calendar" (click)="nextCalendar()">
-            <i class="fas fa-chevron-right icon-arrow"></i>
+          <div class="btn-next-prev">
+            <div class="btn-calendar" (click)="prevCalendar()">
+              <i class="fas fa-chevron-left icon-arrow"></i>
+            </div>
+            <div class="btn-calendar" (click)="nextCalendar()">
+              <i class="fas fa-chevron-right icon-arrow"></i>
+            </div>
           </div>
           <div class="btn-calendar" (click)="todayCalendar()"> Сегодня</div>
         </div>
@@ -20,17 +22,20 @@
           <div class="btn-calendar" (click)="weekCalendar()">Неделя</div>
         </div>
       </div>
-      <full-calendar #calendar class="full-calendar" [@fadingAwayAnimate]
-                     [plugins]="calendarPlugins"
-                     [eventLimit]="options.eventLimit"
-                     [events]="options.events"
-                     [height]="options.height"
-                     [locale]="options.locale"
-                     [timeZone]="options.timeZoneParam"
-                     [themeSystem]="options.themeSystem"
-                     [selectable]="options.selectable"
-                     (eventClick)="eventClick($event)"
-      ></full-calendar>
+      <div style="position: relative">
+        <app-loader-small-spinner-btn *ngIf="loaderCalendarBtn"></app-loader-small-spinner-btn>
+        <full-calendar #calendar class="full-calendar" [@fadingAwayAnimate]
+                       [plugins]="calendarPlugins"
+                       [eventLimit]="options.eventLimit"
+                       [events]="options.events"
+                       [height]="options.height"
+                       [locale]="options.locale"
+                       [timeZone]="options.timeZoneParam"
+                       [themeSystem]="options.themeSystem"
+                       [selectable]="options.selectable"
+                       (eventClick)="eventClick($event)"
+        ></full-calendar>
+      </div>
     </div>
     <div id="modal" class="body-modal" *ngIf="contentModalShow " [@fadingAwayAnimate]>
       <div class="content-modal">

@@ -66,6 +66,19 @@
   --input-checkbox-background: #147d67;
   --background-room-rental: #69737D;
   --color-room-rental: #69737D;
+  // __calendar__
+  --background-calendar-main: #69737D;
+  --color-calendar-text: #69737D;
+  --background-calendar-btn: #69737D;
+  --hover-btn-calendar: rgba(0, 0, 0, 0.6);
+  --color-calendar-btn: #FFFFFF;
+  --background-calendar-body-table: #E1E1E1;
+  --background-calendar-header-table: #69737D;
+  --background-calendar-active-day-table: #77838E;
+  --color-calendar-active-day: #FFFFFF;
+  --color-text-calendar-day-table: #621D19;
+  //__modal-block-calendar___
+  --background-color-modal-calendar: #FFFFFF;
 }
 *, :active, :focus, :hover {
   -webkit-tap-highlight-color: transparent;
@@ -115,7 +128,6 @@ html, body, iframe {
 .wrapper {
   max-width: 1500px;
   margin: 0 auto;
-
 }
 // Стили для кнопки в приложении
 .btn-all-application {

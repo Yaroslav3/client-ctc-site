@@ -1,4 +1,4 @@
-import {AfterContentChecked, Component, HostListener, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {LoadingPhotoHeaderService} from '../../shared/services/loading-photo-header.service';
 import {CalendarTrainings} from '../../shared/model/CalendarTrainings.model';
 import {GetReduxDataService} from '../../shared/services/get-redux-data.service';
@@ -11,34 +11,34 @@ import {DatePipe, ViewportScroller} from '@angular/common';
 import {DateCalendarService} from '../../shared/services/date-calendar.service';
 import {LoaderPageSpinnerComponent} from '../../global-components/loader/loader-page-spinner/loader-page-spinner.component';
 import {FullCalendarComponent} from '@fullcalendar/angular';
-import {DayGridSeg} from '@fullcalendar/daygrid/DayGrid';
+import {LoaderSmallSpinnerBtnComponent} from '../../global-components/loader/loader-small-spinner-btn/loader-small-spinner-btn.component';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
   animations: [fadingAwayAnimate],
-  providers: [LoaderPageSpinnerComponent]
+  providers: [LoaderPageSpinnerComponent, LoaderSmallSpinnerBtnComponent]
 })
 export class ScheduleComponent implements OnInit, AfterContentChecked {
   location: string;
   events: CalendarTrainings;
   options: OptionsInput;
-  counterMonth = 0;
-  endOfTheMonth;
-  counterDate;
   calendarPlugins = [dayGridPlugin];
   contentModalShow = false;
-  dateEventCalendar;
+  dateEventCalendar = undefined;
   dataVisual;
   modelCalendarTrainingsDate = new CalendarTrainings();
   loader = false;
+  loaderCalendarBtn = false;
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent;
   constructor(private serviceHeaderPhoto: LoadingPhotoHeaderService,
               private route: Router,
               readonly viewportScroller: ViewportScroller,
               private headerControl: MainLayoutComponent,
               private getReduxData: GetReduxDataService,
+              private loaderBtn: LoaderSmallSpinnerBtnComponent,
+              private changeDetector: ChangeDetectorRef,
               private loaderPage: LoaderPageSpinnerComponent,
               private dateService: DateCalendarService) {
     this.location = 'schedule';
@@ -47,21 +47,27 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     this.loader = true;
     this.loaderPage.startLoaderPageSpinner();
     this.serviceHeaderPhoto.setPhotoLoadingHeader(this.location);
-    this.endOfTheMonth = new Date();
-    const beginningOfTheMonth = new Date().setMonth(new Date().getMonth() - 1);
-    // console.log(this.transform(String(this.endOfTheMonth.valueOf())));
-    // console.log(this.transform(String(beginningOfTheMonth.valueOf())));
-    // const beginningOfTheMonth = this.firstMonth.setMonth(this.firstMonth.getMonth() - 1);
-    this.calculateData(beginningOfTheMonth, this.endOfTheMonth);
+    const firstDayOfTheMonth = new Date(new Date().getFullYear(), new Date().getMonth(), +1);
+    const lastDayOfTheMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0);
+    this.getDateRequest(firstDayOfTheMonth, lastDayOfTheMonth);
     this.viewportScroller.scrollToPosition([0, 400]);
   }
-  calculateData(startDate: number, endData: number) {
-    this.dateService.getRangeDataCalendar(this.transform(String(startDate.valueOf())), this.transform(String(endData.valueOf()))).subscribe(response => {
+  getDateRequest(start: Date, end: Date) {
+    this.dateService.getRangeDataCalendar(this.transform(String(start.valueOf())),
+      this.transform(String(end.valueOf()))).subscribe(response => {
+      console.log(response);
+      setTimeout(() => {
+        const calendarApi = this.calendarComponent.getApi();
+        this.dataVisual = calendarApi.view.title;
+      });
       if (response) {
         this.dateEventCalendar = response;
         this.getAllDateCalendar(response);
-        this.dataVisualisations();
         this.loaderPage.stopLoaderPageSpinner();
+        this.loader = false;
+      } else {
+        this.dateEventCalendar = [];
+        this.getAllDateCalendar(this.dateEventCalendar);
         this.loader = false;
       }
     });
@@ -73,50 +79,54 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
   }
   // methods event button calendar
   nextCalendar() {
-    this.counterMonth++;
-    const endOfTheMonth = new Date().setMonth(new Date().getMonth() + this.counterMonth);
-    const beginningOfTheMonth = new Date(endOfTheMonth).setMonth(new Date(endOfTheMonth).getMonth() - 1);
-    // console.log(this.transform(String(beginningOfTheMonth.valueOf())));
-    // console.log(this.transform(String(endOfTheMonth.valueOf())));
-    this.calculateData(beginningOfTheMonth, endOfTheMonth);
+    this.startSpinnerCalendar();
     setTimeout(() => {
       const calendarApi = this.calendarComponent.getApi();
       calendarApi.next();
-      this.dataVisualisations();
-    });
+      if (calendarApi.state.viewType === 'dayGridMonth') {
+        this.getDataCalendarMonth();
+        this.loaderCalendarBtn = false;
+        this.loaderBtn.stopSmallSpinnerBtn();
+      }
+      if (calendarApi.state.viewType === 'dayGridWeek') {
+        this.getDataCalendarWeek();
+        this.loaderCalendarBtn = false;
+        this.loaderBtn.stopSmallSpinnerBtn();
+      }
+    }, 1000);
   }
   prevCalendar() {
+    this.startSpinnerCalendar();
     setTimeout(() => {
       const calendarApi = this.calendarComponent.getApi();
       calendarApi.prev();
-      this.dataVisualisations();
-    });
-  }
-  dataVisualisations() {
-    setTimeout(() => {
-      const calendarApi = this.calendarComponent.getApi();
-      this.dataVisual = calendarApi.el.textContent.split('г.', 1) + 'г';
-    });
+      if (calendarApi.state.viewType === 'dayGridMonth') {
+        this.getDataCalendarMonth();
+        this.closeSpinnerCalendar();
+      }
+      if (calendarApi.state.viewType === 'dayGridWeek') {
+        this.getDataCalendarWeek();
+        this.closeSpinnerCalendar();
+      }
+    }, 1000);
   }
   todayCalendar() {
+    this.startSpinnerCalendar();
     setTimeout(() => {
       const calendarApi = this.calendarComponent.getApi();
       calendarApi.today();
-      this.dataVisualisations();
-    });
-  }
-  monthCalendar() {
-    setTimeout(() => {
-      const status = 'dayGridMonth';
-      const calendarApi = this.calendarComponent.getApi();
-      calendarApi.state.viewType = status;
-      calendarApi.getDate();
-      calendarApi.next();
-      calendarApi.prev();
-      this.dataVisualisations();
-    });
+      if (calendarApi.state.viewType === 'dayGridMonth') {
+        this.getDataCalendarMonth();
+        this.closeSpinnerCalendar();
+      }
+      if (calendarApi.state.viewType === 'dayGridWeek') {
+        this.getDataCalendarWeek();
+        this.closeSpinnerCalendar();
+      }
+    }, 500);
   }
   weekCalendar() {
+    this.startSpinnerCalendar();
     setTimeout(() => {
       const status = 'dayGridWeek';
       const calendarApi = this.calendarComponent.getApi();
@@ -125,12 +135,12 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
       calendarApi.getDate();
       calendarApi.next();
       calendarApi.prev();
-      // this.todayCalendar();
-      this.dataVisualisations();
-    });
+      this.dataVisual = calendarApi.view.title;
+      this.closeSpinnerCalendar();
+    }, 500);
   }
   getAllDateCalendar(dateEventCalendar) {
-    this.events = this.dateEventCalendar;
+    this.events = dateEventCalendar;
     this.options = {
       editable: true,
       eventLimit: false,
@@ -142,6 +152,38 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
       selectable: true,
       events: dateEventCalendar,
     };
+  }
+  startSpinnerCalendar() {
+    this.loaderCalendarBtn = true;
+    this.loaderBtn.startSmallSpinnerBtn();
+  }
+  closeSpinnerCalendar() {
+    this.loaderCalendarBtn = false;
+    this.loaderBtn.stopSmallSpinnerBtn();
+  }
+  getDataCalendarMonth() {
+    const calendarApi = this.calendarComponent.getApi();
+    const currentEnd = new Date(calendarApi.view.currentEnd.getFullYear(), calendarApi.view.currentEnd.getMonth(), 0);
+    this.getDateRequest(calendarApi.view.currentStart, currentEnd);
+    this.dataVisual = calendarApi.view.title;
+  }
+  getDataCalendarWeek() {
+    const calendarApi = this.calendarComponent.getApi();
+    this.getDateRequest(calendarApi.view.currentStart, calendarApi.view.currentEnd);
+    this.dataVisual = calendarApi.view.title;
+  }
+  monthCalendar() {
+    this.startSpinnerCalendar();
+    setTimeout(() => {
+      const status = 'dayGridMonth';
+      const calendarApi = this.calendarComponent.getApi();
+      calendarApi.state.viewType = status;
+      calendarApi.getDate();
+      calendarApi.next();
+      calendarApi.prev();
+      this.dataVisual = calendarApi.view.title;
+      this.closeSpinnerCalendar();
+    }, 500);
   }
   @HostListener('window:mouseenter')
   hiddenScrollLine() {
@@ -168,7 +210,6 @@ export class ScheduleComponent implements OnInit, AfterContentChecked {
     this.contentModalShow = false;
   }
   ngAfterContentChecked(): void {
-    // this.someMethod();
-    // this.dataVisualisations();
   }
 }
+

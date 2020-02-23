@@ -9,12 +9,16 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
-      .btn-month-block, .btn-for-the-current-month {
+      .btn-month-block {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        .btn-next-prev {
+          display: flex;
+          justify-content: space-between;
+        }
         .btn-calendar {
           padding: 10px 10px;
-          background: var(--background-room-rental);
+          background: var(--background-calendar-btn);
           color: white;
           margin: 2px;
           border-radius: 2px;
@@ -30,93 +34,109 @@
         }
       }
       .data-block {
-        align-items: center;
         display: flex;
+        align-items: flex-end;
         &__text {
           font-size: 20px;
-          color: var(--color-room-rental);
+          color: var(--color-calendar-text);
+        }
+      }
+      .btn-for-the-current-month {
+        display: flex;
+        justify-content: space-between;
+        .btn-calendar {
+          padding: 10px 10px;
+          background: var(--background-calendar-btn);
+          color: var(--color-calendar-btn);
+          margin: 2px;
+          border-radius: 2px;
+          cursor: pointer;
+          transition: all 0.4s ease-in-out;
+          &:hover {
+            transition: all 0.4s ease-in;
+            background: #2F3338;
+          }
         }
       }
     }
     .full-calendar {
       font-family: var(--font-webinars-main);
-      color: #9F9FA9;
       .fc-toolbar {
         display: none;
-        .fc-left {
-          //display: none;
-          .fc-button-group {
-            display: none;
-            .fc-button {
-              padding: 0.4em 0.6em;
-              font-size: 13px;
-              line-height: 17px;
-              border: none;
-            }
-            .fc-button:not(:first-child) {
-              margin-left: 2px;
-            }
-            .fc-button-primary {
-              color: #fff;
-              background-color: rgba(0, 0, 0, 0.6);
-              border-color: #fff;
-            }
-          }
-          .fc-today-button {
-            padding: 0.4em 0.6em;
-            font-size: 13px;
-            line-height: 17px;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-color: #fff;
-            &:disabled {
-              color: #fff;
-              background-color: rgba(0, 0, 0, 0.4);
-              border-color: chocolate;
-            }
-          }
-        }
-        .fc-center {
-          display: none;
-          h2 {
-            font-size: 20px;
-            color: rgba(0, 0, 0, 0.6);
-          }
-        }
-        .fc-right {
-          display: none;
-          .fc-button {
-            padding: 0.4em 0.6em;
-            font-size: 13px;
-            line-height: 17px;
-            border: none;
-          }
-          .fc-button-primary {
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-color: #fff;
-          }
-          .fc-button-primary:disabled {
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.4);
-            border-color: chocolate;
-          }
-        }
       }
       .fc-view-container {
         .fc-view {
+          table {
+            .fc-head {
+              //border-color: darkred;
+              tr {
+                .fc-head-container, .fc-widget-header {
+                  //border-color: #69737D;
+                  padding: 5px 0;
+                  background: var(--background-calendar-header-table);
+                  border-color: var(--background-calendar-header-table);
+                  table {
+                    thead {
+                      tr {
+                        .fc-day-header {
+                          span {
+                            color: var(--color-calendar-btn);
+                            font-size: 18px;
+                            font-weight: 200;
+                            display: block;
+                            border-left: 1px solid var(--color-calendar-btn);
+                            padding: 10px 0;
+                          }
+                          &:first-of-type {
+                            span {
+                              border-left: transparent;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
           .fc-body {
-            .fc-day-grid {
-              .fc-content-skeleton {
-                .fc-event-container {
-                  .fc-content {
-                    text-align: center;
+            tr {
+              .fc-widget-content {
+                border-color: var(--color-calendar-btn);
+                .fc-day-grid {
+                  .fc-content-skeleton {
+                    table {
+                      thead {
+                        tr {
+                        }
+                      }
+                    }
+                    .fc-event-container {
+                      .fc-content {
+                        text-align: center;
+                      }
+                    }
                   }
                 }
               }
             }
           }
         }
+      }
+      .fc-day {
+        background: var(--background-calendar-body-table);
+      }
+      .fc-today {
+        background: var(--background-calendar-active-day-table);
+        .fc-day-number {
+          color: var(--color-calendar-active-day);
+          padding-right: 10px;
+        }
+      }
+      .fc-day-number {
+        color: var(--color-text-calendar-day-table);
+        padding-right: 10px;
       }
     }
   }
@@ -134,7 +154,7 @@
       top: 35%;
       left: 35%;
       right: 35%;
-      background-color: white;
+      background-color: var(--background-color-modal-calendar);
       border-radius: 3px;
       margin: 15px;
       padding: 15px;
@@ -142,7 +162,7 @@
         display: flex;
         justify-content: flex-start;
         padding-bottom: 9px;
-        border-bottom: 1px solid #7D90CC;
+        border-bottom: 1px solid var(--background-calendar-main);
         pointer-events: none;
         .calendar-icon {
           padding-left: 2px;
@@ -150,12 +170,12 @@
           top: 1px;
           &:before {
             font-size: 27px;
-            color: #7D90CC;
+            color: var(--color-calendar-text);
           }
         }
         .text-header {
           padding-left: 12px;
-          color: #7D90CC;
+          color: var(--color-calendar-text);
           width: 80%;
           text-align: center;
         }
@@ -172,12 +192,12 @@
           left: -7px;
           &:before {
             font-size: 24px;
-            color: #7D90CC;
+            color: var(--color-calendar-text);
           }
         }
         .text-comment {
           padding-left: 12px;
-          color: #9F9FA9;
+          color: var(--color-calendar-text);
           text-align: center;
           width: 80%;
         }
@@ -194,12 +214,12 @@
           left: -7px;
           &:before {
             font-size: 24px;
-            color: #7D90CC;
+            color: var(--color-calendar-text);
           }
         }
         .time-event {
           padding-left: 12px;
-          color: #9F9FA9;
+          color: var(--color-calendar-text);
           text-align: center;
           width: 80%;
         }
@@ -267,27 +287,17 @@
     }
   }
 }
-@media all and (max-width: 600px) {
-  :host ::ng-deep.calendar {
-    .calendar-container {
-      .full-calendar {
-        .fc-toolbar {
-          display: flex;
-          flex-direction: column-reverse;
+@media all and (max-width: 650px) {
+  .wrapper {
+    .calendar {
+      .calendar-container {
+        .positions-btn-calendar {
+          flex-direction: column;
           justify-content: space-between;
-          width: 100%;
-          .fc-left {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-          }
-          .fc-center {
-            padding-top: 10px;
-            h2 {
-            }
-          }
-          .fc-right {
-            margin: 10px;
+          .data-block {
+            align-items: center;
+            margin: auto;
+            padding: 7px;
           }
         }
       }
